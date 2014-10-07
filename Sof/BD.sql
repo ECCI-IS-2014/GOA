@@ -61,8 +61,11 @@ CREATE TABLE IF NOT EXISTS `products` (
 
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) NOT NULL,
-  `password` varchar(30) NOT NULL,
-  `admin` tinyint(1) DEFAULT NULL,
+  `username` varchar(40) NOT NULL,
+  `password` varchar(40) NOT NULL,
+  `role` tinyint(1) DEFAULT 0, -- cero será usuario, 1 será el admin
+  `created` datetime NOT NULL,
+  `modified` datetime NOT NULL,
   `name` varchar(30) NOT NULL,
   `last_name` varchar(30) NOT NULL,
   `phone` int(11) NOT NULL,
@@ -70,7 +73,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `email` varchar(40) NOT NULL,
   `gender` char(1) NOT NULL,
   `birth_date` date NOT NULL,
-  `status` tinyint(1) DEFAULT NULL,
+  `status` tinyint(1) DEFAULT 0,  -- habilitado(0) o deshabilidado (1)
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
