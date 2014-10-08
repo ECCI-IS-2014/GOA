@@ -1,6 +1,4 @@
 <?php
-CakePlugin::loadAll(); // Loads all plugins at once
-CakePlugin::load('DebugKit');
 /**
  * This file is loaded automatically by the app/webroot/index.php file after core.php
  *
@@ -67,7 +65,8 @@ Cache::config('default', array('engine' => 'File'));
  * Uncomment one of the lines below, as you need. Make sure you read the documentation on CakePlugin to use more
  * advanced ways of loading plugins
  *
- *  //Loads a single plugin named DebugKit
+ * CakePlugin::loadAll(); // Loads all plugins at once
+ * CakePlugin::load('DebugKit'); //Loads a single plugin named DebugKit
  *
  */
 
@@ -107,3 +106,5 @@ CakeLog::config('error', array(
 	'types' => array('warning', 'error', 'critical', 'alert', 'emergency'),
 	'file' => 'error',
 ));
+
+CakePlugin::load('DebugKit'); //Debug Kit
