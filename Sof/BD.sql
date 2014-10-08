@@ -1,4 +1,4 @@
--- phpMyAdmin SQL Dump
+﻿-- phpMyAdmin SQL Dump
 -- version 4.1.12
 -- http://www.phpmyadmin.net
 --
@@ -27,7 +27,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE IF NOT EXISTS `categories` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(30) NOT NULL,
   `father_category_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS `categories` (
 --
 
 CREATE TABLE IF NOT EXISTS `products` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `category_id` int(11) NOT NULL,
   `name` varchar(30) NOT NULL,
   `price` decimal(9,2) NOT NULL DEFAULT '0.00',
@@ -60,7 +60,7 @@ CREATE TABLE IF NOT EXISTS `products` (
 --
 
 CREATE TABLE IF NOT EXISTS `users` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(40) NOT NULL,
   `password` varchar(40) NOT NULL,
   `role` tinyint(1) DEFAULT 0, -- cero será usuario, 1 será el admin
