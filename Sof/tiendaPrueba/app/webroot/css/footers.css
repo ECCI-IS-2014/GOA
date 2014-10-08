@@ -1,0 +1,48 @@
+#menuFooter
+{
+    border: solid 1px #39F;
+    background:#336699 url('http://www.menucool.com/horizontal/javascript/50/mb50_1_bg.gif') repeat-x;
+    padding:0px;/*changing its value will give menu margins to its container*/
+    text-align:center;
+    border-radius: 4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+}
+
+
+#menuFooterInterno
+{
+    margin:0 auto;/*If you don't want the menu center aligned, remove this line and above text-align:center*/
+    font-size:0;
+}
+
+#menuFooterInterno ul, #menuFooterInterno li
+{
+    display: inline;
+    list-style-type: none;padding: 0;margin: 0;border:0;background-image:none;
+}
+
+#menuFooterInterno a
+{
+    text-align: center;
+    display: inline-block;
+    font: normal 12px Arial;
+    background: url('http://www.menucool.com/horizontal/javascript/50/mb50_1.gif') no-repeat left top;
+    padding: 10px 20px;/*This defines the size of each menu item*/
+    color: white;
+    text-decoration: none;
+}
+
+#menuFooterInterno a:hover, #menuFooterInterno a.current
+{
+    background-position: 0% -60px;
+    color: white;
+}
+#menuFooterInterno a.endMenuFooter
+{
+    width:2px;
+    padding-left:0;padding-right:0;
+}
+
+
+/*FOOTER1 ENDS*/
