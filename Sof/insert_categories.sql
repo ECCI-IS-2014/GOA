@@ -1,40 +1,45 @@
 
-INSERT INTO categories ( id, name )
-                       VALUES
-                       ( 0, 'ropa' );
+-- Script para poblar la tabla categorias con datos de prueba
+-- Asegurarse de vaciar la tabla categorias antes de ejecutarlo
 
-INSERT INTO categories ( id, name )
-                       VALUES
-                       ( 1, 'higiene personal' );
+ALTER TABLE categories AUTO_INCREMENT = 1;
 
-INSERT INTO categories ( id, name )
+INSERT INTO categories ( name )
                        VALUES
-                       ( 2, 'alimentos' );
+                       ('ropa' );
 
-INSERT INTO categories ( id, name )
+INSERT INTO categories ( name )
                        VALUES
-                       ( 3, 'electrodomesticos' );
+                       ('higiene personal' );
 
-INSERT INTO categories ( id, name )
+INSERT INTO categories ( name )
                        VALUES
-                       ( 4, 'muebles' );
+                       ('alimentos' );
 
-INSERT INTO categories ( id, name )
+INSERT INTO categories ( name )
                        VALUES
-                       ( 5, 'hogar' );
+                       ('electrodomesticos' );
 
-INSERT INTO categories ( id, name, father_category_id )
+INSERT INTO categories ( name )
                        VALUES
-                       ( 6, 'sombreros', 0 );
+                       ('muebles' );
 
-INSERT INTO categories ( id, name, father_category_id )
+INSERT INTO categories ( name )
                        VALUES
-                       ( 7, 'calzado', 0 );
+                       ('hogar' );
 
-INSERT INTO categories ( id, name )
+INSERT INTO categories ( name, father_category_id )
                        VALUES
-                       ( 8, 'limpieza' );
+                       ('sombreros', 1 );
 
-INSERT INTO categories ( id, name )
+INSERT INTO categories ( name, father_category_id )
                        VALUES
-                       ( 9, 'miscelaneo' );
+                       ('calzado', 1 );
+
+INSERT INTO categories ( name )
+                       VALUES
+                       ('limpieza' );
+
+INSERT INTO categories ( name )
+                       VALUES
+                       ('miscelaneo' );
