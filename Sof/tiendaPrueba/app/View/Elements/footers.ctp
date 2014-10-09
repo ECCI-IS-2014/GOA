@@ -1,5 +1,5 @@
 <?php $this->start('footer1'); ?>
-    <div id="footer">
+
     			<div id="menuFooter">
                         <div id="menuFooterInterno">
                         	<ul>
@@ -11,6 +11,6 @@
                             </ul>
                         </div>
                  <div>
-    		</div>
+
 <?php $this->end(); ?>
- //FOOTER1 ENDS
+<?php /*TERMINA FOOTER1*/ ?>
