@@ -26,7 +26,7 @@ body {
 	background: #003d4c;
 	color: #fff;
 	font-family:'lucida grande',verdana,helvetica,arial,sans-serif;
-	font-size:90%;
+	font-size:100%;
 	margin: 0;
 }
 a {
@@ -101,12 +101,12 @@ p {
 	background: #fff;
 	clear: both;
 	color: #333;
-	padding: 10px 20px 40px 20px;
+
 	overflow: auto;
 }
 #footer {
 	clear: both;
-	
+
 }
 #header a, #footer a {
 	color: #fff;

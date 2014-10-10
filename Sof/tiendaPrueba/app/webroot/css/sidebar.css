@@ -1,0 +1,23 @@
+
+
+
+#sidebar
+{
+    float:left;
+    overflow:hidden;
+    width: 0%;
+    z-index: 2;
+
+}
+
+
+
+
+
+#sidebar1
+{
+    overflow: hidden;
+    background-color: slategray;
+    width: 0%;
+    position: -30%;
+}

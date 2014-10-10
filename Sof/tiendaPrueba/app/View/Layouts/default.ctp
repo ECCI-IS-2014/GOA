@@ -27,7 +27,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 	</title>
 	<?php
 		echo $this->Html->meta('icon');
-
+        echo $this->Html->script('jquery');
 		echo $this->Html->css('cake.generic');
 
 		echo $this->fetch('meta');
@@ -50,5 +50,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 
 		</div>
 	</div>
+
+	<?php echo $this->Js->writeBuffer(); ?>
 </body>
 </html>
