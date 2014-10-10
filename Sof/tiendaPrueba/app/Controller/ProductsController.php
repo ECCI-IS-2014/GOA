@@ -15,6 +15,7 @@ class ProductsController extends AppController {
  * @var array
  */
 	public $components = array('Paginator', 'Session');
+	public $helpers = array('CatalogGenerator', 'Html');
 
 /**
  * index method
@@ -110,4 +111,13 @@ class ProductsController extends AppController {
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
+
+
+
+	public function browseCatalog() {
+
+		$this->set( 'products', $this->Product->find('all') );
+
+	}
+
 }

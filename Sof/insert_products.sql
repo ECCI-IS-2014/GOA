@@ -2,7 +2,7 @@
 -- Script para poblar la tabla products con datos de prueba.
 -- Asegurarse de vaciar la tabla products antes de ejecutarlo.
 
-ALTER TABLE categories AUTO_INCREMENT = 1;
+ALTER TABLE products AUTO_INCREMENT = 1;
 
 INSERT INTO products ( category_id, name, price, quantity, image, status, rating )
                        VALUES
