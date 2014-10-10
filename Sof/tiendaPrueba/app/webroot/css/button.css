@@ -1,12 +1,31 @@
 #button1
 {
     float:left;
-    background-color: darkcyan;
+    background:#336699 url('http://www.menucool.com/horizontal/javascript/50/mb50_1.gif') repeat-x;
     -ms-transform: rotate(90deg); /* IE 9 */
     -webkit-transform: rotate(90deg); /* Chrome, Safari, Opera */
     transform: rotate(90deg);
-    margin-top: 1.5%;
+    margin-top: 8%;
     margin-left: 0%;
+    margin-bottom: 8%;
+    padding: .2% 3% .2% 3%; /*right bottom left top*/
+    color: white;
+    font: normal 12px Arial;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+    border: solid 1px #39F;
+    letter-spacing: 1px;
+}
 
 
+#button1:hover
+{
+
+    background-position: 0% -60px;
+    color:white;
+}
+
+:focus, :active {
+    outline: 0;
+    border: 0;      /*elimina los puntos feos cuando uno clickea el boton*/
 }

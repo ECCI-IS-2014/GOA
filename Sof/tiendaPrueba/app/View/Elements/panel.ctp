@@ -1,6 +1,8 @@
 <?php $this->start('panel1'); ?>
 
-   <p>ALGO DE TEXTO</p>
+
+   	<?php	echo $this->CatalogGenerator->formatProducts($products); ?>
+
 
 
 

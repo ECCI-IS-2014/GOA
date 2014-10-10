@@ -35,7 +35,9 @@ class PagesController extends AppController {
  *
  * @var array
  */
-	public $uses = array();
+	public $uses = array('Product');
+
+    public $helpers = array('CatalogGenerator');
 
 /**
  * Displays a view
@@ -74,4 +76,12 @@ class PagesController extends AppController {
 			throw new NotFoundException();
 		}
 	}
+
+    public function home() {
+
+        $this->set( 'products', $this->Product->find('all') );
+
+    }
+
+
 }

@@ -27,26 +27,13 @@
 
                 </div>
 
-
-                     <div id="content2">
-
-
-
-                     </div>
-
                     <div id="sidebar">
                         <?php echo $this->fetch('sidebar1'); ?>
 
                     </div>
-
                     <?php echo $this->fetch('button1'); ?>
-
-
                     <div id="panel">
                         <?php echo $this->fetch('panel1'); ?>
-
-
-
                     </div>
 
                     <div style="clear:both"></div>
