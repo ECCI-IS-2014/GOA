@@ -69,7 +69,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `name` varchar(30) NOT NULL,
   `last_name` varchar(30) NOT NULL,
   `phone` int(11) NOT NULL,
-  `adress` varchar(90) DEFAULT NULL,
+  `address` varchar(90) DEFAULT NULL,
   `email` varchar(40) NOT NULL,
   `gender` char(1) NOT NULL,
   `birth_date` date NOT NULL,
