@@ -47,10 +47,26 @@ CREATE TABLE IF NOT EXISTS `products` (
   `price` decimal(9,2) NOT NULL DEFAULT '0.00',
   `quantity` int(11) NOT NULL DEFAULT '0',
   `image` varchar(150) DEFAULT NULL,
-  `status` tinyint(1) DEFAULT NULL,
+  `status` tinyint(1) DEFAULT '1',
   `rating` int(11) DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `FK_category_id` (`category_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `ratings`
+--
+
+CREATE TABLE IF NOT EXISTS `ratings` (
+  `product_id` int(11) NOT NULL,
+  `rating1` int(11) NOT NULL DEFAULT '0',
+  `rating2` int(11) NOT NULL DEFAULT '0',
+  `rating3` int(11) NOT NULL DEFAULT '0',
+  `rating4` int(11) NOT NULL DEFAULT '0',
+  `rating5` int(11) NOT NULL DEFAULT '0',
+  KEY `FK_product_id` (`product_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -63,17 +79,17 @@ CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(40) NOT NULL,
   `password` varchar(40) NOT NULL,
-  `role` tinyint(1) DEFAULT 0, -- cero será usuario, 1 será el admin
+  `role` tinyint(1) DEFAULT '0', -- cero será usuario, 1 será el admin
   `created` datetime NOT NULL,
   `modified` datetime NOT NULL,
   `name` varchar(30) NOT NULL,
   `last_name` varchar(30) NOT NULL,
   `phone` int(11) NOT NULL,
-  `adress` varchar(90) DEFAULT NULL,
+  `address` varchar(90) DEFAULT NULL,
   `email` varchar(40) NOT NULL,
   `gender` char(1) NOT NULL,
   `birth_date` date NOT NULL,
-  `status` tinyint(1) DEFAULT 0,  -- habilitado(0) o deshabilidado (1)
+  `status` tinyint(1) DEFAULT '0',  -- habilitado(0) o deshabilidado (1)
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -92,6 +108,12 @@ ALTER TABLE `categories`
 --
 ALTER TABLE `products`
   ADD CONSTRAINT `FK_category_id` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`);
+  
+--
+-- Filtros para la tabla `ratings`
+--
+ALTER TABLE `ratings`
+  ADD CONSTRAINT `FK_product_id` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

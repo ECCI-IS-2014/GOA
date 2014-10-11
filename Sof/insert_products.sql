@@ -4,118 +4,152 @@
 
 ALTER TABLE products AUTO_INCREMENT = 1;
 
-INSERT INTO products ( category_id, name, price, quantity, image, status, rating )
+INSERT INTO products ( category_id, name, price, quantity, image )
                        VALUES
-                       ( 8, 'sandalias', 2500.00, 14, 'placeholder', 0, 3 );
+                       ( 8, 'sandalias', 2500.00, 14, 'placeholder' );
 
-INSERT INTO products ( category_id, name, price, quantity, image, status, rating )
+INSERT INTO ratings ( product_id ) VALUES ( 1 );
+
+INSERT INTO products ( category_id, name, price, quantity, image )
                        VALUES
-                       ( 8, 'botas', 2500.00, 8, 'placeholder', 0, 4 );
+                       ( 8, 'botas', 2500.00, 8, 'placeholder' );
 
-INSERT INTO products ( category_id, name, price, quantity, image, status, rating )
+INSERT INTO ratings ( product_id ) VALUES ( 2 );
+
+INSERT INTO products ( category_id, name, price, quantity, image )
                        VALUES
-                       ( 8, 'burros', 2500.00, 11, 'placeholder', 0, 4 );
+                       ( 8, 'burros', 2500.00, 11, 'placeholder' );
 
-INSERT INTO products ( category_id, name, price, quantity, image, status, rating )
+INSERT INTO ratings ( product_id ) VALUES ( 3 );
+
+INSERT INTO products ( category_id, name, price, quantity, image )
                        VALUES
-                       ( 7, 'fedora', 8200.00, 7, 'placeholder', 0, 5 );
+                       ( 7, 'fedora', 8200.00, 7, 'placeholder' );
 
-INSERT INTO products ( category_id, name, price, quantity, image, status, rating )
+INSERT INTO ratings ( product_id ) VALUES ( 4 );
+
+INSERT INTO products ( category_id, name, price, quantity, image )
                        VALUES
-                       ( 7, 'chonete', 5000.00, 6, 'placeholder', 0, 3 );
+                       ( 7, 'chonete', 5000.00, 6, 'placeholder' );
 
-INSERT INTO products ( category_id, name, price, quantity, image, status, rating )
+INSERT INTO ratings ( product_id ) VALUES ( 5 );
+
+INSERT INTO products ( category_id, name, price, quantity, image )
                        VALUES
-                       ( 10, 'sombrilla', 3100.00, 19, 'placeholder', 0, 5 );
+                       ( 10, 'sombrilla', 3100.00, 19, 'placeholder' );
 
-INSERT INTO products ( category_id, name, price, quantity, image, status, rating )
+INSERT INTO ratings ( product_id ) VALUES ( 6 );
+
+INSERT INTO products ( category_id, name, price, quantity, image )
                        VALUES
-                       ( 3, 'cereal kellogs', 2950.00, 32, 'placeholder', 0, 4 );
+                       ( 3, 'cereal kellogs', 2950.00, 32, 'placeholder' );
 
-INSERT INTO products ( category_id, name, price, quantity, image, status, rating )
+INSERT INTO ratings ( product_id ) VALUES ( 7 );
+
+INSERT INTO products ( category_id, name, price, quantity, image )
                        VALUES
-                       ( 3, 'cereal nestle', 3400.00, 22, 'placeholder', 0, 5 );
+                       ( 3, 'cereal nestle', 3400.00, 22, 'placeholder' );
 
-INSERT INTO products ( category_id, name, price, quantity, image, status, rating )
+INSERT INTO ratings ( product_id ) VALUES ( 8 );
+
+INSERT INTO products ( category_id, name, price, quantity, image )
                        VALUES
-                       ( 5, 'mesa', 36000.00, 3, 'placeholder', 0, 5 );
+                       ( 5, 'mesa', 36000.00, 3, 'placeholder' );
 
-INSERT INTO products ( category_id, name, price, quantity, image, status, rating )
+INSERT INTO ratings ( product_id ) VALUES ( 9 );
+
+INSERT INTO products ( category_id, name, price, quantity, image )
                        VALUES
-                       ( 5, 'silla', 17800.00, 12, 'placeholder', 0, 4 );
+                       ( 5, 'silla', 17800.00, 12, 'placeholder' );
 
-INSERT INTO products ( category_id, name, price, quantity, image, status, rating )
+INSERT INTO ratings ( product_id ) VALUES ( 10 );
+
+INSERT INTO products ( category_id, name, price, quantity, image )
                        VALUES
-                       ( 10, 'candela', 100.00, 341, 'placeholder', 0, 2 );
+                       ( 10, 'candela', 100.00, 341, 'placeholder' );
 
-INSERT INTO products ( category_id, name, price, quantity, image, status, rating )
+INSERT INTO ratings ( product_id ) VALUES ( 11 );
+
+INSERT INTO products ( category_id, name, price, quantity, image )
                        VALUES
-                       ( 6, 'cortina', 12000.00, 26, 'placeholder', 0, 3 );
+                       ( 6, 'cortina', 12000.00, 26, 'placeholder' );
 
-INSERT INTO products ( category_id, name, price, quantity, image, status, rating )
+INSERT INTO ratings ( product_id ) VALUES ( 12 );
+
+INSERT INTO products ( category_id, name, price, quantity, image )
                        VALUES
-                       ( 6, 'cobija', 9400.00, 8, 'placeholder', 0, 4 );
+                       ( 6, 'cobija', 9400.00, 8, 'placeholder' );
 
-INSERT INTO products ( category_id, name, price, quantity, image, status, rating )
+INSERT INTO ratings ( product_id ) VALUES ( 13 );
+
+INSERT INTO products ( category_id, name, price, quantity, image )
                        VALUES
-                       ( 6, 'almohada', 6200.00, 14, 'placeholder', 0, 5 );
+                       ( 6, 'almohada', 6200.00, 14, 'placeholder' );
 
-INSERT INTO products ( category_id, name, price, quantity, image, status, rating )
+INSERT INTO ratings ( product_id ) VALUES ( 14 );
+
+INSERT INTO products ( category_id, name, price, quantity, image )
                        VALUES
-                       ( 6, 'espejo', 14300.00, 15, 'placeholder', 0, 4 );
+                       ( 6, 'espejo', 14300.00, 15, 'placeholder' );
 
-INSERT INTO products ( category_id, name, price, quantity, image, status, rating )
+INSERT INTO ratings ( product_id ) VALUES ( 15 );
+
+INSERT INTO products ( category_id, name, price, quantity, image )
                        VALUES
-                       ( 9, 'detergente', 4300.00, 32, 'placeholder', 0, 5 );
+                       ( 9, 'detergente', 4300.00, 32, 'placeholder' );
 
-INSERT INTO products ( category_id, name, price, quantity, image, status, rating )
+INSERT INTO ratings ( product_id ) VALUES ( 16 );
+
+INSERT INTO products ( category_id, name, price, quantity, image )
                        VALUES
-                       ( 9, 'suavitel', 3900.00, 28, 'placeholder', 0, 5 );
+                       ( 9, 'suavitel', 3900.00, 28, 'placeholder' );
 
-INSERT INTO products ( category_id, name, price, quantity, image, status, rating )
+INSERT INTO ratings ( product_id ) VALUES ( 17 );
+
+INSERT INTO products ( category_id, name, price, quantity, image )
                        VALUES
-                       ( 2, 'cepillo de dientes', 1600.00, 27, 'placeholder', 0, 5 );
+                       ( 2, 'cepillo de dientes', 1600.00, 27, 'placeholder' );
 
-INSERT INTO products ( category_id, name, price, quantity, image, status, rating )
+INSERT INTO ratings ( product_id ) VALUES ( 18 );
+
+INSERT INTO products ( category_id, name, price, quantity, image )
                        VALUES
-                       ( 2, 'pasta de dientes', 1930.00, 45, 'placeholder', 0, 5 );
+                       ( 2, 'pasta de dientes', 1930.00, 45, 'placeholder' );
 
-INSERT INTO products ( category_id, name, price, quantity, image, status, rating )
+INSERT INTO ratings ( product_id ) VALUES ( 19 );
+
+INSERT INTO products ( category_id, name, price, quantity, image )
                        VALUES
-                       ( 2, 'jabon', 800.00, 38, 'placeholder', 0, 4 );
+                       ( 2, 'jabon', 800.00, 38, 'placeholder' );
 
-INSERT INTO products ( category_id, name, price, quantity, image, status, rating )
+INSERT INTO ratings ( product_id ) VALUES ( 20 );
+
+INSERT INTO products ( category_id, name, price, quantity, image )
                        VALUES
-                       ( 9, 'prensa de ropa', 25.00, 1058, 'placeholder', 0, 4 );
+                       ( 9, 'prensa de ropa', 25.00, 1058, 'placeholder' );
 
-INSERT INTO products ( category_id, name, price, quantity, image, status, rating )
+INSERT INTO ratings ( product_id ) VALUES ( 21 );
+
+INSERT INTO products ( category_id, name, price, quantity, image )
                        VALUES
-                       ( 4, 'lavadora', 182000.00, 5, 'placeholder', 0, 2 );
+                       ( 4, 'lavadora', 182000.00, 5, 'placeholder' );
 
-INSERT INTO products ( category_id, name, price, quantity, image, status, rating )
+INSERT INTO ratings ( product_id ) VALUES ( 22 );
+
+INSERT INTO products ( category_id, name, price, quantity, image )
                        VALUES
-                       ( 4, 'horno microondas', 37300.00, 19, 'placeholder', 0, 4 );
+                       ( 4, 'horno microondas', 37300.00, 19, 'placeholder' );
 
-INSERT INTO products ( category_id, name, price, quantity, image, status, rating )
+INSERT INTO ratings ( product_id ) VALUES ( 23 );
+
+INSERT INTO products ( category_id, name, price, quantity, image )
                        VALUES
-                       ( 4, 'refrigerador', 232000.00, 7, 'placeholder', 0, 5 );
+                       ( 4, 'refrigerador', 232000.00, 7, 'placeholder' );
 
-INSERT INTO products ( category_id, name, price, quantity, image, status, rating )
+INSERT INTO ratings ( product_id ) VALUES ( 24 );
+
+INSERT INTO products ( category_id, name, price, quantity, image )
                        VALUES
-                       ( 4, 'televisor', 430000.00, 12, 'placeholder', 0, 4 );
+                       ( 4, 'televisor', 430000.00, 12, 'placeholder' );
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+INSERT INTO ratings ( product_id ) VALUES ( 25 );
