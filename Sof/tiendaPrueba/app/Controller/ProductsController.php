@@ -57,9 +57,8 @@ class ProductsController extends AppController {
 			} else {
 				$this->Session->setFlash(__('The product could not be saved. Please, try again.'));
 			}
-            $image = basename($this->request->data['Product']['image']['name']);
-
-            $this->data['Product']['image'] = $image;
+            $filename = basename($this->request->data['Product']['image']['name']);
+            $this->data['Product']['image'] = $filename;
 		}
 		$categories = $this->Product->Category->find('list');
 		$this->set(compact('categories'));
@@ -111,13 +110,22 @@ class ProductsController extends AppController {
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
+	/*
+    public function disable($id = null) {
+        $this->Product->id = $id;
+        if (!$this->Product->exists()) {
+            throw new NotFoundException(__('Invalid product'));
+        }
 
+        $this->Post->set('status', '1');
+        $this->Post->save();
+        $this->Session->setFlash(__('The product has been disabled.'));
 
-
+        return $this->redirect(array('action' => 'index'));
+    }
+	*/
 	public function browseCatalog() {
-
 		$this->set( 'products', $this->Product->find('all') );
-
 	}
 
 }

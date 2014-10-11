@@ -8,7 +8,6 @@
 		echo $this->Form->input('price');
 		echo $this->Form->input('quantity');
 		echo $this->Form->input('image', array('type' => 'file'));
-		echo $this->Form->input('status');
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>

@@ -30,7 +30,7 @@
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $product['Product']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $product['Product']['id'])); ?>
-			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $product['Product']['id']), array(), __('Are you sure you want to delete # %s?', $product['Product']['id'])); ?>
+			<?php echo $this->Form->postLink(__('Disable'), array('action' => 'disable', $product['Product']['id']), array(), __('Are you sure you want to disable # %s?', $product['Product']['id'])); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>
@@ -56,5 +56,6 @@
 		<li><?php echo $this->Html->link(__('New Product'), array('action' => 'add')); ?></li>
 		<li><?php echo $this->Html->link(__('List Categories'), array('controller' => 'categories', 'action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Category'), array('controller' => 'categories', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('List Clients'), array('controller' => 'users', 'action' => 'index')); ?> </li>
 	</ul>
 </div>
