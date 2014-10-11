@@ -34,7 +34,7 @@ class AppController extends Controller {
 	
 	    public $components = array(
         'DebugKit.Toolbar',
-		'Session',
+		/*'Session',
         'Auth' => array(
             'loginRedirect' => array(
                 'controller' => 'posts',
@@ -50,10 +50,10 @@ class AppController extends Controller {
                     'passwordHasher' => 'Blowfish'
                 )
             )
-        )
+        )*/
     );
 
-    public function beforeFilter() {
+    /*public function beforeFilter() {
         $this->Auth->allow('index', 'view');
-    }
+    }*/
 }
