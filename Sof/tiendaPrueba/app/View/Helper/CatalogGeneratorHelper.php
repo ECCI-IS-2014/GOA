@@ -44,21 +44,22 @@ class CatalogGeneratorHelper extends AppHelper {
 	public function displayRatingBox($value) {
 
 		$value = intval($value);
-        $result_string = "<div class='rating_box'>";
+        $result_string = '';
+        $num_stars = 5;
 
-		if($value >= 0 && $value <= 5) {
+		if($value >= 0 && $value <= $num_stars) {
 			
             for($i = 0; $i < $value; $i++) {
                 $result_string = $result_string . "<img src='" . $this->webroot . "/img/star_icon_full.png' />";
             }
 
-            for($i = 0; $i < 5-$value; $i++) {
+            for($i = 0; $i < $num_stars-$value; $i++) {
                 $result_string = $result_string . "<img src='" . $this->webroot . "/img/star_icon_empty.png' />";
             }
 
 		}
 
-        $result_string = $result_string . "</div>";
+        $result_string = "<div class='rating_box'>" . $result_string . "</div>";
 
         return $result_string;
 

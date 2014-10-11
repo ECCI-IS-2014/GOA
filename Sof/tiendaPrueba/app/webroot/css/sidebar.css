@@ -1,22 +1,83 @@
 
-
-
 #sidebar
 {
     float:left;
-    overflow:hidden;
-    width: 0%;
-    background-color: black;
+    overflow:auto;
+    width: 450px;
+    height: 550px;
+    min-height: 300px;
+    margin-top: 30px;
+    padding-top: 5px;
+}
+
+#sidebar_content
+{
+    overflow: hidden;
+    background-color: #00ace6;
+    float: left; 
+    display: inline-block; 
+    min-width: 300px;
+    height: 500px;
+    position: relative;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(50, 50, 50, 0.75);
+    -moz-box-shadow:    0px 0px 5px 0px rgba(50, 50, 50, 0.75);
+    box-shadow:         0px 0px 5px 0px rgba(50, 50, 50, 0.75);
+}
+
+#sidebar_content_interior {
+    background-image: url('../img/Pattern6.jpg');
+    background-repeat: repeat;
+    min-width: 300px;
+    height: 440px;
+    margin-top: 20px;
+    padding: 9px 9px 9px 9px;
+}
+
+#sidebar_content p {
+    color: #ededed;
+}
+
+#sidebar #buttontog
+{
+    float:left;
+    display: inline-block;
+    background:#336699 url('../img/mb50_1.gif') repeat-x;
+    margin-top: 8%;
+    margin-left: 0%;
+    margin-bottom: 8%;
+    padding: .2% 3% .2% 3%; /*right bottom left top*/
+    color: white;
+    font: normal 12px Arial;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+    border: solid 1px #39F;
+    letter-spacing: 1px;
+    width: 100px;
+    cursor: pointer;
+
+    -webkit-transform: translateY(-100%) rotate(90deg); /* Safari */
+    -moz-transform: translateY(-100%) rotate(90deg); /* Firefox 3.6 Firefox 4 */
+    /*-moz-transform-origin: right top; */
+    -ms-transform: translateY(-100%) rotate(90deg); /* IE9 */
+    -o-transform: translateY(-100%) rotate(90deg); /* Opera */
+    transform: translateY(-100%) rotate(90deg); /* W3C */  
+    -webkit-transform-origin: left bottom;
+    -moz-transform-origin: left bottom;
+    -ms-transform-origin: left bottom;
+    -o-transform-origin: left bottom;
+    transform-origin: left bottom;
 }
 
 
-
-
-
-#sidebar1
+#buttontog:hover
 {
-    overflow: hidden;
-    background-color: #00BFFF;
+    background-position: 0% -60px;
+    color:white;
+}
 
-
+:focus, :active {
+    outline: 0;
+    border: 0;      /*elimina los puntos feos cuando uno clickea el boton*/
 }

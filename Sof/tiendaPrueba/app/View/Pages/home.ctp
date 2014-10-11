@@ -18,22 +18,26 @@
 
             <div id="content">
 
-
-
                 <div id="head">
-
-
                     <?php echo $this->fetch('header1'); ?>
-
                 </div>
 
-                    <div id="sidebar">
-                        <?php echo $this->fetch('sidebar1'); ?>
+                    <div id="content_wrapper" style="position:relative; overflow: hidden;">
+                        
+                        <div style="position:absolute; z-index:10;">
+                            <?php echo $this->fetch('sidebar1'); ?>
+                        </div>
 
-                    </div>
-                    <?php echo $this->fetch('button1'); ?>
-                    <div id="panel">
-                        <?php echo $this->fetch('panel1'); ?>
+                        <div style="position:absolute; z-index:5;">
+                            <div id="panel">
+
+                                <div id="panel_boundaries">
+                                    <?php echo $this->fetch('panel1'); ?>
+                                </div>
+                                
+                            </div>
+                        </div>
+
                     </div>
 
                     <div style="clear:both"></div>
@@ -46,10 +50,23 @@
 
             </div>
 
+        <script type="text/javascript">
 
+        $(document).ready(function() {
+            resizeContent();
+        });
 
+        $(window).resize(function(){
+            resizeContent();
+        });
 
+        function resizeContent() {
+            $("#content_wrapper").height( $(window).height() - $("#head").outerHeight() - $("#foot").outerHeight() );
+            $("#content_wrapper").width( $(window).width() );
+            $("#panel").height( $(window).height() - $("#head").outerHeight() - $("#foot").outerHeight() );
+            $("#panel").width( $(window).width() );
+        }
 
-
+        </script>
 
     </html>
