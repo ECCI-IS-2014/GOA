@@ -9,8 +9,8 @@
 			<th><?php echo $this->Paginator->sort('price'); ?></th>
 			<th><?php echo $this->Paginator->sort('quantity'); ?></th>
 			<th><?php echo $this->Paginator->sort('image'); ?></th>
-			<th><?php echo $this->Paginator->sort('status'); ?></th>
-			<th><?php echo $this->Paginator->sort('rating'); ?></th>
+			<th><?php echo $this->Paginator->sort('enable_product'); ?></th>
+			<th><?php echo $this->Paginator->sort('enable_rating'); ?></th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
 	</thead>
@@ -25,8 +25,18 @@
 		<td><?php echo h($product['Product']['price']); ?>&nbsp;</td>
 		<td><?php echo h($product['Product']['quantity']); ?>&nbsp;</td>
 		<td><?php echo h($product['Product']['image']); ?>&nbsp;</td>
-		<td><?php echo h($product['Product']['status']); ?>&nbsp;</td>
-		<td><?php echo h($product['Product']['rating']); ?>&nbsp;</td>
+		<td><?php if ( $product['Product']['enable_product'] == '1'): ?>
+				<?php echo h('Enabled'); ?>
+			<?php else: ?>
+				<?php echo h('Disabled'); ?>
+			<?php endif; ?>&nbsp;
+		</td>
+		<td><?php if ( $product['Rating']['enable_rating'] == '1'): ?>
+				<?php echo h('Enabled'); ?>
+			<?php else: ?>
+				<?php echo h('Disabled'); ?>
+			<?php endif; ?>&nbsp;
+		</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $product['Product']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $product['Product']['id'])); ?>

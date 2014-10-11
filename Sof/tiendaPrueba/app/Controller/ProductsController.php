@@ -15,6 +15,7 @@ class ProductsController extends AppController {
  * @var array
  */
 	public $components = array('Paginator', 'Session');
+	public $uses = array('Product','Rating');
 	public $helpers = array('CatalogGenerator', 'Html');
 
 /**
@@ -48,17 +49,14 @@ class ProductsController extends AppController {
  * @return void
  */
 	public function add() {
-		if ($this->request->is('post')) {
-			$this->Product->create();
-
-			if ($this->Product->save($this->request->data)) {
+		if (!empty($this->request->data)) {
+			unset($this->Product->Rating->validate['product_id']);
+			if ( $this->Product->saveAssociated($this->request->data) ) {
 				$this->Session->setFlash(__('The product has been saved.'));
 				return $this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The product could not be saved. Please, try again.'));
 			}
-            $filename = basename($this->request->data['Product']['image']['name']);
-            $this->data['Product']['image'] = $filename;
 		}
 		$categories = $this->Product->Category->find('list');
 		$this->set(compact('categories'));
@@ -76,11 +74,14 @@ class ProductsController extends AppController {
 			throw new NotFoundException(__('Invalid product'));
 		}
 		if ($this->request->is(array('post', 'put'))) {
-			if ($this->Product->save($this->request->data)) {
-				$this->Session->setFlash(__('The product has been saved.'));
-				return $this->redirect(array('action' => 'index'));
-			} else {
-				$this->Session->setFlash(__('The product could not be saved. Please, try again.'));
+			if (!empty($this->request->data)) {
+				unset($this->Product->Rating->validate['product_id']);
+				if ( $this->Product->saveAssociated($this->request->data) ) {
+					$this->Session->setFlash(__('The product has been saved.'));
+					return $this->redirect(array('action' => 'index'));
+				} else {
+					$this->Session->setFlash(__('The product could not be saved. Please, try again.'));
+				}
 			}
 		} else {
 			$options = array('conditions' => array('Product.' . $this->Product->primaryKey => $id));
@@ -110,20 +111,20 @@ class ProductsController extends AppController {
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
-	/*
+	
     public function disable($id = null) {
         $this->Product->id = $id;
         if (!$this->Product->exists()) {
             throw new NotFoundException(__('Invalid product'));
-        }
-
-        $this->Post->set('status', '1');
-        $this->Post->save();
-        $this->Session->setFlash(__('The product has been disabled.'));
+        } else {
+			$this->Product->set('enable_product', 0 );
+			$this->Product->save();
+			$this->Session->setFlash(__('The product has been disabled.'));
+		}
 
         return $this->redirect(array('action' => 'index'));
     }
-	*/
+	
 	public function browseCatalog() {
 		$this->set( 'products', $this->Product->find('all') );
 	}

@@ -1,18 +1,18 @@
 <?php
 App::uses('AppModel', 'Model');
 /**
- * Product Model
+ * Rating Model
  *
- * @property Category $Category
+ * @property Product $Product
  */
-class Product extends AppModel {
+class Rating extends AppModel {
 
 /**
- * Display field
+ * Primary key field
  *
  * @var string
  */
-	public $displayField = 'name';
+	public $primaryKey = 'product_id';
 
 /**
  * Validation rules
@@ -20,27 +20,7 @@ class Product extends AppModel {
  * @var array
  */
 	public $validate = array(
-		'name' => array(
-			'notEmpty' => array(
-				'rule' => array('notEmpty'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
-		'price' => array(
-			'money' => array(
-				'rule' => array('money'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
-		'quantity' => array(
+		'product_id' => array(
 			'numeric' => array(
 				'rule' => array('numeric'),
 				//'message' => 'Your custom message here',
@@ -50,7 +30,7 @@ class Product extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-		'enable_product' => array(
+		'enable_rating' => array(
 			'notEmpty' => array(
 				'rule' => array('notEmpty'),
 				//'message' => 'Your custom message here',
@@ -73,29 +53,14 @@ class Product extends AppModel {
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
 /**
- * hasOne associations
- *
- * @var array
- */
-	public $hasOne = array(
-		'Rating' => array(
-			'className' => 'Rating',
-			'foreignKey' => 'product_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
-		)
-	);
-	
-/**
  * belongsTo associations
  *
  * @var array
  */
 	public $belongsTo = array(
-		'Category' => array(
-			'className' => 'Category',
-			'foreignKey' => 'category_id',
+		'Product' => array(
+			'className' => 'Product',
+			'foreignKey' => 'product_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''

@@ -3,14 +3,14 @@
 	<fieldset>
 		<legend><?php echo __('Edit Product'); ?></legend>
 	<?php
-		echo $this->Form->input('id');
-		echo $this->Form->input('category_id');
-		echo $this->Form->input('name');
-		echo $this->Form->input('price');
-		echo $this->Form->input('quantity');
-		echo $this->Form->input('image');
-		echo $this->Form->input('status');
-		echo $this->Form->input('rating');
+		echo $this->Form->input('Product.id');
+		echo $this->Form->input('Product.category_id');
+		echo $this->Form->input('Product.name');
+		echo $this->Form->input('Product.price');
+		echo $this->Form->input('Product.quantity');
+		echo $this->Form->input('Product.image');
+		echo $this->Form->input('Product.enable_product');
+		echo $this->Form->input('Rating.enable_rating');
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>

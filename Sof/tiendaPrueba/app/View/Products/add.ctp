@@ -1,16 +1,17 @@
 <div class="products form">
-<?php echo $this->Form->create('Product'); ?>
+<?php echo $this->Form->create('Product', array('action' => 'add')); ?>
 	<fieldset>
 		<legend><?php echo __('Add Product'); ?></legend>
 	<?php
-		echo $this->Form->input('category_id');
-		echo $this->Form->input('name');
-		echo $this->Form->input('price');
-		echo $this->Form->input('quantity');
-		echo $this->Form->input('image', array('type' => 'file'));
+		echo $this->Form->input('Product.category_id');
+		echo $this->Form->input('Product.name');
+		echo $this->Form->input('Product.price');
+		echo $this->Form->input('Product.quantity');
+		echo $this->Form->input('Product.image', array('type' => 'file'));
+		echo $this->Form->input('Rating.enable_rating');
 	?>
 	</fieldset>
-<?php echo $this->Form->end(__('Submit')); ?>
+<?php echo $this->Form->end(__('Add')); ?>
 </div>
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>

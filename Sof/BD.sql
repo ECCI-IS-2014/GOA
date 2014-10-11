@@ -47,7 +47,7 @@ CREATE TABLE IF NOT EXISTS `products` (
   `price` decimal(9,2) NOT NULL DEFAULT '0.00',
   `quantity` int(11) NOT NULL DEFAULT '0',
   `image` varchar(150) DEFAULT NULL,
-  `status` tinyint(1) DEFAULT '1',
+  `enable_product` tinyint(1) DEFAULT '1',
   `rating` int(11) DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `FK_category_id` (`category_id`)
@@ -61,11 +61,13 @@ CREATE TABLE IF NOT EXISTS `products` (
 
 CREATE TABLE IF NOT EXISTS `ratings` (
   `product_id` int(11) NOT NULL,
+  `enable_rating` tinyint(1) DEFAULT '1',
   `rating1` int(11) NOT NULL DEFAULT '0',
   `rating2` int(11) NOT NULL DEFAULT '0',
   `rating3` int(11) NOT NULL DEFAULT '0',
   `rating4` int(11) NOT NULL DEFAULT '0',
   `rating5` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`product_id`),
   KEY `FK_product_id` (`product_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
