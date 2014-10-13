@@ -15,7 +15,7 @@
 
 <?php $this->start('imagePanel'); ?>
 
-IMAGEN
+    <img src=<?php echo $product['Product']['image'];?>>
 
 
 
@@ -26,9 +26,16 @@ IMAGEN
 <?php $this->start('descriptionPanel'); ?>
 
 
-    <?php echo $product['Product']['name']
-         /* $this->Session->read('Product.name'); */
-    ?>
+   <p style="font-weight:bold; float:left">Name:</p> <?php echo $product['Product']['name'];?>
+   <div style="clear:both"></div>
+   <p style="font-weight:bold; float:left">Price:</p> <?php   echo $product['Product']['price'];?>
+   <div style="clear:both"></div>
+   <p style="font-weight:bold;float:left">Description:</p> <?php echo $product['Product']['description'];?>
+   <div style="clear:both"></div>
+   <p style="font-weight:bold;float:left">Quantity:</p> <?php  echo $product['Product']['quantity'];?>
+   <div style="clear:both"></div>
+
+
 
 
 
