@@ -94,15 +94,15 @@ INSERT INTO products ( category_id, name, price, quantity )
 
 INSERT INTO ratings ( product_id ) VALUES ( 15 );
 
-INSERT INTO products ( category_id, name, price, quantity )
+INSERT INTO products ( category_id, name, price, quantity, description )
                        VALUES
-                       ( 9, 'detergente', 4300.00, 32 );
+                       ( 9, 'detergente', 4300.00, 32, 'El limpio más limpio!' );
 
 INSERT INTO ratings ( product_id ) VALUES ( 16 );
 
-INSERT INTO products ( category_id, name, price, quantity )
+INSERT INTO products ( category_id, name, price, quantity, description )
                        VALUES
-                       ( 9, 'suavitel', 3900.00, 28 );
+                       ( 9, 'suavitel', 3900.00, 28, 'Igual de suave que mama' );
 
 INSERT INTO ratings ( product_id ) VALUES ( 17 );
 
@@ -112,27 +112,27 @@ INSERT INTO products ( category_id, name, price, quantity )
 
 INSERT INTO ratings ( product_id ) VALUES ( 18 );
 
-INSERT INTO products ( category_id, name, price, quantity )
+INSERT INTO products ( category_id, name, price, quantity, description )
                        VALUES
-                       ( 2, 'pasta de dientes', 1930.00, 45 );
+                       ( 2, 'pasta de dientes', 1930.00, 45, 'Oral B 360' );
 
 INSERT INTO ratings ( product_id ) VALUES ( 19 );
 
-INSERT INTO products ( category_id, name, price, quantity )
+INSERT INTO products ( category_id, name, price, quantity, description )
                        VALUES
-                       ( 2, 'jabon', 800.00, 38 );
+                       ( 2, 'jabon', 800.00, 38, 'Huela como nalgas de bebe!' );
 
 INSERT INTO ratings ( product_id ) VALUES ( 20 );
 
-INSERT INTO products ( category_id, name, price, quantity )
+INSERT INTO products ( category_id, name, price, quantity, description )
                        VALUES
-                       ( 9, 'prensa de ropa', 25.00, 1058 );
+                       ( 9, 'prensa de ropa', 25.00, 1058, 'Super comodas! no generan callos en sus dedos.' );
 
 INSERT INTO ratings ( product_id ) VALUES ( 21 );
 
-INSERT INTO products ( category_id, name, price, quantity )
+INSERT INTO products ( category_id, name, price, quantity, description )
                        VALUES
-                       ( 4, 'lavadora', 182000.00, 5 );
+                       ( 4, 'lavadora', 182000.00, 5, '220v 1.5t de capacidad.' );
 
 INSERT INTO ratings ( product_id ) VALUES ( 22 );
 
@@ -142,14 +142,14 @@ INSERT INTO products ( category_id, name, price, quantity )
 
 INSERT INTO ratings ( product_id ) VALUES ( 23 );
 
-INSERT INTO products ( category_id, name, price, quantity )
+INSERT INTO products ( category_id, name, price, quantity, description )
                        VALUES
-                       ( 4, 'refrigerador', 232000.00, 7 );
+                       ( 4, 'refrigerador', 232000.00, 7, 'Atlas 3000' );
 
 INSERT INTO ratings ( product_id ) VALUES ( 24 );
 
-INSERT INTO products ( category_id, name, price, quantity )
+INSERT INTO products ( category_id, name, price, quantity, description )
                        VALUES
-                       ( 4, 'televisor', 430000.00, 12 );
+                       ( 4, 'televisor', 430000.00, 12, 'Sony Bravia 42' );
 
 INSERT INTO ratings ( product_id ) VALUES ( 25 );
