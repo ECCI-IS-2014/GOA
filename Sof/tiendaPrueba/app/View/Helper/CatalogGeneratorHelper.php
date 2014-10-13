@@ -27,6 +27,9 @@ class CatalogGeneratorHelper extends AppHelper {
 
     													"<div class='cat_text_container'><span class='catalog_title2'>" . 'In stock now: ' . "</span><span class='catalog_text1'>" . $prod['Product']['quantity'] . "</span></div>" .
 
+                                                        "<div class='cat_id_container'><span class='catalog_id'>".'Product id:' . $prod['Product']['id'] . "</span></div>" .
+
+                                                        "<div class='cat_button_container'>"."<a href='http://localhost/GOA/Sof/tiendaPrueba/Products/productInside'>".'View'.$prod['Product']['id']."</a>"."</div>".
     													$this->displayRatingBox($prod['Product']['rating']) .
 
     												"</div>" .

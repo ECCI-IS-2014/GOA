@@ -52,11 +52,26 @@
 
 .catalog_item .rating_box {
 	width: 121px;
-	margin: 25px auto 0 auto;
+	margin: 2% auto 0 auto;
+    padding-top: 0%;
 }
 
 .catalog_item .rating_box img {
 	width: 22px;
 	height: 21px;
 	margin: 0 1px;
+}
+
+.cat_button_container
+{
+    padding-left: 40%;
+    padding-bottom: 2%;
+    padding-top: 2%;
+}
+
+.catalog_id
+{
+    font-size: 14px;
+    font-weight: bold;
+    padding-left: 25%;
 }

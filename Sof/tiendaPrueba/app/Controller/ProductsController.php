@@ -129,4 +129,14 @@ class ProductsController extends AppController {
 		$this->set( 'products', $this->Product->find('all') );
 	}
 
+    public function productInside()
+    {
+        $this->Session->write('Product.id','string');
+        $productId=$this->Session->read('Product.id');
+
+        $this->set( 'product', $this->Product->find('all'),array('conditions'=>array('Product.id'=>$productId)) );
+    }
+
+
+
 }
