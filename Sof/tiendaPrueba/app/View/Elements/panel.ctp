@@ -15,8 +15,13 @@
 
 <?php $this->start('imagePanel'); ?>
 
+<<<<<<< Updated upstream
     <img src=<?php echo $product['Product']['image'];?>>
 
+=======
+   <?php echo $this->Html->image('product_icons/'.$product['Product']['image'], array('alt' => 'cakePHP')); ?>
+    
+>>>>>>> Stashed changes
 
 
 <?php $this->end(); ?>
