@@ -145,7 +145,7 @@ class ProductsController extends AppController {
     public function productInside()
     {
         $product_id = $this->passedArgs['id'];
-
+        echo $product_id;
         $this->set( 'product', $this->Product->find('first',array('conditions'=>array('Product.id'=>$product_id)) ));
     }
 

@@ -52,7 +52,7 @@
     font-family: Helvetica, Arial, Sans-Serif;
     text-decoration: none;
     vertical-align: middle;
-    margin-bottom:4%;
+    margin-bottom:8%;
     margin-left: 8%;
     margin-top: 4%;
     float:left;
@@ -95,7 +95,7 @@
     text-decoration: none;
     vertical-align: middle;
     margin-top: 4%;
-    margin-bottom: 4%;
+    margin-bottom: 8%;
 }
 
 #addWishButton:hover{

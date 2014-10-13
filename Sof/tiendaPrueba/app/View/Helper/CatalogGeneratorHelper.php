@@ -35,7 +35,7 @@ class CatalogGeneratorHelper extends AppHelper {
                                                         $this->displayRatingBox($prod['Product']['rating']) .
 
     												"</div>" .
-
+                                                    //FIN DEL DIV PRUEBA
 
     											"</div>";
     	}

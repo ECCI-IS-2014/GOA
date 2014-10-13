@@ -30,31 +30,24 @@
 #optionsPanel
 {
     float:left;
-    width:25.6%;
+    width:25%;
     border: solid;
     margin-right:0%;
-
-
 }
 
 #buttonHolder
 {
     margin-top: 10%;
     width: 80%;
-    border:solid lightgray;
+    border:solid;
     margin-left: 10%;
     margin-bottom: 10%;
-    border-width: 1px;
 
 }
 
 #reviewsPanel
 {
     border: solid;
-}
 
-#imagePanel
-{
-    overflow: hidden;
 
 }
