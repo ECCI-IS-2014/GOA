@@ -29,8 +29,10 @@ class CatalogGeneratorHelper extends AppHelper {
 
                                                         "<div class='cat_id_container'><span class='catalog_id'>".'Product id:' . $prod['Product']['id'] . "</span></div>" .
 
-                                                        "<div class='cat_button_container'>"."<a href='".$this->html->url(array("controller"=>"products","action"=>"productInside"))."'>".'View'.$prod['Product']['id']."</a>"."</div>".
-    													$this->displayRatingBox($prod['Product']['rating']) .
+                                                        "<div class='cat_button_container'>"."<a href='".$this->Html->url(array("controller" => "products","action" => "productInside","id"=>"")).$prod['Product']['id']."'>".'View'.$prod['Product']['id']."</a>"."</div>".
+
+
+                                                        $this->displayRatingBox($prod['Product']['rating']) .
 
     												"</div>" .
                                                     //FIN DEL DIV PRUEBA
