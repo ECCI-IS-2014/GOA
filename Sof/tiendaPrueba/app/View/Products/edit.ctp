@@ -8,7 +8,7 @@
 		echo $this->Form->input('Product.name');
 		echo $this->Form->input('Product.price');
 		echo $this->Form->input('Product.quantity');
-		echo $this->Form->input('Product.image');
+		//echo $this->Form->input('Product.image');
 		echo $this->Form->input('Product.enable_product');
 		echo $this->Form->input('Rating.enable_rating');
 	?>

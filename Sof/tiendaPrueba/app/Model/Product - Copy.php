@@ -68,13 +68,9 @@ class Product extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-        'image' => array(
-            'extension' => array(
-                'rule' => array('extension', array('gif','png','jpg','jpeg')),
-                'message' => 'Invalid file, only images allowed.',
-            ),
-        ),
 	);
+
+    
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 

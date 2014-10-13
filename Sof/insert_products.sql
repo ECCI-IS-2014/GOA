@@ -22,9 +22,9 @@ INSERT INTO products ( category_id, name, price, quantity )
 
 INSERT INTO ratings ( product_id ) VALUES ( 3 );
 
-INSERT INTO products ( category_id, name, price, quantity )
+INSERT INTO products ( category_id, name, price, quantity, image )
                        VALUES
-                       ( 7, 'fedora', 8200.00, 7 );
+                       ( 7, 'fedora', 8200.00, 7, '1413218846-1.jpg' );
 
 INSERT INTO ratings ( product_id ) VALUES ( 4 );
 
@@ -34,9 +34,9 @@ INSERT INTO products ( category_id, name, price, quantity )
 
 INSERT INTO ratings ( product_id ) VALUES ( 5 );
 
-INSERT INTO products ( category_id, name, price, quantity )
+INSERT INTO products ( category_id, name, price, quantity, image )
                        VALUES
-                       ( 10, 'sombrilla', 3100.00, 19 );
+                       ( 10, 'sombrilla', 3100.00, 19, '1413218987-3.jpg' );
 
 INSERT INTO ratings ( product_id ) VALUES ( 6 );
 
@@ -52,9 +52,9 @@ INSERT INTO products ( category_id, name, price, quantity )
 
 INSERT INTO ratings ( product_id ) VALUES ( 8 );
 
-INSERT INTO products ( category_id, name, price, quantity )
+INSERT INTO products ( category_id, name, price, quantity, image )
                        VALUES
-                       ( 5, 'mesa', 36000.00, 3 );
+                       ( 5, 'mesa', 36000.00, 3, '1413219529-1.jpg' );
 
 INSERT INTO ratings ( product_id ) VALUES ( 9 );
 

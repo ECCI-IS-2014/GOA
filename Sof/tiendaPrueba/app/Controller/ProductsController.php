@@ -50,7 +50,20 @@ class ProductsController extends AppController {
  */
 	public function add() {
 		if (!empty($this->request->data)) {
-			unset($this->Product->Rating->validate['product_id']);
+            $filename = null;
+            if ( !empty($this->request->data['Product']['image']['tmp_name'])
+                && is_uploaded_file($this->request->data['Product']['image']['tmp_name']) ) {
+                // Strip path information
+                $filename = time() . '-' . basename($this->request->data['Product']['image']['name']);
+                move_uploaded_file(
+                    $this->data['Product']['image']['tmp_name'],
+                    WWW_ROOT . DS . 'img/products' . DS . $filename
+                );
+            }
+            // Set the file-name only to save in the database
+            $this->request->data['Product']['image'] = $filename;
+
+            unset($this->Product->Rating->validate['product_id']);
 			if ( $this->Product->saveAssociated($this->request->data) ) {
 				$this->Session->setFlash(__('The product has been saved.'));
 				return $this->redirect(array('action' => 'index'));
