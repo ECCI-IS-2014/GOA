@@ -33,6 +33,11 @@
             <?php endif; ?>
             &nbsp;
 		</dd>
+        <dt><?php echo __('Description'); ?></dt>
+        <dd>
+            <?php echo h($product['Product']['description']); ?>
+            &nbsp;
+        </dd>
 		<dt><?php echo __('Status'); ?></dt>
 		<dd>
 			<?php if ( $product['Product']['enable_product'] == '1'): ?>
@@ -42,13 +47,15 @@
 			<?php endif; ?>
 			&nbsp;
 		</dd>
-		<?php if ( $product['Rating']['enable_rating'] == '1'): ?>
 		<dt><?php echo __('Rating'); ?></dt>
-		<dd>
-			<?php echo h($product['Product']['rating']); ?>
-			&nbsp;
-		</dd>
-		<?php endif; ?>
+        <dd>
+            <?php if ( $product['Rating']['enable_rating'] == '1' ): ?>
+                <?php echo h($product['Product']['rating']); ?>
+            <?php else: ?>
+                <?php echo h('Disabled'); ?>
+            <?php endif; ?>
+            &nbsp;
+        </dd>
 	</dl>
 </div>
 
@@ -56,7 +63,7 @@
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
 		<li><?php echo $this->Html->link(__('Edit Product'), array('action' => 'edit', $product['Product']['id'])); ?> </li>
-		<li><?php echo $this->Form->postLink(__('Disable'), array('action' => 'disable', $product['Product']['id']), array(), __('Are you sure you want to disable # %s?', $product['Product']['id'])); ?></li>
+		<li><?php echo $this->Form->postLink(__('Disable Product'), array('action' => 'disable', $product['Product']['id']), array(), __('Are you sure you want to disable # %s?', $product['Product']['id'])); ?></li>
 		<li><?php echo $this->Html->link(__('List Products'), array('action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Product'), array('action' => 'add')); ?> </li>
 	</ul>

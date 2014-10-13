@@ -4,9 +4,9 @@
 
             <div id="menuHeaderInterno">
              <ul>
-               <li><a href="#">Home</a></li>
+               <li><a href="http://localhost/GOA/Sof/tiendaPrueba/Pages/Home">Home</a></li>
 
-               <li><a href="#" class="drop">Account</a>
+               <li><a href="http://localhost/GOA/Sof/tiendaPrueba/Users/Profile" class="drop">Account</a>
                <!-- <ul class="dropDown">
                             <li><a href="#">Management</a></li>
                             <li><a href="#">Wishlist</a></li>

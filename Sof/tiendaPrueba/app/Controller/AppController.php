@@ -32,9 +32,62 @@ App::uses('Controller', 'Controller');
  */
 class AppController extends Controller {
 
-	public $components = array(
-		'DebugKit.Toolbar'
-	);
 
     public $helpers = array('Js' => array('Jquery'));
+	
+	
+    public $components = array(
+        'DebugKit.Toolbar',
+		'Session',
+        'Auth' => array(
+            'loginRedirect' => array(
+                'controller' => 'pages',
+                'action' => 'display',
+                'loggedin'
+            ),
+            'logoutRedirect' => array(
+                'controller' => 'users',
+                'action' => 'loggedout'
+            ),
+            'authenticate' => array(
+                'Form' => array(
+                    'passwordHasher' => 'Blowfish'
+                )
+            ),
+            //'authorize' => 'controller', extra
+            'allowedActions' => array('edit','delete')
+        )
+    );
+
+    public function isAuthorized($user) {
+        // Admin can access every action
+        if (isset($user['role']) && $user['role'] === 'admin') {
+            return true;
+        }
+
+        // Default deny
+        return false;
+    }
+
+    /**
+     * Refreshes the Auth session
+     * @param string $field
+     * @param string $value
+     * @return void
+     */
+    public function _refreshAuth() {
+
+        if (isset($this->User)) {
+                $this->Auth->login($this->User->read(false, $this->Auth->user('id')));
+        } else {
+                //$this->Auth->login(ClassRegistry::init('User')->findById($this->Auth->user('id')));
+        }
+    }
+
+    public function beforeFilter() {
+        $this->Auth->allow('index', 'view');
+        // extra
+        $this->Auth->deny('edit', 'delete');
+    }
+	
 }
