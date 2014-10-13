@@ -38,8 +38,17 @@
                           );
 
                      }
-
                 } );
+
+
+                $("[href='http://localhost/GOA/Sof/tiendaPrueba/Products/productInside']").click(function()
+                {
+                    var string = $(this).html();
+                    string = string.slice(4);
+                    alert(string);
+
+
+                });
 
 
 

@@ -11,3 +11,43 @@
 	margin: 0 auto;
 	overflow: visible;
 }
+
+
+#imagePanel
+{
+    float:left;
+    width:15%;
+    border: solid;
+}
+
+#descriptionPanel
+{
+    width:58%;
+    float:left;
+    border:solid;
+}
+
+#optionsPanel
+{
+    float:left;
+    width:25%;
+    border: solid;
+    margin-right:0%;
+}
+
+#buttonHolder
+{
+    margin-top: 10%;
+    width: 80%;
+    border:solid;
+    margin-left: 10%;
+    margin-bottom: 10%;
+
+}
+
+#reviewsPanel
+{
+    border: solid;
+
+
+}
