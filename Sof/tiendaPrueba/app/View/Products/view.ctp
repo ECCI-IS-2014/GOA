@@ -28,8 +28,10 @@
 		</dd>
 		<dt><?php echo __('Image'); ?></dt>
 		<dd>
-			<?php echo h($product['Product']['image']); ?>
-			&nbsp;
+			<?php if ( $product['Product']['image'] != null ): ?>
+                <?php echo $this->Html->image('product_icons/' . $product['Product']['image'], array('alt' => 'CakePHP')); ?>
+            <?php endif; ?>
+            &nbsp;
 		</dd>
 		<dt><?php echo __('Status'); ?></dt>
 		<dd>

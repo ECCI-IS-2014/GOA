@@ -49,6 +49,7 @@ CREATE TABLE IF NOT EXISTS `products` (
   `image` varchar(150) DEFAULT NULL,
   `enable_product` tinyint(1) DEFAULT '1',
   `rating` int(11) DEFAULT '0',
+  `description` varchar(1000) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_category_id` (`category_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
