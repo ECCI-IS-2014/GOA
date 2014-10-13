@@ -21,19 +21,6 @@
 
                 <div id="head">
                     <?php echo $this->fetch('header1'); ?>
-                    <!-- Usability
-                         Usability requires informing the user about successful login
-                         or about the fact he or she is already logged in. A best
-                         practice is to put a message to the top of the page.
-                         -->
-                         <?php
-                         if($this->Session->read('Auth.User.id')){
-                            print 'Hi ' . $this->Session->read('Auth.User.username') . ' ' . $this->Html->link('Logout', array('controller' => 'users', 'action' => 'logout'));
-                         }
-                         else{
-                            print $this->Html->link('Login', array('controller' => 'users', 'action' => 'login'));
-                         }
-                        ?>
                 </div>
 
                     <div id="content_wrapper" style="position:relative; overflow: hidden;">
@@ -103,7 +90,9 @@
                         	<ul>
                         		<li><?php echo $this->Html->link(__('Edit user'), array('action' => 'edit', $this->Session->read('Auth.User.id'))); ?> </li>
                         		<li><?php echo $this->Form->postLink(__('Delete User'), array('action' => 'delete', $this->Session->read('Auth.User.id'))); ?> </li>
-                        	
+                        	 <li><?php echo $this->Html->link('Logout', array('controller' => 'users', 'action' => 'logout')); ?> </li>
+
+
                         	</ul>
                         </div>
 
