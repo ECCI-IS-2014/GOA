@@ -6,7 +6,6 @@ App::uses('AppController', 'Controller');
  * @property Product $Product
  * @property PaginatorComponent $Paginator
  * @property SessionComponent $Session
- * comment
  */
 class ProductsController extends AppController {
 
