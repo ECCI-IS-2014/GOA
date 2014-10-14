@@ -84,7 +84,7 @@ CREATE TABLE IF NOT EXISTS `ratings` (
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(40) NOT NULL,
-  `password` varchar(40) NOT NULL,
+  `password` varchar(255) NOT NULL,
   `role` tinyint(1) DEFAULT '0',
   `created` datetime NOT NULL,
   `modified` datetime NOT NULL,
