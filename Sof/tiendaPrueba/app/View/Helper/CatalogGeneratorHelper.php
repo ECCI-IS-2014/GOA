@@ -17,7 +17,7 @@ class CatalogGeneratorHelper extends AppHelper {
     	foreach ($products as $key => $prod) {
     		$result_string = $result_string . 	"<div class='catalog_item'>" .
 
-                                                    $this->Html->image('product_icons/'.$prod['Product']['image'], array('alt' => 'CakePHP')).
+                                                    $this->Html->image('product_icons/'.$prod['Product']['image'], array('alt' => 'CakePHP', 'class' => 'product_photo')) .
     												//"<img class='product_photo' src='" . $this->webroot . "/img/product_icons/placeholder.png' />" .
 
     												"<div class='info_panel'>" .

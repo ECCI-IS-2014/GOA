@@ -6,7 +6,7 @@ class StringFormatterHelper extends AppHelper {
     public $helpers = array('Html');
 
     /*
-     * Recibe un array de productos, y devuelve una cadena con los divs que representan los productos
+     * Recibe un numero int o float y un simbolo de moneda y devuelve una cadena con formato correcto de precio "dinero"
      */
     public function formatCurrency($number, $currency) {
 
