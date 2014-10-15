@@ -29,6 +29,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 		echo $this->Html->meta('icon');
         echo $this->Html->script('jquery');
 		echo $this->Html->css('cake.generic');
+		echo $this->Html->script('info_messages');
 
 		echo $this->fetch('meta');
 		echo $this->fetch('css');

@@ -17,7 +17,13 @@
                <li><a href="#">MyCart</a></li>
                <li><a href="#">Sales</a></li>
                <li><a href="#">Contact</a></li>
-              </ul>
+               <?php if ($this->Session->read('Auth.User.id') == null): ?>
+                    <li><a href="http://localhost/GOA/Sof/tiendaPrueba/users/add">Register</a></li>
+                    <li><a href="http://localhost/GOA/Sof/tiendaPrueba/users/login">Sign In</a></li>
+                <? else: ?>
+                    <li>Welcome <?php $this->Session->read('Auth.User.name') ?> </li>
+                 <?php endif; ?>
+                </ul>
             </div>
 
 

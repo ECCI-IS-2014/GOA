@@ -38,6 +38,13 @@ class UsersController extends AppController {
         }
     }
 
+
+    public function home() {
+
+        //return $this->redirect($this->Auth->logout());
+
+    }
+
     public function profile()
     {
         $id=$this->Session->read('Auth.User.id');
@@ -118,6 +125,7 @@ class UsersController extends AppController {
 
 			if ($this->User->save($this->request->data)) {
                 //$this->_refreshAuth();
+                $this->Session->write('Auth', $this->User->read(null, $this->Auth->User('id')));
                 $this->Session->setFlash(__('The user has been updated.'));
                 return $this->redirect(array('action' => 'profile'));
 			} else {

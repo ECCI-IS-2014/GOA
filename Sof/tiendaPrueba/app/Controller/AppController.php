@@ -43,11 +43,13 @@ class AppController extends Controller {
             'loginRedirect' => array(
                 'controller' => 'pages',
                 'action' => 'display',
-                'loggedin'
+                'home'
             ),
             'logoutRedirect' => array(
                 'controller' => 'pages',
-                'action' => 'display'
+                'action' => 'display',
+                'home'
+
             ),
             'authenticate' => array(
                 'Form' => array(
@@ -59,37 +61,23 @@ class AppController extends Controller {
         )
     );
 
-    public function isAuthorized($user) {
+    public function isAuthorized() {
         // Admin can access every action
-        if (isset($user['role']) && $user['role'] === 'admin') {
+        if ($this->Session->read('Auth.User.role')== 'admin') {
+            //isset($user['role']) && $user['role'] === 'admin') {
             return true;
+
         }
 
         // Default deny
         return false;
     }
 
-    /**
-     * Refreshes the Auth session
-     * @param string $field
-     * @param string $value
-     * @return void
-     */
-    public function _refreshAuth() {
-
-        if (isset($this->User)) {
-                $this->Auth->login($this->User->read(false, $this->Auth->user('id')));
-        } else {
-                //$this->Auth->login(ClassRegistry::init('User')->findById($this->Auth->user('id')));
-        }
-    }
 
     public function beforeFilter() {
-        $this->Auth->allow('index', 'view', 'home');
+        $this->Auth->allow('home');
         // extra
         $this->Auth->deny('edit', 'delete');
-		
-		//$this->Auth->allow('index', 'view', 'edit', 'delete', 'disable', 'add'); // temporal durante produccion
     }
 	
 }
