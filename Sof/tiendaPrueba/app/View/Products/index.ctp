@@ -40,7 +40,12 @@
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $product['Product']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $product['Product']['id'])); ?>
-			<?php echo $this->Form->postLink(__('Disable'), array('action' => 'disable', $product['Product']['id']), array(), __('Are you sure you want to disable # %s?', $product['Product']['id'])); ?>
+			<?php if ( $product['Product']['enable_product'] == '1'): ?>
+				<?php echo $this->Form->postLink(__('Disable'), array('action' => 'disable', $product['Product']['id']), array(), __('Are you sure you want to disable # %s?', $product['Product']['id'])); ?>
+			<?php else: ?>
+				<?php echo $this->Form->postLink(__('Enable'), array('action' => 'enable', $product['Product']['id']), array(), __('Are you sure you want to enable # %s?', $product['Product']['id'])); ?>
+			<?php endif; ?>
+			
 		</td>
 	</tr>
 <?php endforeach; ?>

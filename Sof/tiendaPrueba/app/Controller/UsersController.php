@@ -201,6 +201,19 @@ class UsersController extends AppController {
 
         return $this->redirect(array('action' => 'index'));
     }
+	
+	public function enable($id = null) {
+        $this->User->id = $id;
+        if (!$this->User->exists()) {
+            throw new NotFoundException(__('Invalid user'));
+        } else {
+            $this->User->set('status', 1 );
+            $this->User->save();
+            $this->Session->setFlash(__('The user has been enabled.'));
+        }
+
+        return $this->redirect(array('action' => 'index'));
+    }
 
     function convertPasswords()
     {
