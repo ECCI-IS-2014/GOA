@@ -1,6 +1,57 @@
+-- Script para poblar las tablas con datos de prueba
+-- Asegurarse de vaciar las tablas antes de ejecutarlo
 
--- Script para poblar las tablas products y ratings con datos de prueba.
--- Asegurarse de vaciar las tablas products y ratings antes de ejecutarlo.
+-- Pasword de admin es admin1
+-- Pasword de usuario es 123456
+
+
+
+
+ALTER TABLE categories AUTO_INCREMENT = 1;
+
+INSERT INTO categories ( name )
+                       VALUES
+                       ('ropa' );
+
+INSERT INTO categories ( name )
+                       VALUES
+                       ('higiene personal' );
+
+INSERT INTO categories ( name )
+                       VALUES
+                       ('alimentos' );
+
+INSERT INTO categories ( name )
+                       VALUES
+                       ('electrodomesticos' );
+
+INSERT INTO categories ( name )
+                       VALUES
+                       ('muebles' );
+
+INSERT INTO categories ( name )
+                       VALUES
+                       ('hogar' );
+
+INSERT INTO categories ( name, father_category_id )
+                       VALUES
+                       ('sombreros', 1 );
+
+INSERT INTO categories ( name, father_category_id )
+                       VALUES
+                       ('calzado', 1 );
+
+INSERT INTO categories ( name )
+                       VALUES
+                       ('limpieza' );
+
+INSERT INTO categories ( name )
+                       VALUES
+                       ('miscelaneo' );
+
+
+
+
 
 ALTER TABLE products AUTO_INCREMENT = 1;
 
@@ -153,3 +204,17 @@ INSERT INTO products ( category_id, name, price, quantity, description )
                        ( 4, 'televisor', 430000.00, 12, 'Sony Bravia 42' );
 
 INSERT INTO ratings ( product_id ) VALUES ( 25 );
+
+
+
+
+
+ALTER TABLE users AUTO_INCREMENT = 1;
+
+INSERT INTO users ( `username`, `password`, `role`, `created`, `modified`, `name`, `last_name`, `phone`, `address`, `email`, `gender`, `birth_date` )
+                       VALUES
+                       ( 'admin', '$2a$10$QsNPaOWnlwAxAbYyJRpFp.ZeQeE4lelnJsaSpE1MojOqS0EgaIW0m', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', 0, '', '', '', '0000-00-00' );
+
+INSERT INTO users ( `username`, `password`, `role`, `created`, `modified`, `name`, `last_name`, `phone`, `address`, `email`, `gender`, `birth_date` )
+                       VALUES
+                       ( 'usuario', '$2a$10$qfQJOKQ89Ogh78OlbOe7f.CHWU.qJg5BOhsAxtv/bq/C0usvORZWa', 0, '2014-10-15 02:33:56', '2014-10-15 02:33:56', 'Usuario', 'Usuario', 88888888, '200mts Norte del Palo de Mango', 'us@gmail.com', 'F', '1994-10-15' );
