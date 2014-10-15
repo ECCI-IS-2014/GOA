@@ -46,8 +46,8 @@ class AppController extends Controller {
                 'loggedin'
             ),
             'logoutRedirect' => array(
-                'controller' => 'users',
-                'action' => 'loggedout'
+                'controller' => 'pages',
+                'action' => 'display'
             ),
             'authenticate' => array(
                 'Form' => array(
@@ -88,6 +88,8 @@ class AppController extends Controller {
         $this->Auth->allow('index', 'view');
         // extra
         $this->Auth->deny('edit', 'delete');
+		
+		//$this->Auth->allow('index', 'view', 'edit', 'delete', 'disable', 'add'); // temporal durante produccion
     }
 	
 }

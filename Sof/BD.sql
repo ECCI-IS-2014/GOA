@@ -23,7 +23,6 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
-<<<<<<< HEAD
 -- Estructura de tabla para la tabla `categories`
 --
 
@@ -76,8 +75,6 @@ CREATE TABLE IF NOT EXISTS `ratings` (
 -- --------------------------------------------------------
 
 --
-=======
->>>>>>> 3de65704e5ebe04f1ae7abe33a0b114b97bd09d6
 -- Estructura de tabla para la tabla `users`
 --
 
@@ -95,17 +92,28 @@ CREATE TABLE IF NOT EXISTS `users` (
   `email` varchar(40) NOT NULL,
   `gender` char(1) NOT NULL,
   `birth_date` date NOT NULL,
-  `status` tinyint(1) DEFAULT '0',
+  `status` tinyint(1) DEFAULT '1',
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
 
 --
--- Volcado de datos para la tabla `users`
+-- Filtros para la tabla `categories`
 --
+ALTER TABLE `categories`
+  ADD CONSTRAINT `FK_category_father_id` FOREIGN KEY (`father_category_id`) REFERENCES `categories` (`id`);
 
-INSERT INTO `users` (`id`, `username`, `password`, `role`, `created`, `modified`, `name`, `last_name`, `phone`, `address`, `email`, `gender`, `birth_date`, `status`) VALUES
-(1, 'Horse', '$2a$10$uOHQuZ.gd1CT7ESHdqMs9O22N0sy7CbWo', 0, '2014-10-13 20:58:35', '2014-10-13 20:58:35', 'Julio', 'Fraile', 85967412, 'Heredia', 'juan@gmail.com', 'M', '1996-10-13', 0);
+--
+-- Filtros para la tabla `products`
+--
+ALTER TABLE `products`
+  ADD CONSTRAINT `FK_category_id` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`);
+  
+--
+-- Filtros para la tabla `ratings`
+--
+ALTER TABLE `ratings`
+  ADD CONSTRAINT `FK_product_id` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

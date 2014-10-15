@@ -4,9 +4,9 @@
 
 ALTER TABLE products AUTO_INCREMENT = 1;
 
-INSERT INTO products ( category_id, name, price, quantity )
+INSERT INTO products ( category_id, name, price, quantity, enable_product )
                        VALUES
-                       ( 8, 'sandalias', 2500.00, 14 );
+                       ( 8, 'sandalias', 2500.00, 14, 0 );
 
 INSERT INTO ratings ( product_id ) VALUES ( 1 );
 
@@ -14,7 +14,7 @@ INSERT INTO products ( category_id, name, price, quantity )
                        VALUES
                        ( 8, 'botas', 2500.00, 8 );
 
-INSERT INTO ratings ( product_id ) VALUES ( 2 );
+INSERT INTO ratings ( product_id, enable_rating ) VALUES ( 2, 0 );
 
 INSERT INTO products ( category_id, name, price, quantity )
                        VALUES
@@ -28,9 +28,9 @@ INSERT INTO products ( category_id, name, price, quantity, image )
 
 INSERT INTO ratings ( product_id ) VALUES ( 4 );
 
-INSERT INTO products ( category_id, name, price, quantity )
+INSERT INTO products ( category_id, name, price, quantity, enable_product )
                        VALUES
-                       ( 7, 'chonete', 5000.00, 6 );
+                       ( 7, 'chonete', 5000.00, 6, 0 );
 
 INSERT INTO ratings ( product_id ) VALUES ( 5 );
 
@@ -40,11 +40,11 @@ INSERT INTO products ( category_id, name, price, quantity, image )
 
 INSERT INTO ratings ( product_id ) VALUES ( 6 );
 
-INSERT INTO products ( category_id, name, price, quantity )
+INSERT INTO products ( category_id, name, price, quantity, enable_product )
                        VALUES
-                       ( 3, 'cereal kellogs', 2950.00, 32 );
+                       ( 3, 'cereal kellogs', 2950.00, 32, 0 );
 
-INSERT INTO ratings ( product_id ) VALUES ( 7 );
+INSERT INTO ratings ( product_id, enable_rating ) VALUES ( 7, 0 );
 
 INSERT INTO products ( category_id, name, price, quantity )
                        VALUES
@@ -68,7 +68,7 @@ INSERT INTO products ( category_id, name, price, quantity )
                        VALUES
                        ( 10, 'candela', 100.00, 341 );
 
-INSERT INTO ratings ( product_id ) VALUES ( 11 );
+INSERT INTO ratings ( product_id, enable_rating ) VALUES ( 11, 0 );
 
 INSERT INTO products ( category_id, name, price, quantity )
                        VALUES
@@ -82,9 +82,9 @@ INSERT INTO products ( category_id, name, price, quantity )
 
 INSERT INTO ratings ( product_id ) VALUES ( 13 );
 
-INSERT INTO products ( category_id, name, price, quantity )
+INSERT INTO products ( category_id, name, price, quantity, enable_product )
                        VALUES
-                       ( 6, 'almohada', 6200.00, 14 );
+                       ( 6, 'almohada', 6200.00, 14, 0 );
 
 INSERT INTO ratings ( product_id ) VALUES ( 14 );
 
@@ -92,11 +92,11 @@ INSERT INTO products ( category_id, name, price, quantity )
                        VALUES
                        ( 6, 'espejo', 14300.00, 15 );
 
-INSERT INTO ratings ( product_id ) VALUES ( 15 );
+INSERT INTO ratings ( product_id, enable_rating ) VALUES ( 15, 0 );
 
 INSERT INTO products ( category_id, name, price, quantity, description )
                        VALUES
-                       ( 9, 'detergente', 4300.00, 32, 'El limpio más limpio!' );
+                       ( 9, 'detergente', 4300.00, 32, 'El limpio mas limpio!' );
 
 INSERT INTO ratings ( product_id ) VALUES ( 16 );
 
@@ -104,7 +104,7 @@ INSERT INTO products ( category_id, name, price, quantity, description )
                        VALUES
                        ( 9, 'suavitel', 3900.00, 28, 'Igual de suave que mama' );
 
-INSERT INTO ratings ( product_id ) VALUES ( 17 );
+INSERT INTO ratings ( product_id, enable_rating ) VALUES ( 17, 0 );
 
 INSERT INTO products ( category_id, name, price, quantity )
                        VALUES
@@ -112,9 +112,9 @@ INSERT INTO products ( category_id, name, price, quantity )
 
 INSERT INTO ratings ( product_id ) VALUES ( 18 );
 
-INSERT INTO products ( category_id, name, price, quantity, description )
+INSERT INTO products ( category_id, name, price, quantity, description, enable_product )
                        VALUES
-                       ( 2, 'pasta de dientes', 1930.00, 45, 'Oral B 360' );
+                       ( 2, 'pasta de dientes', 1930.00, 45, 'Oral B 360', 0 );
 
 INSERT INTO ratings ( product_id ) VALUES ( 19 );
 
@@ -142,9 +142,9 @@ INSERT INTO products ( category_id, name, price, quantity )
 
 INSERT INTO ratings ( product_id ) VALUES ( 23 );
 
-INSERT INTO products ( category_id, name, price, quantity, description )
+INSERT INTO products ( category_id, name, price, quantity, description, enable_product )
                        VALUES
-                       ( 4, 'refrigerador', 232000.00, 7, 'Atlas 3000' );
+                       ( 4, 'refrigerador', 232000.00, 7, 'Atlas 3000', 0 );
 
 INSERT INTO ratings ( product_id ) VALUES ( 24 );
 
