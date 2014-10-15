@@ -1,6 +1,6 @@
 
--- Script para poblar las tablas products y ratings con datos de prueba.
--- Asegurarse de vaciar las tablas products y ratings antes de ejecutarlo.
+-- Script para poblar la tabla users.
+-- Asegurarse de vaciar la tablas users antes de ejecutarlo.
 -- Pasword de admin es admin1
 -- Pasword de usuario es 123456
 
