@@ -80,7 +80,13 @@
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
-		<li><?php echo $this->Form->postLink(__('Disable User'), array('action' => 'disable', $user['User']['id']), array(), __('Are you sure you want to disable # %s?', $user['User']['id'])); ?> </li>
+		<li>
+			<?php if ( $user['User']['status'] == '1'): ?>
+				<?php echo $this->Form->postLink(__('Disable User'), array('action' => 'disable', $user['User']['id']), array(), __('Are you sure you want to disable # %s?', $user['User']['id'])); ?>
+			<?php else: ?>
+				<?php echo $this->Form->postLink(__('Enable User'), array('action' => 'enable', $user['User']['id']), array(), __('Are you sure you want to enable # %s?', $user['User']['id'])); ?>
+			<?php endif; ?>
+		</li>
 		<li><?php echo $this->Html->link(__('List Users'), array('action' => 'index')); ?> </li>
 	</ul>
 </div>

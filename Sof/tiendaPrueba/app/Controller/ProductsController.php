@@ -138,6 +138,19 @@ class ProductsController extends AppController {
         return $this->redirect(array('action' => 'index'));
     }
 	
+	public function enable($id = null) {
+        $this->Product->id = $id;
+        if (!$this->Product->exists()) {
+            throw new NotFoundException(__('Invalid product'));
+        } else {
+			$this->Product->set('enable_product', 1 );
+			$this->Product->save();
+			$this->Session->setFlash(__('The product has been enabled.'));
+		}
+
+        return $this->redirect(array('action' => 'index'));
+    }
+	
 	/*
      * Obtiene todos los productos de la base de datos, ordenados por el atributo $order_by en orden 'ASC' o 'DESC', 
      * segun el valor de $direction.
