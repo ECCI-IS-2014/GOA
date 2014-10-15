@@ -85,7 +85,7 @@ class AppController extends Controller {
     }
 
     public function beforeFilter() {
-        $this->Auth->allow('index', 'view');
+        $this->Auth->allow('index', 'view', 'home');
         // extra
         $this->Auth->deny('edit', 'delete');
 		
