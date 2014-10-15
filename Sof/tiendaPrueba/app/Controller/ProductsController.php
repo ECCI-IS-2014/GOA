@@ -138,8 +138,63 @@ class ProductsController extends AppController {
         return $this->redirect(array('action' => 'index'));
     }
 	
-	public function browseCatalog() {
-		$this->set( 'products', $this->Product->find('all') );
+	/*
+     * Obtiene todos los productos de la base de datos, ordenados por el atributo $order_by en orden 'ASC' o 'DESC', 
+     * segun el valor de $direction.
+     */
+	public function browseCatalog($order_by, $direction) {
+
+		$order = array('Product.' . $order_by . ' ' . $direction);	//Example: 'Product.name DESC'
+
+		if($order_by != 'null') {
+			$this->set('products', $this->Product->find('all', array(
+				'order'=>$order
+			)));
+		}
+		else {
+			$this->set( 'products', $this->Product->find('all') );	
+		}
+
+		//echo Router::url(array('controller'=>'Product','action'=>'browseCatalog')) + '/param1' + '/param2';
+
+	}
+
+	/*
+     * Obtiene los productos de la base de datos que cumplan con la condición de atributo $attribute entre los valores 
+     * $match_lesser_than y $match_greater_than (pueden ser el mismo para buscar por valor exacto), ordenados por el atributo 
+     * $order_by en orden 'ASC' o 'DESC', segun el valor de $direction.
+     */
+	public function searchCatalog($attribute, $match_lesser_than, $match_greater_than, $order_by, $direction) {
+
+		if($match_lesser_than == $match_greater_than) {
+			$conditions = array('Product.' . $attribute => $match_lesser_than);
+		}
+		else {
+			if($match_lesser_than == 'null') {
+				$conditions = array('Product.' . $attribute . ' <=' => $match_greater_than);
+			}
+			else {
+				if($match_greater_than == 'null') {
+					$conditions = array('Product.' . $attribute . ' >=' => $match_lesser_than);
+				}
+				else {
+					$conditions = array('Product.' . $attribute . ' >=' => $match_lesser_than, 'Product.' . $attribute . ' <=' => $match_greater_than);
+				}
+			}
+		}
+
+		if($order_by != 'null') {
+			$order = array('Product.' . $order_by . ' ' . $direction);
+		}
+		else {
+			$order = array();
+		}
+
+		$this->set('products', $this->Product->find('all', array(
+			'conditions'=>$conditions, 
+			'order'=>$order
+		)));
+
 	}
 
     public function productInside()
@@ -148,7 +203,5 @@ class ProductsController extends AppController {
 
         $this->set( 'product', $this->Product->find('first',array('conditions'=>array('Product.id'=>$product_id)) ));
     }
-
-
 
 }

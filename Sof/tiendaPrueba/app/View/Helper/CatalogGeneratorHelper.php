@@ -3,7 +3,7 @@
 App::uses('AppHelper', 'View/Helper');
 
 class CatalogGeneratorHelper extends AppHelper {
-    public $helpers = array('Html');
+    public $helpers = array('Html', 'StringFormatter');
 
     /*
      * Recibe un array de productos, y devuelve una cadena con los divs que representan los productos
@@ -23,7 +23,7 @@ class CatalogGeneratorHelper extends AppHelper {
 
     													"<p class='catalog_title1'>" . $prod['Product']['name'] . "</p>" .
 
-    													"<div class='cat_text_container'><span class='catalog_title2'>" . 'Price: ' . "</span><span class='catalog_text1'>" . $prod['Product']['price'] . "</span></div>" .
+    													"<div class='cat_text_container'><span class='catalog_title2'>" . 'Price: ' . "</span><span class='catalog_text1'>" . $this->StringFormatter->formatCurrency($prod['Product']['price'], '$') . "</span></div>" .
 
     													"<div class='cat_text_container'><span class='catalog_title2'>" . 'In stock now: ' . "</span><span class='catalog_text1'>" . $prod['Product']['quantity'] . "</span></div>" .
 
