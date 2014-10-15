@@ -4,8 +4,23 @@
 <?php $this->end(); ?>
 
 
+<?php $this->start('reviewButton'); ?>
+<button id="reviewButton"><a href='<?php echo $this->Html->url(array("controller" => "products","action" => "addReview","id"=>"")).$prod['Product']['id']?>'>Add Review</a></button>
+<?php $this->end(); ?>
+
+<?php $this->start('addCartButton'); ?>
+    <button id="addCartButton">Add to Cart</button>
+<?php $this->end(); ?>
+
+
+<?php $this->start('addWishListButton'); ?>
+
+     <button id="addWishListButton">Add to Wish List</button>
+
+<?php $this->end(); ?>
+
 <?php/*
-    INSERTAR JS DE BUTTON1 AQUI
+    INSERTAR JS DE BUTTON AQUI
 */?>
 
 

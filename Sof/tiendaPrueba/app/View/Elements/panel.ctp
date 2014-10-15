@@ -38,7 +38,8 @@
    <div style="clear:both"></div>
    <p style="font-weight:bold;float:left">Quantity:</p> <?php  echo $product['Product']['quantity'];?>
    <div style="clear:both"></div>
-
+   <p style="font-weight:bold;float:left">Rating:</p> <?php  echo $this->CatalogGenerator->displayRatingBox($product['Product']['rating']);?>
+   <div style="clear:both"></div>
 
 
 
@@ -53,8 +54,10 @@
 
     <div id="buttonHolder">
 
-    <button id="addCartButton">Add to Cart</button>
-    <button id="addWishButton">Add to Wish List</button>
+    <?php echo $this->fetch('addCartButton'); ?>
+    <?php echo $this->fetch('addWishListButton'); ?>
+    <?php echo $this->fetch('reviewButton'); ?>
+
 
     </div>
 
@@ -67,8 +70,17 @@
 
 <?php $this->start('reviewsPanel'); ?>
 
+    <div id = "OtherUsersReviewsPanel">
 
-REVIEWS
+
+
+    </div>
+
+    <div id="addReviewPanel">
+
+
+
+    </div>
 
 
 <?php $this->end(); ?>
