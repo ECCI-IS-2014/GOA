@@ -97,8 +97,8 @@ class UsersController extends AppController {
  * add method
  *
  * @return void
- */
-	public function add() {
+
+/*	public function add() {
 		if ($this->request->is('post')) {
 			$this->User->create();
 			if ($this->User->save($this->request->data)) {
@@ -109,6 +109,29 @@ class UsersController extends AppController {
 			}
 		}
 	}
+    */
+
+    public function add() {
+        if ($this->request->is('post')) {
+            $this->User->create();
+            try {
+                if ($this->User->save($this->request->data)) {
+                    $this->Session->setFlash(__('The user has been saved.'));
+                    return $this->redirect(array('action' => 'index'));
+                } else {
+                    $this->Session->setFlash(__('The user could not be saved. Please, try again.'));
+                }
+            } catch (Exception $e) {
+                $this->Session->setFlash(__('This Username is already used, please try another Username'));
+                return $this->redirect(array('action' => 'add'));
+
+            }
+
+
+        }
+    }
+
+
 /**
  * edit method
  *

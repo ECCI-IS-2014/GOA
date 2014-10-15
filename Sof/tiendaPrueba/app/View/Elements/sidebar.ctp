@@ -4,7 +4,13 @@
 
 	    <div id="sidebar_content">
 	    	<div id="sidebar_content_interior">
-	    		<p>Lorem ipsum</p>
+	    		<h3>Search</h1>
+
+	    		<h3>Category</h2>
+
+	    		<h3>Price</h3>
+
+	    		<h3>Rating</h3>
 	    	</div>
 	    </div>
 
