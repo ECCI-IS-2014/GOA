@@ -95,7 +95,7 @@ class User extends AppModel {
         'address' => array(
             'address' => array(
                 'rule' => array('maxLength', 140),
-                'message' => "Your email address can't contain more than %d characters."
+                'message' => "Your address can't contain more than %d characters."
                 //'message' => 'Your custom message here',
                 //'allowEmpty' => false,
                 //'required' => false,
@@ -133,6 +133,42 @@ class User extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
+        'status' => array(
+            'notEmpty' => array(
+                'rule' => array('notEmpty'),
+                //'message' => 'Your custom message here',
+                //'allowEmpty' => false,
+                //'required' => false,
+                //'last' => false, // Stop validation after this rule
+                //'on' => 'create', // Limit validation to 'create' or 'update' operations
+            ),
+            'boolean' => array(
+                'rule' => array('boolean'),
+                //'message' => 'Your custom message here',
+                //'allowEmpty' => false,
+                //'required' => false,
+                //'last' => false, // Stop validation after this rule
+                //'on' => 'create', // Limit validation to 'create' or 'update' operations
+            ),
+        ),
+        'role' => array(
+            'notEmpty' => array(
+                'rule' => array('notEmpty'),
+                //'message' => 'Your custom message here',
+                //'allowEmpty' => false,
+                //'required' => false,
+                //'last' => false, // Stop validation after this rule
+                //'on' => 'create', // Limit validation to 'create' or 'update' operations
+            ),
+            'boolean' => array(
+                'rule' => array('boolean'),
+                //'message' => 'Your custom message here',
+                //'allowEmpty' => false,
+                //'required' => false,
+                //'last' => false, // Stop validation after this rule
+                //'on' => 'create', // Limit validation to 'create' or 'update' operations
+            ),
+        ),
 	);
 
     /*
