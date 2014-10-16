@@ -144,13 +144,13 @@
 
                     $("#topHeader").animate({
                         marginTop: '-=' + topHeaderHideMargin + 'px'
-                    }, 500, "easeOutQuart", function() {
+                    }, 400, "easeOutQuart", function() {
                         allowTopHeaderHiding = true;
                     });
 
                     $("#content_wrapper").animate({
                         height: '+=' + topHeaderHideMargin + 'px'
-                    }, 500, "easeOutQuart", function() {
+                    }, 400, "easeOutQuart", function() {
 
                     });
                 }
@@ -168,13 +168,13 @@
 
                     $("#topHeader").animate({
                         marginTop: '+=' + topHeaderHideMargin + 'px'
-                    }, 500, "easeOutQuart", function() {
+                    }, 400, "easeOutQuart", function() {
                         allowTopHeaderHiding = true;
                     });
 
                     $("#content_wrapper").animate({
                         height: '-=' + topHeaderHideMargin + 'px'
-                    }, 500, "easeOutQuart", function() {
+                    }, 400, "easeOutQuart", function() {
 
                     });
                 }
