@@ -14,17 +14,9 @@ class ProductsControllerTest extends ControllerTestCase {
  */
 	public $fixtures = array(
 		'app.product',
-		'app.category'
+		'app.category',
+		'app.rating'
 	);
-
-/**
- * testIndex method
- *
- * @return void
- */
-	public function testIndex() {
-		$this->markTestIncomplete('testIndex not implemented.');
-	}
 
 /**
  * testView method
@@ -54,12 +46,23 @@ class ProductsControllerTest extends ControllerTestCase {
 	}
 
 /**
- * testDelete method
+ * testDisable method
  *
  * @return void
  */
-	public function testDelete() {
-		$this->markTestIncomplete('testDelete not implemented.');
+	public function testDisable() {
+		$this->markTestIncomplete('testDisable not implemented.');
+	}
+
+}
+
+/**
+ * testEnable method
+ *
+ * @return void
+ */
+	public function testEnable() {
+		$this->markTestIncomplete('testDisable not implemented.');
 	}
 
 }

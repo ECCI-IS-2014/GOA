@@ -17,8 +17,9 @@ class ProductFixture extends CakeTestFixture {
 		'price' => array('type' => 'decimal', 'null' => false, 'default' => '0.00', 'length' => '9,2', 'unsigned' => false),
 		'quantity' => array('type' => 'integer', 'null' => false, 'default' => '0', 'unsigned' => false),
 		'image' => array('type' => 'string', 'null' => true, 'default' => null, 'length' => 150, 'collate' => 'latin1_swedish_ci', 'charset' => 'latin1'),
-		'status' => array('type' => 'boolean', 'null' => true, 'default' => null),
-		'rating' => array('type' => 'float', 'null' => true, 'default' => '0', 'unsigned' => false),
+		'enable_product' => array('type' => 'boolean', 'null' => true, 'default' => '1'),
+		'rating' => array('type' => 'integer', 'null' => true, 'default' => '0', 'unsigned' => false),
+		'description' => array('type' => 'string', 'null' => false, 'default' => 'No description.', 'length' => 1000, 'collate' => 'latin1_swedish_ci', 'charset' => 'latin1'),
 		'indexes' => array(
 			'PRIMARY' => array('column' => 'id', 'unique' => 1),
 			'FK_category_id' => array('column' => 'category_id', 'unique' => 0)
@@ -33,14 +34,114 @@ class ProductFixture extends CakeTestFixture {
  */
 	public $records = array(
 		array(
-			'id' => 1,
-			'category_id' => 1,
-			'name' => 'Lorem ipsum dolor sit amet',
-			'price' => '',
-			'quantity' => 1,
-			'image' => 'Lorem ipsum dolor sit amet',
-			'status' => 1,
-			'rating' => 1
+			'id' => '1',
+			'category_id' => '8',
+			'name' => 'sandalias',
+			'price' => '2500.00',
+			'quantity' => '14',
+			'image' => null,
+			'enable_product' => 0,
+			'rating' => '0',
+			'description' => 'No description.'
+		),
+		array(
+			'id' => '2',
+			'category_id' => '8',
+			'name' => 'botas',
+			'price' => '2500.00',
+			'quantity' => '8',
+			'image' => null,
+			'enable_product' => 1,
+			'rating' => '0',
+			'description' => 'No description.'
+		),
+		array(
+			'id' => '3',
+			'category_id' => '8',
+			'name' => 'burros',
+			'price' => '2500.00',
+			'quantity' => '11',
+			'image' => null,
+			'enable_product' => 1,
+			'rating' => '0',
+			'description' => 'No description.'
+		),
+		array(
+			'id' => '4',
+			'category_id' => '7',
+			'name' => 'fedora',
+			'price' => '8200.00',
+			'quantity' => '7',
+			'image' => '1413218846-1.jpg',
+			'enable_product' => 1,
+			'rating' => '0',
+			'description' => 'No description.'
+		),
+		array(
+			'id' => '5',
+			'category_id' => '7',
+			'name' => 'chonete',
+			'price' => '5000.00',
+			'quantity' => '6',
+			'image' => null,
+			'enable_product' => 0,
+			'rating' => '0',
+			'description' => 'No description.'
+		),
+		array(
+			'id' => '6',
+			'category_id' => '10',
+			'name' => 'sombrilla',
+			'price' => '3100.00',
+			'quantity' => '19',
+			'image' => '1413218987-3.jpg',
+			'enable_product' => 1,
+			'rating' => '0',
+			'description' => 'No description.'
+		),
+		array(
+			'id' => '7',
+			'category_id' => '3',
+			'name' => 'cereal kellogs',
+			'price' => '2950.00',
+			'quantity' => '32',
+			'image' => null,
+			'enable_product' => 0,
+			'rating' => '0',
+			'description' => 'No description.'
+		),
+		array(
+			'id' => '8',
+			'category_id' => '3',
+			'name' => 'cereal nestle',
+			'price' => '3400.00',
+			'quantity' => '22',
+			'image' => null,
+			'enable_product' => 1,
+			'rating' => '0',
+			'description' => 'No description.'
+		),
+		array(
+			'id' => '9',
+			'category_id' => '5',
+			'name' => 'mesa',
+			'price' => '36000.00',
+			'quantity' => '3',
+			'image' => '1413219529-1.jpg',
+			'enable_product' => 1,
+			'rating' => '0',
+			'description' => 'No description.'
+		),
+		array(
+			'id' => '10',
+			'category_id' => '5',
+			'name' => 'silla',
+			'price' => '17800.00',
+			'quantity' => '12',
+			'image' => null,
+			'enable_product' => 1,
+			'rating' => '0',
+			'description' => 'No description.'
 		),
 	);
 
