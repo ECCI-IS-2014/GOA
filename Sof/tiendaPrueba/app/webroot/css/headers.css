@@ -1,3 +1,150 @@
+#topHeader {
+    height: 135px;
+    margin-top: 0;
+}
+
+#topHeader .hidden {
+    margin-top: -96px;
+}
+
+#topHeader .searchBar img {
+    width: ;
+    height:;
+}
+
+#topHeader .searchBar form {   
+    padding: 0;
+    width: 700px;
+    height: 30px;
+    margin: 0 auto;
+    position: relative;
+}
+
+#topHeader .searchBar input.search {
+
+    width: 570px;
+    height: 21px;
+    font-size: 15px;
+    padding: 1px 1px 1px 31px;
+
+    background: transparent;
+    background: rgba(242, 242, 242, 0.15);
+    background-clip: padding-box;
+
+    display: inline-block;
+    float: left;
+    
+    border: none;
+    border-radius:         26px;
+    -moz-border-radius:    26px;
+    -o-border-radius:      26px;
+    -webkit-border-radius: 26px;
+    
+    box-shadow:         inset 0 0 5px rgba(0, 0, 0, 0.1), 
+                        0 1px 0 rgba(255, 255, 255, 0.5), 
+                        inset 0 1px 2px rgba(0, 0, 0, 0.3), 
+                        0 0 40px rgba(255, 255, 255, 0.3);
+    -moz-box-shadow:    inset 0 0 5px rgba(0, 0, 0, 0.1), 
+                        0 1px 0 rgba(255, 255, 255, 0.5), 
+                        inset 0 1px 2px rgba(0, 0, 0, 0.3), 
+                        0 0 40px rgba(255, 255, 255, 0.3);
+    -o-box-shadow:      inset 0 0 5px rgba(0, 0, 0, 0.1), 
+                        0 1px 0 rgba(255, 255, 255, 0.5), 
+                        inset 0 1px 2px rgba(0, 0, 0, 0.3), 
+                        0 0 40px rgba(255, 255, 255, 0.3);
+    -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1), 
+                        0 1px 0 rgba(255, 255, 255, 0.5), 
+                        inset 0 1px 2px rgba(0, 0, 0, 0.3), 
+                        0 0 40px rgba(255, 255, 255, 0.3);
+    
+    color: #333;
+    outline: none;
+    
+    transition:         all .1s linear;
+    -moz-transition:    all .1s linear;
+    -o-transition:      all .1s linear;
+    -webkit-transition: all .1s linear;
+
+}
+
+#topHeader .searchBar input.search:focus {
+    background: transparent;
+    background: rgba(225, 225, 230, 0.2);
+
+    box-shadow:         inset 0 0 5px rgba(0, 0, 0, 0.2), 
+                        0 1px 0 rgba(255, 255, 255, 0.7), 
+                        inset 0 1px 2px rgba(0, 0, 0, 0.4), 
+                        0 0 40px rgba(255, 255, 255, 0.5);
+    -moz-box-shadow:    inset 0 0 5px rgba(0, 0, 0, 0.2), 
+                        0 1px 0 rgba(255, 255, 255, 0.7), 
+                        inset 0 1px 2px rgba(0, 0, 0, 0.4), 
+                        0 0 40px rgba(255, 255, 255, 0.5);
+    -o-box-shadow:      inset 0 0 5px rgba(0, 0, 0, 0.2), 
+                        0 1px 0 rgba(255, 255, 255, 0.7), 
+                        inset 0 1px 2px rgba(0, 0, 0, 0.4), 
+                        0 0 40px rgba(255, 255, 255, 0.5);
+    -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2), 
+                        0 1px 0 rgba(255, 255, 255, 0.7), 
+                        inset 0 1px 2px rgba(0, 0, 0, 0.4), 
+                        0 0 40px rgba(255, 255, 255, 0.5);
+}
+
+#topHeader .searchBar input.sbm {
+    width: 80px;
+    height: 23px;
+    position: absolute;
+    right: 0;
+    padding: 0;
+
+    background-color: #8a8a8a;
+    font-family: Tahoma;
+    letter-spacing: 1px;
+
+    font-size: 14px;
+    color: #f5f5f5;
+
+    border: none;
+    border-radius:         26px;
+    -moz-border-radius:    26px;
+    -o-border-radius:      26px;
+    -webkit-border-radius: 26px;
+
+    cursor: pointer;
+}
+
+#topHeader .searchBar input.sbm:hover {
+    background-color: #6a6a6a;
+}
+
+#topHeader .searchBar input.sbm:active {
+    background-color: #dadada;
+    color: #6a6a6a;
+}
+
+#topHeader .searchBar label {
+    background: transparent url('../img/mag-glass.png') no-repeat top left;
+    cursor: pointer;
+    height: 16px;
+    width: 16px;
+    position: absolute;
+    left: 8px;
+    top: 4px;
+}
+
+#topHeader #logoContainer {
+    margin: 20px 0 30px 0;
+}
+
+#topHeader #logoContainer h1 {
+    font-size: 26px;
+    text-align: center;
+}
+
+#topHeader #logoContainer h2 {
+    font-size: 17px;
+    text-align: center;
+}
+
 #menuHeader
 {
     border: solid 1px #39F;

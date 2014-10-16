@@ -1,5 +1,20 @@
 
 <?php $this->start('header1'); ?>
+
+    <div id="topHeader">
+      <div id="logoContainer">
+        <h1>Welcome!</h1>
+        <h2>Logo TBD</h2>
+      </div>
+      <div class="searchBar">
+        <form>
+          <input type="text" class="search">
+          <label for="search"></label>
+          <input type="button" value="Search" class="sbm"/>
+        </form> 
+      </div>
+    </div>
+
     <div id="menuHeader">
 
             <div id="menuHeaderInterno">

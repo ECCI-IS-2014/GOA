@@ -37,7 +37,7 @@ class PagesController extends AppController {
  */
 	public $uses = array('Product');
 
-    public $helpers = array('CatalogGenerator');
+    public $helpers = array('CatalogGenerator', 'Html');
 
 /**
  * Displays a view
