@@ -5,7 +5,10 @@
 -- Pasword de usuario es 123456
 
 
-
+-- Se usa la categoria 0 para los productos sin categoria o para las categorias sin padre
+INSERT INTO categories ( id, name )
+                       VALUES
+                       ( 0, 'No category.' );
 
 ALTER TABLE categories AUTO_INCREMENT = 1;
 

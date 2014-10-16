@@ -35,7 +35,6 @@ class ProductTest extends CakeTestCase {
  */
 	public function tearDown() {
 		unset($this->Product);
-
 		parent::tearDown();
 	}
 
