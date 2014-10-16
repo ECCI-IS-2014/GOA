@@ -43,7 +43,7 @@
 
                         <div class="users profile">
 
-                        <h2 style="color:#1E90FF;"><?php echo __('Welcome to your Profile ');
+                        <h2 style="color:#1E90FF;"><?php echo __('Welcome to your profile ');
                                   echo $this->Session->read('Auth.User.username'); ?></h2>
                         	<dl>
                         		<dt><?php echo __('Name'); ?></dt>
@@ -88,7 +88,7 @@
                         <div class="actions">
                         	<h3><?php echo __('Actions'); ?></h3>
                         	<ul>
-                        		<li><?php echo $this->Html->link(__('Edit user'), array('action' => 'edit', $this->Session->read('Auth.User.id'))); ?> </li>
+                        		<li><?php echo $this->Html->link(__('Edit User'), array('action' => 'edit', $this->Session->read('Auth.User.id'))); ?> </li>
                         		<li><?php echo $this->Form->postLink(__('Delete User'), array('action' => 'delete', $this->Session->read('Auth.User.id'))); ?> </li>
                         	 <li><?php echo $this->Html->link('Logout', array('controller' => 'users', 'action' => 'logout')); ?> </li>
 
@@ -120,12 +120,12 @@
             resizeContent();
         });
 
-        function resizeContent() {
+        /*function resizeContent() {
             $("#content_wrapper").height( $(window).height() - $("#head").outerHeight() - $("#foot").outerHeight() );
             $("#content_wrapper").width( $(window).width() );
             $("#panel").height( $(window).height() - $("#head").outerHeight() - $("#foot").outerHeight() );
             $("#panel").width( $(window).width() );
-        }
+        }*/
 
         </script>
 

@@ -35,7 +35,7 @@
                        <?php echo $this->Form->create('User'); ?>
                            <fieldset>
                                <legend>
-                                   <?php echo __('Please enter your username and password'); ?>
+                                   <p style="color:#1E90FF"> <?php echo __('Please enter your username and password'); ?> <p/>
                                </legend>
                                <?php echo $this->Form->input('username');
                                echo $this->Form->input('password');
@@ -66,12 +66,12 @@
             resizeContent();
         });
 
-        function resizeContent() {
+        /*function resizeContent() {
             $("#content_wrapper").height( $(window).height() - $("#head").outerHeight() - $("#foot").outerHeight() );
             $("#content_wrapper").width( $(window).width() );
             $("#panel").height( $(window).height() - $("#head").outerHeight() - $("#foot").outerHeight() );
             $("#panel").width( $(window).width() );
-        }
+        }*/
 
         </script>
 
