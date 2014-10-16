@@ -52,10 +52,10 @@
     font-family: Helvetica, Arial, Sans-Serif;
     text-decoration: none;
     vertical-align: middle;
-    margin-bottom:4%;
-    margin-left: 8%;
+    margin-bottom:2%;
+    margin-left: 30%;
     margin-top: 4%;
-    float:left;
+
     margin-right: 5%;
 
 
@@ -71,7 +71,7 @@
     background: #1b435e;
 }
 
-#addWishButton
+#addWishListButton
 {
 
     border-top: 1px solid #f2f2f2;
@@ -95,29 +95,30 @@
     text-decoration: none;
     vertical-align: middle;
     margin-top: 4%;
-    margin-bottom: 4%;
+    margin-bottom: 5%;
+    margin-left:25%
 }
 
-#addWishButton:hover{
+#addWishListButton:hover{
     border-top-color: #757575;
     background: #757575;
     color: #fafffe;
 
 }
-#addWishButton:active{
+#addWishListButton:active{
     border-top-color: #1b435e;
     background: #1b435e;
 }
 
 
 #reviewButton {
-    border-top: 1px solid #000000;
+    border-top: 1px solid #fffe2c;
     background: #afba4e;
-    background: -webkit-gradient(linear, left top, left bottom, from(#f7e200), to(#afba4e));
-    background: -webkit-linear-gradient(top, #f7e200, #afba4e);
-    background: -moz-linear-gradient(top, #f7e200, #afba4e);
-    background: -ms-linear-gradient(top, #f7e200, #afba4e);
-    background: -o-linear-gradient(top, #f7e200, #afba4e);
+    background: -webkit-gradient(linear, left top, left bottom, from(#f7e200), to(#e9e82b));
+    background: -webkit-linear-gradient(top, #f7e200, #e9e82b);
+    background: -moz-linear-gradient(top, #f7e200, #e9e82b);
+    background: -ms-linear-gradient(top, #f7e200, #e9e82b);
+    background: -o-linear-gradient(top, #f7e200, #e9e82b);
     padding: 5px 10px;
     -webkit-border-radius: 8px;
     -moz-border-radius: 8px;
@@ -131,7 +132,15 @@
     font-family: Georgia, serif;
     text-decoration: none;
     vertical-align: middle;
+    margin-left: 28%;
+    margin-bottom:5%;
+
 }
+#reviewButton a
+{
+    text-decoration: none;
+}
+
 #reviewButton:hover {
     border-top-color: #e3ce44;
     background: #e3ce44;

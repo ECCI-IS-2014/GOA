@@ -16,7 +16,7 @@
 <?php $this->start('imagePanel'); ?>
 
 
-   <?php echo $this->Html->image('product_icons/'.$product['Product']['image'], array('alt' => 'cakePHP')); ?>
+  <div id="imageHolder"> <?php echo $this->Html->image('product_icons/'.$product['Product']['image'], array('alt' => 'cakePHP')); ?> </div>
     
 
     
@@ -30,15 +30,15 @@
 <?php $this->start('descriptionPanel'); ?>
 
 
-   <p style="font-weight:bold; float:left">Name:</p> <?php echo $product['Product']['name'];?>
+   <p style="font-weight:bold; float:left; padding-left:3%;">Name:</p> <?php echo $product['Product']['name'];?>
    <div style="clear:both"></div>
-   <p style="font-weight:bold; float:left">Price:</p> <?php   echo $product['Product']['price'];?>
+   <p style="font-weight:bold; float:left; padding-left:3%;">Price:</p> <?php   echo $product['Product']['price'];?>
    <div style="clear:both"></div>
-   <p style="font-weight:bold;float:left">Description:</p> <?php echo $product['Product']['description'];?>
+   <p style="font-weight:bold;float:left; padding-left:3%;">Description:</p> <?php echo $product['Product']['description'];?>
    <div style="clear:both"></div>
-   <p style="font-weight:bold;float:left">Quantity:</p> <?php  echo $product['Product']['quantity'];?>
+   <p style="font-weight:bold;float:left; padding-left:3%;">Quantity:</p> <?php  echo $this->StringFormatter->formatCurrency($product['Product']['quantity'],'$');?>
    <div style="clear:both"></div>
-   <p style="font-weight:bold;float:left">Rating:</p> <?php  echo $this->CatalogGenerator->displayRatingBox($product['Product']['rating']);?>
+   <p style="font-weight:bold;float:left; padding-left:3%;">Rating:</p> <?php  echo $this->CatalogGenerator->displayRatingBox($product['Product']['rating']);?>
    <div style="clear:both"></div>
 
 
@@ -53,10 +53,11 @@
 <?php $this->start('optionsPanel'); ?>
 
     <div id="buttonHolder">
-
-    <?php echo $this->fetch('addCartButton'); ?>
-    <?php echo $this->fetch('addWishListButton'); ?>
-    <?php echo $this->fetch('reviewButton'); ?>
+    <button id="addCartButton">Add to Cart</button>
+    <br>
+    <button id="addWishListButton">Add to Wish List</button>
+    <br>
+    <button id="reviewButton"><a href='<?php echo $this->Html->url(array("controller" => "products","action" => "addReview","id"=>"")).$product['Product']['id']?>'>Add Review</a></button>
 
 
     </div>
@@ -69,6 +70,8 @@
 
 
 <?php $this->start('reviewsPanel'); ?>
+
+    Reviews
 
     <div id = "OtherUsersReviewsPanel">
 

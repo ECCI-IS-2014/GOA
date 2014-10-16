@@ -16,22 +16,25 @@
 #imagePanel
 {
     float:left;
-    width:15%;
-    border: solid;
+    width:20%;
+
+    overflow: hidden;
 }
 
 #descriptionPanel
 {
-    width:58%;
+    padding-top: 2%;
+    width:40%;
     float:left;
-    border:solid;
+
+
 }
 
 #optionsPanel
 {
     float:left;
     width:25.6%;
-    border: solid;
+
     margin-right:0%;
 
 
@@ -53,8 +56,15 @@
     border: solid;
 }
 
-#imagePanel
+
+
+#imageHolder
 {
-    overflow: hidden;
+    margin-top:10%;
+    margin-bottom:10%;
+    height: 80%;
+    width: 60%;
+    padding-top: 5%;
+    margin-left:5%;
 
 }
