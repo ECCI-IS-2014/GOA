@@ -73,7 +73,8 @@ class CategoriesController extends AppController {
 		}
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->Category->save($this->request->data)) {
-				return $this->flash(__('The category has been saved.'), array('action' => 'index'));
+				$this->Session->setFlash(__('The product has been saved.'));
+				return $this->redirect(array('action' => 'index'));
 			}
 		} else {
 			$options = array('conditions' => array('Category.' . $this->Category->primaryKey => $id));
