@@ -1,6 +1,7 @@
 #topHeader {
-    height: 135px;
+    height: 155px;
     margin-top: 0;
+    position: relative;
 }
 
 #topHeader .hidden {
@@ -8,8 +9,7 @@
 }
 
 #topHeader .searchBar img {
-    width: ;
-    height:;
+
 }
 
 #topHeader .searchBar form {   
@@ -18,6 +18,8 @@
     height: 30px;
     margin: 0 auto;
     position: relative;
+    top: 115px;
+    left: 140px;
 }
 
 #topHeader .searchBar input.search {
@@ -26,7 +28,6 @@
     height: 21px;
     font-size: 15px;
     padding: 1px 1px 1px 31px;
-
     background: transparent;
     background: rgba(242, 242, 242, 0.15);
     background-clip: padding-box;
@@ -57,7 +58,7 @@
                         inset 0 1px 2px rgba(0, 0, 0, 0.3), 
                         0 0 40px rgba(255, 255, 255, 0.3);
     
-    color: #333;
+    color: #ededed;
     outline: none;
     
     transition:         all .1s linear;
@@ -96,12 +97,12 @@
     right: 0;
     padding: 0;
 
-    background-color: #8a8a8a;
+    background-color: #7a7a7a;
     font-family: Tahoma;
     letter-spacing: 1px;
 
     font-size: 14px;
-    color: #f5f5f5;
+    color: #d5d5d5;
 
     border: none;
     border-radius:         26px;
@@ -113,16 +114,16 @@
 }
 
 #topHeader .searchBar input.sbm:hover {
-    background-color: #6a6a6a;
+    background-color: #5a5a5a;
 }
 
 #topHeader .searchBar input.sbm:active {
     background-color: #dadada;
-    color: #6a6a6a;
+    color: #5a5a5a;
 }
 
 #topHeader .searchBar label {
-    background: transparent url('../img/mag-glass.png') no-repeat top left;
+    background: transparent url(http://f.cl.ly/items/2a2Z0V0L0J1p3V082d3r/icon-search.png) no-repeat top left;
     cursor: pointer;
     height: 16px;
     width: 16px;
@@ -132,7 +133,15 @@
 }
 
 #topHeader #logoContainer {
-    margin: 20px 0 30px 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-image: url("http://i.imgur.com/7nXSwKo.png");
+    background-repeat: no-repeat;
+    background-color: black;
+
+    width: 100%;
+    height: 155px;
 }
 
 #topHeader #logoContainer h1 {

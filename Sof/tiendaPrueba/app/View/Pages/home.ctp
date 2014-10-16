@@ -75,10 +75,10 @@
 
         function resizeContent() {
             if(logoVisible == true) {
-                $("#content_wrapper").height( $(window).height() - $("#head").outerHeight() - $("#foot").outerHeight() - 18 );
+                $("#content_wrapper").height( $(window).height() - $("#head").outerHeight() - $("#foot").outerHeight() );
             }
             else {
-                $("#content_wrapper").height( $(window).height() - $("#head").outerHeight() - $("#foot").outerHeight() - 18 + topHeaderHideMargin );
+                $("#content_wrapper").height( $(window).height() - $("#head").outerHeight() - $("#foot").outerHeight() + topHeaderHideMargin );
             }
             
             $("#content_wrapper").width( $(window).width() );

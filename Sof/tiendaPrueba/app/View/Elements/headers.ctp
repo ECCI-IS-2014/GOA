@@ -3,7 +3,7 @@
 
     <div id="topHeader">
       <div id="logoContainer">
-        <img src = "http://i.imgur.com/7nXSwKo.png" />
+        <!--<img src = "http://i.imgur.com/7nXSwKo.png" />-->
       </div>
       <div class="searchBar">
         <form>
