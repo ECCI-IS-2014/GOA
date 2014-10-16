@@ -12,6 +12,7 @@
              <?php echo $this->Html->css('panel'); ?>
              <?php echo $this->Html->css('button'); ?>
              <?php echo $this->Html->css('home'); ?>
+             <?php echo $this->Html->script('jquery-ui'); ?>
         </head>
 
 
@@ -87,12 +88,39 @@
         }
 
         function configureEvents() {
+
             $("#content_wrapper").mouseenter(function(){
-                hideTopHeader();
+                if(logoVisible == true) {
+                    hideTopHeader();
+                }
             });
+
             $("#topHeader").mouseenter(function(){
-                showTopHeader();
+                if(logoVisible == false) {
+                    showTopHeader();
+                }
             });
+
+            $(".sbm").click(function(){
+                gotoSearch();
+            });
+
+            $("input.search").keypress(function(e){
+                if(e.which == 13) {
+                    gotoSearch();
+                }
+            });
+
+        }
+
+        function gotoSearch() {
+            var opts =  "/" + 'name' + 
+                        "/" + $("input.search").val() +
+                        "/" + $("input.search").val() +
+                        "/" + 'null' + 
+                        "/" + 'asc';
+            var url = "<?php echo $this->html->url('/', true); ?>" + "/Products/searchCatalog" + opts;
+            window.location.href = url;
         }
 
 
@@ -105,38 +133,51 @@
          */
 
         function hideTopHeader() {
-            if(logoVisible == true && allowTopHeaderHiding == true && !$("input.search").val()) {
+            if(allowTopHeaderHiding == true && !$("input.search").val()) {
 
-                $("#topHeader").animate({
-                    marginTop: '-=' + topHeaderHideMargin + 'px'
-                }, 200, "linear", function() {
+                if(parseInt($("#topHeader").css("marginTop")) < 0) {
+                    return;
+                }
+                else {
                     logoVisible = false;
-                });
+                    allowTopHeaderHiding = false;
 
-                $("#content_wrapper").animate({
-                    height: '+=' + topHeaderHideMargin + 'px'
-                }, 200, "linear", function() {
+                    $("#topHeader").animate({
+                        marginTop: '-=' + topHeaderHideMargin + 'px'
+                    }, 500, "easeOutQuart", function() {
+                        allowTopHeaderHiding = true;
+                    });
 
-                });
+                    $("#content_wrapper").animate({
+                        height: '+=' + topHeaderHideMargin + 'px'
+                    }, 500, "easeOutQuart", function() {
 
+                    });
+                }
             }
         }
 
         function showTopHeader() {
-            if(logoVisible == false && allowTopHeaderHiding == true) {
-
-                $("#topHeader").animate({
-                    marginTop: '+=' + topHeaderHideMargin + 'px'
-                }, 200, "linear", function() {
+            if(allowTopHeaderHiding == true) {
+                if(parseInt($("#topHeader").css("marginTop")) > 0) {
+                    return;
+                }
+                else {
                     logoVisible = true;
-                });
+                    allowTopHeaderHiding = false;
 
-                $("#content_wrapper").animate({
-                    height: '-=' + topHeaderHideMargin + 'px'
-                }, 200, "linear", function() {
+                    $("#topHeader").animate({
+                        marginTop: '+=' + topHeaderHideMargin + 'px'
+                    }, 500, "easeOutQuart", function() {
+                        allowTopHeaderHiding = true;
+                    });
 
-                });
+                    $("#content_wrapper").animate({
+                        height: '-=' + topHeaderHideMargin + 'px'
+                    }, 500, "easeOutQuart", function() {
 
+                    });
+                }
             }
         }
 

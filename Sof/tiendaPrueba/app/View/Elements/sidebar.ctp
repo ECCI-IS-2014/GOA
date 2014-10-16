@@ -45,7 +45,7 @@
         		//close
         		$("#sidebar #sidebar_content").animate({
         			marginLeft: '-=' + sidebarWidth + 'px'
-        		}, 400, "linear", function() {
+        		}, 700, "easeOutQuart", function() {
         			sidebarIsOpen = false;
         		});
         	}
@@ -53,7 +53,7 @@
         		//open
         		$("#sidebar #sidebar_content").animate({
         			marginLeft: '+=' + sidebarWidth + 'px'
-        		}, 400, "linear", function() {
+        		}, 700, "easeOutQuart", function() {
         			sidebarIsOpen = true;
         		});
         	}
