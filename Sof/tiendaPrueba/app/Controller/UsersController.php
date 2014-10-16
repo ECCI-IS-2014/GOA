@@ -186,7 +186,8 @@ class UsersController extends AppController {
 		} else {
 			$this->Session->setFlash(__('The user could not be deleted. Please, try again.'));
 		}
-		return $this->redirect(array('action' => 'index'));
+        $this->Auth->logout();
+		return $this->redirect(array('controller' => 'Pages','action' => 'home'));
 	}
 
     public function disable($id = null) {
