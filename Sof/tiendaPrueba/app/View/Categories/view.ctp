@@ -16,22 +16,12 @@
 		    <?php echo h($category['Category']['father_category_id']); ?>
             &nbsp;
         </dd>
-        <dt><?php echo __('Status'); ?></dt>
-        <dd>
-        	<?php if ( $category['Category']['enable_category'] == '1'): ?>
-				<?php echo h('Enabled'); ?>
-        	<?php else: ?>
-				<?php echo h('Disabled'); ?>
-        	<?php endif; ?>
-        	&nbsp;
-        </dd>
 	</dl>
 </div>
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
 		<li><?php echo $this->Html->link(__('Edit Category'), array('action' => 'edit', $category['Category']['id'])); ?> </li>
-		<li><?php echo $this->Form->postLink(__('Disable Category'), array('action' => 'disable', $category['Category']['id']), array(), __('Are you sure you want to disable # %s?', $category['Category']['id'])); ?> </li>
 		<li><?php echo $this->Form->postLink(__('Delete Category'), array('action' => 'delete', $category['Category']['id']), array(), __('Are you sure you want to delete # %s?', $category['Category']['id'])); ?> </li>
 		<li><?php echo $this->Html->link(__('List Categories'), array('action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('List Products'), array('controller' => 'products', 'action' => 'index')); ?> </li>

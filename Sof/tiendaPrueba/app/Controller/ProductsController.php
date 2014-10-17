@@ -125,6 +125,9 @@ class ProductsController extends AppController {
 		return $this->redirect(array('action' => 'index'));
 	}
 	
+	/*
+     * Hace que el producto con id $id tenga el campo de enable_product en 0
+     */
     public function disable($id = null) {
         $this->Product->id = $id;
         if (!$this->Product->exists()) {
@@ -138,6 +141,9 @@ class ProductsController extends AppController {
         return $this->redirect(array('action' => 'index'));
     }
 	
+	/*
+     * Hace que el producto con id $id tenga el campo de enable_product en 1
+     */
 	public function enable($id = null) {
         $this->Product->id = $id;
         if (!$this->Product->exists()) {
@@ -147,9 +153,26 @@ class ProductsController extends AppController {
 			$this->Product->save();
 			$this->Session->setFlash(__('The product has been enabled.'));
 		}
-
         return $this->redirect(array('action' => 'index'));
     }
+
+    /*
+     * Cambia la categoria de todos los productos cuyo categoria sea $old_cate_id por la categoria $new_cate_id
+     */
+    public function replaceCategory ( $old_cate_id, $new_cate_id  ) {
+		$total = $this->Product->find('count');
+		for ($id = 1; $id <= $total; ++$id) {
+			$this->Product->id = $id;
+	        if (!$this->Product->exists()) {
+	            throw new NotFoundException(__('Invalid product'));
+	        } else {
+	        	if ( $this->Product->field('category_id') == $old_cate_id ) {
+					$this->Product->set('category_id', $new_cate_id );
+					$this->Product->save();
+				}
+			}
+		}
+	}
 	
 	/*
      * Obtiene todos los productos de la base de datos, ordenados por el atributo $order_by en orden 'ASC' o 'DESC', 
