@@ -107,4 +107,5 @@ class Product extends AppModel {
 			'order' => ''
 		)
 	);
+
 }

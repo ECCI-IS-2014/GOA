@@ -6,7 +6,6 @@
 			<th><?php echo $this->Paginator->sort('id'); ?></th>
 			<th><?php echo $this->Paginator->sort('name'); ?></th>
 			<th><?php echo $this->Paginator->sort('father_category_id'); ?></th>
-			<th><?php echo $this->Paginator->sort('enable_category'); ?></th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
 	</thead>
@@ -27,17 +26,11 @@
 				<?php endif; ?>
 				&nbsp;
 			</td>
-        	<td>
-				<?php if ( $category['Category']['enable_category'] == '1'): ?>
-        			<?php echo h('Enabled'); ?>
-        		<?php else: ?>
-        			<?php echo h('Disabled'); ?>
-        		<?php endif; ?>&nbsp;
-        	</td>
+			
         	<td class="actions">
 				<?php echo $this->Html->link(__('View'), array('action' => 'view', $category['Category']['id'])); ?>
         		<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $category['Category']['id'])); ?>
-        		<?php echo $this->Form->postLink(__('Disable'), array('action' => 'disable', $category['Category']['id']), array(), __('Are you sure you want to disable # %s?', $category['Category']['id'])); ?>
+        		<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $category['Category']['id']), array(), __('Are you sure you want to delete # %s?', $category['Category']['id'])); ?>
         	</td>
 		<?php endif; ?>
      </tr>

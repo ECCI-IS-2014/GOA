@@ -29,8 +29,7 @@ SET time_zone = "+00:00";
 CREATE TABLE IF NOT EXISTS `categories` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(30) NOT NULL,
-  `father_category_id` int(11) DEFAULT '0',
-  `enable_category` tinyint(1) DEFAULT '1', 
+  `father_category_id` int(11) DEFAULT '0', 
   PRIMARY KEY (`id`),
   KEY `FK_category_father_id` (`father_category_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;

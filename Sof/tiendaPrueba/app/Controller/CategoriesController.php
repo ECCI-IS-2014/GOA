@@ -1,5 +1,6 @@
 <?php
 App::uses('AppController', 'Controller');
+App::import('Controller', 'Products');
 /**
  * Categories Controller
  *
@@ -73,7 +74,7 @@ class CategoriesController extends AppController {
 		}
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->Category->save($this->request->data)) {
-				$this->Session->setFlash(__('The product has been saved.'));
+				$this->Session->setFlash(__('The category has been saved.'));
 				return $this->redirect(array('action' => 'index'));
 			}
 		} else {
@@ -96,29 +97,30 @@ class CategoriesController extends AppController {
  */
 	public function delete($id = null) {
 		$this->Category->id = $id;
+
 		if (!$this->Category->exists()) {
 			throw new NotFoundException(__('Invalid category'));
-		}
-		
-		$this->request->allowMethod('post', 'delete');
-		if ($this->Category->delete()) {
-			$this->Session->setFlash(__('The category has been deleted.'), array('action' => 'index'));
 		} else {
-			$this->Session->setFlash(__('The category could not be deleted. Please, try again.'), array('action' => 'index'));
+			$id_father = $this->Category->field('father_category_id');
+
+			$max = $this->Category->find('first', array('fields' => array('MAX(Category.id) as max_id')));
+			for ($id_cate = 1; $id_cate <= $max[0]['max_id']; ++$id_cate) {
+				$this->Category->id = $id_cate;
+		        if ($this->Category->exists()) {
+		        	if ( $this->Category->field('father_category_id') == $id ) {
+						$this->Category->set('father_category_id', $id_father );
+						$this->Category->save();
+					}
+				}
+			}
+
+			$this->Category->id = $id;
+			$this->requestAction(array('controller' => 'products', 'action' => 'replaceCategory', $id, $id_father));
+			$this->request->allowMethod('post', 'delete');
+			$this->Category->delete();
+			$this->Session->setFlash(__('The category has been deleted.'));
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
 
-    public function disable($id = null) {
-        $this->Category->id = $id;
-        if (!$this->Category->exists()) {
-            throw new NotFoundException(__('Invalid product'));
-        } else {
-            $this->Category->set('enable_category', 0 );
-            $this->Category->save();
-            $this->Session->setFlash(__('The category has been disabled.'));
-        }
-
-        return $this->redirect(array('action' => 'index'));
-    }
 }
