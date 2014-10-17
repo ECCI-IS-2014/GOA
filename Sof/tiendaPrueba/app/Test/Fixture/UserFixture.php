@@ -23,7 +23,7 @@ class UserFixture extends CakeTestFixture {
         'phone' => array('type' => 'integer', 'null' => false, 'default' => null, 'length' => 11),
         'address' => array('type' => 'string', 'null' => false, 'default' => null, 'length' => 90, 'collate' => 'latin1_swedish_ci', 'charset' => 'latin1'),
         'email' => array('type' => 'string', 'null' => false, 'default' => null, 'length' => 40, 'collate' => 'latin1_swedish_ci', 'charset' => 'latin1'),
-        'gender' => array('type' => 'char', 'null' => false, 'default' => null, 'length' => 1),
+        'gender' => array('type' => 'string', 'null' => false, 'default' => null, 'length' => 1),
         'birth_date' => array('type' => 'date', 'null' => false, 'default' => null),
         'status' => array('type' => 'integer', 'null' => false, 'default' => 0),
         'indexes' => array(
@@ -52,13 +52,13 @@ class UserFixture extends CakeTestFixture {
             'phone' => '0',
             'address' => 'Coronado',
             'email' => 'admin@test',
-            'gender' => '',
+            'gender' => 'M',
             'birth_date' => '0000-00-00',
         ),
         array(
             'id' => 2,
             'username' => 'user',
-            'password' => '$2a$10$qfQJOKQ89Ogh78OlbOe7f.CHWU.qJg5BOhsAxtv/bq/C0usvORZWa', // admin1
+            'password' => '$2a$10$qfQJOKQ89Ogh78OlbOe7f.CHWU.qJg5BOhsAxtv/bq/C0usvORZWa', 
             'role' => '0',
             'created' => '0000-00-01 00:00:01',
             'modified' => '0000-00-01 00:00:01',

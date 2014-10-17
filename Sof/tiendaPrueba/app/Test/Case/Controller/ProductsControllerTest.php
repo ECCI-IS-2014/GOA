@@ -1,4 +1,5 @@
 <?php
+
 App::uses('ProductsController', 'Controller');
 
 /**
@@ -54,8 +55,6 @@ class ProductsControllerTest extends ControllerTestCase {
 		$this->markTestIncomplete('testDisable not implemented.');
 	}
 
-}
-
 /**
  * testEnable method
  *
@@ -66,3 +65,7 @@ class ProductsControllerTest extends ControllerTestCase {
 	}
 
 }
+
+
+
+
