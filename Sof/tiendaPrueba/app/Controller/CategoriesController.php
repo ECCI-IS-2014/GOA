@@ -7,7 +7,7 @@ App::import('Controller', 'Products');
  * @property Category $Category
  * @property PaginatorComponent $Paginator
  */
-class CategoriesController extends AppController {
+class CategoriesController extends Controller {
 
 /**
  * Components
@@ -34,10 +34,7 @@ class CategoriesController extends AppController {
  * @return void
  */
 	public function view($id = null) {
-		if (!$this->Category->exists($id)) {
-			throw new NotFoundException(__('Invalid category'));
-		}
-		$options = array('conditions' => array('Category.' . $this->Category->primaryKey => $id));
+    	$options = array('conditions' => array('Category.' . $this->Category->primaryKey => $id));
 		$this->set('category', $this->Category->find('first', $options));
 	}
 
@@ -68,10 +65,6 @@ class CategoriesController extends AppController {
  * @return void
  */
 	public function edit($id = null) {
-
-		if (!$this->Category->exists($id)) {
-			throw new NotFoundException(__('Invalid category'));
-		}
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->Category->save($this->request->data)) {
 				$this->Session->setFlash(__('The category has been saved.'));
