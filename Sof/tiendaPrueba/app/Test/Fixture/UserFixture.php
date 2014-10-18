@@ -43,7 +43,7 @@ class UserFixture extends CakeTestFixture {
         array(
             'id' => 1,
             'username' => 'admin',
-            'password' => '$2a$10$QsNPaOWnlwAxAbYyJRpFp.ZeQeE4lelnJsaSpE1MojOqS0EgaIW0m', // admin1
+            'password' => '123456', // admin1
             'role' => '1',
             'created' => '0000-00-00 00:00:00',
             'modified' => '0000-00-00 00:00:00',
@@ -51,24 +51,35 @@ class UserFixture extends CakeTestFixture {
             'last_name' => 'admin',
             'phone' => '0',
             'address' => 'Coronado',
+<<<<<<< Updated upstream
             'email' => 'admin@test',
             'gender' => 'M',
+=======
+            'email' => 'admin@test.com',
+            'gender' => '',
+>>>>>>> Stashed changes
             'birth_date' => '0000-00-00',
+            'status' => '0'
         ),
         array(
             'id' => 2,
             'username' => 'user',
+<<<<<<< Updated upstream
             'password' => '$2a$10$qfQJOKQ89Ogh78OlbOe7f.CHWU.qJg5BOhsAxtv/bq/C0usvORZWa', 
+=======
+            'password' => '123456', // admin1
+>>>>>>> Stashed changes
             'role' => '0',
-            'created' => '0000-00-01 00:00:01',
-            'modified' => '0000-00-01 00:00:01',
+            'created' => '2007-03-18 10:41:23',
+            'modified' => '2007-03-18 10:43:31',
             'name' => 'pedro',
             'last_name' => 'perez',
             'phone' => '89298282',
             'address' => 'Coronado',
-            'email' => 'pedro@gmail.com',
+            'email' => 'pedro@test.com',
             'gender' => 'M',
             'birth_date' => '1995-08-07',
+            'status' => '0'
         )
         // parent::init();
     );

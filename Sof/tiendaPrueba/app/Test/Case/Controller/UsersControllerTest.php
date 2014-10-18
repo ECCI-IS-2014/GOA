@@ -22,7 +22,9 @@ class UsersControllerTest extends ControllerTestCase {
      * @return void
      */
     public function testIndex() {
-        $this->markTestIncomplete('testIndex not implemented.');
+        //$this->markTestIncomplete('testIndex not implemented.');
+        $result = $this->testAction('/users/index');
+        debug($result);
     }
 
     /**
@@ -31,7 +33,8 @@ class UsersControllerTest extends ControllerTestCase {
      * @return void
      */
     public function testView() {
-        $this->markTestIncomplete('testView not implemented.');
+        $result = $this->testAction('/users/view');
+        debug($result);
     }
 
     /**
@@ -40,7 +43,8 @@ class UsersControllerTest extends ControllerTestCase {
      * @return void
      */
     public function testAdd() {
-        $this->markTestIncomplete('testAdd not implemented.');
+        $result = $this->testAction('/users/add');
+        debug($result);
     }
 
     /**
@@ -49,7 +53,8 @@ class UsersControllerTest extends ControllerTestCase {
      * @return void
      */
     public function testEdit() {
-        $this->markTestIncomplete('testEdit not implemented.');
+        $result = $this->testAction('/users/edit');
+        debug($result);
     }
 
     /**
@@ -58,7 +63,8 @@ class UsersControllerTest extends ControllerTestCase {
      * @return void
      */
     public function testDelete() {
-        $this->markTestIncomplete('testDelete not implemented.');
+        /*$result = $this->testAction('/users/delete');
+        debug($result);*/
     }
 
 }

@@ -190,20 +190,12 @@ class User extends AppModel {
 
 
     public function beforeSave($options = array()) {
-        // si el campo password no es vacía, hash it.
         if (!empty($this->data[$this->alias]['password'])) {
-
-            // paolo
             $passwordHasher = new BlowfishPasswordHasher();
             $this->data[$this->alias]['password'] = $passwordHasher->hash($this->data[$this->alias]['password']);
-
-            // tutorial
-            //$this->data[$this->alias]['password'] = AuthComponent::password($this->data[$this->alias]['password']);
         }else{
-            // sino, no se hace cambio alguno
             unset($this->data[$this->alias]['password']);
         }
-
         return true;
     }
 
