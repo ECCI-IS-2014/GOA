@@ -41,7 +41,7 @@ class UserFixture extends CakeTestFixture {
     //    $this->records = array(
     public $records = array(
         array(
-            'id' => 1,
+            'id' => '1',
             'username' => 'admin',
             'password' => '123456', // admin1
             'role' => '1',
@@ -51,24 +51,16 @@ class UserFixture extends CakeTestFixture {
             'last_name' => 'admin',
             'phone' => '0',
             'address' => 'Coronado',
-<<<<<<< Updated upstream
-            'email' => 'admin@test',
-            'gender' => 'M',
-=======
             'email' => 'admin@test.com',
             'gender' => '',
->>>>>>> Stashed changes
             'birth_date' => '0000-00-00',
             'status' => '0'
         ),
         array(
-            'id' => 2,
+            'id' => '2',
             'username' => 'user',
-<<<<<<< Updated upstream
-            'password' => '$2a$10$qfQJOKQ89Ogh78OlbOe7f.CHWU.qJg5BOhsAxtv/bq/C0usvORZWa', 
-=======
+            //'password' => '$2a$10$qfQJOKQ89Ogh78OlbOe7f.CHWU.qJg5BOhsAxtv/bq/C0usvORZWa',
             'password' => '123456', // admin1
->>>>>>> Stashed changes
             'role' => '0',
             'created' => '2007-03-18 10:41:23',
             'modified' => '2007-03-18 10:43:31',

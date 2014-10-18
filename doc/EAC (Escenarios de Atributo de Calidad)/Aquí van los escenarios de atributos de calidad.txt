@@ -1,1 +1,0 @@
-Ya sea con plantilla o con behat
