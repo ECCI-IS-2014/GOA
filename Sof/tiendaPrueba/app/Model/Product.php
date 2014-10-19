@@ -72,6 +72,7 @@ class Product extends AppModel {
             'extension' => array(
                 'rule' => array('extension', array('gif','png','jpg','jpeg')),
                 'message' => 'Invalid file, only images allowed.',
+				'allowEmpty' => true,
             ),
         ),
 	);

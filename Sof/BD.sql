@@ -34,6 +34,9 @@ CREATE TABLE IF NOT EXISTS `categories` (
   KEY `FK_category_father_id` (`father_category_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+-- Se usa la categoria 0 para los productos sin categoria o para las categorias sin padre
+INSERT INTO categories ( id, name ) VALUES ( 0, 'No category.' );
+
 -- --------------------------------------------------------
 
 --
@@ -46,7 +49,7 @@ CREATE TABLE IF NOT EXISTS `products` (
   `name` varchar(30) NOT NULL,
   `price` decimal(9,2) NOT NULL DEFAULT '0.00',
   `quantity` int(11) NOT NULL DEFAULT '0',
-  `image` varchar(150) DEFAULT NULL,
+  `image` varchar(150) DEFAULT 'placeholder.png',
   `enable_product` tinyint(1) DEFAULT '1',
   `rating` int(11) DEFAULT '0',
   `description` varchar(1000) NOT NULL DEFAULT 'No description.',

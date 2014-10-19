@@ -5,10 +5,8 @@
 -- Pasword de usuario es 123456
 
 
--- Se usa la categoria 0 para los productos sin categoria o para las categorias sin padre
-INSERT INTO categories ( id, name )
-                       VALUES
-                       ( 0, 'No category.' );
+
+
 
 ALTER TABLE categories AUTO_INCREMENT = 1;
 
@@ -126,7 +124,7 @@ INSERT INTO ratings ( product_id, enable_rating ) VALUES ( 11, 0 );
 
 INSERT INTO products ( category_id, name, price, quantity, image )
                        VALUES
-                       ( 6, 'cortina', 12000.00, 26, 'placeholder.png' );
+                       ( 6, 'cortina', 12000.00, 26, 'cortina.jpg' );
 
 INSERT INTO ratings ( product_id ) VALUES ( 12 );
 
@@ -138,7 +136,7 @@ INSERT INTO ratings ( product_id ) VALUES ( 13 );
 
 INSERT INTO products ( category_id, name, price, quantity, image, enable_product )
                        VALUES
-                       ( 6, 'almohada', 6200.00, 14, 'placeholder.png',0 );
+                       ( 6, 'almohada', 6200.00, 14, 'pillow.jpg',0 );
 
 INSERT INTO ratings ( product_id ) VALUES ( 14 );
 

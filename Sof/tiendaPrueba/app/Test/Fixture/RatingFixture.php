@@ -76,51 +76,6 @@ class RatingFixture extends CakeTestFixture {
 			'rating4' => '0',
 			'rating5' => '0'
 		),
-		array(
-			'product_id' => '6',
-			'enable_rating' => 1,
-			'rating1' => '0',
-			'rating2' => '0',
-			'rating3' => '0',
-			'rating4' => '0',
-			'rating5' => '0'
-		),
-		array(
-			'product_id' => '7',
-			'enable_rating' => 0,
-			'rating1' => '0',
-			'rating2' => '0',
-			'rating3' => '0',
-			'rating4' => '0',
-			'rating5' => '0'
-		),
-		array(
-			'product_id' => '8',
-			'enable_rating' => 1,
-			'rating1' => '0',
-			'rating2' => '0',
-			'rating3' => '0',
-			'rating4' => '0',
-			'rating5' => '0'
-		),
-		array(
-			'product_id' => '9',
-			'enable_rating' => 1,
-			'rating1' => '0',
-			'rating2' => '0',
-			'rating3' => '0',
-			'rating4' => '0',
-			'rating5' => '0'
-		),
-		array(
-			'product_id' => '10',
-			'enable_rating' => 1,
-			'rating1' => '0',
-			'rating2' => '0',
-			'rating3' => '0',
-			'rating4' => '0',
-			'rating5' => '0'
-		),
 	);
 
 }
