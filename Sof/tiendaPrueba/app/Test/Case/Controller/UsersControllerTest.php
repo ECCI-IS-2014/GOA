@@ -1,18 +1,20 @@
 <?php
 App::uses('UsersController', 'Controller');
 App::uses('BlowfishPasswordHasher', 'Controller/Component/Auth');
+App::uses('AppModel', 'Model');
 /**
  * ProductsController Test Case
  *
  */
-class UsersControllerTest extends ControllerTestCase {
 
-    var $name = 'Auth';
+
+class UsersControllerTest extends ControllerTestCase {
     /**
      * Fixtures
      *
      * @var array
      */
+
     public $fixtures = array(
         'app.user'
     );
@@ -22,8 +24,10 @@ class UsersControllerTest extends ControllerTestCase {
      *
      * @return void
      */
+    //public $name = 'Users';
+    public $User = null;
+
     public function testIndex() {
-        //$this->markTestIncomplete('testIndex not implemented.');
         $result = $this->testAction('/users/index');
         debug($result);
     }
@@ -68,6 +72,9 @@ class UsersControllerTest extends ControllerTestCase {
         );
         $this->testAction('/users/add', array('data' => $data, 'method' => 'get'));
         // some assertions.
+        //$this->assertTrue(!empty($this->User->id));
+        //$this->assertTrue($this->User->exists(True));
+
     }
     /**
      * testEdit method
@@ -84,13 +91,17 @@ class UsersControllerTest extends ControllerTestCase {
      *
      * @return void
      */
-    public function testDelete() {
-        //$result = $this->testAction('/users/delete');
-       // debug($result);
-        /*
-         * $this->assertFalse($this->User->testAction('/users/delete'));
-            $this->assertFalse($this->User->exists(true));
-         */
-    }
 
+
+    public function testDelete() {
+        $this->testAction('/users/delete/1');
+        $results = $this->headers['Location'];
+        $expected = 'http://localhost/GOA/Sof/tiendaPrueba/Pages/home';
+        // check redirect
+        $this->assertEquals($results, $expected);
+
+        // check that it was deleted
+        //$this->User->id = 1;
+        //$this->assertFalse($this->Users->User->exists());
+    }
 }

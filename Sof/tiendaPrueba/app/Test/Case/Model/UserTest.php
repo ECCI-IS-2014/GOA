@@ -51,6 +51,30 @@ class UserTest extends CakeTestCase {
         $this->assertEquals($password,'$2a$10$QsNPaOWnlwAxAbYyJRpFp.ZeQeE4lelnJsaSpE1MojOqS0EgaIW0m');
     }
 
+
+    public function testSave() {
+        $data = array(
+            'id' => '1',
+            'username' => 'admin',
+            'password' => '123456', // admin1
+            'role' => '0',
+            'created' => '0000-00-00 00:00:00',
+            'modified' => '0000-00-00 00:00:00',
+            'name' => '',
+            'last_name' => '',
+            'phone' => '0',
+            'address' => '',
+            'email' => '',
+            'gender' => '',
+            'birth_date' => '0000-00-00',
+            'status' => '1'
+        );
+        $result = $this->User->save($data);
+        $this->assertTrue(!empty($this->User->id));
+    }
+
+
+
     public function testBeforeSave() {
 
         $result = $this->User->beforeSave(//'User' // puede ponerse solo User, con info ya guardada en Fixtures
