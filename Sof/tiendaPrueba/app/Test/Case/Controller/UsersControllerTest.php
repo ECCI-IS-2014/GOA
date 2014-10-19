@@ -47,6 +47,30 @@ class UsersControllerTest extends ControllerTestCase {
         debug($result);
     }
 
+
+    public function testAdding() {
+        $data = array(
+            'User' => array(
+                'username' => 'mich',
+                'password' => '123456', // admin1
+                'role' => '0',
+                'created' => '0000-00-00 00:00:00',
+                'modified' => '0000-00-00 00:00:00',
+                'name' => '',
+                'last_name' => '',
+                'phone' => '0',
+                'address' => '',
+                'email' => '',
+                'gender' => '',
+                'birth_date' => '0000-00-00'
+            )
+        );
+        $this->testAction('/users/add', array('data' => $data, 'method' => 'get'));
+        // some assertions.
+        //$this->assertTrue(!empty($this->User->id));
+        //$this->assertTrue($this->User->exists(True));
+
+    }
     /**
      * testEdit method
      *
@@ -62,9 +86,17 @@ class UsersControllerTest extends ControllerTestCase {
      *
      * @return void
      */
+
     public function testDelete() {
-        /*$result = $this->testAction('/users/delete');
-        debug($result);*/
+        $this->testAction('/users/delete/1');
+        $results = $this->headers['Location'];
+        $expected = 'http://localhost/GOA/Sof/tiendaPrueba/Pages/home';
+        // check redirect
+        $this->assertEquals($results, $expected);
+
+        // check that it was deleted
+        //$this->User->id = 1;
+        //$this->assertFalse($this->Users->User->exists());
     }
 	
 	 public function testLogin(){
