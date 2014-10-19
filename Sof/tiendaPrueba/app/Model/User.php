@@ -171,11 +171,7 @@ class User extends AppModel {
         ),
 	);
 
-    /*
-    public function identicalFieldValues() {
-        return $this->data[$this->alias]['password'] === $this->data[$this->alias]['confirm_password'];
 
-    }*/
     public function checking()
     {
         if(strcmp($this->data['User']['password'],$this->data['User']['confirm_password']) ==0 )

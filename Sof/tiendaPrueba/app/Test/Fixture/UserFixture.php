@@ -3,33 +3,34 @@
  * UserFixture
  *
  */
+App::uses('AuthComponent', 'Controller/Component');
+
 class UserFixture extends CakeTestFixture {
 
-    //public $import = 'User';
+    public $name = 'User';
+
+    public $useDbConfig = 'test';
     /**
      * Fields
      *
      * @var array
      */
     public $fields = array(
-        'id' => array('type' => 'integer', 'null' => false, 'default' => null, 'unsigned' => false, 'key' => 'primary'),
-        'username' => array('type' => 'string', 'null' => false, 'default' => null, 'length' => 40, 'collate' => 'latin1_swedish_ci', 'charset' => 'latin1'),
-        'password' => array('type' => 'string', 'null' => false, 'default' => null, 'length' => 255, 'collate' => 'latin1_swedish_ci', 'charset' => 'latin1'),
-        'role' => array('type' => 'integer', 'null' => false, 'default' => '0', 'length' => '1', 'unsigned' => false),
-        'created' => array('type' => 'datetime', 'null' => true, 'default' =>  null),
-        'modified' => array('type' => 'datetime', 'null' => true, 'default' => null),
-        'name' => array('type' => 'string', 'null' => false, 'default' => null, 'length' => 30, 'collate' => 'latin1_swedish_ci', 'charset' => 'latin1'),
-        'last_name' => array('type' => 'string', 'null' => false, 'default' => null, 'length' => 30, 'collate' => 'latin1_swedish_ci', 'charset' => 'latin1'),
-        'phone' => array('type' => 'integer', 'null' => false, 'default' => null, 'length' => 11),
-        'address' => array('type' => 'string', 'null' => false, 'default' => null, 'length' => 90, 'collate' => 'latin1_swedish_ci', 'charset' => 'latin1'),
-        'email' => array('type' => 'string', 'null' => false, 'default' => null, 'length' => 40, 'collate' => 'latin1_swedish_ci', 'charset' => 'latin1'),
-        'gender' => array('type' => 'string', 'null' => false, 'default' => null, 'length' => 1),
-        'birth_date' => array('type' => 'date', 'null' => false, 'default' => null),
-        'status' => array('type' => 'integer', 'null' => false, 'default' => 0),
-        'indexes' => array(
-            'PRIMARY' => array('column' => 'id', 'unique' => 1)
-        ),
-        'tableParameters' => array('charset' => 'latin1', 'collate' => 'latin1_swedish_ci', 'engine' => 'InnoDB')
+        'id' => array('type' => 'integer', 'key' => 'primary'),
+        'username' => array('type' => 'string', 'null' => false),
+        'password' => array('type' => 'string', 'null' => false, 'length' => 255),
+        'role' => array('type' => 'integer', 'null' => false, 'default' => '0'),
+        'created' => array('type' => 'datetime'),
+        'modified' => array('type' => 'datetime'),
+        'name' => array('type' => 'string', 'null' => false),
+        'last_name' => array('type' => 'string', 'null' => false),
+        'phone' => array('type' => 'integer', 'null' => false,  'length' => 11),
+        'address' => array('type' => 'string', 'null' => false,  'length' => 90),
+        'email' => array('type' => 'string', 'null' => false,  'length' => 40),
+        'gender' => array('type' => 'string', 'null' => false, 'length' => 1),
+        'birth_date' => array('type' => 'date', 'null' => false),
+        'status' => array('type' => 'integer', 'null' => false, 'default' => '1'),
+        //'tableParameters' => array('charset' => 'latin1', 'collate' => 'latin1_swedish_ci', 'engine' => 'InnoDB')
     );
 
     /**
@@ -37,43 +38,41 @@ class UserFixture extends CakeTestFixture {
      *
      * @var array
      */
-    //    public function init() {
-    //    $this->records = array(
-    public $records = array(
-        array(
-            'id' => '1',
-            'username' => 'admin',
-            'password' => '123456', // admin1
-            'role' => '1',
-            'created' => '0000-00-00 00:00:00',
-            'modified' => '0000-00-00 00:00:00',
-            'name' => 'admin',
-            'last_name' => 'admin',
-            'phone' => '0',
-            'address' => 'Coronado',
-            'email' => 'admin@test.com',
-            'gender' => '',
-            'birth_date' => '0000-00-00',
-            'status' => '0'
-        ),
-        array(
-            'id' => '2',
-            'username' => 'user',
-            //'password' => '$2a$10$qfQJOKQ89Ogh78OlbOe7f.CHWU.qJg5BOhsAxtv/bq/C0usvORZWa',
-            'password' => '123456', // admin1
-            'role' => '0',
-            'created' => '2007-03-18 10:41:23',
-            'modified' => '2007-03-18 10:43:31',
-            'name' => 'pedro',
-            'last_name' => 'perez',
-            'phone' => '89298282',
-            'address' => 'Coronado',
-            'email' => 'pedro@test.com',
-            'gender' => 'M',
-            'birth_date' => '1995-08-07',
-            'status' => '0'
-        )
-        // parent::init();
-    );
+
+    public function init() {
+        $this->records = array(
+            array(
+                'id' => 1,
+                'username' => 'admin',
+                'password' => '$2a$10$QsNPaOWnlwAxAbYyJRpFp.ZeQeE4lelnJsaSpE1MojOqS0EgaIW0m', // admin1
+                'role' => '1',
+                'created' => '0000-00-00 00:00:00',
+                'modified' => '0000-00-00 00:00:00',
+                'name' => '',
+                'last_name' => '',
+                'phone' => '0',
+                'address' => '',
+                'email' => '',
+                'gender' => '',
+                'birth_date' => '0000-00-00',
+            ),
+            array(
+                'id' => 2,
+                'username' => 'usuario',
+                'password' => '$2a$10$qfQJOKQ89Ogh78OlbOe7f.CHWU.qJg5BOhsAxtv/bq/C0usvORZWa',
+                'role' => '0',
+                'created' => '2014-10-15 02:33:56',
+                'modified' => '2014-10-15 02:33:56',
+                'name' => 'Usuario',
+                'last_name' => 'Usuario',
+                'phone' => '88888888',
+                'address' => '200mts Norte del Palo de Mango',
+                'email' => 'us@gmail.com',
+                'gender' => 'F',
+                'birth_date' => '1994-10-15',
+            )
+        );
+        parent::init();
+    }
 
 }

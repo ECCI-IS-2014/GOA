@@ -1,12 +1,13 @@
 <?php
 App::uses('UsersController', 'Controller');
-
+App::uses('BlowfishPasswordHasher', 'Controller/Component/Auth');
 /**
  * ProductsController Test Case
  *
  */
 class UsersControllerTest extends ControllerTestCase {
 
+    var $name = 'Auth';
     /**
      * Fixtures
      *
@@ -47,6 +48,27 @@ class UsersControllerTest extends ControllerTestCase {
         debug($result);
     }
 
+
+    public function testAdding() {
+        $data = array(
+            'User' => array(
+                'username' => 'mich',
+                'password' => '123456', // admin1
+                'role' => '0',
+                'created' => '0000-00-00 00:00:00',
+                'modified' => '0000-00-00 00:00:00',
+                'name' => '',
+                'last_name' => '',
+                'phone' => '0',
+                'address' => '',
+                'email' => '',
+                'gender' => '',
+                'birth_date' => '0000-00-00'
+            )
+        );
+        $this->testAction('/users/add', array('data' => $data, 'method' => 'get'));
+        // some assertions.
+    }
     /**
      * testEdit method
      *
@@ -63,8 +85,12 @@ class UsersControllerTest extends ControllerTestCase {
      * @return void
      */
     public function testDelete() {
-        /*$result = $this->testAction('/users/delete');
-        debug($result);*/
+        //$result = $this->testAction('/users/delete');
+       // debug($result);
+        /*
+         * $this->assertFalse($this->User->testAction('/users/delete'));
+            $this->assertFalse($this->User->exists(true));
+         */
     }
 
 }
