@@ -88,61 +88,6 @@ class ProductFixture extends CakeTestFixture {
 			'rating' => '0',
 			'description' => 'No description.'
 		),
-		array(
-			'id' => '6',
-			'category_id' => '10',
-			'name' => 'sombrilla',
-			'price' => '3100.00',
-			'quantity' => '19',
-			'image' => '1413218987-3.jpg',
-			'enable_product' => 1,
-			'rating' => '0',
-			'description' => 'No description.'
-		),
-		array(
-			'id' => '7',
-			'category_id' => '3',
-			'name' => 'cereal kellogs',
-			'price' => '2950.00',
-			'quantity' => '32',
-			'image' => null,
-			'enable_product' => 0,
-			'rating' => '0',
-			'description' => 'No description.'
-		),
-		array(
-			'id' => '8',
-			'category_id' => '3',
-			'name' => 'cereal nestle',
-			'price' => '3400.00',
-			'quantity' => '22',
-			'image' => null,
-			'enable_product' => 1,
-			'rating' => '0',
-			'description' => 'No description.'
-		),
-		array(
-			'id' => '9',
-			'category_id' => '5',
-			'name' => 'mesa',
-			'price' => '36000.00',
-			'quantity' => '3',
-			'image' => '1413219529-1.jpg',
-			'enable_product' => 1,
-			'rating' => '0',
-			'description' => 'No description.'
-		),
-		array(
-			'id' => '10',
-			'category_id' => '5',
-			'name' => 'silla',
-			'price' => '17800.00',
-			'quantity' => '12',
-			'image' => null,
-			'enable_product' => 1,
-			'rating' => '0',
-			'description' => 'No description.'
-		),
 	);
 
 }

@@ -53,15 +53,17 @@ class ProductsController extends AppController {
             $filename = null;
             if ( !empty($this->request->data['Product']['image']['tmp_name'])
                 && is_uploaded_file($this->request->data['Product']['image']['tmp_name']) ) {
-                // Strip path information
                 $filename = time() . '-' . basename($this->request->data['Product']['image']['name']);
                 move_uploaded_file(
                     $this->data['Product']['image']['tmp_name'],
                     WWW_ROOT . DS . 'img/product_icons' . DS . $filename
                 );
-            }
-            // Set the file-name only to save in the database
-            $this->request->data['Product']['image'] = $filename;
+            } else {
+				// no se definio una imagen
+				$filename = 'placeholder.png';
+			}
+            
+			$this->request->data['Product']['image'] = $filename;
 
             unset($this->Product->Rating->validate['product_id']);
 			if ( $this->Product->saveAssociated($this->request->data) ) {
