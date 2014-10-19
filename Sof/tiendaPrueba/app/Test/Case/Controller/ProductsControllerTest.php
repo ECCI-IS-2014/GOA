@@ -55,7 +55,7 @@ class ProductsControllerTest extends ControllerTestCase {
 		
 		$data = array(
 			'Product' => array(
-				'category_id' => '8',
+				'category_id' => '2',
 				'name' => 'converse',
 				'price' => '30000.00',
 				'quantity' => '24',
@@ -85,7 +85,7 @@ class ProductsControllerTest extends ControllerTestCase {
 		$data = array(
 			'Product' => array(
 				'id' => '4',
-				'category_id' => '7',
+				'category_id' => '1',
 				'name' => 'fedora',
 				'price' => '10200.00',
 				'quantity' => '7',

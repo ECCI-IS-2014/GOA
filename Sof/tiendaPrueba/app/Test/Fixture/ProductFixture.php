@@ -35,7 +35,7 @@ class ProductFixture extends CakeTestFixture {
 	public $records = array(
 		array(
 			'id' => '1',
-			'category_id' => '8',
+			'category_id' => '2',
 			'name' => 'sandalias',
 			'price' => '2500.00',
 			'quantity' => '14',
@@ -46,7 +46,7 @@ class ProductFixture extends CakeTestFixture {
 		),
 		array(
 			'id' => '2',
-			'category_id' => '8',
+			'category_id' => '2',
 			'name' => 'botas',
 			'price' => '2500.00',
 			'quantity' => '8',
@@ -57,7 +57,7 @@ class ProductFixture extends CakeTestFixture {
 		),
 		array(
 			'id' => '3',
-			'category_id' => '8',
+			'category_id' => '2',
 			'name' => 'burros',
 			'price' => '2500.00',
 			'quantity' => '11',
@@ -68,23 +68,12 @@ class ProductFixture extends CakeTestFixture {
 		),
 		array(
 			'id' => '4',
-			'category_id' => '7',
+			'category_id' => '1',
 			'name' => 'fedora',
 			'price' => '8200.00',
 			'quantity' => '7',
 			'image' => '1413218846-1.jpg',
 			'enable_product' => 1,
-			'rating' => '0',
-			'description' => 'No description.'
-		),
-		array(
-			'id' => '5',
-			'category_id' => '7',
-			'name' => 'chonete',
-			'price' => '5000.00',
-			'quantity' => '6',
-			'image' => null,
-			'enable_product' => 0,
 			'rating' => '0',
 			'description' => 'No description.'
 		),

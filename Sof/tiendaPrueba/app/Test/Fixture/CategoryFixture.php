@@ -27,7 +27,7 @@ class CategoryFixture extends CakeTestFixture {
  * @var array
  */
 	public $records = array(
-		array(
+		/*array(
 			'id' => '1',
 			'name' => 'ropa',
 			'father_category_id' => null
@@ -56,18 +56,18 @@ class CategoryFixture extends CakeTestFixture {
 			'id' => '6',
 			'name' => 'hogar',
 			'father_category_id' => null
-		),
+		),*/
 		array(
-			'id' => '7',
+			'id' => '1',
 			'name' => 'sombreros',
-			'father_category_id' => '1'
+			'father_category_id' => null
 		),
 		array(
-			'id' => '8',
+			'id' => '2',
 			'name' => 'calzado',
 			'father_category_id' => '1'
 		),
-		array(
+		/*array(
 			'id' => '9',
 			'name' => 'limpieza',
 			'father_category_id' => null
@@ -76,7 +76,7 @@ class CategoryFixture extends CakeTestFixture {
 			'id' => '10',
 			'name' => 'miscelaneo',
 			'father_category_id' => null
-		),
+		),*/
 	);
 
 }
