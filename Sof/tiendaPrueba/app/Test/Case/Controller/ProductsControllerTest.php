@@ -51,7 +51,7 @@ class ProductsControllerTest extends ControllerTestCase {
 				'Session'
 			)
 		));
-		$Products->Session->expects($this->once())->method('setFlash');
+		$Products->Session->expects($this->any())->method('setFlash');
 		
 		$data = array(
 			'Product' => array(
@@ -80,7 +80,7 @@ class ProductsControllerTest extends ControllerTestCase {
 				'Session'
 			)
 		));
-		$Products->Session->expects($this->once())->method('setFlash');
+		$Products->Session->expects($this->any())->method('setFlash');
 		
 		$data = array(
 			'Product' => array(
@@ -110,7 +110,7 @@ class ProductsControllerTest extends ControllerTestCase {
 				'Session'
 			)
 		));
-		$Products->Session->expects($this->once())->method('setFlash');
+		$Products->Session->expects($this->any())->method('setFlash');
 		
 		$this->testAction('/products/disable/2');		// disable producto con id 2
 		// asserts
@@ -127,7 +127,7 @@ class ProductsControllerTest extends ControllerTestCase {
 				'Session'
 			)
 		));
-		$Products->Session->expects($this->once())->method('setFlash');
+		$Products->Session->expects($this->any())->method('setFlash');
 		
 		$this->testAction('/products/enable/1');		// enable producto con id 1
 		// asserts
