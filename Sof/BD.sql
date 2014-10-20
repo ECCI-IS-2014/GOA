@@ -51,7 +51,7 @@ CREATE TABLE IF NOT EXISTS `products` (
   `quantity` int(11) NOT NULL DEFAULT '0',
   `image` varchar(150) DEFAULT 'placeholder.png',
   `enable_product` tinyint(1) DEFAULT '1',
-  `rating` int(11) DEFAULT '0',
+  `rating` float DEFAULT '0',
   `description` varchar(1000) NOT NULL DEFAULT 'No description.',
   PRIMARY KEY (`id`),
   KEY `FK_category_id` (`category_id`)
