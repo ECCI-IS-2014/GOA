@@ -109,4 +109,109 @@ class Product extends AppModel {
 		)
 	);
 
+
+	public function getProductsByAttributeEquals($attribute, $equals, $order_by = null, $direction = 'DESC') {
+
+		$equals = strtolower($equals);
+
+		$conditions = array('Product.' . $attribute => $equals);
+
+		if($order_by != null) {
+			$order = array('Product.' . $order_by . ' ' . $direction);
+		}
+		else {
+			$order = array();
+		}
+
+		var_dump($order);
+
+		$result = $this->find('all', array(
+			'conditions'=>$conditions, 
+			'order'=>$order
+		));
+
+		return $result;
+
+	}
+
+	public function getProductsByAttributeLike($attribute, $like, $order_by = null, $direction = 'DESC') {
+
+		$like = strtolower($like);
+
+		$conditions = array('Product.' . $attribute => $like);
+
+		if($order_by != null) {
+			$order = "ORDER BY " . $order_by . " " . $direction;
+		}
+		else {
+			$order = '';
+		}
+
+		// TODO: Proteger consulta contra inyección SQL.
+		$result = $this->query("SELECT * FROM products AS Product WHERE " . $attribute . " LIKE '%" . $like . "%' " . $order . ";");
+
+		return $result;
+
+	}
+
+	public function getProductsByAttributeRange($attribute, $greater_or_equals, $lesser_or_equals, $order_by = null, $direction = 'DESC') {
+
+		$conditions = array('Product.' . $attribute . ' >=' => $greater_or_equals, 'Product.' . $attribute . ' <=' => $lesser_or_equals);
+
+		if($order_by != null) {
+			$order = array('Product.' . $order_by . ' ' . $direction);
+		}
+		else {
+			$order = array();
+		}
+
+		$result = $this->find('all', array(
+			'conditions'=>$conditions, 
+			'order'=>$order
+		));
+
+		return $result;
+
+	}
+
+	public function getProductsByAttributeLesserEquals($attribute, $lesser_equals, $order_by = null, $direction = 'DESC') {
+
+		$conditions = array('Product.' . $attribute . ' <=' => $lesser_equals);
+
+		if($order_by != null) {
+			$order = array('Product.' . $order_by . ' ' . $direction);
+		}
+		else {
+			$order = array();
+		}
+
+		$result = $this->find('all', array(
+			'conditions'=>$conditions, 
+			'order'=>$order
+		));
+
+		return $result;
+
+	}
+
+	public function getProductsByAttributeGreaterEquals($attribute, $greater_equals, $order_by = null, $direction = 'DESC') {
+
+		$conditions = array('Product.' . $attribute . ' >=' => $greater_equals);
+
+		if($order_by != null) {
+			$order = array('Product.' . $order_by . ' ' . $direction);
+		}
+		else {
+			$order = array();
+		}
+
+		$result = $this->find('all', array(
+			'conditions'=>$conditions, 
+			'order'=>$order
+		));
+
+		return $result;
+
+	}
+
 }
