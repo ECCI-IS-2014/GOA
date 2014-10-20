@@ -1,6 +1,11 @@
 <?php
+
 App::uses('CategoriesController', 'Controller');
 
+/**
+ * CategoriesController Test Case
+ *
+ */
 class CategoriesControllerTest extends ControllerTestCase {
     /**
      * Fixtures
@@ -29,7 +34,8 @@ class CategoriesControllerTest extends ControllerTestCase {
      * @return void
      */
     public function testView() {
-        $this->markTestIncomplete('testView not implemented.');
+        $result = $this->testAction('/categories/view/1');
+        debug($result);
     }
 
     /**
@@ -38,8 +44,25 @@ class CategoriesControllerTest extends ControllerTestCase {
      * @return void
      */
     public function testAdd() {
-        $result = $this->testAction('/categories/add');
-        debug($result);
+        $Categories = $this->generate('Categories', array(
+			'components' => array(
+				'Session'
+			)
+		));
+		$Categories->Session->expects($this->any())->method('setFlash');
+		
+		$data = array(
+			'Category' => array(
+				'name' => 'bolsos',
+				'father_category_id' => null
+			),
+		);
+		$this->testAction('/categories/add', array('data' => $data));
+		
+		$this->assertContains('/categories', $this->headers['Location']);
+		
+		$cate = $Categories->Category->read(null, 3);
+		$this->assertEqual($cate['Category']['name'], 'bolsos');
     }
 
     /**
@@ -48,16 +71,30 @@ class CategoriesControllerTest extends ControllerTestCase {
      * @return void
      */
     public function testEdit() {
-        $this->markTestIncomplete('testEdit not implemented.');
-    }
-
-    /**
-     * testDelete method
-     *
-     * @return void
-     */
-    public function testDelete() {
-        $this->markTestIncomplete('testDelete not implemented.');
+        $Categories = $this->generate('Categories', array(
+			'components' => array(
+				'Session'
+			)
+		));
+		$Categories->Session->expects($this->any())->method('setFlash');
+		
+		$data = array(
+			'Category' => array(
+				'id' => '2',
+				'name' => 'zapatos',
+				'father_category_id' => null
+			),
+		);
+		
+		// Pruebas antes del edit
+		$cate = $Categories->Category->read(null, 2);
+		$this->assertEqual($cate['Category']['name'], 'calzado');
+		
+		$this->testAction('/products/edit/2', array('data' => $data));
+		
+		// Pruebas despues del edit
+		$cate = $Categories->Category->read(null, 2);
+		$this->assertEqual($cate['Category']['name'], 'zapatos');
     }
 }
 
