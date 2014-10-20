@@ -105,27 +105,6 @@ class ProductsController extends AppController {
 		$categories = $this->Product->Category->find('list');
 		$this->set(compact('categories'));
 	}
-
-/**
- * delete method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
-	public function delete($id = null) {
-		$this->Product->id = $id;
-		if (!$this->Product->exists()) {
-			throw new NotFoundException(__('Invalid product'));
-		}
-		$this->request->allowMethod('post', 'delete');
-		if ($this->Product->delete()) {
-			$this->Session->setFlash(__('The product has been deleted.'));
-		} else {
-			$this->Session->setFlash(__('The product could not be deleted. Please, try again.'));
-		}
-		return $this->redirect(array('action' => 'index'));
-	}
 	
 	/*
      * Hace que el producto con id $id tenga el campo de enable_product en 0

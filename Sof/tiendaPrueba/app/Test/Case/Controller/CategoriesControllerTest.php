@@ -19,6 +19,7 @@ class CategoriesControllerTest extends ControllerTestCase {
      */
     public function testIndex() {
         $result = $this->testAction('/categories/index');
+		$this->assertInternalType('array', $this->vars['categories']);
         debug($result);
     }
 
