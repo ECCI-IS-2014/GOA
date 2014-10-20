@@ -32,11 +32,11 @@
 
    <p style="font-weight:bold; float:left; padding-left:3%;">Name:</p> <?php echo $product['Product']['name'];?>
    <div style="clear:both"></div>
-   <p style="font-weight:bold; float:left; padding-left:3%;">Price:</p> <?php   echo $product['Product']['price'];?>
+   <p style="font-weight:bold; float:left; padding-left:3%;">Quantity:</p> <?php   echo $product['Product']['quantity'];?>
    <div style="clear:both"></div>
    <p style="font-weight:bold;float:left; padding-left:3%;">Description:</p> <?php echo $product['Product']['description'];?>
    <div style="clear:both"></div>
-   <p style="font-weight:bold;float:left; padding-left:3%;">Quantity:</p> <?php  echo $this->StringFormatter->formatCurrency($product['Product']['quantity'],'$');?>
+   <p style="font-weight:bold;float:left; padding-left:3%;">Price:</p> <?php  echo $this->StringFormatter->formatCurrency($product['Product']['price'],'$');?>
    <div style="clear:both"></div>
    <p style="font-weight:bold;float:left; padding-left:3%;">Rating:</p> <?php  echo $this->CatalogGenerator->displayRatingBox($product['Product']['rating']);?>
    <div style="clear:both"></div>
