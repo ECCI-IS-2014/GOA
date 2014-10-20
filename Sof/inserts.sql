@@ -12,45 +12,51 @@ ALTER TABLE categories AUTO_INCREMENT = 1;
 
 INSERT INTO categories ( name )
                        VALUES
-                       ('ropa' );
+                       ( 'ropa' );
 
 INSERT INTO categories ( name )
                        VALUES
-                       ('higiene personal' );
+                       ( 'higiene personal' );
 
 INSERT INTO categories ( name )
                        VALUES
-                       ('alimentos' );
+                       ( 'alimentos' );
 
 INSERT INTO categories ( name )
                        VALUES
-                       ('electrodomesticos' );
-
-INSERT INTO categories ( name )
-                       VALUES
-                       ('muebles' );
-
-INSERT INTO categories ( name )
-                       VALUES
-                       ('hogar' );
+                       ( 'hogar' );
 
 INSERT INTO categories ( name, father_category_id )
                        VALUES
-                       ('sombreros', 1 );
+                       ( 'electrodomesticos', 4 );
 
 INSERT INTO categories ( name, father_category_id )
                        VALUES
-                       ('calzado', 1 );
+                       ( 'muebles', 4 );
+
+INSERT INTO categories ( name, father_category_id )
+                       VALUES
+                       ( 'sombreros', 1 );
+
+INSERT INTO categories ( name, father_category_id )
+                       VALUES
+                       ( 'calzado', 1 );
 
 INSERT INTO categories ( name )
                        VALUES
-                       ('limpieza' );
+                       ( 'limpieza' );
+
+INSERT INTO categories ( name, father_category_id )
+                       VALUES
+                       ( 'tacones', 8 );
+
+INSERT INTO categories ( name, father_category_id )
+                       VALUES
+                       ( 'lavadoras', 5 );
 
 INSERT INTO categories ( name )
                        VALUES
-                       ('miscelaneo' );
-
-
+                       ( 'miscelaneo' );
 
 
 
@@ -62,17 +68,17 @@ INSERT INTO products ( category_id, name, price, quantity, image, enable_product
 
 INSERT INTO ratings ( product_id ) VALUES ( 1 );
 
-INSERT INTO products ( category_id, name, price, quantity , image)
+INSERT INTO products ( category_id, name, price, quantity , image )
                        VALUES
                        ( 8, 'botas', 2500.00, 8, 'botas.jpg' );
 
 INSERT INTO ratings ( product_id, enable_rating ) VALUES ( 2, 0 );
 
-INSERT INTO products ( category_id, name, price, quantity, image )
+INSERT INTO products ( category_id, name, price, quantity, image, rating )
                        VALUES
-                       ( 8, 'burros', 2500.00, 11, 'burros.jpg' );
+                       ( 8, 'burros', 2500.00, 11, 'burros.jpg', 5 );
 
-INSERT INTO ratings ( product_id ) VALUES ( 3 );
+INSERT INTO ratings ( product_id, rating5 ) VALUES ( 3, 1 );
 
 INSERT INTO products ( category_id, name, price, quantity, image )
                        VALUES
@@ -86,11 +92,11 @@ INSERT INTO products ( category_id, name, price, quantity, image, enable_product
 
 INSERT INTO ratings ( product_id ) VALUES ( 5 );
 
-INSERT INTO products ( category_id, name, price, quantity, image )
+INSERT INTO products ( category_id, name, price, quantity, image, rating )
                        VALUES
-                       ( 10, 'sombrilla', 3100.00, 19, '1413218987-3.jpg' );
+                       ( 12, 'sombrilla', 3100.00, 19, '1413218987-3.jpg', 2 );
 
-INSERT INTO ratings ( product_id ) VALUES ( 6 );
+INSERT INTO ratings ( product_id, rating2 ) VALUES ( 6, 1 );
 
 INSERT INTO products ( category_id, name, price, quantity, image, enable_product )
                        VALUES
@@ -98,59 +104,59 @@ INSERT INTO products ( category_id, name, price, quantity, image, enable_product
 
 INSERT INTO ratings ( product_id, enable_rating ) VALUES ( 7, 0 );
 
-INSERT INTO products ( category_id, name, price, quantity , image)
+INSERT INTO products ( category_id, name, price, quantity , image, rating )
                        VALUES
-                       ( 3, 'cereal nestle', 3400.00, 22, 'nestle.jpg' );
+                       ( 3, 'cereal nestle', 3400.00, 22, 'nestle.jpg', 4 );
 
-INSERT INTO ratings ( product_id ) VALUES ( 8 );
+INSERT INTO ratings ( product_id, rating4 ) VALUES ( 8, 1 );
 
 INSERT INTO products ( category_id, name, price, quantity, image )
                        VALUES
-                       ( 5, 'mesa', 36000.00, 3, '1413219529-1.jpg' );
+                       ( 6, 'mesa', 36000.00, 3, '1413219529-1.jpg' );
 
 INSERT INTO ratings ( product_id ) VALUES ( 9 );
 
 INSERT INTO products ( category_id, name, price, quantity, image )
                        VALUES
-                       ( 5, 'silla', 17800.00, 12 , 'silla.png');
+                       ( 6, 'silla', 17800.00, 12 , 'silla.png');
 
 INSERT INTO ratings ( product_id ) VALUES ( 10 );
 
 INSERT INTO products ( category_id, name, price, quantity, image )
                        VALUES
-                       ( 10, 'candela', 100.00, 341, 'candela.jpg' );
+                       ( 12, 'candela', 100.00, 341, 'candela.jpg' );
 
 INSERT INTO ratings ( product_id, enable_rating ) VALUES ( 11, 0 );
 
-INSERT INTO products ( category_id, name, price, quantity, image )
+INSERT INTO products ( category_id, name, price, quantity, image, rating )
                        VALUES
-                       ( 6, 'cortina', 12000.00, 26, 'cortina.jpg' );
+                       ( 4, 'cortina', 12000.00, 26, 'cortina.jpg', 3 );
 
-INSERT INTO ratings ( product_id ) VALUES ( 12 );
+INSERT INTO ratings ( product_id, rating3 ) VALUES ( 12, 1 );
 
 INSERT INTO products ( category_id, name, price, quantity , image)
                        VALUES
-                       ( 6, 'cobija', 9400.00, 8, 'cobija.jpg' );
+                       ( 4, 'cobija', 9400.00, 8, 'cobija.jpg' );
 
 INSERT INTO ratings ( product_id ) VALUES ( 13 );
 
 INSERT INTO products ( category_id, name, price, quantity, image, enable_product )
                        VALUES
-                       ( 6, 'almohada', 6200.00, 14, 'pillow.jpg',0 );
+                       ( 4, 'almohada', 6200.00, 14, 'pillow.jpg',0 );
 
 INSERT INTO ratings ( product_id ) VALUES ( 14 );
 
 INSERT INTO products ( category_id, name, price, quantity , image)
                        VALUES
-                       ( 6, 'espejo', 14300.00, 15 , 'espejo.jpg' );
+                       ( 4, 'espejo', 14300.00, 15 , 'espejo.jpg' );
 
 INSERT INTO ratings ( product_id, enable_rating ) VALUES ( 15, 0 );
 
-INSERT INTO products ( category_id, name, price, quantity, image,  description )
+INSERT INTO products ( category_id, name, price, quantity, image,  description, rating )
                        VALUES
-                       ( 9, 'detergente', 4300.00, 32, 'detergente.jpg', 'El limpio mas limpio!' );
+                       ( 9, 'detergente', 4300.00, 32, 'detergente.jpg', 'El limpio mas limpio!', 5 );
 
-INSERT INTO ratings ( product_id ) VALUES ( 16 );
+INSERT INTO ratings ( product_id, rating5 ) VALUES ( 16, 2 );
 
 INSERT INTO products ( category_id, name, price, quantity, image, description )
                        VALUES
@@ -158,11 +164,11 @@ INSERT INTO products ( category_id, name, price, quantity, image, description )
 
 INSERT INTO ratings ( product_id, enable_rating ) VALUES ( 17, 0 );
 
-INSERT INTO products ( category_id, name, price, quantity, image )
+INSERT INTO products ( category_id, name, price, quantity, image, rating )
                        VALUES
-                       ( 2, 'cepillo de dientes', 1600.00, 27, 'cepillo_dientes.jpg' );
+                       ( 2, 'cepillo de dientes', 1600.00, 27, 'cepillo_dientes.jpg', 4 );
 
-INSERT INTO ratings ( product_id ) VALUES ( 18 );
+INSERT INTO ratings ( product_id, rating4 ) VALUES ( 18, 3 );
 
 INSERT INTO products ( category_id, name, price, quantity, image, description, enable_product )
                        VALUES
@@ -176,35 +182,35 @@ INSERT INTO products ( category_id, name, price, quantity, image, description )
 
 INSERT INTO ratings ( product_id ) VALUES ( 20 );
 
+INSERT INTO products ( category_id, name, price, quantity, image, description, rating )
+                       VALUES
+                       ( 9, 'prensa de ropa', 25.00, 1058, 'prensa.jpg','Super comodas! no generan callos en sus dedos.', 3 );
+
+INSERT INTO ratings ( product_id, rating2, rating4 ) VALUES ( 21, 1, 1 );
+
 INSERT INTO products ( category_id, name, price, quantity, image, description )
                        VALUES
-                       ( 9, 'prensa de ropa', 25.00, 1058, 'prensa.jpg','Super comodas! no generan callos en sus dedos.' );
-
-INSERT INTO ratings ( product_id ) VALUES ( 21 );
-
-INSERT INTO products ( category_id, name, price, quantity, image, description )
-                       VALUES
-                       ( 4, 'lavadora', 182000.00, 5, 'lavadora.jpg', '220v 1.5t de capacidad.' );
+                       ( 11, 'lavadora', 182000.00, 5, 'lavadora.jpg', '220v 1.5t de capacidad.' );
 
 INSERT INTO ratings ( product_id ) VALUES ( 22 );
 
-INSERT INTO products ( category_id, name, price, quantity, image )
+INSERT INTO products ( category_id, name, price, quantity, image, rating )
                        VALUES
-                       ( 4, 'horno microondas', 37300.00, 19, 'microondas.jpg' );
+                       ( 5, 'horno microondas', 37300.00, 19, 'microondas.jpg', 2 );
 
-INSERT INTO ratings ( product_id ) VALUES ( 23 );
+INSERT INTO ratings ( product_id, rating2 ) VALUES ( 23, 2 );
 
 INSERT INTO products ( category_id, name, price, quantity, image, description, enable_product )
                        VALUES
-                       ( 4, 'refrigerador', 232000.00, 7,'refrigerador.jpg', 'Atlas 3000', 0 );
+                       ( 5, 'refrigerador', 232000.00, 7,'refrigerador.jpg', 'Atlas 3000', 0 );
 
 INSERT INTO ratings ( product_id ) VALUES ( 24 );
 
-INSERT INTO products ( category_id, name, price, quantity, image,  description )
+INSERT INTO products ( category_id, name, price, quantity, image,  description, rating )
                        VALUES
-                       ( 4, 'televisor', 430000.00, 12, 'televisor.jpg','Sony Bravia 42' );
+                       ( 5, 'televisor', 430000.00, 12, 'televisor.jpg','Sony Bravia 42', 5 );
 
-INSERT INTO ratings ( product_id ) VALUES ( 25 );
+INSERT INTO ratings ( product_id, rating5 ) VALUES ( 25, 2 );
 
 
 

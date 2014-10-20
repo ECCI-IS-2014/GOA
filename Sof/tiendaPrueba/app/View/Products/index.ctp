@@ -10,7 +10,7 @@
 			<th><?php echo $this->Paginator->sort('quantity'); ?></th>
 			<th><?php echo $this->Paginator->sort('image'); ?></th>
 			<th><?php echo $this->Paginator->sort('enable_product'); ?></th>
-			<th><?php echo $this->Paginator->sort('enable_rating'); ?></th>
+			<th><?php echo $this->Paginator->sort('rating'); ?></th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
 	</thead>
@@ -32,7 +32,7 @@
 			<?php endif; ?>&nbsp;
 		</td>
 		<td><?php if ( $product['Rating']['enable_rating'] == '1'): ?>
-				<?php echo h('Enabled'); ?>
+				<?php echo h($product['Product']['rating']).' stars'; ?>
 			<?php else: ?>
 				<?php echo h('Disabled'); ?>
 			<?php endif; ?>&nbsp;

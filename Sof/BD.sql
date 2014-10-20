@@ -100,7 +100,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   UNIQUE KEY `username` (`username`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
 
-
+-- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `wishes`
@@ -113,17 +113,7 @@ CREATE TABLE IF NOT EXISTS `wishes` (
   KEY `product_id` (`product_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Restricciones para tablas volcadas
---
-
---
--- Filtros para la tabla `wishes`
---
-ALTER TABLE `wishes`
-  ADD CONSTRAINT `wishes_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
-  ADD CONSTRAINT `wishes_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`);
-
+-- --------------------------------------------------------
 
 --
 -- Filtros para la tabla `categories`
@@ -142,6 +132,14 @@ ALTER TABLE `products`
 --
 ALTER TABLE `ratings`
   ADD CONSTRAINT `FK_product_id` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`);
+
+--
+-- Filtros para la tabla `wishes`
+--
+ALTER TABLE `wishes`
+  ADD CONSTRAINT `wishes_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
+  ADD CONSTRAINT `wishes_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`);
+
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
