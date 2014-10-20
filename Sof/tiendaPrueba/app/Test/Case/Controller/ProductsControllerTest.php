@@ -69,7 +69,7 @@ class ProductsControllerTest extends ControllerTestCase {
 		
 		$this->assertContains('/products', $this->headers['Location']);
 		
-		$prod = $Products->Product->read(null, 4);
+		$prod = $Products->Product->read(null, 5);
 		$this->assertEqual($prod['Product']['name'], 'converse');
 	}
 
