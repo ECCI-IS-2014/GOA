@@ -57,17 +57,6 @@ class ProductFixture extends CakeTestFixture {
 		),
 		array(
 			'id' => '3',
-			'category_id' => '2',
-			'name' => 'burros',
-			'price' => '2500.00',
-			'quantity' => '11',
-			'image' => null,
-			'enable_product' => 1,
-			'rating' => '0',
-			'description' => 'No description.'
-		),
-		array(
-			'id' => '4',
 			'category_id' => '1',
 			'name' => 'fedora',
 			'price' => '8200.00',
