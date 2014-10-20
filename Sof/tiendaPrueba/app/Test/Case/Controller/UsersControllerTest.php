@@ -144,5 +144,21 @@ class UsersControllerTest extends ControllerTestCase {
         $result = $this->testAction('/users/logout', array("method" =>"get", "return" => "contents"));
         debug($result);
     }
+	
+	public function testDisable() {
+		$Users = $this->generate('Users');
+		$this->testAction('/users/disable/2');
+		
+		$user = $Users->User->read(null, 2);
+		$this->assertEqual($user['User']['status'],'0');
+	}
+	
+	public function testEnable() {
+		$Users = $this->generate('Users');
+		$this->testAction('/users/enable/2');
+		
+		$user = $Users->User->read(null, 2);
+		$this->assertEqual($user['User']['status'], '1');
+	}
 
 }
