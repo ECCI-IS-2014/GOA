@@ -69,7 +69,7 @@ class ProductsControllerTest extends ControllerTestCase {
 		
 		$this->assertContains('/products', $this->headers['Location']);
 		
-		$prod = $Products->Product->read(null, 4);
+		$prod = $Products->Product->read(null, 5);
 		$this->assertEqual($prod['Product']['name'], 'converse');
 	}
 
@@ -88,7 +88,7 @@ class ProductsControllerTest extends ControllerTestCase {
 		
 		$data = array(
 			'Product' => array(
-				'id' => '3',
+				'id' => '4',
 				'category_id' => '1',
 				'name' => 'fedora',
 				'price' => '10200.00',
@@ -99,9 +99,9 @@ class ProductsControllerTest extends ControllerTestCase {
 				'description' => 'Para hipsters.'
 			)
 		);
-		$this->testAction('/products/edit/3', array('data' => $data));
+		$this->testAction('/products/edit/4', array('data' => $data));
 		
-		$prod = $Products->Product->read(null, 3);
+		$prod = $Products->Product->read(null, 4);
 		$this->assertEqual($prod['Product']['price'], '10200.00');
 		$this->assertEqual($prod['Product']['description'], 'Para hipsters.');
 	}
