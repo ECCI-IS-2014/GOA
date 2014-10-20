@@ -34,7 +34,12 @@ class StringFormatterHelperTest extends CakeTestCase {
  * @return void
  */
 	public function testFormatCurrency() {
-		$this->markTestIncomplete('testFormatProducts not implemented.');
+
+		$this->assertEquals('$100.00', $this->helper->formatCurrency(100, '$'));
+		$this->assertEquals('$50.89', $this->helper->formatCurrency(50.8901023, '$'));
+		$this->assertEquals('$32,800.00', $this->helper->formatCurrency(32800, '$'));
+		$this->assertEquals('$9,289,200.90', $this->helper->formatCurrency(9289200.9012, '$'));
+
 	}
 
 }
