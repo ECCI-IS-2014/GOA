@@ -86,9 +86,9 @@ INSERT INTO products ( category_id, name, price, quantity, image )
 
 INSERT INTO ratings ( product_id ) VALUES ( 4 );
 
-INSERT INTO products ( category_id, name, price, quantity, image, enable_product )
+INSERT INTO products ( category_id, name, price, quantity, image )
                        VALUES
-                       ( 7, 'chonete', 5000.00, 6, 'chonete.jpg', 0 );
+                       ( 7, 'chonete', 5000.00, 6, 'chonete.jpg' );
 
 INSERT INTO ratings ( product_id ) VALUES ( 5 );
 

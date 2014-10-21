@@ -115,7 +115,7 @@ class CategoriesController extends AppController {
 			}
 
 			$this->Category->id = $id;
-			$this->requestAction(array('controller' => 'products', 'action' => 'replaceCategory', $id, $id_father));
+			$this->Category->Product->replaceCategory($id, $id_father);
 			$this->request->allowMethod('post', 'delete');
 			$this->Category->delete();
 			$this->Session->setFlash(__('The category has been deleted.'));
