@@ -16,7 +16,7 @@
 <?php $this->start('imagePanel'); ?>
 
 
-  <div id="imageHolder"> <?php echo $this->Html->image('product_icons/'.$product['Product']['image'], array('alt' => 'cakePHP')); ?> </div>
+  <div id="imageHolder"> <?php echo $this->Html->image('product_icons/'.$product['Product']['image'], array('alt' => 'cakePHP','style'=>'height:20%; width:100%;')); ?> </div>
     
 
     
