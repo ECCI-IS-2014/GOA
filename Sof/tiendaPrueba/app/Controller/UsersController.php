@@ -29,9 +29,9 @@ class UsersController extends AppController {
     public function login() {
         if ($this->request->is('post')) {
         if ($this->Auth->login()) {
-            //return $this->redirect($this->Auth->redirect());
+            return $this->redirect($this->Auth->redirect());
             //return $this->redirect(array('action' => 'profile'));
-            return $this->redirect(array('controller' => 'Pages','action' => 'home'));
+            //return $this->redirect(array('controller' => 'Pages','action' => 'home'));
         } else {
             return $this->Session->setFlash(__('Invalid username or password, try again. </br> If this is your fist time here, create an <a href="http://localhost/blog/TiendaOnline/users/add">account</a>'));
         }

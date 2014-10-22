@@ -25,7 +25,7 @@ class CategoriesController extends AppController {
 		$this->Category->recursive = 0;
 		$this->set('categories', $this->Paginator->paginate());
 	}
-
+	
 /**
  * view method
  *
@@ -80,12 +80,10 @@ class CategoriesController extends AppController {
 		} else {
 			$options = array('conditions' => array('Category.' . $this->Category->primaryKey => $id));
 			$this->request->data = $this->Category->find('first', $options);
-
-            $categories = $this->Category->find('list',array('fields'=>array('id','name')));
-            $this->set(compact('categories'));
-            $this->set('father_id', $this->Category->father_category_id);
-
         }
+		$categories = $this->Category->find('list',array('fields'=>array('id','name')));
+		$this->set(compact('categories'));
+        $this->set('father_id', $this->Category->father_category_id);
 	}
 
 /**

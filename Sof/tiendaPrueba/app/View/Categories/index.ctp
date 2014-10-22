@@ -3,46 +3,59 @@
 	<table cellpadding="0" cellspacing="0">
 	<thead>
 	<tr>
-			<th><?php echo $this->Paginator->sort('id'); ?></th>
 			<th><?php echo $this->Paginator->sort('name'); ?></th>
-			<th><?php echo $this->Paginator->sort('father_category_id'); ?></th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
 	</thead>
 	<tbody>
-	<?php foreach ($categories as $category): ?>
-	<tr>
-		<?php if ( $category['Category']['id'] != '0'): ?>
-        	<td><?php echo h($category['Category']['id']); ?>&nbsp;</td>
-        	<td><?php echo h($category['Category']['name']); ?>&nbsp;</td>
-        	
-			 <td>
-				<?php if ( $category['Category']['father_category_id'] != '0' ): ?>
-					<?php foreach ($categories as $father_cate): ?>
-						<?php if ( $category['Category']['father_category_id'] == $father_cate['Category']['id']): ?>
-							<?php echo $this->Html->link($father_cate['Category']['name'], array('controller' => 'categories', 'action' => 'view', $category['Category']['father_category_id'])); ?>
-						<?php endif; ?>
-					<?php endforeach; ?>
+		<?php foreach ($categories as $category): ?>
+		<?php if ( $category['Category']['id'] != '0' && $category['Category']['father_category_id'] == '0'): ?>
+			<?php $id1 = $category['Category']['id']; ?>
+			<tr>
+				<td><?php echo h($category['Category']['name']); ?>&nbsp;</td>
+				<td class="actions">
+					<?php echo $this->Html->link(__('View'), array('action' => 'view', $category['Category']['id'])); ?>
+					<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $category['Category']['id'])); ?>
+					<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $category['Category']['id']), array(), __('Are you sure you want to delete %s?', $category['Category']['name'])); ?>
+				</td>
+			</tr>
+			<?php foreach ($categories as $category_child1): ?>
+			<?php if ( $category_child1['Category']['father_category_id'] == $id1): ?>
+				<?php $id2 = $category_child1['Category']['id']; ?>
+				<tr>
+					<td><?php echo "- - ".h($category_child1['Category']['name']); ?>&nbsp;</td>
+					<td class="actions">
+						<?php echo $this->Html->link(__('View'), array('action' => 'view', $category_child1['Category']['id'])); ?>
+						<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $category_child1['Category']['id'])); ?>
+						<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $category_child1['Category']['id']), array(), __('Are you sure you want to delete %s?', $category['Category']['name'])); ?>
+					</td>
+				</tr>
+				<?php foreach ($categories as $category_child2): ?>
+				<?php if ( $category_child2['Category']['father_category_id'] == $id2): ?>
+					<tr>
+						<td><?php echo "- - - - ".h($category_child2['Category']['name']); ?>&nbsp;</td>
+						<td class="actions">
+							<?php echo $this->Html->link(__('View'), array('action' => 'view', $category_child2['Category']['id'])); ?>
+							<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $category_child2['Category']['id'])); ?>
+							<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $category_child2['Category']['id']), array(), __('Are you sure you want to delete %s?', $category['Category']['name'])); ?>
+						</td>
+					</tr>
 				<?php endif; ?>
-				&nbsp;
-			</td>
-			
-        	<td class="actions">
-				<?php echo $this->Html->link(__('View'), array('action' => 'view', $category['Category']['id'])); ?>
-        		<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $category['Category']['id'])); ?>
-        		<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $category['Category']['id']), array(), __('Are you sure you want to delete # %s?', $category['Category']['id'])); ?>
-        	</td>
+				<?php endforeach; ?>
+			<?php endif; ?>
+			<?php endforeach; ?>
 		<?php endif; ?>
-     </tr>
-<?php endforeach; ?>
+		<?php endforeach; ?>
 	</tbody>
 	</table>
+	
 	<p>
 	<?php
 	echo $this->Paginator->counter(array(
 	'format' => __('Page {:page} of {:pages}, showing {:current} records out of {:count} total, starting on record {:start}, ending on {:end}')
 	));
-	?>	</p>
+	?>
+	</p>
 	<div class="paging">
 	<?php
 		echo $this->Paginator->prev('< ' . __('previous'), array(), null, array('class' => 'prev disabled'));
@@ -51,6 +64,7 @@
 	?>
 	</div>
 </div>
+
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
