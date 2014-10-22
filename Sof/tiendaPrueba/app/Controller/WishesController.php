@@ -51,22 +51,6 @@ class WishesController extends AppController {
  * @return void
  */
 	public function add() {
-<<<<<<< HEAD
-		if ($this->request->is('post')) {
-			$this->Wish->create();
-			if ($this->Wish->save($this->request->data)) {
-				$this->Session->setFlash(__('The wish has been saved.'));
-				return $this->redirect(array('action' => 'index'));
-			} else {
-				$this->Session->setFlash(__('The wish could not be saved. Please, try again.'));
-			}
-		}
-		$users = $this->Wish->User->find('list');
-		$products = $this->Wish->Product->find('list');
-		$this->set(compact('users', 'products'));
-       // $this->set('users', 'products'));
-       // print_r($this->Product->find('all'));
-=======
         $prod_id = $this->passedArgs['id'];
         $id=$this->Session->read('Auth.User.id');
         $data = array('user_id' => $id,'product_id'=>$prod_id);
@@ -74,7 +58,7 @@ class WishesController extends AppController {
         $this->redirect(
             array('controller' => 'Products', 'action' => 'productInside','id'=>$prod_id)
         );
->>>>>>> 08e08ab56a6ded73ad156a9c0bb2bc5310736fc4
+
 	}
 
 

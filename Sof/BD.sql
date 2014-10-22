@@ -106,14 +106,29 @@ CREATE TABLE IF NOT EXISTS `users` (
 -- Estructura de tabla para la tabla `wishes`
 --
 
+
 CREATE TABLE IF NOT EXISTS `wishes` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
+  UNIQUE KEY `noRepit` (`user_id`,`product_id`),
+  UNIQUE KEY `user_id` (`user_id`,`product_id`),
   KEY `product_id` (`product_id`),
   KEY `wishes_ibfk_1` (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
+
+--
+-- Volcado de datos para la tabla `wishes`
+--
+INSERT INTO `wishes` (`id`, `user_id`, `product_id`) VALUES
+(7, 2, 2);
+
+-- Filtros para la tabla `wishes`
+--
+ALTER TABLE `wishes`
+  ADD CONSTRAINT `wishes_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `wishes_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`);
 
 -- --------------------------------------------------------
 
@@ -135,12 +150,6 @@ ALTER TABLE `products`
 ALTER TABLE `ratings`
   ADD CONSTRAINT `FK_product_id` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`);
 
---
--- Filtros para la tabla `wishes`
---
-ALTER TABLE `wishes`
-  ADD CONSTRAINT `wishes_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
-  ADD CONSTRAINT `wishes_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`);
 
 
 
