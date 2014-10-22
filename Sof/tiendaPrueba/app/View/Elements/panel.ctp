@@ -142,6 +142,10 @@
         </div>
       </div>
 
+      <div id="loading" class="inactive">
+        <img src="<?php echo $this->webroot; ?>img/loading.gif" class="loading_graphic">
+      </div>
+
     </div>
 
     <script type="text/javascript">

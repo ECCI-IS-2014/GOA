@@ -42,8 +42,14 @@
             
             $("#search_btn").click(function(){
                 $("#start").removeClass("active").addClass("inactive");
-                $("#search_results").removeClass("inactive").addClass("active");
+                $("#loading").removeClass("inactive").addClass("active");
                 toggleSidebar();
+
+                setTimeout(function () {
+                    $("#loading").removeClass("active").addClass("inactive");
+                    $("#search_results").removeClass("inactive").addClass("active");
+                }, 750);
+                
             });
 
          });

@@ -97,3 +97,8 @@
     //border-bottom: 4px solid #e63a00;
     color: #e63a00;
 }
+
+#home_panel_wrapper #loading .loading_graphic {
+    width: 250px;
+    height: 250px;
+    margin-left: 450px;
