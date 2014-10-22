@@ -39,44 +39,72 @@
         		toggleSidebar();
         	});
 
-            
             $("#search_btn").click(function(){
-                $("#start").removeClass("active").addClass("inactive");
-                $("#loading").removeClass("inactive").addClass("active");
-                toggleSidebar();
-
-                setTimeout(function () {
-                    $("#loading").removeClass("active").addClass("inactive");
-                    $("#search_results").removeClass("inactive").addClass("active");
-                }, 750);
-                
+                gotoPanel("search_results", true);
             });
+
+            if(startWithSearch == true) {
+                gotoPanel("search_results", true);
+            }
 
          });
 
-        
+        //Go to panel with id "name". Displays a loading screen if loading_screen is true or doesn't display one if it's not
+        function gotoPanel(name, loading_screen) {
+
+            $("#"+activePanel).removeClass("active").addClass("inactive");
+
+            if(sidebarIsOpen == true) {
+                closeSidebar(700);
+            }
+
+            if(loading_screen == true) {
+                
+                $("#loading").removeClass("inactive").addClass("active");
+
+                setTimeout(function () {
+                    $("#loading").removeClass("active").addClass("inactive");
+                    $("#"+name).removeClass("inactive").addClass("active");
+                }, 750);
+
+            }
+            else {
+                $("#"+name).removeClass("inactive").addClass("active");
+            }
+
+            activePanel = name;
+
+        }
 
 
         //Open or close sidebar with animation
         function toggleSidebar() {
 
         	if(sidebarIsOpen == true) {
-        		//close
-        		$("#sidebar #sidebar_content").animate({
-        			marginLeft: '-=' + sidebarWidth + 'px'
-        		}, 700, "easeOutQuart", function() {
-        			sidebarIsOpen = false;
-        		});
+        		closeSidebar(700);
         	}
         	else {
-        		//open
-        		$("#sidebar #sidebar_content").animate({
-        			marginLeft: '+=' + sidebarWidth + 'px'
-        		}, 700, "easeOutQuart", function() {
-        			sidebarIsOpen = true;
-        		});
+        		openSidebar(700);
         	}
 
+        }
+
+        //Open sidebar with animation for ms miliseconds
+        function openSidebar(ms) {
+            $("#sidebar #sidebar_content").animate({
+                marginLeft: '+=' + sidebarWidth + 'px'
+            }, ms, "easeOutQuart", function() {
+                sidebarIsOpen = true;
+            });
+        }
+
+        //Close sidebar with animation for ms miliseconds
+        function closeSidebar(ms) {
+            $("#sidebar #sidebar_content").animate({
+                marginLeft: '-=' + sidebarWidth + 'px'
+            }, ms, "easeOutQuart", function() {
+                sidebarIsOpen = false;
+            });
         }
 
         //Open sidebar without animation

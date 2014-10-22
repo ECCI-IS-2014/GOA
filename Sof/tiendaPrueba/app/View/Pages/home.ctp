@@ -57,6 +57,11 @@
         var logoVisible = true;
         var allowTopHeaderHiding = false;
         var topHeaderHideMargin = 96;
+        var startWithSearch = false;
+
+        if(getUrlParameter('op') == 'search') {
+            startWithSearch = true;
+        }
 
         $(document).ready(function() {
             $("body").css("overflow", "hidden");
@@ -102,26 +107,28 @@
             });
 
             $(".sbm").click(function(){
-                gotoSearch();
-            });
-
-            $("input.search").keypress(function(e){
-                if(e.which == 13) {
-                    gotoSearch();
-                }
+                gotoSearch($("input.search").val());
             });
 
         }
 
-        function gotoSearch() {
-            var opts =  "/" + 'name' + 
-                        "/" + $("input.search").val() +
-                        "/" + $("input.search").val() +
-                        "/" + 'null' + 
-                        "/" + 'asc';
-            var url = "<?php echo $this->html->url('/', true); ?>" + "/Products/searchCatalog" + opts;
+        function gotoSearch(value) {
+            var url = "<?php echo $this->html->url('', true); ?>" + "?op=search&val=" + value;
             window.location.href = url;
         }
+
+        function getUrlParameter(sParam) {
+            var sPageURL = window.location.search.substring(1);
+            var sURLVariables = sPageURL.split('&');
+            for (var i = 0; i < sURLVariables.length; i++) 
+            {
+                var sParameterName = sURLVariables[i].split('=');
+                if (sParameterName[0] == sParam) 
+                {
+                    return sParameterName[1];
+                }
+            }
+        }   
 
 
         /*

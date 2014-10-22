@@ -150,13 +150,7 @@
 
     <script type="text/javascript">
 
-        $(document).ready(function() {
-
-          $(".catalog_holder").each(function(){
-              //alert( $(this).find("div").outerHeight() );
-          });
-
-        });
+      var activePanel = "start";
 
     </script>
 
