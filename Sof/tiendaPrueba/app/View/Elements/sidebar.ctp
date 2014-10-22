@@ -11,6 +11,9 @@
 	    		<h3>Price</h3>
 
 	    		<h3>Rating</h3>
+
+                <a href="#" id="search_btn">Search</a>
+
 	    	</div>
 	    </div>
 
@@ -36,7 +39,17 @@
         		toggleSidebar();
         	});
 
+            
+            $("#search_btn").click(function(){
+                $("#start").removeClass("active").addClass("inactive");
+                $("#search_results").removeClass("inactive").addClass("active");
+                toggleSidebar();
+            });
+
          });
+
+        
+
 
         //Open or close sidebar with animation
         function toggleSidebar() {
@@ -71,7 +84,6 @@
         	$("#sidebar_content").css("margin-left", -1*sidebarWidth + 'px');
         	sidebarIsOpen = false;
         }
-
 
 
    </script>

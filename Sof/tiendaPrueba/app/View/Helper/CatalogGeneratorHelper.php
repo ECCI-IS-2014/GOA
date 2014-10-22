@@ -8,40 +8,44 @@ class CatalogGeneratorHelper extends AppHelper {
     /*
      * Recibe un array de productos, y devuelve una cadena con los divs que representan los productos
      */
-    public function formatProducts($products) {
+    public function formatProducts($products, $limit = null) {
 
     	echo $this->Html->css('catalogs');
 
-    	$result_string = '';
+    	$result_string = '<div>';
 
-    	foreach ($products as $key => $prod) {
-    		$result_string = $result_string . 	"<div class='catalog_item'>" .
+        for($i = 0; $i < count($products); $i++) {
 
-                                                    $this->Html->image('product_icons/'.$prod['Product']['image'], array('alt' => 'CakePHP', 'class' => 'product_photo')) .
-    												//"<img class='product_photo' src='" . $this->webroot . "/img/product_icons/placeholder.png' />" .
+            if( $i < $limit || is_null($limit) ) {
 
-    												"<div class='info_panel'>" .
+                $result_string = $result_string .   "<div class='catalog_item'>" .
 
-    													"<p class='catalog_title1'>" . $prod['Product']['name'] . "</p>" .
+                                                        $this->Html->image('product_icons/'.$products[$i]['Product']['image'], array('alt' => 'CakePHP', 'class' => 'product_photo')) .
+                                                        //"<img class='product_photo' src='" . $this->webroot . "/img/product_icons/placeholder.png' />" .
 
-    													"<div class='cat_text_container'><span class='catalog_title2'>" . 'Price: ' . "</span><span class='catalog_text1'>" . $this->StringFormatter->formatCurrency($prod['Product']['price'], '$') . "</span></div>" .
+                                                        "<div class='info_panel'>" .
 
-    													"<div class='cat_text_container'><span class='catalog_title2'>" . 'In stock now: ' . "</span><span class='catalog_text1'>" . $prod['Product']['quantity'] . "</span></div>" .
+                                                            "<p class='catalog_title1'>" . $products[$i]['Product']['name'] . "</p>" .
 
-                                                        "<div class='cat_id_container'><span class='catalog_id'>".'Product id:' . $prod['Product']['id'] . "</span></div>" .
+                                                            "<div class='cat_text_container'><span class='catalog_title2'>" . 'Price: ' . "</span><span class='catalog_text1'>" . $this->StringFormatter->formatCurrency($products[$i]['Product']['price'], '$') . "</span></div>" .
 
-                                                        "<div class='cat_button_container'>"."<a href='".$this->Html->url(array("controller" => "products","action" => "productInside","id"=>"")).$prod['Product']['id']."'>".'View'."</a>"."</div>".
+                                                            "<div class='cat_text_container'><span class='catalog_title2'>" . 'In stock now: ' . "</span><span class='catalog_text1'>" . $products[$i]['Product']['quantity'] . "</span></div>" .
 
+                                                            "<div class='cat_id_container'><span class='catalog_id'>".'Product id:' . $products[$i]['Product']['id'] . "</span></div>" .
 
-                                                        $this->displayRatingBox($prod['Product']['rating']) .
+                                                            "<div class='cat_button_container'>"."<a href='".$this->Html->url(array("controller" => "products","action" => "productInside","id"=>"")).$products[$i]['Product']['id']."'>".'View'."</a>"."</div>".
 
-    												"</div>" .
+                                                            $this->displayRatingBox($products[$i]['Product']['rating']) .
 
+                                                        "</div>" .
 
-    											"</div>";
-    	}
+                                                    "</div>";
 
-    	return $result_string;
+            }
+
+        }
+
+    	return $result_string . '</div>';
 
 	}
 

@@ -34,7 +34,7 @@
                             <div id="panel" style="height:100%">
 
                                 <div id="panel_boundaries">
-                                    <?php echo $this->fetch('panel1'); ?>
+                                    <?php echo $this->fetch('home_panel'); ?>
                                 </div>
                                 
                             </div>

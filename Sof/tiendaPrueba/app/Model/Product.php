@@ -110,6 +110,9 @@ class Product extends AppModel {
 	);
 
 
+	/*
+	 * 
+	 */
 	public function getProductsByAttributeEquals($attribute, $equals, $order_by = null, $direction = 'DESC') {
 
 		$equals = strtolower($equals);
@@ -134,6 +137,10 @@ class Product extends AppModel {
 
 	}
 
+
+	/*
+	 *
+	 */
 	public function getProductsByAttributeLike($attribute, $like, $order_by = null, $direction = 'DESC') {
 
 		$like = strtolower($like);
@@ -154,6 +161,10 @@ class Product extends AppModel {
 
 	}
 
+
+	/*
+	 *
+	 */
 	public function getProductsByAttributeRange($attribute, $greater_or_equals, $lesser_or_equals, $order_by = null, $direction = 'DESC') {
 
 		$conditions = array('Product.' . $attribute . ' >=' => $greater_or_equals, 'Product.' . $attribute . ' <=' => $lesser_or_equals);
@@ -174,6 +185,9 @@ class Product extends AppModel {
 
 	}
 
+	/*
+	 *
+	 */
 	public function getProductsByAttributeLesserEquals($attribute, $lesser_equals, $order_by = null, $direction = 'DESC') {
 
 		$conditions = array('Product.' . $attribute . ' <=' => $lesser_equals);
@@ -194,6 +208,9 @@ class Product extends AppModel {
 
 	}
 
+	/*
+	 *
+	 */
 	public function getProductsByAttributeGreaterEquals($attribute, $greater_equals, $order_by = null, $direction = 'DESC') {
 
 		$conditions = array('Product.' . $attribute . ' >=' => $greater_equals);

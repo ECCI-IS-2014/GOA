@@ -93,3 +93,68 @@
 
 
 
+<?php $this->start('home_panel'); ?>
+
+
+   
+
+    <div id="home_panel_wrapper">
+
+      <div id="start" class="active">
+        <div class="catalog_holder named">
+          <h3>Hot</h3>
+          <?php 
+            echo $this->CatalogGenerator->formatProducts( $products, 12 ); 
+          ?>
+        </div>
+        <div class="catalog_holder named">
+          <h3>On sale</h3>
+          <?php 
+            echo $this->CatalogGenerator->formatProducts( $products, 18 ); 
+          ?>
+        </div>
+        <div class="catalog_holder named">
+          <h3>Top rated</h3>
+          <?php 
+            echo $this->CatalogGenerator->formatProducts( $products, 5 ); 
+          ?>
+        </div>
+        <div class="catalog_holder named">
+          <h3>Newly added</h3>
+          <?php 
+            echo $this->CatalogGenerator->formatProducts( $products, 8 ); 
+          ?>
+        </div>
+        <div class="catalog_holder named">
+          <h3>Our picks for you</h3>
+          <?php 
+            echo $this->CatalogGenerator->formatProducts( $products, 3 ); 
+          ?>
+        </div>
+      </div>
+
+      <div id="search_results" class="inactive">
+        <div class="catalog_holder named">
+          <h3>Your search results.</h3>
+          <?php 
+            echo $this->CatalogGenerator->formatProducts( $products ); 
+          ?>
+        </div>
+      </div>
+
+    </div>
+
+    <script type="text/javascript">
+
+        $(document).ready(function() {
+
+          $(".catalog_holder").each(function(){
+              //alert( $(this).find("div").outerHeight() );
+          });
+
+        });
+
+    </script>
+
+
+<?php $this->end(); ?>

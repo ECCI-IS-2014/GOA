@@ -33,6 +33,12 @@
     height: 440px;
     margin-top: 20px;
     padding: 9px 9px 9px 9px;
+    position: relative;
+}
+
+#sidebar_content_interior a {
+    vertical-align: bottom;
+    
 }
 
 #sidebar_content p {

@@ -68,3 +68,32 @@
     margin-left:5%;
 
 }
+
+#home_panel_wrapper {
+    padding-top: 30px;
+}
+
+#home_panel_wrapper .active{
+    display: block;
+}
+
+#home_panel_wrapper .inactive{
+    display: none;
+}
+
+#home_panel_wrapper > div, #home_panel_wrapper .catalog_holder {
+    width: 100%;
+    min-height: 40px;
+    overflow: hidden;
+}
+
+#home_panel_wrapper .catalog_holder {
+    margin-bottom: 100px;
+}
+
+#home_panel_wrapper .catalog_holder h3 {
+    font-size: 24px;
+    font-family: Helvetica;
+    //border-bottom: 4px solid #e63a00;
+    color: #e63a00;
+}
