@@ -75,7 +75,7 @@ class AppController extends Controller {
 
 
     public function beforeFilter() {
-        $this->Auth->allow('home');
+        $this->Auth->allow('home','productInside');
         // extra
         $this->Auth->deny('edit', 'delete');
     }
