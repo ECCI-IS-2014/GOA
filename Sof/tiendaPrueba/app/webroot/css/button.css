@@ -99,6 +99,11 @@
     margin-left:25%
 }
 
+#addWishListButton a
+{
+    text-decoration: none;
+}
+
 #addWishListButton:hover{
     border-top-color: #757575;
     background: #757575;

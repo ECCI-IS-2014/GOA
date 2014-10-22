@@ -55,9 +55,9 @@
     <div id="buttonHolder">
     <button id="addCartButton">Add to Cart</button>
     <br>
-    <button id="addWishListButton">Add to Wish List</button>
+    <button id="addWishListButton"><a href="<?php echo $this->Html->url(array('controller' => 'wishes','action' => 'add','id'=>$product['Product']['id']));?>"> Add to Wish List </a></button>
     <br>
-    <button id="reviewButton"><a href='<?php echo $this->Html->url(array("controller" => "products","action" => "addReview","id"=>"")).$product['Product']['id']?>'>Add Review</a></button>
+    <button id="reviewButton"><a href=" <?php echo $this->Html->url(array("controller" => "products","action" => "addReview","id"=>"")).$product['Product']['id'];?>">Add Review</a></button>
 
 
     </div>
