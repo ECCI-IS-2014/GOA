@@ -7,8 +7,11 @@ App::uses('AppController', 'Controller');
  * @property PaginatorComponent $Paginator
  * @property SessionComponent $Session
  */
+
+
 class WishesController extends AppController {
 
+    //public $models = array('Product');
 /**
  * Components
  *
@@ -24,6 +27,7 @@ class WishesController extends AppController {
 	public function index() {
 		$this->Wish->recursive = 0;
 		$this->set('wishes', $this->Paginator->paginate());
+       // print_r($this->Product->find('all'));
 	}
 
 /**
@@ -59,34 +63,10 @@ class WishesController extends AppController {
 		$users = $this->Wish->User->find('list');
 		$products = $this->Wish->Product->find('list');
 		$this->set(compact('users', 'products'));
+       // $this->set('users', 'products'));
+       // print_r($this->Product->find('all'));
 	}
 
-/**
- * edit method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
-	public function edit($id = null) {
-		if (!$this->Wish->exists($id)) {
-			throw new NotFoundException(__('Invalid wish'));
-		}
-		if ($this->request->is(array('post', 'put'))) {
-			if ($this->Wish->save($this->request->data)) {
-				$this->Session->setFlash(__('The wish has been saved.'));
-				return $this->redirect(array('action' => 'index'));
-			} else {
-				$this->Session->setFlash(__('The wish could not be saved. Please, try again.'));
-			}
-		} else {
-			$options = array('conditions' => array('Wish.' . $this->Wish->primaryKey => $id));
-			$this->request->data = $this->Wish->find('first', $options);
-		}
-		$users = $this->Wish->User->find('list');
-		$products = $this->Wish->Product->find('list');
-		$this->set(compact('users', 'products'));
-	}
 
 /**
  * delete method
