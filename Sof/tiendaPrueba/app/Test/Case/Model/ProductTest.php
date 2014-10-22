@@ -24,6 +24,16 @@ class ProductTest extends CakeTestCase {
         $this->Product = ClassRegistry::init('Product');
     }
 
+    public function testGetAllProducts() {
+
+        $products = $this->Product->getAllProducts(
+            'price', 
+            'DESC'
+        );
+        $this->assertCount( 4, $products );
+
+    }
+
     public function testGetProductsByAttributeEquals() {
 
         $products = $this->Product->getProductsByAttributeEquals(

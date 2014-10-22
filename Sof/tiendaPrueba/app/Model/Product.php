@@ -111,8 +111,30 @@ class Product extends AppModel {
 
 
 	/*
-	 * 
-	 */
+     * Obtiene todos los productos de la BD
+     * Si $order_by es especificado, ordena los resultados según el atributo $order_by, en dirección $direction
+     */
+	public function getAllProducts($order_by = null, $direction = 'DESC') {
+
+		if($order_by != null) {
+			$order = array('Product.' . $order_by . ' ' . $direction);
+		}
+		else {
+			$order = array();
+		}
+
+		$result = $this->find('all', array( 
+			'order'=>$order
+		));
+
+		return $result;
+
+	}
+
+	/*
+     * Obtiene todos los productos de la BD en cuales el atributo $attribute sea igual que $equals
+     * Si $order_by es especificado, ordena los resultados según el atributo $order_by, en dirección $direction
+     */
 	public function getProductsByAttributeEquals($attribute, $equals, $order_by = null, $direction = 'DESC') {
 
 		$equals = strtolower($equals);
@@ -126,8 +148,6 @@ class Product extends AppModel {
 			$order = array();
 		}
 
-		var_dump($order);
-
 		$result = $this->find('all', array(
 			'conditions'=>$conditions, 
 			'order'=>$order
@@ -137,10 +157,10 @@ class Product extends AppModel {
 
 	}
 
-
 	/*
-	 *
-	 */
+     * Obtiene todos los productos de la BD para los cuales su atributo $attribute contenga a $like como subcadena.
+     * Si $order_by es especificado, ordena los resultados según el atributo $order_by, en dirección $direction
+     */
 	public function getProductsByAttributeLike($attribute, $like, $order_by = null, $direction = 'DESC') {
 
 		$like = strtolower($like);
@@ -161,10 +181,10 @@ class Product extends AppModel {
 
 	}
 
-
 	/*
-	 *
-	 */
+     * Obtiene todos los productos de la BD en cuales el atributo $attribute sea mayor o igual que $greater_equals y menor o igual que $lesser_or_equals
+     * Si $order_by es especificado, ordena los resultados según el atributo $order_by, en dirección $direction
+     */
 	public function getProductsByAttributeRange($attribute, $greater_or_equals, $lesser_or_equals, $order_by = null, $direction = 'DESC') {
 
 		$conditions = array('Product.' . $attribute . ' >=' => $greater_or_equals, 'Product.' . $attribute . ' <=' => $lesser_or_equals);
@@ -186,8 +206,9 @@ class Product extends AppModel {
 	}
 
 	/*
-	 *
-	 */
+     * Obtiene todos los productos de la BD en cuales el atributo $attribute sea menor o igual que $lesser_equals
+     * Si $order_by es especificado, ordena los resultados según el atributo $order_by, en dirección $direction
+     */
 	public function getProductsByAttributeLesserEquals($attribute, $lesser_equals, $order_by = null, $direction = 'DESC') {
 
 		$conditions = array('Product.' . $attribute . ' <=' => $lesser_equals);
@@ -209,8 +230,9 @@ class Product extends AppModel {
 	}
 
 	/*
-	 *
-	 */
+     * Obtiene todos los productos de la BD en cuales el atributo $attribute sea mayor o igual que $greater_equals
+     * Si $order_by es especificado, ordena los resultados según el atributo $order_by, en dirección $direction
+     */
 	public function getProductsByAttributeGreaterEquals($attribute, $greater_equals, $order_by = null, $direction = 'DESC') {
 
 		$conditions = array('Product.' . $attribute . ' >=' => $greater_equals);
