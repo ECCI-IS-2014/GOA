@@ -104,3 +104,6 @@ class WishesController extends AppController {
 		return $this->redirect(array('action' => 'index'));
 	}
 }
+
+
+// hola
