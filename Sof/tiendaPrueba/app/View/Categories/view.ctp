@@ -11,7 +11,7 @@
 			<?php echo h($category['Category']['name']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Father Category'); ?></dt>
+		<dt><?php echo __('Parent Category'); ?></dt>
 		<dd>
 		    <?php echo h($category['Category']['father_category_id']); ?>
             &nbsp;

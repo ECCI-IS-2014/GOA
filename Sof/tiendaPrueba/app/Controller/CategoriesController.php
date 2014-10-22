@@ -53,10 +53,8 @@ class CategoriesController extends AppController {
 				$this->Session->setFlash(__('The category has been saved.'));
 				return $this->redirect(array('action' => 'index'));
 			}
-		}else {
-            $this->Session->setFlash(__('The category could not be saved. Please, try again.'));
-        }
-		$categories = $this->Category->find('list',array('fields'=>array('id','name')));
+		}
+		$categories = $this->Category->listCategoriesBelowLevel3();
         $this->set(compact('categories'));
 	}
 
@@ -81,7 +79,7 @@ class CategoriesController extends AppController {
 			$options = array('conditions' => array('Category.' . $this->Category->primaryKey => $id));
 			$this->request->data = $this->Category->find('first', $options);
         }
-		$categories = $this->Category->find('list',array('fields'=>array('id','name')));
+		$categories = $this->Category->listCategoriesBelowLevel3($id);
 		$this->set(compact('categories'));
         $this->set('father_id', $this->Category->father_category_id);
 	}
