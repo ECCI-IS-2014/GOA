@@ -25,8 +25,13 @@ class WishesController extends AppController {
  * @return void
  */
 	public function index() {
-		$this->Wish->recursive = 0;
-		$this->set('wishes', $this->Paginator->paginate());
+
+       // $us_id=$this->Session->read('Auth.User.id');
+
+      //  $this->set('wishes', $this->Wish->find('first', array('conditions'=>array('Wish.user_id'=>$us_id))));
+        $this->Wish->recursive = 0;
+       $this->set('wishes',$this->Paginator->paginate());
+
        // print_r($this->Product->find('all'));
 	}
 
@@ -41,8 +46,7 @@ class WishesController extends AppController {
 		if (!$this->Wish->exists($id)) {
 			throw new NotFoundException(__('Invalid wish'));
 		}
-		$options = array('conditions' => array('Wish.' . $this->Wish->primaryKey => $id));
-		$this->set('wish', $this->Wish->find('first', $options));
+
 	}
 
 /**
@@ -52,8 +56,8 @@ class WishesController extends AppController {
  */
 	public function add() {
         $prod_id = $this->passedArgs['id'];
-        $id=$this->Session->read('Auth.User.id');
-        $data = array('user_id' => $id,'product_id'=>$prod_id);
+        $us_id=$this->Session->read('Auth.User.id');
+        $data = array('user_id' => $us_id,'product_id'=>$prod_id);
         $this->Wish->save($data);
         $this->redirect(
             array('controller' => 'Products', 'action' => 'productInside','id'=>$prod_id)

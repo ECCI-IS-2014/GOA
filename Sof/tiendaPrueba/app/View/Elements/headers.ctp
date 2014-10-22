@@ -27,7 +27,7 @@
                             <li><a href="#">Checkout</a></li>
                 </ul>-->
 
-               <li><a href="http://localhost/GOA/Sof/tiendaPrueba/Wishes/">MyWishlist</a></li>
+               <li><a href="<?php echo $this->Html->url(array('controller' => 'wishes','action' => 'index'));?>">MyWishlist</a></li>
                <li><a href="#">MyCart</a></li>
                <li><a href="#">Sales</a></li>
                <?php if ($this->Session->read('Auth.User.id') == null): ?>
