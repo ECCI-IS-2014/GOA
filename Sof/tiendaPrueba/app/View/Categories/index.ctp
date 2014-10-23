@@ -23,7 +23,11 @@
 			<?php if ( $category_child1['Category']['father_category_id'] == $id1): ?>
 				<?php $id2 = $category_child1['Category']['id']; ?>
 				<tr>
-					<td><?php echo "- - ".h($category_child1['Category']['name']); ?>&nbsp;</td>
+					<td>
+						&nbsp;&nbsp;&nbsp;&nbsp;
+						<?php echo h($category_child1['Category']['name']); ?>
+						&nbsp;
+					</td>
 					<td class="actions">
 						<?php echo $this->Html->link(__('View'), array('action' => 'view', $category_child1['Category']['id'])); ?>
 						<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $category_child1['Category']['id'])); ?>
@@ -33,7 +37,11 @@
 				<?php foreach ($categories as $category_child2): ?>
 				<?php if ( $category_child2['Category']['father_category_id'] == $id2): ?>
 					<tr>
-						<td><?php echo "- - - - ".h($category_child2['Category']['name']); ?>&nbsp;</td>
+						<td>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<?php echo h($category_child2['Category']['name']); ?>
+							&nbsp;
+						</td>
 						<td class="actions">
 							<?php echo $this->Html->link(__('View'), array('action' => 'view', $category_child2['Category']['id'])); ?>
 							<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $category_child2['Category']['id'])); ?>
