@@ -78,10 +78,19 @@ class WishesController extends AppController {
         $prod_id = $this->passedArgs['id'];
         $us_id=$this->Session->read('Auth.User.id');
         $data = array('user_id' => $us_id,'product_id'=>$prod_id);
-        $this->Wish->save($data);
-        $this->redirect(
-            array('controller' => 'Products', 'action' => 'productInside','id'=>$prod_id)
-        );
+        try {
+            if ($this->Wish->save($data)) {
+                $this->redirect(
+                    array('controller' => 'Products', 'action' => 'productInside','id'=>$prod_id)
+                );
+            } else {
+                $this->Session->setFlash(__('The product could not be saved in your wishlist. Please, try again.'));
+            }
+        } catch (Exception $e) {
+            $this->Session->setFlash(__('Ops! You al ready put this item in your wishlist!'));
+            return $this->redirect(array('controller' => 'Products', 'action' => 'productInside','id'=>$prod_id));
+
+        }
 
 	}
 
@@ -94,7 +103,11 @@ class WishesController extends AppController {
  * @return void
  */
 	public function delete($id = null) {
-		$this->Wish->id = $id;
+        $prod_id = $this->passedArgs['id'];
+        $us_id=$this->Session->read('Auth.User.id');
+        $data = array('user_id' => $us_id,'product_id'=>$prod_id);
+        $this->Wish = $this->Wish->find('first', array('conditions'=>array('Wish.user_id'=>$us_id, 'Wish.product.id' => $prod_id)));
+
 		if (!$this->Wish->exists()) {
 			throw new NotFoundException(__('Invalid wish'));
 		}
