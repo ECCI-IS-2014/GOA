@@ -88,28 +88,24 @@ class CatalogGeneratorHelper extends AppHelper {
 
 
 
-                $result_string = $result_string .   "<div class='catalog_item'>" .
+                $result_string = $result_string
+                    ."<div class='wish_item'>".
+                    $this->Html->image('product_icons/'.$wishes[$i]['Product']['image'], array('alt' => 'CakePHP', 'class' => 'p_photo','style'=>'height:100%; width:8%; float:left;')) .
+                    "<div class='infoPan' style='margin-bottom: 1.5%;'>".
+                    "<p style='font-weight:bold; float:left; margin-left:2%;'>".'Name:'."</p>".$wishes[$i]['Product']['name']."<div>"."</div>".
+                    "<br>".
+                    "<p style='font-weight:bold; float:left; margin-left:2%;'>".'Price:'."</p>". $wishes[$i]['Product']['price']."<div>"."</div>".
+                    "<br>".
+                    "<div id='ratingHolder' style='margin-left: 10%;'>".$this->displayRatingBox($wishes[$i]['Product']['rating'])."</div>".
+                    "</div>".
+                    "<div style='clear:both'>"."</div>".
 
-                    $this->Html->image('product_icons/'.$wishes[$i]['Product']['image'], array('alt' => 'CakePHP', 'class' => 'product_photo')) .
-                    //"<img class='product_photo' src='" . $this->webroot . "/img/product_icons/placeholder.png' />" .
 
-                    "<div class='info_panel'>" .
-
-                    "<p class='catalog_title1'>" . $wishes[$i]['Product']['name'] . "</p>" .
-
-                    "<div class='cat_text_container'><span class='catalog_title2'>" . 'Price: ' . "</span><span class='catalog_text1'>" . $this->StringFormatter->formatCurrency($wishes[$i]['Product']['price'], '$') . "</span></div>" .
-
-                    "<div class='cat_text_container'><span class='catalog_title2'>" . 'In stock now: ' . "</span><span class='catalog_text1'>" . $wishes[$i]['Product']['quantity'] . "</span></div>" .
-
-                    "<div class='cat_id_container'><span class='catalog_id'>".'Product id:' . $wishes[$i]['Product']['id'] . "</span></div>" .
-
-                    "<div class='cat_button_container'>"."<a href='".$this->Html->url(array("controller" => "products","action" => "productInside","id"=>"")).$wishes[$i]['Product']['id']."'>".'View'."</a>"."</div>".
-
-                    $this->displayRatingBox($wishes[$i]['Product']['rating']) .
-
-                    "</div>" .
+                    "<hr>".
 
                     "</div>";
+
+
 
             }
 

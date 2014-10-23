@@ -20,12 +20,7 @@
 </div>
 
 <div id="bodyWish">
-    hola
-    <?php
-
-                echo $this->CatalogGenerator->formatWishes($wishesPro, 12 );
-
-    ?>
+    <?php echo $this->CatalogGenerator->formatWishes($wishesPro, 12 );?>
 </div>
 
 
