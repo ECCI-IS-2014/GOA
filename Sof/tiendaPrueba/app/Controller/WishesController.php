@@ -25,34 +25,14 @@ class WishesController extends AppController {
  * @return void
  */
 	public function index() {
-
-
         $us_id=$this->Session->read('Auth.User.id');
-
-
-        //$this->set('wishes', $this->Wish->find('all', array('conditions'=>array('Wish.user_id'=>$us_id))));
         $wishes = $this->Wish->find('all', array('conditions'=>array('Wish.user_id'=>$us_id)));
         $wishesPro = array();
 
         for($i = 0; $i < count($wishes); $i++) {
-
-            //$this->set('wishesPro', $this->Product->find('all', array('conditions'=>array('Product_id'=>$wishes[$i]['Wish']['product_id']))));
             array_push($wishesPro,$this->Product->find('first', array('conditions'=>array('Product.id'=>$wishes[$i]['Wish']['product_id']))));
-
         }
         $this->set('wishesPro',$wishesPro);
-        /*for($i = 0; $i < count($wishesPro); $i++) {
-
-            //$this->set('wishesPro', $this->Product->find('all', array('conditions'=>array('Product_id'=>$wishes[$i]['Wish']['product_id']))));
-            echo($wishesPro[$i]['Product']['name']."->".$wishesPro[$i]['Product']['price']."<br>");
-
-        }*/
-
-
-       // $this->Wish->recursive = 0;
-       //$this->set('wishes',$this->Paginator->paginate());
-
-       // print_r($this->Product->find('all'));
 	}
 
 /**
@@ -105,14 +85,8 @@ class WishesController extends AppController {
 	public function delete($id = null) {
         $prod_id = $this->passedArgs['id'];
         $us_id=$this->Session->read('Auth.User.id');
-        $data = array('user_id' => $us_id,'product_id'=>$prod_id);
-        $this->Wish = $this->Wish->find('first', array('conditions'=>array('Wish.user_id'=>$us_id, 'Wish.product.id' => $prod_id)));
 
-		if (!$this->Wish->exists()) {
-			throw new NotFoundException(__('Invalid wish'));
-		}
-		$this->request->allowMethod('post', 'delete');
-		if ($this->Wish->delete()) {
+		if ( !$this->Wish->query("DELETE FROM WISHES WHERE product_id = ".$prod_id." AND user_id =".$us_id.";")) {
 			$this->Session->setFlash(__('The wish has been deleted.'));
 		} else {
 			$this->Session->setFlash(__('The wish could not be deleted. Please, try again.'));
@@ -120,6 +94,3 @@ class WishesController extends AppController {
 		return $this->redirect(array('action' => 'index'));
 	}
 }
-
-
-// hola

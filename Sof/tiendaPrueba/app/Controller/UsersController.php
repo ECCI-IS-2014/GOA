@@ -142,6 +142,7 @@ class UsersController extends AppController {
 	public function edit($id = null) {
 
         $id=$this->Session->read('Auth.User.id');
+
         $this->User->id = $id;
 
 		if ($this->request->is(array('post', 'put'))) {

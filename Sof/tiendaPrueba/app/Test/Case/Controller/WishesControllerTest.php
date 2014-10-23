@@ -26,17 +26,14 @@ class WishesControllerTest extends ControllerTestCase {
  * @return void
  */
 	public function testIndex() {
-		$this->markTestIncomplete('testIndex not implemented.');
+        $result = $this->testAction('/wishes/index');
+        $results = $this->headers['Location'];
+        $expected = 'http://localhost/GOA/Sof/tiendaPrueba/wishes/index';
+        // check redirect
+        $this->assertEquals($results, $expected);
+        debug($result);
 	}
 
-/**
- * testView method
- *
- * @return void
- */
-	public function testView() {
-		$this->markTestIncomplete('testView not implemented.');
-	}
 
 /**
  * testAdd method
@@ -44,17 +41,10 @@ class WishesControllerTest extends ControllerTestCase {
  * @return void
  */
 	public function testAdd() {
-		$this->markTestIncomplete('testAdd not implemented.');
+        $result = $this->testAction('/wishes/add');
+        debug($result);
 	}
 
-/**
- * testEdit method
- *
- * @return void
- */
-	public function testEdit() {
-		$this->markTestIncomplete('testEdit not implemented.');
-	}
 
 /**
  * testDelete method
@@ -62,7 +52,8 @@ class WishesControllerTest extends ControllerTestCase {
  * @return void
  */
 	public function testDelete() {
-		$this->markTestIncomplete('testDelete not implemented.');
+        $result = $this->testAction('/wishes/delete');
+        debug($result);
 	}
 
 }
