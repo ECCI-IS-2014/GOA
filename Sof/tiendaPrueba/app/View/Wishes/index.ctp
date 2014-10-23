@@ -1,49 +1,35 @@
-<div class="wishes index">
-	<h2><?php echo __('Wishes'); ?></h2>
-	<table cellpadding="0" cellspacing="0">
-	<thead>
-	<tr>
-			<th><?php echo $this->Paginator->sort('id'); ?></th>
-			<th><?php echo $this->Paginator->sort('user_id'); ?></th>
-			<th><?php echo $this->Paginator->sort('product_id'); ?></th>
-			<th class="actions"><?php echo __('Actions'); ?></th>
-	</tr>
-	</thead>
-	<tbody>
-	<?php foreach ($wishes as $wish): ?>
-	<tr>
-		<td><?php echo h($wish['Wish']['id']); ?>&nbsp;</td>
-		<td>
-			<?php echo $this->Html->link($wish['User']['name'], array('controller' => 'users', 'action' => 'view', $wish['User']['id'])); ?>
-		</td>
-		<td>
-			<?php echo $this->Html->link($wish['Product']['name'], array('controller' => 'products', 'action' => 'view', $wish['Product']['id'])); ?>
-		</td>
-		<td class="actions">
-			<?php echo $this->Html->link(__('View'), array('action' => 'view', $wish['Wish']['id'])); ?>
-			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $wish['Wish']['id']), array(), __('Are you sure you want to delete # %s?', $wish['Wish']['id'])); ?>
-		</td>
-	</tr>
-<?php endforeach; ?>
-	</tbody>
-	</table>
-	<p>
-	<?php
-	echo $this->Paginator->counter(array(
-	'format' => __('Page {:page} of {:pages}, showing {:current} records out of {:count} total, starting on record {:start}, ending on {:end}')
-	));
-	?>	</p>
-	<div class="paging">
-	<?php
-		//echo $this->Paginator->prev('< ' . __('previous'), array(), null, array('class' => 'prev disabled'));
-		//echo $this->Paginator->numbers(array('separator' => ''));
-		//echo $this->Paginator->next(__('next') . ' >', array(), null, array('class' => 'next disabled'));
-	?>
-	</div>
+<head>
+     <?php echo $this->element('footers'); ?>
+     <?php echo $this->element('headers'); ?>
+     <?php echo $this->element('panel'); ?>
+     <?php echo $this->element('button'); ?>
+     <?php echo $this->element('sidebar'); ?>
+     <?php echo $this->Html->css('sidebar'); ?>
+                 <?php echo $this->Html->css('footers'); ?>
+                 <?php echo $this->Html->css('headers'); ?>
+                 <?php echo $this->Html->css('panel'); ?>
+                 <?php echo $this->Html->css('button'); ?>
+                 <?php echo $this->Html->css('catalogs'); ?>
+                 <?php echo $this->fetch('header1'); ?>
+
+
+</head>
+
+<div id="headWish">
+
 </div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-		<li><?php echo $this->Html->link(__('New Wish'), array('action' => 'add')); ?></li>
-	</ul>
+
+<div id="bodyWish">
+    hola
+    <?php
+
+                echo $this->CatalogGenerator->formatWishes($wishesPro, 12 );
+
+    ?>
+</div>
+
+
+<div id="footWish">
+
+    <?php echo $this->fetch('footer1'); ?>
 </div>

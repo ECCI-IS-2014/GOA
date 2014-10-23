@@ -11,14 +11,14 @@ App::uses('AppController', 'Controller');
 
 class WishesController extends AppController {
 
-    //public $models = array('Product');
 /**
  * Components
  *
  * @var array
  */
 	public $components = array('Paginator', 'Session');
-
+    public $uses = array('Product','Wish');
+    public $helpers = array('CatalogGenerator', 'Html');
 /**
  * index method
  *
@@ -26,11 +26,31 @@ class WishesController extends AppController {
  */
 	public function index() {
 
-       // $us_id=$this->Session->read('Auth.User.id');
 
-      //  $this->set('wishes', $this->Wish->find('first', array('conditions'=>array('Wish.user_id'=>$us_id))));
-        $this->Wish->recursive = 0;
-       $this->set('wishes',$this->Paginator->paginate());
+        $us_id=$this->Session->read('Auth.User.id');
+
+
+        //$this->set('wishes', $this->Wish->find('all', array('conditions'=>array('Wish.user_id'=>$us_id))));
+        $wishes = $this->Wish->find('all', array('conditions'=>array('Wish.user_id'=>$us_id)));
+        $wishesPro = array();
+
+        for($i = 0; $i < count($wishes); $i++) {
+
+            //$this->set('wishesPro', $this->Product->find('all', array('conditions'=>array('Product_id'=>$wishes[$i]['Wish']['product_id']))));
+            array_push($wishesPro,$this->Product->find('first', array('conditions'=>array('Product.id'=>$wishes[$i]['Wish']['product_id']))));
+
+        }
+        $this->set('wishesPro',$wishesPro);
+        /*for($i = 0; $i < count($wishesPro); $i++) {
+
+            //$this->set('wishesPro', $this->Product->find('all', array('conditions'=>array('Product_id'=>$wishes[$i]['Wish']['product_id']))));
+            echo($wishesPro[$i]['Product']['name']."->".$wishesPro[$i]['Product']['price']."<br>");
+
+        }*/
+
+
+       // $this->Wish->recursive = 0;
+       //$this->set('wishes',$this->Paginator->paginate());
 
        // print_r($this->Product->find('all'));
 	}
