@@ -15,9 +15,7 @@
 
 </head>
 
-<div id="headWish">
 
-</div>
 
 <div id="bodyWish">
     <?php

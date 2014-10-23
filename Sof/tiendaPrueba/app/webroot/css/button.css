@@ -156,3 +156,81 @@
     border-top-color: #1b435e;
     background: #1b435e;
 }
+
+#addCartButt
+{
+    border-top: 1px solid #61f298;
+    background: #74d665;
+    background: -webkit-gradient(linear, left top, left bottom, from(#3e9c5c), to(#74d665));
+    background: -webkit-linear-gradient(top, #3e9c5c, #74d665);
+    background: -moz-linear-gradient(top, #3e9c5c, #74d665);
+    background: -ms-linear-gradient(top, #3e9c5c, #74d665);
+    background: -o-linear-gradient(top, #3e9c5c, #74d665);
+    padding: 5px 10px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
+    -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
+    box-shadow: rgba(0,0,0,1) 0 1px 0;
+    text-shadow: rgba(0,0,0,.4) 0 1px 0;
+    color: white;
+    font-size: 14px;
+    font-family: Helvetica, Arial, Sans-Serif;
+    text-decoration: none;
+    vertical-align: middle;
+    margin-left: 70%;
+    margin-top: -1%;
+}
+
+#addCartButt:hover {
+    border-top-color: #59b342;
+    background: #59b342;
+    color: #fafffe;
+}
+#addCartButt:active {
+    border-top-color: #1b435e;
+    background: #1b435e;
+}
+
+#deleteWishListButton
+{
+
+    border-top: 1px solid #f2f2f2;
+    background: #878787;
+    background: -webkit-gradient(linear, left top, left bottom, from(#afbab3), to(#878787));
+    background: -webkit-linear-gradient(top, #afbab3, #878787);
+    background: -moz-linear-gradient(top, #afbab3, #878787);
+    background: -ms-linear-gradient(top, #afbab3, #878787);
+    background: -o-linear-gradient(top, #afbab3, #878787);
+    padding: 6px 12px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
+    -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
+    box-shadow: rgba(0,0,0,1) 0 1px 0;
+    text-shadow: rgba(0,0,0,.4) 0 1px 0;
+    color: white;
+    font-size: 13px;
+    font-family: Helvetica, Arial, Sans-Serif;
+    text-decoration: none;
+    vertical-align: middle;
+    margin-left: 31.5%;
+}
+
+#deleteWishListButton a
+{
+    text-decoration: none;
+}
+
+#deleteWishListButton:hover{
+    border-top-color: #757575;
+    background: #757575;
+    color: #fafffe;
+
+}
+#deleteWishListButton:active{
+    border-top-color: #1b435e;
+    background: #1b435e;
+}
