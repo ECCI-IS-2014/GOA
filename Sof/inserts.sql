@@ -52,7 +52,7 @@ INSERT INTO categories ( name, father_category_id )
 
 INSERT INTO categories ( name, father_category_id )
                        VALUES
-                       ( 'Washing Machines', 5 );
+                       ( 'Televisions', 5 );
 
 INSERT INTO categories ( name )
                        VALUES
@@ -124,7 +124,7 @@ INSERT INTO ratings ( product_id ) VALUES ( 10 );
 
 INSERT INTO products ( category_id, name, price, quantity, image )
                        VALUES
-                       ( 12, 'Candel', 100.00, 341, 'candela.jpg' );
+                       ( 12, 'Candle', 100.00, 341, 'candela.jpg' );
 
 INSERT INTO ratings ( product_id, enable_rating ) VALUES ( 11, 0 );
 
@@ -190,7 +190,7 @@ INSERT INTO ratings ( product_id, rating2, rating4 ) VALUES ( 21, 1, 1 );
 
 INSERT INTO products ( category_id, name, price, quantity, image, description )
                        VALUES
-                       ( 11, 'Washing Washing', 182000.00, 5, 'lavadora.jpg', '220v. Capacity: 1.5t' );
+                       ( 5, 'Washing Washing', 182000.00, 5, 'lavadora.jpg', '220v. Capacity: 1.5t' );
 
 INSERT INTO ratings ( product_id ) VALUES ( 22 );
 
@@ -208,7 +208,7 @@ INSERT INTO ratings ( product_id ) VALUES ( 24 );
 
 INSERT INTO products ( category_id, name, price, quantity, image,  description, rating )
                        VALUES
-                       ( 5, 'Television', 430000.00, 12, 'televisor.jpg','Sony Bravia 42', 5 );
+                       ( 11, 'Television', 430000.00, 12, 'televisor.jpg','Sony Bravia 42', 5 );
 
 INSERT INTO ratings ( product_id, rating5 ) VALUES ( 25, 2 );
 

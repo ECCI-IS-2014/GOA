@@ -7,17 +7,20 @@
       </div>
       <div class="searchBar">
         <form>
-          <select>
-            <option>cat1</option>
-            <option>cat2</option>
-            <option>cat3</option>
-            <option>cat4</option>
-            <option>cat5</option>
-          </select>
-          <input type="text" class="search">
-          <label for="search"></label>
-          <input type="button" value="Search" class="sbm"/>
-        </form> 
+			<select>
+				<!-- <option value="id">Category Name</option> -->
+			<?php
+				$categories = ClassRegistry::init('Category')->listCategoriesForHome();
+				$this->set(compact('categories'));
+				foreach ($categories as $id=>$category) {
+					echo '<option value = ' . $id . '>' . $category . '</option>';
+				}
+			?>
+			</select>
+			<input type="text" class="search">
+			<label for="search"></label>
+			<input type="button" value="Search" class="sbm"/>
+		</form> 
       </div>
     </div>
 
