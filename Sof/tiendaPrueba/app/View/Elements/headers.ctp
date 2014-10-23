@@ -7,6 +7,13 @@
       </div>
       <div class="searchBar">
         <form>
+          <select>
+            <option>cat1</option>
+            <option>cat2</option>
+            <option>cat3</option>
+            <option>cat4</option>
+            <option>cat5</option>
+          </select>
           <input type="text" class="search">
           <label for="search"></label>
           <input type="button" value="Search" class="sbm"/>
