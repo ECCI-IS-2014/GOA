@@ -116,8 +116,8 @@ class UsersController extends AppController {
             $this->User->create();
             try {
                 if ($this->User->save($this->request->data)) {
-                    $this->Session->setFlash(__('The user has been saved.'));
-                    return $this->redirect(array('action' => 'index'));
+                    $this->Session->setFlash(__('The user has been saved! Sign in to start in FutureStore!'));
+                    return $this->redirect(array('controller' => 'Pages','action' => 'home'));
                 } else {
                     $this->Session->setFlash(__('The user could not be saved. Please, try again.'));
                 }
