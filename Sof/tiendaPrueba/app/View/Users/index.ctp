@@ -16,35 +16,39 @@
 	</thead>
 	<tbody>
 	<?php foreach ($users as $user): ?>
-	<tr>
-		<td><?php echo h($user['User']['id']); ?>&nbsp;</td>
-		<td><?php echo h($user['User']['username']); ?>&nbsp;</td>
-        <td><?php if ( $user['User']['role'] == '1'): ?>
-                <?php echo h('Admin'); ?>
-            <?php else: ?>
-                <?php echo h('User'); ?>
-            <?php endif; ?>&nbsp;
-        </td>
-		<td><?php echo h($user['User']['name']); ?>&nbsp;</td>
-		<td><?php echo h($user['User']['last_name']); ?>&nbsp;</td>
-		<td><?php echo h($user['User']['phone']); ?>&nbsp;</td>
-		<td><?php echo h($user['User']['email']); ?>&nbsp;</td>
-        <td><?php if ( $user['User']['status'] == '1'): ?>
-                <?php echo h('Enabled'); ?>
-            <?php else: ?>
-                <?php echo h('Disabled'); ?>
-            <?php endif; ?>&nbsp;
-        </td>
-		<td class="actions">
-			<?php echo $this->Html->link(__('View'), array('action' => 'view', $user['User']['id'])); ?>
-			<?php if ( $user['User']['status'] == '1'): ?>
-				<?php echo $this->Form->postLink(__('Disable'), array('action' => 'disable', $user['User']['id']), array(), __('Are you sure you want to disable # %s?', $user['User']['id'])); ?>
-			<?php else: ?>
-				<?php echo $this->Form->postLink(__('Enable'), array('action' => 'enable', $user['User']['id']), array(), __('Are you sure you want to enable # %s?', $user['User']['id'])); ?>
-			<?php endif; ?>
-		</td>
-	</tr>
-<?php endforeach; ?>
+		<?php if ($user['User']['id'] != 0 ): ?>
+		<tr>
+			
+			<td><?php echo h($user['User']['id']); ?>&nbsp;</td>
+			<td><?php echo h($user['User']['username']); ?>&nbsp;</td>
+			<td><?php if ( $user['User']['role'] == '1'): ?>
+					<?php echo h('Admin'); ?>
+				<?php else: ?>
+					<?php echo h('User'); ?>
+				<?php endif; ?>&nbsp;
+			</td>
+			<td><?php echo h($user['User']['name']); ?>&nbsp;</td>
+			<td><?php echo h($user['User']['last_name']); ?>&nbsp;</td>
+			<td><?php echo h($user['User']['phone']); ?>&nbsp;</td>
+			<td><?php echo h($user['User']['email']); ?>&nbsp;</td>
+			<td><?php if ( $user['User']['status'] == '1'): ?>
+					<?php echo h('Enabled'); ?>
+				<?php else: ?>
+					<?php echo h('Disabled'); ?>
+				<?php endif; ?>&nbsp;
+			</td>
+			<td class="actions">
+				<?php echo $this->Html->link(__('View'), array('action' => 'view', $user['User']['id'])); ?>
+				<?php if ( $user['User']['status'] == '1'): ?>
+					<?php echo $this->Form->postLink(__('Disable'), array('action' => 'disable', $user['User']['id']), array(), __('Are you sure you want to disable # %s?', $user['User']['id'])); ?>
+				<?php else: ?>
+					<?php echo $this->Form->postLink(__('Enable'), array('action' => 'enable', $user['User']['id']), array(), __('Are you sure you want to enable # %s?', $user['User']['id'])); ?>
+				<?php endif; ?>
+			</td>
+			
+		</tr>
+		<?php endif; ?>
+	<?php endforeach; ?>
 	</tbody>
 	</table>
 	<p>
