@@ -13,7 +13,7 @@
 				$categories = ClassRegistry::init('Category')->listCategoriesForHome();
 				$this->set(compact('categories'));
 				foreach ($categories as $id=>$category) {
-					echo '<option value = ' . $id . '>' . $category . '</option>';
+					echo '<option value = "' . $id . '">' . $category . '</option>';
 				}
 			?>
 			</select>
