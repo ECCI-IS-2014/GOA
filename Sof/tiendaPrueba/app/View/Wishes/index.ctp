@@ -24,7 +24,7 @@
         } else { ?>
              <div>
 
-                <h1 style="font-size: 18px; text-align: center;"> "Your Wishlist is empty in this moment, what are you waiting to add some items here!"<h1>
+                <h1 style="font-size: 18px; text-align: center;"> Your Wishlist is empty in this moment, what are you waiting to add some items here!<h1>
                  <h1 style="font-size: 18px; text-align: center;"><img src = "http://i.imgur.com/8aJ7iIZ.gif" /><h1>
              </div>
 

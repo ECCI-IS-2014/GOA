@@ -87,7 +87,7 @@ class WishesController extends AppController {
                 $this->Session->setFlash(__('The product could not be saved in your wishlist. Please, try again.'));
             }
         } catch (Exception $e) {
-            $this->Session->setFlash(__('Ops! You al ready put this item in your wishlist!'));
+            $this->Session->setFlash(__('Oops! You al ready put this item in your wishlist!'));
             return $this->redirect(array('controller' => 'Products', 'action' => 'productInside','id'=>$prod_id));
 
         }
