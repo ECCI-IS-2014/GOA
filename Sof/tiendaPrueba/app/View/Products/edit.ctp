@@ -9,6 +9,8 @@
 		echo $this->Form->input('Product.price');
 		echo $this->Form->input('Product.quantity');
 		//echo $this->Form->input('Product.image');
+		echo $this->Form->input('Product.weight');
+		echo $this->Form->input('Product.volume');
         echo $this->Form->input('Product.description', array('type' => 'textarea'));
 		echo $this->Form->input('Product.enable_product');
 		echo $this->Form->input('Rating.enable_rating');

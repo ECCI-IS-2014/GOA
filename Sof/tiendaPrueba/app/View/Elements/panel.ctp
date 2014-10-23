@@ -30,15 +30,19 @@
 <?php $this->start('descriptionPanel'); ?>
 
 
-   <p style="font-weight:bold; float:left; padding-left:3%;">Name:</p> <?php echo $product['Product']['name'];?>
+   <p style="font-weight:bold; float:left; padding-left:3%;">Name:&nbsp;</p> <?php echo $product['Product']['name'];?>
    <div style="clear:both"></div>
-   <p style="font-weight:bold; float:left; padding-left:3%;">Quantity:</p> <?php   echo $product['Product']['quantity'];?>
+   <p style="font-weight:bold; float:left; padding-left:3%;">Quantity:&nbsp;</p> <?php   echo $product['Product']['quantity'];?>
    <div style="clear:both"></div>
-   <p style="font-weight:bold;float:left; padding-left:3%;">Description:</p> <?php echo $product['Product']['description'];?>
+   <p style="font-weight:bold;float:left; padding-left:3%;">Description:&nbsp;</p> <?php echo $product['Product']['description'];?>
    <div style="clear:both"></div>
-   <p style="font-weight:bold;float:left; padding-left:3%;">Price:</p> <?php  echo $this->StringFormatter->formatCurrency($product['Product']['price'],'$');?>
+   <p style="font-weight:bold;float:left; padding-left:3%;">Price:&nbsp;</p> <?php  echo $this->StringFormatter->formatCurrency($product['Product']['price'],'$');?>
    <div style="clear:both"></div>
-   <p style="font-weight:bold;float:left; padding-left:3%;">Rating:</p> <?php  echo $this->CatalogGenerator->displayRatingBox($product['Product']['rating']);?>
+   <p style="font-weight:bold;float:left; padding-left:3%;">Weight:&nbsp;</p> <?php  echo $this->StringFormatter->formatWeight($product['Product']['weight'],'kg');?>
+   <div style="clear:both"></div>
+   <p style="font-weight:bold;float:left; padding-left:3%;">Volume:&nbsp;</p> <?php  echo $this->StringFormatter->formatVolume($product['Product']['volume'],'cm');?>
+   <div style="clear:both"></div>
+   <p style="font-weight:bold;float:left; padding-left:3%;">Rating:&nbsp;</p> <?php  echo $this->CatalogGenerator->displayRatingBox($product['Product']['rating']);?>
    <div style="clear:both"></div>
 
 

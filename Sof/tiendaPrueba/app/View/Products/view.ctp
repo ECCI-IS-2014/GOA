@@ -26,6 +26,16 @@
 			<?php echo h($product['Product']['quantity']); ?>
 			&nbsp;
 		</dd>
+		<dt><?php echo __('Weight'); ?></dt>
+		<dd>
+			<?php echo h($this->StringFormatter->formatWeight($product['Product']['weight'], 'kg') ); ?>
+			&nbsp;
+		</dd>
+		<dt><?php echo __('Volume'); ?></dt>
+		<dd>
+			<?php echo $this->StringFormatter->formatVolume($product['Product']['volume'], 'cm'); ?>
+			&nbsp;
+		</dd>
 		<dt><?php echo __('Image'); ?></dt>
 		<dd>
 			<?php if ( $product['Product']['image'] != null ): ?>

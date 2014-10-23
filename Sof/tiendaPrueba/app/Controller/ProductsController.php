@@ -1,5 +1,6 @@
 <?php
 App::uses('AppController', 'Controller');
+
 /**
  * Products Controller
  *
@@ -16,7 +17,7 @@ class ProductsController extends AppController {
  */
 	public $components = array('Paginator', 'Session');
 	public $uses = array('Product','Rating');
-	public $helpers = array('CatalogGenerator', 'Html');
+	public $helpers = array('CatalogGenerator', 'StringFormatter', 'Html');
 
 /**
  * index method
