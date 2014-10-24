@@ -3,21 +3,15 @@
     <head>
          <?php echo $this->element('footers'); ?>
          <?php echo $this->element('headers'); ?>
-         <?php echo $this->element('panel'); ?>
-         <?php echo $this->element('button'); ?>
-         <?php echo $this->element('sidebar'); ?>
-         <?php echo $this->Html->css('sidebar'); ?>
          <?php echo $this->Html->css('footers'); ?>
          <?php echo $this->Html->css('headers'); ?>
-         <?php echo $this->Html->css('panel'); ?>
-         <?php echo $this->Html->css('button'); ?>
     </head>
 
     <div id="head"> <?php echo $this->fetch('headerAdmin'); ?> </div>
 
     <div id="content">
 
-        <div id="content_wrapper" style="position:relative; overflow: hidden;">
+        <div id="content_wrapper" style="position:relative;">
 
 			<div class="categories index">
 				<h2><?php echo __('Categories'); ?></h2>
@@ -52,7 +46,7 @@
 								<td class="actions">
 									<?php echo $this->Html->link(__('View'), array('action' => 'view', $category_child1['Category']['id'])); ?>
 									<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $category_child1['Category']['id'])); ?>
-									<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $category_child1['Category']['id']), array(), __('Are you sure you want to delete %s?', $category['Category']['name'])); ?>
+									<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $category_child1['Category']['id']), array(), __('Are you sure you want to delete %s?', $category_child1['Category']['name'])); ?>
 								</td>
 							</tr>
 							<?php foreach ($categories as $category_child2): ?>
@@ -66,7 +60,7 @@
 									<td class="actions">
 										<?php echo $this->Html->link(__('View'), array('action' => 'view', $category_child2['Category']['id'])); ?>
 										<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $category_child2['Category']['id'])); ?>
-										<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $category_child2['Category']['id']), array(), __('Are you sure you want to delete %s?', $category['Category']['name'])); ?>
+										<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $category_child2['Category']['id']), array(), __('Are you sure you want to delete %s?', $category_child2['Category']['name'])); ?>
 									</td>
 								</tr>
 							<?php endif; ?>

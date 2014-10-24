@@ -3,21 +3,15 @@
     <head>
          <?php echo $this->element('footers'); ?>
          <?php echo $this->element('headers'); ?>
-         <?php echo $this->element('panel'); ?>
-         <?php echo $this->element('button'); ?>
-         <?php echo $this->element('sidebar'); ?>
-         <?php echo $this->Html->css('sidebar'); ?>
          <?php echo $this->Html->css('footers'); ?>
          <?php echo $this->Html->css('headers'); ?>
-         <?php echo $this->Html->css('panel'); ?>
-         <?php echo $this->Html->css('button'); ?>
     </head>
 
     <div id="head"> <?php echo $this->fetch('headerAdmin'); ?> </div>
 
     <div id="content">
 
-        <div id="content_wrapper" style="position:relative; overflow: hidden;">
+        <div id="content_wrapper" style="position:relative;">
 
 			<div class="products index">
 				<h2><?php echo __('Products'); ?></h2>
@@ -29,7 +23,6 @@
 						<th><?php echo $this->Paginator->sort('name'); ?></th>
 						<th><?php echo $this->Paginator->sort('price'); ?></th>
 						<th><?php echo $this->Paginator->sort('quantity'); ?></th>
-						<th><?php echo $this->Paginator->sort('image'); ?></th>
 						<th><?php echo $this->Paginator->sort('enable_product'); ?></th>
 						<th><?php echo $this->Paginator->sort('rating'); ?></th>
 						<th class="actions"><?php echo __('Actions'); ?></th>
@@ -45,7 +38,6 @@
 					<td><?php echo h($product['Product']['name']); ?>&nbsp;</td>
 					<td><?php echo h($product['Product']['price']); ?>&nbsp;</td>
 					<td><?php echo h($product['Product']['quantity']); ?>&nbsp;</td>
-					<td><?php echo h($product['Product']['image']); ?>&nbsp;</td>
 					<td><?php if ( $product['Product']['enable_product'] == '1'): ?>
 							<?php echo h('Enabled'); ?>
 						<?php else: ?>
