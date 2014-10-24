@@ -18,9 +18,8 @@
              <?php echo $this->Html->css('button'); ?>
         </head>
 
+            <div id="head"><?php echo $this->fetch('header1'); ?> </div>
             <div id="content">
-
-                <div id="head"><?php echo $this->fetch('header1'); ?> </div>
 
                <div class="users form">
                    <?php echo $this->Session->flash('auth'); ?>
@@ -36,9 +35,9 @@
                    <?php echo $this->Form->end(__('Login')); ?>
                </div>
 
-                <div style="clear:both"></div>
-
-                <div id="foot"> <?php echo $this->fetch('footer1'); ?> </div>
-
             </div>
+            
+            <div style="clear:both"></div>
+
+            <div id="foot"> <?php echo $this->fetch('footer1'); ?> </div>
     </html>
