@@ -41,8 +41,8 @@ class WishesControllerTest extends ControllerTestCase {
  * @return void
  */
 	public function testAdd() {
-        $result = $this->testAction('/wishes/add');
-        debug($result);
+        /*$result = $this->testAction('/wishes/add');
+        debug($result);*/
 	}
 
 
@@ -52,8 +52,8 @@ class WishesControllerTest extends ControllerTestCase {
  * @return void
  */
 	public function testDelete() {
-        $result = $this->testAction('/wishes/delete');
-        debug($result);
+        /*$result = $this->testAction('/wishes/delete');
+        debug($result);*/
 	}
 
 }
