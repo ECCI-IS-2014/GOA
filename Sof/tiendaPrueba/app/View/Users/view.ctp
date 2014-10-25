@@ -11,7 +11,7 @@
 
     <div id="content">
 
-        <div id="content_wrapper" style="position:relative; overflow: hidden;">
+        <div id="content_wrapper" style="position:relative;">
 
 			<div class="users view">
 			<h2><?php echo __('User'); ?></h2>
@@ -92,6 +92,7 @@
 				</dl>
 			</div>
 
+			<?php if ( $user['User']['role'] == '0'): ?>
 			<div class="actions">
 				<h3><?php echo __('Actions'); ?></h3>
 				<ul>
@@ -104,6 +105,7 @@
 					</li>
 				</ul>
 			</div>
+			<?php endif; ?>
 
 		</div>
 

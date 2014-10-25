@@ -277,16 +277,22 @@ class Product extends AppModel {
      * Cambia la categoria de todos los productos cuyo categoria sea $old_cate_id por la categoria $new_cate_id
      */
     public function replaceCategory ( $old_cate_id, $new_cate_id  ) {
+		
 		$total = $this->find('count');
+
 		for ($id = 1; $id <= $total; ++$id) {
+			
 			$this->id = $id;
+
 	        if (!$this->exists()) {
 	            throw new NotFoundException(__('Invalid product'));
 	        } else {
+
 	        	if ( $this->field('category_id') == $old_cate_id ) {
 					$this->set('category_id', $new_cate_id );
 					$this->save();
 				}
+				
 			}
 		}
 	}

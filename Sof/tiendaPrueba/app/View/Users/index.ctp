@@ -31,7 +31,6 @@
 				</thead>
 				<tbody>
 				<?php foreach ($users as $user): ?>
-					<?php if ($user['User']['id'] != 0 ): ?>
 					<tr>
 						
 						<td><?php echo h($user['User']['id']); ?>&nbsp;</td>
@@ -54,15 +53,17 @@
 						</td>
 						<td class="actions">
 							<?php echo $this->Html->link(__('View'), array('action' => 'view', $user['User']['id'])); ?>
-							<?php if ( $user['User']['status'] == '1'): ?>
-								<?php echo $this->Form->postLink(__('Disable'), array('action' => 'disable', $user['User']['id']), array(), __('Are you sure you want to disable # %s?', $user['User']['id'])); ?>
-							<?php else: ?>
-								<?php echo $this->Form->postLink(__('Enable'), array('action' => 'enable', $user['User']['id']), array(), __('Are you sure you want to enable # %s?', $user['User']['id'])); ?>
+							<?php if ( $user['User']['role'] == '0'): ?>
+								<?php if ( $user['User']['status'] == '1'): ?>
+									<?php echo $this->Form->postLink(__('Disable'), array('action' => 'disable', $user['User']['id']), array(), __('Are you sure you want to disable # %s?', $user['User']['id'])); ?>
+								<?php else: ?>
+									<?php echo $this->Form->postLink(__('Enable'), array('action' => 'enable', $user['User']['id']), array(), __('Are you sure you want to enable # %s?', $user['User']['id'])); ?>
+								<?php endif; ?>
 							<?php endif; ?>
 						</td>
 						
 					</tr>
-					<?php endif; ?>
+					
 				<?php endforeach; ?>
 				</tbody>
 				</table>

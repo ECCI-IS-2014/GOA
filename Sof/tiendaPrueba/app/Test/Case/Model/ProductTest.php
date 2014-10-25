@@ -133,6 +133,17 @@ class ProductTest extends CakeTestCase {
 
     }
 
+    public function testReplaceCategory() {
+
+        $prod = $this->Product->read(null, 4);
+        $this->assertEqual($prod['Product']['category_id'], 1);
+
+        $this->Product->replaceCategory(1,3);
+        $prod = $this->Product->read(null, 4);
+        $this->assertEqual($prod['Product']['category_id'], 3);
+
+    }
+
     /**
      * tearDown method
      *

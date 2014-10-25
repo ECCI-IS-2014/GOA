@@ -27,15 +27,30 @@ class CategoryFixture extends CakeTestFixture {
  * @var array
  */
 	public $records = array(
+		/*array(
+			'id' => '0',
+			'name' => 'No category.',
+			'father_category_id' => null
+		),*/
 		array(
 			'id' => '1',
 			'name' => 'sombreros',
-			'father_category_id' => null
+			'father_category_id' => 0
 		),
 		array(
 			'id' => '2',
 			'name' => 'calzado',
-			'father_category_id' => null
+			'father_category_id' => 0
+		),
+		array(
+			'id' => '3',
+			'name' => 'tacones',
+			'father_category_id' => 2
+		),
+		array(
+			'id' => '4',
+			'name' => 'pumps',
+			'father_category_id' => 3
 		),
 	);
 

@@ -61,7 +61,7 @@ class CategoriesControllerTest extends ControllerTestCase {
 		
 		$this->assertContains('/categories', $this->headers['Location']);
 		
-		$cate = $Categories->Category->read(null, 3);
+		$cate = $Categories->Category->read(null, 5);
 		$this->assertEqual($cate['Category']['name'], 'bolsos');
     }
 

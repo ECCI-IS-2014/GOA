@@ -38,8 +38,6 @@ class Category extends AppModel {
 		)
 	);
 
-    //Cosas de prueba para hacer lo de la relación recursiva
-
     public $belongsTo = array(
         'Parent' => array(
             'className' => 'Category',
@@ -72,9 +70,17 @@ class Category extends AppModel {
         )
     );
 	
+	/*
+     * Devuelve una lista de la forma [id] => 'nombreCategoria' de todas las categorias que se 
+     * encuentran en los niveles 0, 1 o 2 del arbol de categorias. No incluye en la lista la 
+     * categoria con id igual a $ignore_id.
+     */
 	public function listCategoriesBelowLevel3( $ignore_id = null ) {
+		
 		$this->id = 0;
-		$result[0] = $this->field('name');
+		if ($this->exists()) {
+			$result[0] = $this->field('name');
+		}
 
 		$max = $this->find('first', array('fields' => array('MAX(Category.id) as max_id')));
 		
@@ -103,7 +109,12 @@ class Category extends AppModel {
 		return $result;
 	}
 
+	/*
+     * Delvuelve una lista de la forma [id] => 'nombreCategoria' de todas las categorias en forma de
+     * arbol. Ademas incluye la opcion [-1] => 'All Categories'.
+     */
 	public function listCategoriesForHome () {
+		
 		$result[-1] = 'All Categories';
 
 		$max = $this->find('first', array('fields' => array('MAX(Category.id) as max_id')));
