@@ -10,14 +10,14 @@
                 <div id="sidebar_content_interior">
 
                     <div id="sidebar_keyword">
-                        <span class="title">By keyword</span>
-                        <input type="text" class="sidebar_keyword future_store_textbar3">
+                        <label class="title" for="txt1">By keyword</label>
+                        <input type="text" class="sidebar_keyword future_store_textbar3" id="txt1">
                     </div>
 
                     <div id="sidebar_field">
                         <div>
-                            <span class="title">By field</span>
-                            <select class="future_store_combobox">
+                            <label class="title" for="cmbx1">By field</label>
+                            <select class="future_store_combobox" id="cmbx1">
                                 <option>Any</option>
                                 <option>Price</option>
                                 <option>Rating</option>
@@ -26,11 +26,14 @@
                             </select>    
                         </div>
                         <div>
-                            <div class="l1">
-                                <span class="label">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Greater than </span><input type="text" class="sidebar_field_gt future_store_textbar3">
+                            <div class="l3">
+                                <label class="label" for="txt2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Equal to </label><input type="text" class="sidebar_field_et future_store_textbar3" id="txt2">    
+                            </div>  
+                            <div class="l1" style="display: none">
+                                <label class="label" for="txt3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Greater than </label><input type="text" class="sidebar_field_gt future_store_textbar3" id="txt3">
                             </div>
-                            <div class="l2">
-                                <span class="label">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Lesser than </span><input type="text" class="sidebar_field_lt future_store_textbar3">    
+                            <div class="l2" style="display: none">
+                                <label class="label" for="txt4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Lesser than </label><input type="text" class="sidebar_field_lt future_store_textbar3" id="txt4">    
                             </div>  
                         </div>
                         
@@ -38,8 +41,8 @@
 
                     <div id="sidebar_category">
                         <div>
-                            <span class="title">In category</span>
-                            <select class="future_store_combobox">
+                            <label class="title" for="cmbx2">In category</label>
+                            <select class="future_store_combobox" id="cmbx2">
                                 <?php
                                     $categories = ClassRegistry::init('Category')->listCategoriesForHome();
                                     $this->set(compact('categories'));
@@ -50,6 +53,15 @@
                             </select>    
                         </div>
                         
+                    </div>
+
+                    <div id="sidebar_options">
+                        <div class="l4">
+                            <input type="checkbox" name="chbx1" value="" id="chbx1"><label for="chbx1">Show only if ALL fields are matched</label>  
+                        </div>
+                        <div class="l5">
+                            <input type="checkbox" name="chbx2" value="" id="chbx2"><label for="chbx2">Match within interval</label>  
+                        </div>
                     </div>
                     
                     <input type="button" id="search_btn" value="Search" class="future_store_basic_orange_button"/>
@@ -77,7 +89,7 @@
         $(document).ready(function () {
 
         	sidebarWidth = $("#sidebar #sidebar_content_interior").outerWidth();
-        	//closeSidebarInstantly();
+        	closeSidebarInstantly();
 
             if(getUrlParameter('op') == 'search') {
                 startWithSearch = true;
@@ -90,6 +102,19 @@
             $("#search_btn").click(function(){
                 //gotoPanel("search_results", true);
                 gotoSearch( "la", -1 );
+            });
+
+            $("input#chbx2").change(function() {
+                if ($(this).is(':checked')) {
+                    $("div.l1").css("display", "block");
+                    $("div.l2").css("display", "block");
+                    $("div.l3").css("display", "none");
+                }
+                else {
+                    $("div.l1").css("display", "none");
+                    $("div.l2").css("display", "none");
+                    $("div.l3").css("display", "block");
+                }
             });
 
             if(startWithSearch == true) {

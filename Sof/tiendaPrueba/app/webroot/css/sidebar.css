@@ -4,7 +4,7 @@
     float:left;
     overflow:hidden;
     width: 280px;
-    height: 363px;
+    height: 413px;
     margin-top: 30px;
     position: relative;
 }
@@ -24,7 +24,7 @@
     position: relative;
     margin-top: 4px;
     width: 240px;
-    height: 355px;
+    height: 405px;
     background-color: #989898;
 
     border-top-right-radius: 20px;
@@ -55,17 +55,41 @@
     background-image: url('../img/Pattern6.jpg');
     background-repeat: repeat;
     width: 100%;
-    height: 315px;
+    height: 365px;
     //padding: 9px 9px 9px 9px;
     position: relative;
 }
 
-#sidebar_content_interior #sidebar_keyword, #sidebar_content_interior #sidebar_field, #sidebar_content_interior #sidebar_category {
+#sidebar_content_interior #sidebar_keyword, #sidebar_content_interior #sidebar_field, #sidebar_content_interior #sidebar_category, #sidebar_content_interior #sidebar_options {
     padding: 10px 10px 10px 10px;
 }
 
 #sidebar_content_interior #sidebar_field {
     
+}
+
+#sidebar_content_interior #sidebar_options {
+    
+}
+
+#sidebar_content_interior label {
+    display: inline;
+}
+
+#sidebar_content_interior #sidebar_options label {
+    width: 100px;
+}
+
+#sidebar_content_interior #sidebar_options div input[type='checkbox'] {
+    //margin: auto 0;
+}
+
+#sidebar_content_interior #sidebar_options #chbx1 {
+    margin-top:  15px;
+}
+
+#sidebar_content_interior #sidebar_options #chbx2 {
+    margin-top:  5px;
 }
 
 #sidebar_content_interior a {
@@ -77,13 +101,13 @@
     color: #ededed;
 }
 
-#sidebar_content_interior span {
+#sidebar_content_interior label {
     color: #ededed;
     font-size: 11px;
     letter-spacing: 1px;
 }
 
-#sidebar_content_interior span.title {
+#sidebar_content_interior label.title {
     color: #ff944d;
     //text-shadow: 0px 1px 1px #ff8533;
     font-family: Tahoma;
@@ -103,8 +127,12 @@
     width: 73px;
 }
 
-#sidebar_content_interior #sidebar_field div.l1, #sidebar_content_interior #sidebar_field div.l2 {
+#sidebar_content_interior #sidebar_field div.l1, #sidebar_content_interior #sidebar_field div.l2, #sidebar_content_interior #sidebar_field div.l3 {
     margin: 10px 0 10px 0;
+}
+
+#sidebar_content_interior #sidebar_options div.l4, #sidebar_content_interior #sidebar_options div.l5 {
+    margin-bottom: 10px;
 }
 
 #sidebar_content_interior #sidebar_field select {
@@ -127,8 +155,9 @@
 
 #sidebar_content_interior #search_btn {
     width: 140px;
-    margin-left: 46px;
-    margin-top: 40px;
+    position: absolute;
+    bottom: 26px;
+    left: 46px;
 }
 
 #sidebar #buttontog
