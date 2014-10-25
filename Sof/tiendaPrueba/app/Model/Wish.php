@@ -39,4 +39,12 @@ class Wish extends AppModel {
 			'order' => ''
 		)
 	);
+
+
+
+
+    public function getAllWishes() {
+        $result = $this->find('all');
+        return $result;
+    }
 }

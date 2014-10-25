@@ -30,6 +30,13 @@ class WishTest extends CakeTestCase {
 		$this->Wish = ClassRegistry::init('Wish');
 	}
 
+
+
+    public function testGetAllProducts() {
+        $wishes = $this->Wish->getAllWishes();
+        // en fixtures se tienen 3 wishes definidos
+        $this->assertCount( 3, $wishes );
+    }
 /**
  * tearDown method
  *

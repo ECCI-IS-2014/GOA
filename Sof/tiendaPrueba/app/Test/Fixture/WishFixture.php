@@ -29,10 +29,20 @@ class WishFixture extends CakeTestFixture {
  */
 	public $records = array(
 		array(
-			'id' => 1,
-			'user_id' => 1,
-			'product_id' => 1
+			'id' => '1',
+			'user_id' => '1',
+			'product_id' => '1'
 		),
+        array(
+            'id' => '2',
+            'user_id' => '1',
+            'product_id' => '2'
+        ),
+        array(
+            'id' => '3',
+            'user_id' => '2',
+            'product_id' => '3'
+        ),
 	);
 
 }

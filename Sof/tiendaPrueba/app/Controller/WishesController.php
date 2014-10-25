@@ -54,15 +54,16 @@ class WishesController extends AppController {
  *
  * @return void
  */
-	public function add() {
+
+
+  public function add() {
         $prod_id = $this->passedArgs['id'];
         $us_id=$this->Session->read('Auth.User.id');
         $data = array('user_id' => $us_id,'product_id'=>$prod_id);
         try {
             if ($this->Wish->save($data)) {
-                $this->redirect(
-                    array('controller' => 'Products', 'action' => 'productInside','id'=>$prod_id)
-                );
+                $this->Session->setFlash(__('The product has been corretly added to your wishlist! '));
+                return $this->redirect(array('controller' => 'Products', 'action' => 'productInside','id'=>$prod_id));
             } else {
                 $this->Session->setFlash(__('The product could not be saved in your wishlist. Please, try again.'));
             }
@@ -75,6 +76,8 @@ class WishesController extends AppController {
 	}
 
 
+
+
 /**
  * delete method
  *
@@ -83,14 +86,21 @@ class WishesController extends AppController {
  * @return void
  */
 	public function delete($id = null) {
-        $prod_id = $this->passedArgs['id'];
-        $us_id=$this->Session->read('Auth.User.id');
+        if ($id == null) {
+            $prod_id = $this->passedArgs['id'];
+            $us_id=$this->Session->read('Auth.User.id');
+        } else {
+            $this->request->onlyAllow('post');
+            $this->Wish->id = $id;
+            $prod_id = $this->Wish->query("SELECT product_id FROM WISHES WHERE id = ".$id.";");
+            $us_id= $this->Wish->query("SELECT user_id FROM WISHES WHERE id = ".$id.";");
+        }
 
-		if ( !$this->Wish->query("DELETE FROM WISHES WHERE product_id = ".$prod_id." AND user_id =".$us_id.";")) {
-			$this->Session->setFlash(__('The wish has been deleted.'));
-		} else {
-			$this->Session->setFlash(__('The wish could not be deleted. Please, try again.'));
-		}
-		return $this->redirect(array('action' => 'index'));
+            if ( !$this->Wish->query("DELETE FROM WISHES WHERE product_id = ".$prod_id." AND user_id =".$us_id.";")) {
+                $this->Session->setFlash(__('The wish has been deleted.'));
+            } else {
+                $this->Session->setFlash(__('The wish could not be deleted. Please, try again.'));
+            }
+            return $this->redirect(array('action' => 'index'));
 	}
 }
