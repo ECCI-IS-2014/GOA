@@ -16,9 +16,9 @@
     				}
     			?>
     			</select>
-    			<input type="text" class="search">
+    			<input type="text" class="search future_store_textbar">
     			<label for="search"></label>
-    			<input type="button" value="Search" class="sbm"/>
+    			<input type="button" value="Search" class="future_store_basic_orange_button sbm"/>
     		</form> 
         </div>
     </div>
@@ -50,6 +50,32 @@
             </div>
 
     </div>
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+          $(".sbm").click(function(){
+              gotoSearch( $(".searchBar input.search").val(), $(".searchBar select").val() );
+          });
+
+        });
+
+        function gotoSearch(value, cate_id) {
+
+            var url = '<?php
+              echo $this->Html->url(array(
+                  "controller" => "Pages",
+                  "action" => "home",
+                  "?" => array("op" => "search")
+              ));
+            ?>' + "&val=" + value + "&cat=" + cate_id;
+
+            window.location.href = url;
+
+        }
+
+    </script>
 
 <?php $this->end(); ?>
 

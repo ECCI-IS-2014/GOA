@@ -57,11 +57,6 @@
         var logoVisible = true;
         var allowTopHeaderHiding = false;
         var topHeaderHideMargin = 96;
-        var startWithSearch = false;
-
-        if(getUrlParameter('op') == 'search') {
-            startWithSearch = true;
-        }
 
         $(document).ready(function() {
             $("body").css("overflow", "hidden");
@@ -70,7 +65,9 @@
             setTimeout(function(){
                 allowTopHeaderHiding = true;
                 if( $('#content_wrapper').is(":hover") ) {
-                    hideTopHeader();
+                    if(comboboxOpen != true) {
+                        hideTopHeader();    
+                    }
                 }
             }, 3000);
         });
@@ -95,40 +92,20 @@
         function configureEvents() {
 
             $("#content_wrapper").mouseenter(function(){
-                if(logoVisible == true) {
+                if(logoVisible == true && comboboxOpen != true) {
                     hideTopHeader();
                 }
             });
 
             $("#topHeader").mouseenter(function(){
-                if(logoVisible == false) {
+                if(logoVisible == false && comboboxOpen != true) {
                     showTopHeader();
                 }
             });
 
-            $(".sbm").click(function(){
-                gotoSearch($("input.search").val());
-            });
-
         }
 
-        function gotoSearch(value) {
-            var url = "<?php echo $this->html->url('', true); ?>" + "?op=search&val=" + value;
-            window.location.href = url;
-        }
-
-        function getUrlParameter(sParam) {
-            var sPageURL = window.location.search.substring(1);
-            var sURLVariables = sPageURL.split('&');
-            for (var i = 0; i < sURLVariables.length; i++) 
-            {
-                var sParameterName = sURLVariables[i].split('=');
-                if (sParameterName[0] == sParam) 
-                {
-                    return sParameterName[1];
-                }
-            }
-        }   
+         
 
 
         /*
@@ -137,6 +114,7 @@
          *      -Luego de los 3 segundos iniciales, cuando el cursor se encuentre dentro del panel principal de home, el header se contrae.
          *      -Cuando el cursor se encuentre dentro del header, el header se expande.
          *      -Si el usuario ha escrito algo en la barra de búsqueda, el header se mantiene expandido bajo cualquier circunstancia.
+         *      -Si existe un elemento <select> desplegado en la página, el header no cambia de estado bajo ninguna circunstancia.
          */
 
         function hideTopHeader() {

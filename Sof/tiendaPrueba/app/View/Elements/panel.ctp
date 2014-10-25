@@ -149,7 +149,9 @@
         <div class="catalog_holder named">
           <h3>Your search results.</h3>
           <?php 
-            echo $this->CatalogGenerator->formatProducts( $products ); 
+            if($s_params['op'] == 'search') {
+              echo $this->CatalogGenerator->formatProducts( $s_results );
+            } 
           ?>
         </div>
       </div>

@@ -48,4 +48,16 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 
 	<?php echo $this->Js->writeBuffer(); ?>
 </body>
+
+<script type="text/javascript">
+	var comboboxOpen = false;
+	$(document).ready(function(){
+	    $('select').focus(function(){
+	        comboboxOpen = true;
+	    }).blur(function(){
+	        comboboxOpen = false;
+	    });
+	});
+</script>
+
 </html>

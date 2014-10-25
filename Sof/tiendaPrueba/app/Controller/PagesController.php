@@ -81,7 +81,26 @@ class PagesController extends AppController {
 
         $this->set( 'products', $this->Product->find('all') );
 
-    }
+        $query = array();
+        $url = $_SERVER['REQUEST_URI'];
+	    $parts = parse_url($url);
 
+	    if(isset($parts['query'])) {
+	    	parse_str($parts['query'], $query);
+
+		    if(isset($query['op'])) {
+		    	$res = array(
+			    	'op' => $query['op'],
+			    	'val' => $query['val'],
+			    	'cat' => $query['cat']
+			    );
+			    
+	        	$this->set('s_params', $res);
+	        	$this->set('s_results', $this->Product->getProductsInCategoryByAttributeLike('name', $res['val'], $res['cat'], $order_by = null, $direction = 'DESC'));
+		    }
+
+	    }
+	   
+    }
 
 }

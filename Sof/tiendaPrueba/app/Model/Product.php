@@ -202,6 +202,35 @@ class Product extends AppModel {
 	}
 
 	/*
+     * Obtiene todos los productos de la BD para los cuales su atributo $attribute contenga a $like como subcadena y que pertenezcan a la categoría con id $cate_id.
+     * Si $cate_id es -1 no hace restricción de categorías.
+     * Si $order_by es especificado, ordena los resultados según el atributo $order_by, en dirección $direction
+     */
+	public function getProductsInCategoryByAttributeLike($attribute, $like, $cate_id, $order_by = null, $direction = 'DESC') {
+
+		$like = strtolower($like);
+
+		if($order_by != null) {
+			$order = "ORDER BY " . $order_by . " " . $direction;
+		}
+		else {
+			$order = '';
+		}
+
+		$category_condition = " ";
+
+		// TODO: Proteger consultas contra inyección SQL.
+		if($cate_id > 0) {
+			$category_condition = " category_id = " . $cate_id . " AND ";
+		}
+
+		$result = $this->query("SELECT * FROM products AS Product WHERE " . $category_condition . $attribute . " LIKE '%" . $like . "%' " . $order . ";");
+
+		return $result;
+
+	}
+
+	/*
      * Obtiene todos los productos de la BD en cuales el atributo $attribute sea mayor o igual que $greater_equals y menor o igual que $lesser_or_equals
      * Si $order_by es especificado, ordena los resultados según el atributo $order_by, en dirección $direction
      */
