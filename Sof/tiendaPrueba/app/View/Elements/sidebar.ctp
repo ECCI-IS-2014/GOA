@@ -153,7 +153,7 @@
 
         //Open sidebar with animation for ms miliseconds
         function openSidebar(ms) {
-            $("#sidebar #sidebar_content").animate({
+            $("#sidebar").animate({
                 marginLeft: '+=' + sidebarWidth + 'px'
             }, ms, "easeOutQuart", function() {
                 sidebarIsOpen = true;
@@ -162,7 +162,7 @@
 
         //Close sidebar with animation for ms miliseconds
         function closeSidebar(ms) {
-            $("#sidebar #sidebar_content").animate({
+            $("#sidebar").animate({
                 marginLeft: '-=' + sidebarWidth + 'px'
             }, ms, "easeOutQuart", function() {
                 sidebarIsOpen = false;
@@ -171,13 +171,13 @@
 
         //Open sidebar without animation
         function openSidebarInstantly() {
-        	$("#sidebar_content").css("margin-left", '0');
+        	$("#sidebar").css("margin-left", '0');
         	sidebarIsOpen = true;
         }
 
         //Close sidebar without animation
         function closeSidebarInstantly() {
-        	$("#sidebar_content").css("margin-left", -1*sidebarWidth + 'px');
+        	$("#sidebar").css("margin-left", -1*sidebarWidth + 'px');
         	sidebarIsOpen = false;
         }
 
