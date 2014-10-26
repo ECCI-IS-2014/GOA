@@ -27,6 +27,7 @@ class CategoryTest extends CakeTestCase {
 
         $result = $this->Category->listCategoriesBelowLevel3();
 
+        $expected[0] = 'No category.';
         $expected[1] = 'sombreros';
         $expected[2] = 'calzado';
         $expected[3] = 'tacones';
@@ -39,8 +40,8 @@ class CategoryTest extends CakeTestCase {
 
         $result = $this->Category->listCategoriesBelowLevel3(2);
 
+        $expected[0] = 'No category.';
         $expected[1] = 'sombreros';
-        $expected[3] = 'tacones';
 
         $this->assertEquals( $result, $expected );
 
