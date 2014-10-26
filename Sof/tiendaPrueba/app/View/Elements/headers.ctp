@@ -29,7 +29,7 @@
              <ul>
                <li><a href="http://localhost/GOA/Sof/tiendaPrueba/Pages/Home">Home</a></li>
 
-               <li><a href="http://localhost/GOA/Sof/tiendaPrueba/Users/Profile" class="drop">Account</a></li>
+               <li><a href="http://localhost/GOA/Sof/tiendaPrueba/Users/Profile" class="drop">  <?php echo $this->Session->read('Auth.User.name')?> Account </a></li>
                <!-- <ul class="dropDown">
                             <li><a href="#">Management</a></li>
 
@@ -42,8 +42,10 @@
                <?php if ($this->Session->read('Auth.User.id') == null): ?>
                     <li><a href="http://localhost/GOA/Sof/tiendaPrueba/users/add">Register</a></li>
                     <li><a href="http://localhost/GOA/Sof/tiendaPrueba/users/login">Sign In</a></li>
-                <? else: ?>
-                    <li>Welcome <?php $this->Session->read('Auth.User.name') ?> </li>
+                 <?php endif; ?>
+
+                 <?php if ($this->Session->read('Auth.User.id') != null): ?>
+                    <li><?php echo $this->Html->link('Logout', array('controller' => 'users', 'action' => 'logout')); ?> </li>
                  <?php endif; ?>
                 <li><a class="endMenuHeader">&nbsp;</a></li>
                 </ul>

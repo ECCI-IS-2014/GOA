@@ -19,8 +19,11 @@
 
 <div id="bodyWish">
     <?php
-    if (count($wishesPro) > 0) {
-            echo $this->CatalogGenerator->formatWishes($wishesPro, 12 );
+    if (count($wishesPro) > 0) { ?>
+        <div>
+        <h1 style="font-size: 18px; text-align: center;"> Welcome to your Wishlist <?php echo $this->Session->read('Auth.User.name'); ?> , add all you like here! We will keep it for you!<h1>
+        </div>
+            <?php echo $this->CatalogGenerator->formatWishes($wishesPro, 12 );
         } else { ?>
              <div>
 
