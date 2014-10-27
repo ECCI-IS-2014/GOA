@@ -38,7 +38,7 @@
 					</ul>-->
 
 				   <li><a href="<?php echo $this->Html->url(array('controller' => 'wishes','action' => 'index'));?>">MyWishlist</a></li>
-				   <li><a href="#">MyCart</a></li>
+				   <li><a href="<?php echo $this->Html->url(array('controller' => 'carts','action' => 'index'));?>">MyCart</a></li>
 			   <?php endif; ?>
 			   
                <li><a href="#">Sales</a></li>
