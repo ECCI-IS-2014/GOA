@@ -1011,3 +1011,7 @@ select.future_store_combobox {
     color: #e75c00;
     text-shadow: 0px 1px 1px #ff8534;
 }
+
+#flashMessage {
+	margin-bottom: 0;
+}

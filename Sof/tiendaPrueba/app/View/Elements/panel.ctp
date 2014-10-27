@@ -65,7 +65,7 @@
 <?php $this->start('optionsPanel'); ?>
 
     <div id="buttonHolder">
-    <button id="addCartButton">Add to Cart</button>
+    <button id="addCartButton"><a href="<?php echo $this->Html->url(array('controller' => 'carts','action' => 'add','id'=>$product['Product']['id']));?>"> Add to Cart </a></button>
     <br>
     <button id="addWishListButton"><a href="<?php echo $this->Html->url(array('controller' => 'wishes','action' => 'add','id'=>$product['Product']['id']));?>"> Add to Wish List </a></button>
     <br>

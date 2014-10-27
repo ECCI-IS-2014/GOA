@@ -147,8 +147,41 @@ class CatalogGeneratorHelper extends AppHelper {
 
         return $result_string . '</div>';
 
+    }
+
+     //Método que muestra productos del carro.
+
+    public function formatCart($prodCarts, $limit = null) {
+        echo $this->Html->css('catalogs');
+
+        $result_string = '<div>';
+        for($i = 0; $i < count($prodCarts); $i++) {
+
+            if( $i < $limit || is_null($limit) ) {
 
 
+
+                $result_string = $result_string
+                    ."<div class='wish_item'>".
+                        $this->Html->image('product_icons/'.$prodCarts[$i]['Product']['image'], array('alt' => 'CakePHP', 'class' => 'p_photo','style'=>'height:100%; width:8%; float:left;')) .
+                        "<div class='infoPan' style='margin-bottom: 1.5%;'>".
+                            "<p style='font-weight:bold; float:left; margin-left:2%;'>".'Name:'."</p >"."<p style='width:40%; margin-bottom:0%; margin-right:0%;'> ".$prodCarts[$i]['Product']['name']."</p>"."<button id='deleteCartButton'>".'Delete'."</button>"."<div>"."</div>".
+                            "<br>".
+                            "<p style='font-weight:bold; float:left; margin-left:2%;'>".'Price:'."</p>"."<p style='width:40%; margin-bottom:0%; margin-right:0%; float:left;'> " .$this->StringFormatter->formatCurrency($prodCarts[$i]['Product']['price'], '$')."</p>"."<button id='deleteCartButton'>".'Delete'."</button>"."<div>"."</div>".
+                            "<br>".
+                            "<div id='ratingHolder' style='margin-left: 10%;'>".
+                                $this->displayRatingBox($prodCarts[$i]['Product']['rating']).
+                            "</div>".
+                        "</div>".
+                        "<div style='clear:both'>"."</div>".
+                    "<hr>".
+
+                    "</div>";
+
+            }
+
+        }
+        return $result_string . '</div>';
     }
 
 }
