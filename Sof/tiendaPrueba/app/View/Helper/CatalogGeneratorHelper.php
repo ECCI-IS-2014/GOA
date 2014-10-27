@@ -87,21 +87,39 @@ class CatalogGeneratorHelper extends AppHelper {
 
             if ($wishes[$i]['Product']['enable_product'] == 1) {
                 if( $i < $limit || is_null($limit) ) {
-                    $result_string = $result_string
-                        ."<div class='wish_item'>".
-                        $this->Html->image('product_icons/'.$wishes[$i]['Product']['image'], array('alt' => 'CakePHP', 'class' => 'p_photo','style'=>'height:100%; width:8%; float:left;')) .
-                        "<div class='infoPan' style='margin-bottom: 1.5%;'>".
-                        "<p style='font-weight:bold; float:left; margin-left:2%;'>".'Name:'."</p >"."<p style='width:40%; margin-bottom:0%; margin-right:0%;'> ".$wishes[$i]['Product']['name']."</p>"."<button id='addCartButt'>".'Add to Cart'."</button>"."<div>"."</div>".
-                        "<br>".
-                        "<p style='font-weight:bold; float:left; margin-left:2%;'>".'Price:'."</p>"."<p style='width:40%; margin-bottom:0%; margin-right:0%; float:left;'> " .$this->StringFormatter->formatCurrency($wishes[$i]['Product']['price'], '$')."</p>"."<button id='deleteWishListButton'>"."<a href=".$this->Html->url(array('controller' => 'wishes','action' => 'delete', 'id'=>$wishes[$i]['Product']['id'])).">".'Delete'."</a>"."</button>"."<div>"."</div>".
-                        "<br>".
-                        "<p style='font-weight:bold; float:left; margin-left:10%;'>".'In stock now:'."</p>"."<p style='width:40%; margin-bottom:0%; margin-right:0%; float:left;'> " .$wishes[$i]['Product']['quantity']."</div>".
-                        "<br>".
-                        "<div id='ratingHolder' style='margin-left: 10%; float:left;'>".$this->displayRatingBox($wishes[$i]['Product']['rating'])."</div>".
-                        "</div>".
-                        "<div style='clear:both'>"."</div>".
-                        "<hr>".
-                        "</div>";
+                    if  ($wishes[$i]['Product']['quantity'] > 0) {
+                        $result_string = $result_string
+                            ."<div class='wish_item'>".
+                            $this->Html->image('product_icons/'.$wishes[$i]['Product']['image'], array('alt' => 'CakePHP', 'class' => 'p_photo','style'=>'height:100%; width:8%; float:left;')) .
+                            "<div class='infoPan' style='margin-bottom: 1.5%;'>".
+                            "<p style='font-weight:bold; float:left; margin-left:2%;'>".'Name:'."</p >"."<p style='width:40%; margin-bottom:0%; margin-right:0%;'> ".$wishes[$i]['Product']['name']."</p>"."<button id='addCartButt'>".'Add to Cart'."</button>"."<div>"."</div>".
+                            "<br>".
+                            "<p style='font-weight:bold; float:left; margin-left:2%;'>".'Price:'."</p>"."<p style='width:40%; margin-bottom:0%; margin-right:0%; float:left;'> " .$this->StringFormatter->formatCurrency($wishes[$i]['Product']['price'], '$')."</p>"."<button id='deleteWishListButton'>"."<a href=".$this->Html->url(array('controller' => 'wishes','action' => 'delete', 'id'=>$wishes[$i]['Product']['id'])).">".'Delete'."</a>"."</button>"."<div>"."</div>".
+                            "<br>".
+                            "<p style='font-weight:bold; float:left; margin-left:10%;'>".'In stock now:'."</p>"."<p style='width:40%; margin-bottom:0%; margin-right:0%; float:left;'> " .$wishes[$i]['Product']['quantity']."</div>".
+                            "<br>".
+                            "<div id='ratingHolder' style='margin-left: 10%; float:left;'>".$this->displayRatingBox($wishes[$i]['Product']['rating'])."</div>".
+                            "</div>".
+                            "<div style='clear:both'>"."</div>".
+                            "<hr>".
+                            "</div>";
+                    } else {
+                        $result_string = $result_string
+                            ."<div class='wish_item'>".
+                            $this->Html->image('product_icons/'.$wishes[$i]['Product']['image'], array('alt' => 'CakePHP', 'class' => 'p_photo','style'=>'height:100%; width:8%; float:left;')) .
+                            "<div class='infoPan' style='margin-bottom: 1.5%;'>".
+                            "<p style='font-weight:bold; float:left; margin-left:2%;'>".'Name:'."</p >"."<p style='width:40%; margin-bottom:0%; margin-right:0%;'> ".$wishes[$i]['Product']['name']."</p>"."<button id='addCartButt' disabled>".'Add to Cart'."</button>"."<div>"."</div>".
+                            "<br>".
+                            "<p style='font-weight:bold; float:left; margin-left:2%;'>".'Price:'."</p>"."<p style='width:40%; margin-bottom:0%; margin-right:0%; float:left;'> " .$this->StringFormatter->formatCurrency($wishes[$i]['Product']['price'], '$')."</p>"."<button id='deleteWishListButton'>"."<a href=".$this->Html->url(array('controller' => 'wishes','action' => 'delete', 'id'=>$wishes[$i]['Product']['id'])).">".'Delete'."</a>"."</button>"."<div>"."</div>".
+                            "<br>".
+                            "<p style='font-weight:bold; float:left; margin-left:10% color: red;'>".'Out stock!'."</p>".
+                            "<br>".
+                            "<div id='ratingHolder' style='margin-left: 10%; float:left;'>".$this->displayRatingBox($wishes[$i]['Product']['rating'])."</div>".
+                            "</div>".
+                            "<div style='clear:both'>"."</div>".
+                            "<hr>".
+                            "</div>";
+                    }
                 }
 
             } else {
@@ -111,11 +129,11 @@ class CatalogGeneratorHelper extends AppHelper {
                         ."<div class='wish_item'>".
                         $this->Html->image('product_icons/'.$wishes[$i]['Product']['image'], array('alt' => 'CakePHP', 'class' => 'p_photo','style'=>'height:100%; width:8%; float:left;')) .
                         "<div class='infoPan' style='margin-bottom: 1.5%;'>".
-                        "<p style='font-weight:bold; float:left; margin-left:2%;'>".'Name:'."</p >"."<p style='width:40%; margin-bottom:0%; margin-right:0%;'> ".$wishes[$i]['Product']['name']."</p>"."<button id='addCartButt'>".'Add to Cart'."</button>"."<div>"."</div>".
+                        "<p style='font-weight:bold; float:left; margin-left:2%;'>".'Name:'."</p >"."<p style='width:40%; margin-bottom:0%; margin-right:0%;'> ".$wishes[$i]['Product']['name']."</p>"."<button id='addCartButt' disabled>".'Add to Cart'."</button>"."<div>"."</div>".
                         "<br>".
                         "<p style='font-weight:bold; float:left; margin-left:2%;'>".'Price:'."</p>"."<p style='width:40%; margin-bottom:0%; margin-right:0%; float:left;'> " .$this->StringFormatter->formatCurrency($wishes[$i]['Product']['price'], '$')."</p>"."<button id='deleteWishListButton'>"."<a href=".$this->Html->url(array('controller' => 'wishes','action' => 'delete', 'id'=>$wishes[$i]['Product']['id'])).">".'Delete'."</a>"."</button>"."<div>"."</div>".
                         "<br>".
-                        "<p style='font-weight:bold; float:left; margin-left:10%;'>".'In stock now:'."</p>"."<p style='width:40%; margin-bottom:0%; margin-right:0%; float:left;'> " ."<p style = 'color: red'> This product is not available for the moment, we're sorry! </p>"."</div>".
+                        "<p style='font-weight:bold; float:left; margin-left:10%; color:red;'>".'We are sorry this product is disabled, we are having problems with the company that distributes this product.'."</p>"."</div>".
                         "<br>".
                         "<div id='ratingHolder' style='margin-left: 10%; float:left;'>".$this->displayRatingBox($wishes[$i]['Product']['rating'])."</div>".
                         "</div>".
