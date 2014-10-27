@@ -145,17 +145,17 @@ class CatalogGeneratorHelper extends AppHelper {
 
                 $result_string = $result_string
                     ."<div class='wish_item'>".
-                    $this->Html->image('product_icons/'.$prodCarts[$i]['Product']['image'], array('alt' => 'CakePHP', 'class' => 'p_photo','style'=>'height:100%; width:8%; float:left;')) .
-                    "<div class='infoPan' style='margin-bottom: 1.5%;'>".
-                    "<p style='font-weight:bold; float:left; margin-left:2%;'>".'Name:'."</p >"."<p style='width:40%; margin-bottom:0%; margin-right:0%;'> ".$prodCarts[$i]['Product']['name']."</p>"."<button id='addCartButt'>".'Add to Cart'."</button>"."<div>"."</div>".
-                    "<br>".
-                    "<p style='font-weight:bold; float:left; margin-left:2%;'>".'Price:'."</p>"."<p style='width:40%; margin-bottom:0%; margin-right:0%; float:left;'> " .$this->StringFormatter->formatCurrency($prodCarts[$i]['Product']['price'], '$')."</p>"."<button id='deleteCartButton'>".'Delete'."</button>"."<div>"."</div>".
-                    "<br>".
-                    "<div id='ratingHolder' style='margin-left: 10%;'>".$this->displayRatingBox($prodCarts[$i]['Product']['rating'])."</div>".
-                    "</div>".
-                    "<div style='clear:both'>"."</div>".
-
-
+                        $this->Html->image('product_icons/'.$prodCarts[$i]['Product']['image'], array('alt' => 'CakePHP', 'class' => 'p_photo','style'=>'height:100%; width:8%; float:left;')) .
+                        "<div class='infoPan' style='margin-bottom: 1.5%;'>".
+                            "<p style='font-weight:bold; float:left; margin-left:2%;'>".'Name:'."</p >"."<p style='width:40%; margin-bottom:0%; margin-right:0%;'> ".$prodCarts[$i]['Product']['name']."</p>"."<button id='deleteCartButton'>".'Delete'."</button>"."<div>"."</div>".
+                            "<br>".
+                            "<p style='font-weight:bold; float:left; margin-left:2%;'>".'Price:'."</p>"."<p style='width:40%; margin-bottom:0%; margin-right:0%; float:left;'> " .$this->StringFormatter->formatCurrency($prodCarts[$i]['Product']['price'], '$')."</p>"."<button id='deleteCartButton'>".'Delete'."</button>"."<div>"."</div>".
+                            "<br>".
+                            "<div id='ratingHolder' style='margin-left: 10%;'>".
+                                $this->displayRatingBox($prodCarts[$i]['Product']['rating']).
+                            "</div>".
+                        "</div>".
+                        "<div style='clear:both'>"."</div>".
                     "<hr>".
 
                     "</div>";

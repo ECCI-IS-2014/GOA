@@ -1,7 +1,7 @@
 <?php
 App::uses('AppController', 'Controller');
 
-class CartsController extends AppController{
+class CartsController extends AppController {
 
 
     public $components = array('Paginator', 'Session');
@@ -11,8 +11,13 @@ class CartsController extends AppController{
     public function index() {
         $prodCarts = array();
 
-        foreach($_SESSION as $valor){
-           array_push($prodCarts,$valor);
+        foreach($_SESSION as $valor) {
+            $i = 1;
+
+            if ( $i > 4 ) {
+                array_push($prodCarts,$valor);
+            }
+            $i++;
         }
         unset($valor);
 
@@ -29,7 +34,7 @@ class CartsController extends AppController{
         $prod_id = $this->passedArgs['id'];
 
         try {
-            if ($this->Session->$_SESSION[$prod_id] = $prod_id) {
+            if ($this->Session->$_SESSION[$prod_id + 4 ] = $prod_id) {
                 $this->redirect(
                     array('controller' => 'Products', 'action' => 'productInside','id'=>$prod_id)
                 );
