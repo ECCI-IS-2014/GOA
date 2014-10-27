@@ -155,7 +155,7 @@ class CatalogGeneratorHelper extends AppHelper {
         echo $this->Html->css('catalogs');
 
         $result_string = '<div>';
-        for($i = 0; $i < count($prodCarts); $i++) {
+        for($i = 1; $i < count($prodCarts); $i++) {
 
             if( $i < $limit || is_null($limit) ) {
 

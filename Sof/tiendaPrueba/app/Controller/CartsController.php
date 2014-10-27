@@ -5,23 +5,23 @@ class CartsController extends AppController {
 
 
     public $components = array('Paginator', 'Session');
-    public $uses = array('Product');
+    public $uses = array('Product','Cart');
     public $helpers = array('CatalogGenerator', 'Html');
 
     public function index() {
-        $prodCarts = array();
+        $cart = $this->Session->read('cart');
+        //$tam = count($cart);
+        $cart_Ids = array();
+        /*for($i = 0; $i<$tam; $i++)
+        {
+            array_push($cart_Ids,$cart[$i]);
+        }*/
 
-        foreach($_SESSION as $valor) {
-            $i = 1;
 
-            if ( $i > 4 ) {
-                array_push($prodCarts,$valor);
-            }
-            $i++;
+        for($i = 0; $i < count($cart); $i++) {
+            array_push($cart_Ids,$this->Product->find('first', array('conditions'=>array('Product.id'=>$cart[$i]))));
         }
-        unset($valor);
-
-        $this->set('prodCarts',$prodCarts);
+        $this->set('prodCarts',$cart_Ids);
 
     }
 
@@ -31,24 +31,14 @@ class CartsController extends AppController {
      * @return void
      */
     public function add() {
+
         $prod_id = $this->passedArgs['id'];
-
-        try {
-            if ($this->Session->$_SESSION[$prod_id + 4 ] = $prod_id) {
-                $this->redirect(
-                    array('controller' => 'Products', 'action' => 'productInside','id'=>$prod_id)
-                );
-            } else {
-                $this->Session->setFlash(__('The product could not be saved in your Cart. Please, try again.'));
-            }
-        } catch (Exception $e) {
-            $this->Session->setFlash(__('This item was already in your Cart. If you want to increment product quantity please edit your Cart.'));
-            return $this->redirect(array('controller' => 'Products', 'action' => 'productInside','id'=>$prod_id));
-
-        }
+        $cart = $this->Session->read('cart');
+        array_push($cart,$prod_id);
+        $this->Session->write('cart',$cart);
+        return $this->redirect(array('controller' => 'Products', 'action' => 'productInside','id'=>$prod_id));
 
     }
 
 }
 
-?>

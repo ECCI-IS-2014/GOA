@@ -24,6 +24,9 @@ class UsersController extends AppController {
     public function beforeFilter() {
         parent::beforeFilter();
         $this->Auth->allow('add', 'logout', 'view', 'home');
+        $this->Session->write('cart');
+        $cart = array(0);
+        $this->Session->write('cart',$cart);
     }
 
     public function login() {
