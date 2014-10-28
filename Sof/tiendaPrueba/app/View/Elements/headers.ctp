@@ -6,20 +6,20 @@
         </div>
         <div class="searchBar">
             <form>
-    			<select>
-    				<!-- <option value="id">Category Name</option> -->
-    			<?php
-    				$categories = ClassRegistry::init('Category')->listCategoriesForHome();
-    				$this->set(compact('categories'));
-    				foreach ($categories as $id=>$category) {
-    					echo '<option value = "' . $id . '">' . $category . '</option>';
-    				}
-    			?>
-    			</select>
-    			<input type="text" class="search future_store_textbar">
-    			<label for="search"></label>
-    			<input type="button" value="Search" class="future_store_basic_orange_button sbm"/>
-    		</form> 
+                <select>
+                    <!-- <option value="id">Category Name</option> -->
+                <?php
+                    $categories = ClassRegistry::init('Category')->listCategoriesForHome();
+                    $this->set(compact('categories'));
+                    foreach ($categories as $id=>$category) {
+                        echo '<option value = "' . $id . '">' . $category . '</option>';
+                    }
+                ?>
+                </select>
+                <input type="text" class="search future_store_textbar">
+                <label for="search"></label>
+                <input type="button" value="Search" class="future_store_basic_orange_button sbm"/>
+            </form> 
         </div>
     </div>
 
@@ -29,20 +29,20 @@
              <ul>
                <li><a href="http://localhost/GOA/Sof/tiendaPrueba/Pages/Home">Home</a></li>
 
-			   <?php if ($this->Session->read('Auth.User.id') != null): ?>
-				   <li><a href="http://localhost/GOA/Sof/tiendaPrueba/Users/Profile" class="drop">  <?php echo $this->Session->read('Auth.User.name')?> Account </a></li>
-				   <!-- <ul class="dropDown">
-								<li><a href="#">Management</a></li>
+               <?php if ($this->Session->read('Auth.User.id') != null): ?>
+                   <li><a href="http://localhost/GOA/Sof/tiendaPrueba/Users/Profile" class="drop">  <?php echo $this->Session->read('Auth.User.name')?> Account </a></li>
+                   <!-- <ul class="dropDown">
+                                <li><a href="#">Management</a></li>
 
-								<li><a href="#">Checkout</a></li>
-					</ul>-->
+                                <li><a href="#">Checkout</a></li>
+                    </ul>-->
 
-				   <li><a href="<?php echo $this->Html->url(array('controller' => 'wishes','action' => 'index'));?>">MyWishlist</a></li>
-				   <li><a href="<?php echo $this->Html->url(array('controller' => 'carts','action' => 'index'));?>">MyCart</a></li>
-			   <?php endif; ?>
-			   
+                   <li><a href="<?php echo $this->Html->url(array('controller' => 'wishes','action' => 'index'));?>">MyWishlist</a></li>
+                   <li><a href="<?php echo $this->Html->url(array('controller' => 'carts','action' => 'index'));?>">MyCart</a></li>
+               <?php endif; ?>
+               
                <li><a href="#">Sales</a></li>
-			   
+               
                <?php if ($this->Session->read('Auth.User.id') == null): ?>
                     <li><a href="http://localhost/GOA/Sof/tiendaPrueba/users/add">Register</a></li>
                     <li><a href="http://localhost/GOA/Sof/tiendaPrueba/users/login">Sign In</a></li>
@@ -51,7 +51,7 @@
                  <?php if ($this->Session->read('Auth.User.id') != null): ?>
                     <li><?php echo $this->Html->link('Logout', array('controller' => 'users', 'action' => 'logout')); ?> </li>
                  <?php endif; ?>
-				 
+                 
                 <li><a class="endMenuHeader">&nbsp;</a></li>
              </ul>
             </div>
@@ -63,21 +63,95 @@
         $(document).ready(function () {
 
           $(".sbm").click(function(){
-              gotoSearch( $(".searchBar input.search").val(), $(".searchBar select").val() );
+              gotoSearchBar( $(".searchBar input.search").val(), $(".searchBar select").val() );
           });
+
+          //Validación de campo de texto
+            $('.searchBar input.search').keyup(function () { 
+                this.value = this.value.replace(/[^0-9a-zA-Z\.]/g,'');
+            });
 
         });
 
-        function gotoSearch(value, cate_id) {
+        function getBaseSearchUrl() {
 
-            var url = '<?php
+          var url = '<?php
               echo $this->Html->url(array(
                   "controller" => "Pages",
                   "action" => "home",
                   "?" => array("op" => "search")
               ));
-            ?>' + "&val=" + value + "&cat=" + cate_id;
+            ?>';
 
+          return url;
+
+        }
+
+        function gotoSearchBar(value, cate_id) {
+            var url = getBaseSearchUrl() + "&type=1" + "&val=" + value + "&cat=" + cate_id;
+            window.location.href = url;
+        }
+
+        function gotoSearchEquals(keyword, cate_id, attribute, match_val, match_all) {
+
+            var kword_part = '';
+            var cat_part = '';
+            var attr_part = '';
+            var val_part = '';
+            
+            //validation of user input
+            if(keyword != null && keyword != '') {
+                kword_part = "&keyword=" + keyword;
+            }
+
+            if(cate_id != null && cate_id != '') {
+                cat_part = "&cat=" + cate_id;
+            }
+
+            if(attribute != null && attribute != '') {
+                attr_part = "&attr=" + attribute;
+            }
+
+            if(match_val != null && match_val != '' && attribute != null && attribute != '') {
+                val_part = "&match_val=" + match_val;
+            }
+
+            var url = getBaseSearchUrl() + "&type=2" + kword_part + cat_part + attr_part + val_part + "&match_all=" + match_all;
+            window.location.href = url;
+
+        }
+
+        function gotoSearchRange(keyword, cate_id, attribute, match_greater_than, match_lesser_than, match_all) {
+
+            var kword_part = '';
+            var cat_part = '';
+            var attr_part = '';
+            var gt_part = '';
+            var lt_part = '';
+
+            //validation of user input
+            if(keyword != null && keyword != '') {
+                kword_part = "&keyword=" + keyword;
+            }
+
+            if(cate_id != null && cate_id != '') {
+                cat_part = "&cat=" + cate_id;
+            }
+
+            if(attribute != null && attribute != '') {
+                attr_part = "&attr=" + attribute;
+            }
+
+            if(match_greater_than != null && match_greater_than != '' && attribute != null && attribute != '') {
+                gt_part = "&match_gt=" + match_greater_than;
+            }
+
+            if(match_lesser_than != null && match_lesser_than != '' && attribute != null && attribute != '') {
+                lt_part = "&match_lt=" + match_lesser_than;
+            }
+
+            //alert("search by range: " + keyword + ", " + cate_id + ", " + attribute + ", " + match_greater_than + ", " + match_lesser_than + ", " + match_all);            
+            var url = getBaseSearchUrl() + "&type=3" + kword_part + cat_part + attr_part + gt_part + lt_part + "&match_all=" + match_all;
             window.location.href = url;
 
         }

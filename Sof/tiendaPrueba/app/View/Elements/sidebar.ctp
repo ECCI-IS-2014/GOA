@@ -90,6 +90,7 @@
 
         	sidebarWidth = $("#sidebar #sidebar_content_interior").outerWidth();
         	closeSidebarInstantly();
+            setFieldTextboxes();
 
             if(getUrlParameter('op') == 'search') {
                 startWithSearch = true;
@@ -101,11 +102,74 @@
 
             $("#search_btn").click(function(){
                 //gotoPanel("search_results", true);
-                gotoSearch( "la", -1 );
+
+                var match_all = false;
+                if($("input#chbx1").is(':checked')) {
+                    match_all = true;
+                }
+
+                $("#"+activePanel).removeClass("active").addClass("inactive");
+                $("#loading").removeClass("inactive").addClass("active");
+
+                if(sidebarIsOpen == true) {
+                    closeSidebar(700);
+                }   
+
+                if(!$("input#chbx2").is(':checked')) {
+                    //search equal: gotoSearch(keyword, cate_id, attribute, match_val, match_all)
+                    gotoSearchEquals(
+                        $("#txt1").val(),
+                        $("#cmbx2").val(),
+                        $("#cmbx1").val(),
+                        $("#txt2").val(),
+                        match_all
+                    );
+                }
+                else {
+                    //search by range: gotoSearch(keyword, cate_id, attribute, match_greater_than, match_lesser_than, match_all)
+                    gotoSearchRange(
+                        $("#txt1").val(),
+                        $("#cmbx2").val(),
+                        $("#cmbx1").val(),
+                        $("#txt3").val(),
+                        $("#txt4").val(),
+                        match_all
+                    );
+                }
+
+
             });
 
             $("input#chbx2").change(function() {
-                if ($(this).is(':checked')) {
+                setFieldTextboxes();
+            });
+
+            //Validación de campo de texto
+            $('#sidebar_keyword input[type="text"]').keyup(function () { 
+                this.value = this.value.replace(/[^0-9a-zA-Z\.]/g,'');
+            });
+
+            //Validación de campos numéricos
+            $('.l1 input[type="text"]').keyup(function () { 
+                this.value = this.value.replace(/[^0-9\.]/g,'');
+            });
+
+            $('.l2 input[type="text"]').keyup(function () { 
+                this.value = this.value.replace(/[^0-9\.]/g,'');
+            });
+
+            $('.l3 input[type="text"]').keyup(function () { 
+                this.value = this.value.replace(/[^0-9\.]/g,'');
+            });
+
+            if(startWithSearch == true) {
+                gotoPanel("search_results", true);
+            }
+
+         });
+
+        function setFieldTextboxes() {
+            if ($("input#chbx2").is(':checked')) {
                     $("div.l1").css("display", "block");
                     $("div.l2").css("display", "block");
                     $("div.l3").css("display", "none");
@@ -115,13 +179,7 @@
                     $("div.l2").css("display", "none");
                     $("div.l3").css("display", "block");
                 }
-            });
-
-            if(startWithSearch == true) {
-                gotoPanel("search_results", true);
-            }
-
-         });
+        }
 
         function getUrlParameter(sParam) {
             var sPageURL = window.location.search.substring(1);

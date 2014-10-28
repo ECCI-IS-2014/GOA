@@ -178,6 +178,37 @@ class Product extends AppModel {
 	}
 
 	/*
+     * Obtiene todos los productos de la BD en cuales el atributo $attribute sea igual que $equals y que pertenezcan a la categoria $cate_id
+     * Si $cate_id es cualquier número negativo, se consideran todas las categorías.
+     * Si $order_by es especificado, ordena los resultados según el atributo $order_by, en dirección $direction
+     */
+	public function getProductsInCategoryByAttributeEquals($attribute, $equals, $cate_id, $order_by = null, $direction = 'DESC') {
+
+		$equals = strtolower($equals);
+
+		$conditions = array('Product.' . $attribute => $equals);
+
+		if($cate_id > 0) {
+			$conditions = array('Product.' . $attribute => $equals, 'Product.category_id' => $cate_id);
+		}
+
+		if($order_by != null) {
+			$order = array('Product.' . $order_by . ' ' . $direction);
+		}
+		else {
+			$order = array();
+		}
+
+		$result = $this->find('all', array(
+			'conditions'=>$conditions, 
+			'order'=>$order
+		));
+
+		return $result;
+
+	}
+
+	/*
      * Obtiene todos los productos de la BD para los cuales su atributo $attribute contenga a $like como subcadena.
      * Si $order_by es especificado, ordena los resultados según el atributo $order_by, en dirección $direction
      */
@@ -231,13 +262,19 @@ class Product extends AppModel {
 	}
 
 	/*
-     * Obtiene todos los productos de la BD en cuales el atributo $attribute sea mayor o igual que $greater_equals y menor o igual que $lesser_or_equals
+     * Obtiene todos los productos de la BD en cuales el atributo $attribute sea mayor o igual que $greater_equals y menor o igual que $lesser_or_equals,
+     * y que pertenezcan a la categoría con id $cate_id
+     * Si $cate_id es -1 no hace restricción de categorías.
      * Si $order_by es especificado, ordena los resultados según el atributo $order_by, en dirección $direction
      */
-	public function getProductsByAttributeRange($attribute, $greater_or_equals, $lesser_or_equals, $order_by = null, $direction = 'DESC') {
+	public function getProductsInCategoryByAttributeRange($attribute, $greater_or_equals, $lesser_or_equals, $cate_id, $order_by = null, $direction = 'DESC') {
 
 		$conditions = array('Product.' . $attribute . ' >=' => $greater_or_equals, 'Product.' . $attribute . ' <=' => $lesser_or_equals);
 
+		if($cate_id > 0) {
+			$conditions = array('Product.' . $attribute . ' >=' => $greater_or_equals, 'Product.' . $attribute . ' <=' => $lesser_or_equals, 'Product.category_id' => $cate_id);
+		}
+
 		if($order_by != null) {
 			$order = array('Product.' . $order_by . ' ' . $direction);
 		}
@@ -255,13 +292,18 @@ class Product extends AppModel {
 	}
 
 	/*
-     * Obtiene todos los productos de la BD en cuales el atributo $attribute sea menor o igual que $lesser_equals
+     * Obtiene todos los productos de la BD en cuales el atributo $attribute sea menor o igual que $lesser_equals y que pertenezcan a la categoría con id $cate_id
+     * Si $cate_id es -1 no hace restricción de categorías.
      * Si $order_by es especificado, ordena los resultados según el atributo $order_by, en dirección $direction
      */
-	public function getProductsByAttributeLesserEquals($attribute, $lesser_equals, $order_by = null, $direction = 'DESC') {
+	public function getProductsInCategoryByAttributeLesserEquals($attribute, $lesser_equals, $cate_id, $order_by = null, $direction = 'DESC') {
 
 		$conditions = array('Product.' . $attribute . ' <=' => $lesser_equals);
 
+		if($cate_id > 0) {
+			$conditions = array('Product.' . $attribute . ' <=' => $lesser_equals, 'Product.category_id' => $cate_id);
+		}
+
 		if($order_by != null) {
 			$order = array('Product.' . $order_by . ' ' . $direction);
 		}
@@ -279,12 +321,17 @@ class Product extends AppModel {
 	}
 
 	/*
-     * Obtiene todos los productos de la BD en cuales el atributo $attribute sea mayor o igual que $greater_equals
+     * Obtiene todos los productos de la BD en cuales el atributo $attribute sea mayor o igual que $greater_equals y que pertenezcan a la categoría con id $cate_id
+     * Si $cate_id es -1 no hace restricción de categorías.
      * Si $order_by es especificado, ordena los resultados según el atributo $order_by, en dirección $direction
      */
-	public function getProductsByAttributeGreaterEquals($attribute, $greater_equals, $order_by = null, $direction = 'DESC') {
+	public function getProductsInCategoryByAttributeGreaterEquals($attribute, $greater_equals, $cate_id, $order_by = null, $direction = 'DESC') {
 
 		$conditions = array('Product.' . $attribute . ' >=' => $greater_equals);
+
+		if($cate_id > 0) {
+			$conditions = array('Product.' . $attribute . ' >=' => $greater_equals, 'Product.category_id' => $cate_id);
+		}
 
 		if($order_by != null) {
 			$order = array('Product.' . $order_by . ' ' . $direction);
@@ -299,6 +346,54 @@ class Product extends AppModel {
 		));
 
 		return $result;
+
+	}
+
+	/*
+	 *	Devuelve la intersección de los arreglos $array1 y $array2, siempre y cuando correspondan a arreglos de productos bien formados.
+	 */
+	public function intersectResults($array1, $array2) {
+
+		$intersection = Array();
+
+		foreach ($array1 as $value1) {
+			foreach ($array2 as $value2) {
+				if($value1['Product']['id'] == $value2['Product']['id']) {
+					array_push($intersection, $value1);
+				}
+			}
+		}
+
+		return array_unique($intersection);
+
+	}
+
+	/*
+	 *	Devuelve la unión de los arreglos $array1 y $array2, siempre y cuando correspondan a arreglos de productos bien formados.
+	 */
+	public function uniteResults($array1, $array2) {
+
+		$union = Array();
+
+		foreach ($array1 as $value1) {
+			array_push($union, $value1);
+		}
+
+		foreach ($array2 as $value2) {
+			array_push($union, $value2);
+		}
+
+		//eliminate duplicates
+		for($i = 0; $i < count($union); $i++) {
+			for($j = $i+1; $j < count($union); $j++) {
+				if($union[$i]['Product']['id'] == $union[$j]['Product']['id']){
+					unset($union[$j]);
+					$union = array_values($union);
+				}
+			}
+		}
+
+		return $union;
 
 	}
 	
