@@ -6,7 +6,9 @@
          <?php echo $this->Html->css('footers'); ?>
          <?php echo $this->Html->css('headers'); ?>
     </head>
-
+    <?php
+    if($this->Session->read('Auth.User.role')== 'admin') { // if is admin
+    ?>
     <div id="head"> <?php echo $this->fetch('headerAdmin'); ?> </div>
 
     <div id="content">
@@ -47,7 +49,18 @@
 	
 				</ul>
 			</div>
+            <?php } else {
+                           ?>
 
+                                <div id="head"> <?php echo $this->fetch('header1'); ?> </div>
+                                <div id="mich" style= "text-align: center; background-color: black; color: black">
+                                <p>
+                                        <img src = "http://i.imgur.com/Q8RbYmC.png" />
+                                 </p>
+                                 </div>
+                            <?php
+                }
+                ?>
 			<div style="clear:both"><br/><br/><br/></div>
 
 			<div class="related" style="margin: 0 20px;">

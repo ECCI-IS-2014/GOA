@@ -66,7 +66,7 @@
             <h3><?php echo __('Actions'); ?></h3>
             <ul>
                 <li><?php echo $this->Html->link(__('Edit User'), array('action' => 'edit', $this->Session->read('Auth.User.id'))); ?> </li>
-                <li><?php echo $this->Form->postLink(__('Delete User'), array('action' => 'delete', $this->Session->read('Auth.User.id'))); ?> </li>
+                <li><?php echo $this->Form->postLink(__('Delete User'), array('action' => 'delete', $this->Session->read('Auth.User.id')),array(), __('Are you sure you want to delete your user?')); ?> </li>
              </ul>
         </div>
 
