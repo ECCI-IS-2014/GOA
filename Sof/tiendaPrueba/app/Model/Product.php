@@ -23,52 +23,53 @@ class Product extends AppModel {
 		'name' => array(
 			'notEmpty' => array(
 				'rule' => array('notEmpty'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+				'message' => 'Cannot be empty',
 			),
+			'alphaNumeric' => array(
+	            'rule' => 'alphaNumeric',
+	            'message' => 'Only alphabets and numbers allowed',
+	            'last' => false
+	         ),
+	        'minLength' => array(
+	            'rule' => array('minLength', 3),
+	            'message' => 'Minimum length of 3 characters'
+	        ),
 		),
 		'price' => array(
 			'money' => array(
 				'rule' => array('money'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+				'message' => 'Enter a valid money amount',
 			),
 		),
 		'volume' => array(
 			'decimal' => array(
 				'rule' => array('decimal'),
 				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
+			'comparison' => array(
+		        'rule' => array('comparison', '>=', 0),
+		        'message' => 'Cannot be negative amount'
+		    ),
 		),
 		'weight' => array(
 			'decimal' => array(
 				'rule' => array('decimal'),
 				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
+			'comparison' => array(
+		        'rule' => array('comparison', '>=', 0),
+		        'message' => 'Cannot be negative amount'
+		    ),
 		),
 		'quantity' => array(
 			'numeric' => array(
 				'rule' => array('numeric'),
 				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
+			'comparison' => array(
+		        'rule' => array('comparison', '>=', 0),
+		        'message' => 'Cannot be negative amount'
+		    ),
 		),
 		'enable_product' => array(
 			'notEmpty' => array(
@@ -91,7 +92,7 @@ class Product extends AppModel {
         'image' => array(
             'extension' => array(
                 'rule' => array('extension', array('gif','png','jpg','jpeg')),
-                'message' => 'Invalid file, only images allowed.',
+                'message' => 'Invalid file, only images allowed',
 				'allowEmpty' => true,
             ),
         ),
