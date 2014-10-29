@@ -160,7 +160,7 @@ class CatalogGeneratorHelper extends AppHelper {
             if( $i < $limit || is_null($limit)) {
                 $result_string = $result_string.
                     "<div class='cart_item'>".
-                        $this->Html->image('product_icons/'.$prodCarts[$i]['Product']['image'], array('alt' => 'CakePHP', 'class' => 'p_photo','style'=>'height:100%; width:8%; float:left;')) .
+                        $this->Html->image('product_icons/'.$prodCarts[$i]['Product']['image'], array('alt' => 'CakePHP', 'class' => 'p_photo','style'=>'height:100%; width:8%; float:left; margin-bottom:20px;')) .
                         "<div class='infoPan' style='margin-bottom: 1.5%;'>".
                             "<p style='font-weight:bold; float:left; margin-left:2%;'>".'Name:&nbsp;'."</p >"."<p style='width:40%; margin-bottom:0%; margin-right:0%;'> ".$prodCarts[$i]['Product']['name']."</p>"."<button id='deleteCartButton'>"."<a href=".$this->Html->url(array('controller' => 'carts','action' => 'delete', 'id'=>$prodCarts[$i]['Product']['id'])).">".'Delete'."</a>"."</button>"."<div>"."</div>".
                             "<p style='font-weight:bold; float:left; margin-left:2%;'>".'Price:&nbsp;'."</p>"."<p style='width:40%; margin-bottom:0%; margin-right:0%; float:left;'> " .$this->StringFormatter->formatCurrency($prodCarts[$i]['Product']['price'], '$')."</p>"."<div>"."</div>".

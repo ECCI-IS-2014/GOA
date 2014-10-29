@@ -32,6 +32,20 @@
                      </div>
 
                 <?php } ?>
+
+                <div id="total">
+                    <b>Total: </b>
+                    <?php 
+                        $total = 0;
+                        if (count($prodCarts) > 1) {
+                            for($i = 1; $i < count($prodCarts); $i++) {
+                                $total = $total + $prodCarts[$i]['Product']['price'] * $numProducts[$i];
+                            }
+                        }
+                        echo $this->StringFormatter->formatCurrency( $total, '$'); 
+                    ?>
+                </div>
+
             </div>
 
         </div>
