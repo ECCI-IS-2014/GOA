@@ -149,8 +149,19 @@
     height: 20px;
     letter-spacing: 1px;
     font-size: 12px;
-    display: inline-block;
-    float: right;
+    position: absolute;
+    right: 0;
+}
+
+#sidebar_content_interior #sidebar_category {
+    position: absolute;
+    bottom: 153px;
+    width: 210px;
+}
+
+#sidebar_content_interior #sidebar_options {
+    position: absolute;
+    bottom: 63px;
 }
 
 #sidebar_content_interior #search_btn {
