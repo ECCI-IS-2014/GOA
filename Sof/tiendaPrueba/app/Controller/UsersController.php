@@ -50,13 +50,6 @@ class UsersController extends AppController {
         }
     }
 
-
-    public function home() {
-
-        //return $this->redirect($this->Auth->logout());
-
-    }
-
     public function profile()
     {
         $id=$this->Session->read('Auth.User.id');

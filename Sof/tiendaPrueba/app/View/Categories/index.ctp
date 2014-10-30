@@ -6,11 +6,11 @@
          <?php echo $this->Html->css('footers'); ?>
          <?php echo $this->Html->css('headers'); ?>
     </head>
-    <?php
-    if($this->Session->read('Auth.User.role')== 'admin') { // if is admin
-    ?>
+
     <div id="head"> <?php echo $this->fetch('headerAdmin'); ?> </div>
 
+    <?php  if($this->Session->read('Auth.User.role')== 'admin') { // if is admin  ?>
+    
     <div id="content">
 
         <div id="content_wrapper" style="position:relative;">
@@ -101,18 +101,18 @@
 		</div>
 
     </div>
-            <?php } else {
-                           ?>
 
-                                <div id="head"> <?php echo $this->fetch('header1'); ?> </div>
-                                <div id="mich" style= "text-align: center; background-color: black; color: black">
-                                <p>
-                                        <img src = "http://i.imgur.com/Q8RbYmC.png" />
-                                 </p>
-                                 </div>
-                            <?php
-                }
-                ?>
+    <?php } else { ?>
+
+
+        <div id="mich" style= "text-align: center; background-color: black; color: black">
+            <p>
+                <img src = "http://i.imgur.com/Q8RbYmC.png" />
+            </p>
+        </div>
+        
+    <?php } ?>
+    
     <div style="clear:both"></div>
 
     <div id="foot"> <?php echo $this->fetch('footerAdmin'); ?> </div>

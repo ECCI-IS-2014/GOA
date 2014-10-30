@@ -25,42 +25,68 @@
 
     <div id="menuHeader">
 
-            <div id="menuHeaderInterno">
-             <ul>
-               <li><a href="http://localhost/GOA/Sof/tiendaPrueba/Pages/Home">Home</a></li>
+        <div id="menuHeaderInterno">
+            <ul>
 
-               <?php if ($this->Session->read('Auth.User.id') != null): ?>
+                <li><a href= <?php echo Router::url(array('controller'=>'Pages','action'=>'home')); ?> >Home</a></li>
+                <li><a href="#">Sales</a></li>
+
+                <?php if ($this->Session->read('Auth.User.id') != null): ?>
+
                     <?php if ($this->Session->read('Auth.User.role') != 'admin'): ?>
-                   <li><a href="http://localhost/GOA/Sof/tiendaPrueba/Users/Profile" class="drop">  <?php echo $this->Session->read('Auth.User.name')?> Account </a></li>
-                   <!-- <ul class="dropDown">
-                                <li><a href="#">Management</a></li>
+                    
+                    <li>
+                        <a class="drop" href="<?php echo $this->Html->url(array('controller' => 'users','action' => 'profile'));?>" > 
+                            <?php echo $this->Session->read('Auth.User.name')?> Account
+                        </a>
+                    </li>
 
-                                <li><a href="#">Checkout</a></li>
-                    </ul>-->
 
-                   <li><a href="<?php echo $this->Html->url(array('controller' => 'wishes','action' => 'index'));?>">MyWishlist</a></li>
-                   <li><a href="<?php echo $this->Html->url(array('controller' => 'carts','action' => 'index'));?>">MyCart</a></li>
-                   <?php endif; ?>
-               <?php endif; ?>
-               
-               <li><a href="#">Sales</a></li>
-               
-               <?php if ($this->Session->read('Auth.User.id') == null): ?>
-                    <li><a href="http://localhost/GOA/Sof/tiendaPrueba/users/add">Register</a></li>
-                    <li><a href="http://localhost/GOA/Sof/tiendaPrueba/users/login">Log In</a></li>
-               <?php endif; ?>
+                    <li>
+                        <a href="<?php echo $this->Html->url(array('controller' => 'wishes','action' => 'index'));?>">
+                            MyWishlist
+                        </a>
+                    </li>
 
-                 <?php if ($this->Session->read('Auth.User.id') != null): ?>
-                    <?php if ($this->Session->read('Auth.User.role') == 'admin'): ?>
-                        <li><a href="http://localhost/GOA/Sof/tiendaPrueba/products">Admin Pages</a></li>
-                   <?php endif; ?>
+                    <li>
+                        <a href="<?php echo $this->Html->url(array('controller' => 'carts','action' => 'index'));?>">
+                            MyCart
+                        </a>
+                    </li>
 
-                    <li><?php echo $this->Html->link('Logout', array('controller' => 'users', 'action' => 'logout')); ?> </li>
-                 <?php endif; ?>
-                 
+                    <?php else: ?>
+
+                    <li>
+                        <a href="<?php echo $this->Html->url(array('controller' => 'products','action' => 'index'));?>">
+                            Admin Pages
+                        </a>
+                    </li>
+
+                    <?php endif; ?>
+
+                    <li>
+                        <?php echo $this->Html->link('Logout', array('controller' => 'users', 'action' => 'logout')); ?>
+                    </li>
+
+                <?php else: ?>
+
+                <li>
+                    <a href="<?php echo $this->Html->url(array('controller' => 'users','action' => 'add'));?>">
+                        Register
+                    </a>
+                </li>
+
+                <li>
+                    <a href="<?php echo $this->Html->url(array('controller' => 'users','action' => 'login'));?>">
+                        Log In
+                    </a>
+                </li>
+
+                <?php endif; ?>
+             
                 <li><a class="endMenuHeader">&nbsp;</a></li>
-             </ul>
-            </div>
+            </ul>
+        </div>
 
     </div>
 
@@ -205,6 +231,12 @@
                         Users
                     </a>
                 </li>
+
+                <?php if ($this->Session->read('Auth.User.id') != null): ?>
+                <li>
+                    <?php echo $this->Html->link('Logout', array('controller' => 'users', 'action' => 'logout')); ?>
+                </li>
+                <?php endif; ?>
 
                 <li><a class="endMenuHeader">&nbsp;</a></li>
 

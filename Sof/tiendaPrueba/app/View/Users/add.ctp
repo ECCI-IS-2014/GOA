@@ -57,13 +57,6 @@
 			resizeContent();
 		});
 
-		/*function resizeContent() {
-			$("#content_wrapper").height( $(window).height() - $("#head").outerHeight() - $("#foot").outerHeight() );
-			$("#content_wrapper").width( $(window).width() );
-			$("#panel").height( $(window).height() - $("#head").outerHeight() - $("#foot").outerHeight() );
-			$("#panel").width( $(window).width() );
-		}*/
-
 	</script>
 
 </html>
