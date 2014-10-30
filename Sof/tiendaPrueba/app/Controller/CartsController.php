@@ -70,5 +70,22 @@ class CartsController extends AppController {
         return $this->redirect(array('controller' => 'carts', 'action' => 'index'));
     }
 
+    public function edit($id = null) {
+        $cart = $this->Session->read('cart');
+        $numProducts = $this->Session->read('numProducts');
+
+        $pos = array_search($id,$cart);
+        if ( $pos != false ) {
+            if ($this->request->is(array('post', 'put'))) {
+                $data = $this->request->data;
+                $numProducts[$pos] = $data['cantidad'];
+            } 
+        }
+        $this->Session->write('numProducts',$numProducts);
+
+        return $this->redirect(array('controller' => 'carts', 'action' => 'index'));
+        
+    }
+
 }
 
