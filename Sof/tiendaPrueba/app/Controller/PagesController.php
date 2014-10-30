@@ -94,13 +94,27 @@ class PagesController extends AppController {
 
 	    			case '1':	//Searchbar search
 	    				$res = array(
+	    					//persistent params
 					    	'op' => $query['op'],
-					    	'val' => $query['val'],
-					    	'cat' => $query['cat']
 					    );
-					    
-			        	$this->set('s_params', $res);
-			        	$this->set('s_results', $this->Product->getProductsInCategoryByAttributeLike('name', $res['val'], $res['cat'], $order_by = null, $direction = 'DESC'));
+
+			        	//optional params
+			        	if(isset($query['val']) && $query['val'] != '') {
+					    	$res['val'] = $query['val'];
+					    }
+					    if(isset($query['cat']) && $query['cat'] != '') {
+					    	$res['cat'] = $query['cat'];
+					    }
+
+					    $this->set('s_params', $res);
+
+					    $arr = Array();
+
+					    if(isset($res['val'])) {
+			        		$arr['keyword'] = $this->Product->getProductsInCategoryByAttributeLike('name', strtolower($res['val']), $res['cat'], $order_by = null, $direction = 'DESC');
+			        	}
+
+			        	$this->set('s_results', $arr['keyword']);
 	    				break;
 
 	    			case '2':   //Search by equal

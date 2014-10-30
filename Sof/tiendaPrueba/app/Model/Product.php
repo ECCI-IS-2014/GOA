@@ -253,10 +253,16 @@ class Product extends AppModel {
 
 		// TODO: Proteger consultas contra inyección SQL.
 		if($cate_id > 0) {
-			$category_condition = " category_id = " . $cate_id . " AND ";
+			$children_categories = $this->Category->getChildrenCategories($cate_id);
+			$or_str = ' AND (Product.category_id = ' . $cate_id;
+			foreach ($children_categories as $value) {
+				$or_str = $or_str . ' OR Product.category_id = ' . $value;	
+			}
+			$or_str = $or_str . ")";
+			$category_condition = $or_str;
 		}
 
-		$result = $this->query("SELECT * FROM products AS Product WHERE " . $category_condition . $attribute . " LIKE '%" . $like . "%' " . $order . ";");
+		$result = $this->query("SELECT * FROM products AS Product WHERE " . $attribute . " LIKE '%" . $like . "%' " . $category_condition . " " . $order . ";");
 
 		return $result;
 
