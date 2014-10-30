@@ -170,4 +170,34 @@ class Category extends AppModel {
 		return $result;
 
 	}
+
+	public function getChildrenCategories($cate_id) {
+
+		$temp1 = $this->find('all', array('conditions' => array('Category.father_category_id' => $cate_id)));
+		$temp2 = Array();
+		foreach ($temp1 as $entry) {
+			array_push($temp2, $entry['Category']['id']);
+		}
+
+		$exit_sentinel = false;
+		while($exit_sentinel != true) {
+
+			$exit_sentinel = true;
+			foreach ($temp2 as $entry) {
+
+				$temp1 = $this->find('all', array('conditions' => array('Category.father_category_id' => $entry)));
+				foreach ($temp1 as $entry3) {
+					if(in_array($entry3['Category']['id'], $temp2) != true) {
+						array_push($temp2, $entry3['Category']['id']);
+						$exit_sentinel = false;
+					}
+				}
+
+			}
+
+		}
+
+		return $temp2;
+
+	}
 }

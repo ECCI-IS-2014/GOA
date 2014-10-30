@@ -270,10 +270,22 @@ class Product extends AppModel {
      */
 	public function getProductsInCategoryByAttributeRange($attribute, $greater_or_equals, $lesser_or_equals, $cate_id, $order_by = null, $direction = 'DESC') {
 
-		$conditions = array('Product.' . $attribute . ' >=' => $greater_or_equals, 'Product.' . $attribute . ' <=' => $lesser_or_equals);
+		$conditions = array(
+			'Product.' . $attribute . ' BETWEEN ? AND ?' => array($greater_or_equals, $lesser_or_equals)
+		);
 
 		if($cate_id > 0) {
-			$conditions = array('Product.' . $attribute . ' >=' => $greater_or_equals, 'Product.' . $attribute . ' <=' => $lesser_or_equals, 'Product.category_id' => $cate_id);
+			$children_categories = $this->Category->getChildrenCategories($cate_id);
+			$or_array = array(
+				array('Product.category_id' => $cate_id)
+			);
+			foreach ($children_categories as $value) {
+				array_push($or_array, array('Product.category_id' => $value));	
+			}
+			$conditions = array(
+				'Product.' . $attribute . ' BETWEEN ? AND ?' => array($greater_or_equals, $lesser_or_equals), 
+				'OR' => $or_array
+			);
 		}
 
 		if($order_by != null) {
@@ -302,7 +314,17 @@ class Product extends AppModel {
 		$conditions = array('Product.' . $attribute . ' <=' => $lesser_equals);
 
 		if($cate_id > 0) {
-			$conditions = array('Product.' . $attribute . ' <=' => $lesser_equals, 'Product.category_id' => $cate_id);
+			$children_categories = $this->Category->getChildrenCategories($cate_id);
+			$or_array = array(
+				array('Product.category_id' => $cate_id)
+			);
+			foreach ($children_categories as $value) {
+				array_push($or_array, array('Product.category_id' => $value));	
+			}
+			$conditions = array(
+				'Product.' . $attribute . ' <=' => $lesser_equals, 
+				'OR' => $or_array
+			);
 		}
 
 		if($order_by != null) {
@@ -331,7 +353,17 @@ class Product extends AppModel {
 		$conditions = array('Product.' . $attribute . ' >=' => $greater_equals);
 
 		if($cate_id > 0) {
-			$conditions = array('Product.' . $attribute . ' >=' => $greater_equals, 'Product.category_id' => $cate_id);
+			$children_categories = $this->Category->getChildrenCategories($cate_id);
+			$or_array = array(
+				array('Product.category_id' => $cate_id)
+			);
+			foreach ($children_categories as $value) {
+				array_push($or_array, array('Product.category_id' => $value));	
+			}
+			$conditions = array(
+				'Product.' . $attribute . ' >=' => $greater_equals, 
+				'OR' => $or_array
+			);
 		}
 
 		if($order_by != null) {

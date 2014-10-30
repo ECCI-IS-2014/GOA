@@ -268,7 +268,7 @@ class PagesController extends AppController {
 					        			);
 				        			}
 				        			else {
-				        				getProductsInCategoryByAttributeGreaterEquals(strtolower($res['attr']), $res['val_gt'], $res['cat'], $order_by = null, $direction = 'DESC');
+				        				$arr['attr'] = $this->Product->getProductsInCategoryByAttributeGreaterEquals(strtolower($res['attr']), $res['val_gt'], $res['cat'], $order_by = null, $direction = 'DESC');
 				        			}
 			        			}
 			        			else {
@@ -293,7 +293,7 @@ class PagesController extends AppController {
 					        			);
 				        			}
 				        			else {
-				        				getProductsInCategoryByAttributeLesserEquals(strtolower($res['attr']), $res['val_lt'], $res['cat'], $order_by = null, $direction = 'DESC');
+				        				$arr['attr'] = $this->Product->getProductsInCategoryByAttributeLesserEquals(strtolower($res['attr']), $res['val_lt'], $res['cat'], $order_by = null, $direction = 'DESC');
 				        			}
 			        			}
 			        		}
@@ -332,8 +332,6 @@ class PagesController extends AppController {
 			        				}
 			        			}
 			        		}
-
-			        		
 			        	}
 
 			        	$this->set('s_results', $result);
