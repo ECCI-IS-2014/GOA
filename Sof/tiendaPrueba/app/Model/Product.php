@@ -402,8 +402,18 @@ class Product extends AppModel {
 				}
 			}
 		}
+		
+		//eliminate duplicates
+		for($i = 0; $i < count($intersection); $i++) {
+			for($j = $i+1; $j < count($intersection); $j++) {
+				if($intersection[$i]['Product']['id'] == $intersection[$j]['Product']['id']){
+					unset($intersection[$j]);
+					$intersection = array_values($intersection);
+				}
+			}
+		}
 
-		return array_unique($intersection);
+		return $intersection;
 
 	}
 
