@@ -22,14 +22,16 @@
             
             <div id="bodyCart">
                 <?php
-                if (count($prodCarts) > 1) {
-                        echo $this->CatalogGenerator->formatCart($prodCarts, $numProducts, 30 );
+                if ( $totalCartProducts > 1 ) {
+                    
+                    echo $this->CatalogGenerator->formatCart($prodCarts, $numProducts, 30 );
+                    
                 } else { ?>
 
-                     <div>
+                    <div>
                         <h1 style="font-size: 18px; text-align: center;"> Your Cart is empty in this moment, what are you waiting to add some items!<h1>
-                         <h1 style="font-size: 18px; text-align: center;"><img src = "http://38.media.tumblr.com/4dac6ca3430c92d2a5a43eb61fbdcf32/tumblr_mtz3voMiz21qhy6c9o1_500.gif" /><h1>
-                     </div>
+                        <h1 style="font-size: 18px; text-align: center;"><img src = "http://38.media.tumblr.com/4dac6ca3430c92d2a5a43eb61fbdcf32/tumblr_mtz3voMiz21qhy6c9o1_500.gif" /><h1>
+                    </div>
 
                 <?php } ?>
 

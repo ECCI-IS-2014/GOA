@@ -11,13 +11,30 @@ class CartsController extends AppController {
     public function index() {
         $cart = $this->Session->read('cart');
         $numProducts = $this->Session->read('numProducts');
+        $totalCartProducts = 0;
         
         $cart_Ids = array();
 
-        for($i = 0; $i < count($cart); $i++) {
-            array_push($cart_Ids,$this->Product->find('first', array('conditions'=>array('Product.id'=>$cart[$i]))));
+        for( $i = 0; $i < count($cart); $i++ ) {
+            $product = $this->Product->find('first', array('conditions'=>array('Product.id'=>$cart[$i])));
+            array_push($cart_Ids,$product);
+            if ( $i > 0 ) {
+                if ( $i > 0 && $product['Product']['enable_product'] == 0 ) {
+                    // Revisa que el producto no haya sido deshabilitado
+                    $numProducts[$i] = 0;
+                    $this->Session->write('numProducts',$numProducts);
+                } elseif( $product['Product']['quantity'] < $numProducts[$i] ) {
+                    // Mantiene la cantidad de productos por comprar limitada por la quantity del producto
+                    $numProducts[$i] = $product['Product']['quantity'];
+                    $this->Session->write('numProducts',$numProducts);
+                }
+            }
+            $totalCartProducts = $totalCartProducts + $numProducts[$i];
         }
 
+        $this->Session->write('totalCartProducts',$totalCartProducts);
+
+        $this->set('totalCartProducts',$totalCartProducts);
         $this->set('prodCarts',$cart_Ids);
         $this->set('numProducts',$numProducts);
 
@@ -29,19 +46,55 @@ class CartsController extends AppController {
         $prod_id = $this->passedArgs['id'];
         $cart = $this->Session->read('cart');
         $numProducts = $this->Session->read('numProducts');
+        $totalCartProducts = $this->Session->read('totalCartProducts');
+
+        $product = $this->Product->find('first', array('conditions'=>array('Product.id'=>$prod_id)));
 
         $pos = array_search($prod_id,$cart);
         if ( $pos == false ) {
-            array_push($cart,$prod_id);
-            array_push($numProducts,1);
-        } else {
-            $numProducts[$pos] = $numProducts[$pos] + 1;
-        }
-        
-        $this->Session->write('cart',$cart);
-        $this->Session->write('numProducts',$numProducts);
+            // El producto no se encuentra en el carrito
 
-        $this->Session->setFlash(__('The product has been added to your cart.'));
+            if ( $product['Product']['quantity'] == 0 || $product['Product']['enable_product'] == 0 ) {
+                // El producto se acabo o no esta disponible
+                $this->Session->setFlash(__('The product is not available and was not added to your cart.'));
+            } else {
+                // Agregar un nuevo producto al carrito
+                array_push($cart,$prod_id);
+                array_push($numProducts,1);
+                $totalCartProducts = $totalCartProducts + 1;
+
+                $this->Session->write('cart',$cart);
+                $this->Session->write('numProducts',$numProducts);
+                $this->Session->write('totalCartProducts',$totalCartProducts);
+
+                //$this->Session->setFlash(__('The product has been added to your cart.'));
+            }
+            
+        } else {
+            // El producto ya esta en el carrito
+
+            if ( $product['Product']['quantity'] <= $numProducts[$pos] ) {
+                //No se pueden agregar mas productos porque ya no hay
+                $numProducts[$pos] = $product['Product']['quantity'];
+                $this->Session->write('numProducts',$numProducts);
+
+                $this->Session->setFlash(__('The product has no more stock and was not added to your cart.'));
+            } elseif ( $product['Product']['quantity'] == 0 || $product['Product']['enable_product'] == 0 ) {
+                // El producto se acabo o no esta disponible
+                $this->Session->setFlash(__('The product is not available and was not added to your cart.'));
+            } else {
+                // Se le agrega un producto a la cantidad del producto por comprar
+                $numProducts[$pos] = $numProducts[$pos] + 1;
+                $totalCartProducts = $totalCartProducts + 1;
+
+                $this->Session->write('numProducts',$numProducts);
+                $this->Session->write('totalCartProducts',$totalCartProducts);
+
+                //$this->Session->setFlash(__('One more product has been added to your cart.'));
+            }
+
+        }      
+        
         return $this->redirect(array('controller' => 'Products', 'action' => 'productInside','id'=>$prod_id));
 
     }

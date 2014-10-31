@@ -49,8 +49,12 @@
                     </li>
 
                     <li>
+
                         <a href="<?php echo $this->Html->url(array('controller' => 'carts','action' => 'index'));?>">
-                            MyCart
+                            MyCart 
+                            <span id="numProductsCart">
+                                <?php echo $totalCartProducts = $this->Session->read('totalCartProducts'); ?>
+                            </span>
                         </a>
                     </li>
 

@@ -32,6 +32,10 @@ class UsersController extends AppController {
         $this->Session->write('numProducts');
         $numProducts = array(0);
         $this->Session->write('numProducts',$numProducts);
+
+        $this->Session->write('totalCartProducts');
+        $totalCartProducts = 0;
+        $this->Session->write('totalCartProducts',$totalCartProducts);
     }
 
     public function login() {
