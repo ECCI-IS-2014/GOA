@@ -22,7 +22,7 @@
             
             <div id="bodyCart">
                 <?php
-                if ( $totalCartProducts > 1 ) {
+                if ( $totalCartProducts > 0 ) {
                     
                     echo $this->CatalogGenerator->formatCart($prodCarts, $numProducts, 30 );
                     

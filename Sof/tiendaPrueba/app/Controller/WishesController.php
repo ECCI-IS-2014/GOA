@@ -62,13 +62,13 @@ class WishesController extends AppController {
         $data = array('user_id' => $us_id,'product_id'=>$prod_id);
         try {
             if ($this->Wish->save($data)) {
-                $this->Session->setFlash(__('The product has been corretly added to your wishlist! '));
+                $this->Session->setFlash(__('The product has been added to your wishlist! '));
                 return $this->redirect(array('controller' => 'Products', 'action' => 'productInside','id'=>$prod_id));
             } else {
                 $this->Session->setFlash(__('The product could not be saved in your wishlist. Please, try again.'));
             }
         } catch (Exception $e) {
-            $this->Session->setFlash(__('Oops! You al ready put this item in your wishlist!'));
+            $this->Session->setFlash(__('Oops! This item is already in your wishlist!'));
             return $this->redirect(array('controller' => 'Products', 'action' => 'productInside','id'=>$prod_id));
 
         }
