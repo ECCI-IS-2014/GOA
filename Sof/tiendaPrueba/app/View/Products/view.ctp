@@ -54,7 +54,7 @@
 					<dt><?php echo __('Image'); ?></dt>
 					<dd>
 						<?php if ( $product['Product']['image'] != null ): ?>
-			                <?php echo $this->Html->image('product_icons/' . $product['Product']['image'], array('alt' => 'CakePHP', 'style'=>'height:100%; width:70%; float:left;')); ?>
+			                <?php echo $this->Html->image('product_icons/' . $product['Product']['image'], array('alt' => 'CakePHP', 'style'=>'height:250px; width:250px; float:left;')); ?>
 			            <?php endif; ?>
 			            &nbsp;
 					</dd>

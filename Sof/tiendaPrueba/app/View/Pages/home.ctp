@@ -26,7 +26,9 @@
 
                     <div id="content_wrapper" style="position:relative; overflow: hidden;">
                         
-                        <div style="position:absolute; z-index:10;">
+						<div class="upper_shadow"></div>
+                        
+						<div style="position:absolute; z-index:10;">
                             <?php echo $this->fetch('sidebar1'); ?>
                         </div>
 
@@ -40,6 +42,8 @@
                             </div>
                         </div>
 
+						<div class="lower_shadow"></div>
+						
                     </div>
 
                     <div style="clear:both"></div>
