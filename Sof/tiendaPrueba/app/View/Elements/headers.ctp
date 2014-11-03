@@ -37,7 +37,7 @@
                     
                     <li>
                         <a class="drop" href="<?php echo $this->Html->url(array('controller' => 'users','action' => 'profile'));?>" > 
-                            <?php echo $this->Session->read('Auth.User.name')?> Account
+                            <?php echo $this->Session->read('Auth.User.name')?>'s Account
                         </a>
                     </li>
 
@@ -82,7 +82,7 @@
 
                 <li>
                     <a href="<?php echo $this->Html->url(array('controller' => 'users','action' => 'login'));?>">
-                        Log In
+                        Login
                     </a>
                 </li>
 
