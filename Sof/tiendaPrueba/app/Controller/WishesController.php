@@ -92,11 +92,11 @@ class WishesController extends AppController {
         } else {
             $this->request->onlyAllow('post');
             $this->Wish->id = $id;
-            $prod_id = $this->Wish->query("SELECT product_id FROM WISHES WHERE id = ".$id.";");
-            $us_id= $this->Wish->query("SELECT user_id FROM WISHES WHERE id = ".$id.";");
+            $prod_id = $this->Wish->query("SELECT product_id FROM wishes WHERE id = ".$id.";");
+            $us_id= $this->Wish->query("SELECT user_id FROM wishes WHERE id = ".$id.";");
         }
 
-            if ( !$this->Wish->query("DELETE FROM WISHES WHERE product_id = ".$prod_id." AND user_id =".$us_id.";")) {
+            if ( !$this->Wish->query("DELETE FROM wishes WHERE product_id = ".$prod_id." AND user_id =".$us_id.";")) {
                 $this->Session->setFlash(__('The wish has been deleted.'));
             } else {
                 $this->Session->setFlash(__('The wish could not be deleted. Please, try again.'));
