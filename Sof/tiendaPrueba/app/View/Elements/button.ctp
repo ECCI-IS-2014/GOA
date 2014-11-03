@@ -17,10 +17,6 @@
 
 <?php $this->end(); ?>
 
-<?php/*
-    INSERTAR JS DE BUTTON AQUI
-*/?>
-
 
     <script type="text/javascript">
             $(document).ready(function () {
