@@ -231,17 +231,33 @@ INSERT INTO users ( `username`, `password`, `role`, `created`, `modified`, `name
                        VALUES
 			( 'usuario2', '$2a$10$VkbhvEwoxVQVpAMhiO7G1e8CbzgwkkQQ0xZMuj9sHMOIsfPsE/GSi', 0, '2014-10-22 17:51:55', '2014-10-22 17:51:55', 'Nombre', 'Apellido', 89898989, '100mts Sur de la Pulpe', 'us2@gmail.com', 'M', '1941-10-22');
 
+INSERT INTO users ( `username`, `password`, `role`, `created`, `modified`, `name`, `last_name`, `phone`, `address`, `email`, `gender`, `birth_date` )
+           VALUES ( 'pepito', '$2a$10$qfQJOKQ89Ogh78OlbOe7f.CHWU.qJg5BOhsAxtv/bq/C0usvORZWa', 0, '2014-10-22 17:51:55', '2014-10-22 17:51:55', 'Pepito', 'Perez Pereira', 89898989, '100mts Sur de la Pulpe', 'us2@gmail.com', 'M', '1941-10-22');
+
+INSERT INTO users ( `username`, `password`, `role`, `created`, `modified`, `name`, `last_name`, `phone`, `address`, `email`, `gender`, `birth_date` )
+           VALUES ( 'jordan', '$2a$10$qfQJOKQ89Ogh78OlbOe7f.CHWU.qJg5BOhsAxtv/bq/C0usvORZWa', 0, '2014-10-22 17:51:55', '2014-10-22 17:51:55', 'Jordan', 'Jimenez Jara', 89898989, '100mts Sur de la Pulpe', 'us2@gmail.com', 'M', '1941-10-22');
+
+INSERT INTO users ( `username`, `password`, `role`, `created`, `modified`, `name`, `last_name`, `phone`, `address`, `email`, `gender`, `birth_date` )
+           VALUES ( 'mafalda', '$2a$10$qfQJOKQ89Ogh78OlbOe7f.CHWU.qJg5BOhsAxtv/bq/C0usvORZWa', 0, '2014-10-22 17:51:55', '2014-10-22 17:51:55', 'Mafalda', 'Mata Morera', 89898989, '100mts Sur de la Pulpe', 'us2@gmail.com', 'F', '1941-10-22');
+
+INSERT INTO users ( `username`, `password`, `role`, `created`, `modified`, `name`, `last_name`, `phone`, `address`, `email`, `gender`, `birth_date` )
+           VALUES ( 'rodolfo', '$2a$10$qfQJOKQ89Ogh78OlbOe7f.CHWU.qJg5BOhsAxtv/bq/C0usvORZWa', 0, '2014-10-22 17:51:55', '2014-10-22 17:51:55', 'Rodolfo', 'Ramirez Ramos', 89898989, '100mts Sur de la Pulpe', 'us2@gmail.com', 'M', '1941-10-22');
+
+INSERT INTO users ( `username`, `password`, `role`, `created`, `modified`, `name`, `last_name`, `phone`, `address`, `email`, `gender`, `birth_date` )
+           VALUES ( 'carmen', '$2a$10$qfQJOKQ89Ogh78OlbOe7f.CHWU.qJg5BOhsAxtv/bq/C0usvORZWa', 0, '2014-10-22 17:51:55', '2014-10-22 17:51:55', 'Carmen', 'Cespedes Cedeño', 89898989, '100mts Sur de la Pulpe', 'us2@gmail.com', 'F', '1941-10-22');
 
 
 
 
 
-INSERT INTO `cards` (`id`, `expiration_date`, `card_holder`, `balance`, `card_brand`) VALUES
-('2897309872176284', '2016-11-18', 'Paolo', '20000.50', 'Visa'),
-('6752986723647829', '2015-03-27', 'David', '34920.22', 'Master Card'),
-('7829367022378349', '2014-12-24', 'Eduardo', '2345600.30', 'American Express'),
-('8926738498762934', '2010-12-01', 'Michelle', '3400.90', 'American Express'),
-('8937829034672819', '2019-03-23', 'Caro', '23984.71', 'Master Card');
+
+INSERT INTO `bank_cards` (`id`, `expiration_date`, `card_holder`, `balance`, `card_brand`) VALUES
+('2897309872176284', '2016-11-18', 'Pepito Perez Pereira', '20000.50', 'Visa'),
+('2347190873276228', '2016-11-18', 'Pepito Perez Pereira', '20000.50', 'Mastercard'),
+('6752986723647829', '2015-03-27', 'Jordan Jimenez Jara', '34920.22', 'Mastercard'),
+('7829367022378349', '2014-12-24', 'Mafalda Mata Morera', '2345600.30', 'American Express'),
+('8926738498762934', '2010-12-01', 'Rodolfo Ramirez Ramos', '3400.90', 'American Express');
+
 
 
 
@@ -250,7 +266,16 @@ INSERT INTO `cards` (`id`, `expiration_date`, `card_holder`, `balance`, `card_br
 ALTER TABLE credit_cards AUTO_INCREMENT = 1;
 
 INSERT INTO credit_cards ( `user_id`, `brand`, `card_number`, `card_name`, `expiration_date`, `verification_number` )
-                  VALUES ( '2', 'visa', '1111000022220000', 'Charles Chaplin', '2022-6-14', '000' );
+                  VALUES ( '4', 'Visa', '2897309872176284', 'Pepito Perez Pereira', '2022-6-14', '000' );
 
 INSERT INTO credit_cards ( `user_id`, `brand`, `card_number`, `card_name`, `expiration_date`, `verification_number` )
-                  VALUES ( '2', 'mastercard', '3333000044440000', 'Charles Chaplin', '2014-11-4', '000' );
+                  VALUES ( '4', 'Mastercard', '2347190873276228', 'Pepito Perez Pereira', '2014-11-4', '000' );
+
+INSERT INTO credit_cards ( `user_id`, `brand`, `card_number`, `card_name`, `expiration_date`, `verification_number` )
+                  VALUES ( '5', 'Mastercard', '6752986723647829', 'Jordan Jimenez Jara', '2014-11-4', '000' );
+
+INSERT INTO credit_cards ( `user_id`, `brand`, `card_number`, `card_name`, `expiration_date`, `verification_number` )
+                  VALUES ( '6', 'American Express', '7829367022378349', 'Mafalda Mata Morera', '2014-11-4', '000' );
+
+INSERT INTO credit_cards ( `user_id`, `brand`, `card_number`, `card_name`, `expiration_date`, `verification_number` )
+                  VALUES ( '7', 'American Express', '8926738498762934', 'Rodolfo Ramirez Ramos', '2014-11-4', '000' );
