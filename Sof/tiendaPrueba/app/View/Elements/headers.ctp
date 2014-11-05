@@ -29,7 +29,7 @@
             <ul>
 
                 <li><a href= <?php echo Router::url(array('controller'=>'Pages','action'=>'home')); ?> >Home</a></li>
-                <li><a href="#">Sales</a></li>
+                <li><a href=<?php echo Router::url(array('controller'=>'Sales','action'=>'checkout')); ?>>Sales</a></li>
 
                 <?php if ($this->Session->read('Auth.User.id') != null): ?>
 

@@ -233,6 +233,88 @@ class CatalogGeneratorHelper extends AppHelper {
         return $result_string.'</div>';
 
     }
+
+
+
+    // metodo que muestra productos en facturas
+
+
+    //Método que muestra productos del carro.
+
+    public function formatSale($prodCarts, $numProducts) {
+        echo $this->Html->css('catalogs');
+        $result_string = '<div>';
+
+        for($i = 1; $i < count($prodCarts); $i++) {
+
+            if ( $numProducts[$i] > 0 ) {
+                $result_string = $result_string.
+                    "<div class='cart_item'>".
+                    $this->Html->image('product_icons/'.$prodCarts[$i]['Product']['image'], array('alt' => 'CakePHP', 'class' => 'p_photo','style'=>'height:100%; width:8%; float:left;')) .
+                    "<div class='infoPan' style='margin-bottom: 1.5%;'>".
+                    "<p style='font-weight:bold; float:left; margin-left:2%;'>".'Name:&nbsp;'."</p >".
+                    "<p style='width:40%; margin-bottom:0%; margin-right:0%;'> ".
+                    $prodCarts[$i]['Product']['name'].
+                    "</p>".
+                    "<button id='deleteCartButton'>".
+                    "<a href=".$this->Html->url(array('controller' => 'sales','action' => 'delete', 'id'=>$prodCarts[$i]['Product']['id'])).">".
+                    'Delete'.
+                    "</a>".
+                    "</button>".
+                    "<div>"."</div>".
+                    "<p style='font-weight:bold; float:left; margin-left:2%;'>".'Price:&nbsp;'."</p>".
+                    "<p style='width:40%; margin-bottom:0%; margin-right:0%; float:left;'> ".
+                    $this->StringFormatter->formatCurrency($prodCarts[$i]['Product']['price'], '$').
+                    "</p>".
+                    "<div>"."</div>".
+                    "<br>".
+                    "<br>".
+                    '<form id="EditForm'. $prodCarts[$i]['Product']['id'] .'" method="post" action="'.$this->Html->url(array('controller' => 'carts','action' => 'edit', $prodCarts[$i]['Product']['id'])).'">'.
+                    "<p style='font-weight:bold; float:left; margin-left:10%;'>".'&nbsp;Amount:&nbsp;'."</p>".
+                    "<select name='cantidad'>";
+
+                for ( $j = 1; $j <= $prodCarts[$i]['Product']['quantity']; ++$j ) {
+                    if ( $j == $numProducts[$i] ) {
+                        $result_string = $result_string .
+                            '<option value = "' . $j . '" selected>' . $j . '</option>';
+                    } else {
+                        $result_string = $result_string .
+                            '<option value = "' . $j . '">' . $j . '</option>';
+                    }
+                }
+
+                $result_string = $result_string.
+                    "</select>".
+                    '<span id="setCart" style="margin-left:5px; ">'.
+                    '<input type="submit" value="Set" style="font-size:16px; position:relative;top: -3px;"/>'.
+                    '</span>'.
+                    "</form>".
+                    "<div>"."</div>".
+                    "<br>".
+                    "<p style='font-weight:bold; float:left; margin-left:10%;'>".'Total:&nbsp;'."</p>".
+                    "<p style='width:40%; margin-bottom:0%; margin-right:0%; float:left;'> ".
+                    $this->StringFormatter->formatCurrency($prodCarts[$i]['Product']['price'] * $numProducts[$i], '$').
+                    "</p>".
+                    "<div>"."</div>".
+                    "<br>".
+                    "</div>".
+                    "<div style='clear:both'></div>".
+                    "<hr>".
+
+                    "</div>";
+            }
+        }
+
+        return $result_string.'</div>';
+
+    }
+
+
+
+
+
+
+
 }
 
 
