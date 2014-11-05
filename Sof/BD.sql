@@ -160,12 +160,7 @@ CREATE TABLE IF NOT EXISTS `sales` (
   KEY `FK_user_id` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
-
-
---
--- Restricciones para tablas volcadas
---
-
+-- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `wishes`
@@ -187,7 +182,7 @@ CREATE TABLE IF NOT EXISTS `credit_cards` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `cards` (entidad financiera)
+-- Estructura de tabla para la tabla `bank_cards` (entidad financiera)
 --
 
 CREATE TABLE IF NOT EXISTS `cards` (
