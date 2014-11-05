@@ -27,6 +27,7 @@
 						<th><?php echo $this->Paginator->sort('name'); ?></th>
 						<th><?php echo $this->Paginator->sort('price'); ?></th>
 						<th><?php echo $this->Paginator->sort('quantity'); ?></th>
+						<th><?php echo $this->Paginator->sort('discount'); ?></th>
 						<th><?php echo $this->Paginator->sort('enable_product'); ?></th>
 						<th><?php echo $this->Paginator->sort('rating'); ?></th>
 						<th class="actions"><?php echo __('Actions'); ?></th>
@@ -42,6 +43,7 @@
 					<td><?php echo h($product['Product']['name']); ?>&nbsp;</td>
 					<td><?php echo h($product['Product']['price']); ?>&nbsp;</td>
 					<td><?php echo h($product['Product']['quantity']); ?>&nbsp;</td>
+					<td><?php echo h($product['Product']['discount']); ?>%&nbsp;</td>
 					<td><?php if ( $product['Product']['enable_product'] == '1'): ?>
 							<?php echo h('Enabled'); ?>
 						<?php else: ?>

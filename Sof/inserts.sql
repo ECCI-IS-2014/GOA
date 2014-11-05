@@ -62,9 +62,9 @@ INSERT INTO categories ( name )
 
 ALTER TABLE products AUTO_INCREMENT = 1;
 
-INSERT INTO products ( category_id, name, price, quantity, image, enable_product, weight )
+INSERT INTO products ( category_id, name, price, quantity, image, enable_product, weight, discount )
                        VALUES
-                       ( 8, 'Sandals', 30.00, 14, 'sandalias.jpg', 0, 0.25 );
+                       ( 8, 'Sandals', 30.00, 14, 'sandalias.jpg', 0, 0.25, 30 );
 
 INSERT INTO ratings ( product_id ) VALUES ( 1 );
 
@@ -80,9 +80,9 @@ INSERT INTO products ( category_id, name, price, quantity, image, rating, weight
 
 INSERT INTO ratings ( product_id, rating5 ) VALUES ( 3, 1 );
 
-INSERT INTO products ( category_id, name, price, quantity, image, weight )
+INSERT INTO products ( category_id, name, price, quantity, image, weight, discount )
                        VALUES
-                       ( 7, 'Fedora', 20.00, 7, '1413218846-1.jpg', 0.10 );
+                       ( 7, 'Fedora', 20.00, 7, '1413218846-1.jpg', 0.10, 20 );
 
 INSERT INTO ratings ( product_id ) VALUES ( 4 );
 
@@ -110,9 +110,9 @@ INSERT INTO products ( category_id, name, price, quantity , image, rating, volum
 
 INSERT INTO ratings ( product_id, rating4 ) VALUES ( 8, 1 );
 
-INSERT INTO products ( category_id, name, price, quantity, image, weight )
+INSERT INTO products ( category_id, name, price, quantity, image, weight, discount )
                        VALUES
-                       ( 6, 'Table', 72.00, 3, '1413219529-1.jpg', 9.50 );
+                       ( 6, 'Table', 72.00, 3, '1413219529-1.jpg', 9.50, 30 );
 
 INSERT INTO ratings ( product_id ) VALUES ( 9 );
 
@@ -128,9 +128,9 @@ INSERT INTO products ( category_id, name, price, quantity, image, weight )
 
 INSERT INTO ratings ( product_id, enable_rating ) VALUES ( 11, 0 );
 
-INSERT INTO products ( category_id, name, price, quantity, image, rating, weight )
+INSERT INTO products ( category_id, name, price, quantity, image, rating, weight, discount )
                        VALUES
-                       ( 4, 'Curtain', 24.00, 26, 'cortina.jpg', 3, 2.50 );
+                       ( 4, 'Curtain', 24.00, 26, 'cortina.jpg', 3, 2.50, 25 );
 
 INSERT INTO ratings ( product_id, rating3 ) VALUES ( 12, 1 );
 
@@ -146,9 +146,9 @@ INSERT INTO products ( category_id, name, price, quantity, image, enable_product
 
 INSERT INTO ratings ( product_id ) VALUES ( 14 );
 
-INSERT INTO products ( category_id, name, price, quantity , image, weight )
+INSERT INTO products ( category_id, name, price, quantity , image, weight, discount )
                        VALUES
-                       ( 4, 'Mirror', 45.00, 15 , 'espejo.jpg', 3.0 );
+                       ( 4, 'Mirror', 45.00, 15 , 'espejo.jpg', 3.0, 30 );
 
 INSERT INTO ratings ( product_id, enable_rating ) VALUES ( 15, 0 );
 
