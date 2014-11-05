@@ -251,12 +251,12 @@ INSERT INTO users ( `username`, `password`, `role`, `created`, `modified`, `name
 
 
 
-INSERT INTO `bank_cards` (`id`, `expiration_date`, `card_holder`, `balance`, `card_brand`) VALUES
-('2897309872176284', '2016-11-18', 'Pepito Perez Pereira', '20000.50', 'Visa'),
-('2347190873276228', '2016-11-18', 'Pepito Perez Pereira', '20000.50', 'Mastercard'),
-('6752986723647829', '2015-03-27', 'Jordan Jimenez Jara', '34920.22', 'Mastercard'),
-('7829367022378349', '2014-12-24', 'Mafalda Mata Morera', '2345600.30', 'American Express'),
-('8926738498762934', '2010-12-01', 'Rodolfo Ramirez Ramos', '3400.90', 'American Express');
+INSERT INTO `bank_cards` (`id`, `expiration_date`, `card_holder`, `balance`, `card_brand`, `verification_number`) VALUES
+('2897309872176284', '2016-11-18', 'Pepito Perez Pereira', '20000.50', 'Visa', '000'),
+('2347190873276228', '2016-11-18', 'Pepito Perez Pereira', '20000.50', 'Mastercard', '000'),
+('6752986723647829', '2015-03-27', 'Jordan Jimenez Jara', '34920.22', 'Mastercard', '000'),
+('7829367022378349', '2014-12-24', 'Mafalda Mata Morera', '2345600.30', 'American Express', '000'),
+('8926738498762934', '2010-12-01', 'Rodolfo Ramirez Ramos', '3400.90', 'American Express', '000');
 
 
 
