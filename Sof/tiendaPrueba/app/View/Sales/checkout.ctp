@@ -59,7 +59,7 @@
                 <?php } ?>
 
                 <div id="total">
-                    <b>Total: </b>
+                    <b>Sub Total: </b>
                     <?php
                         $total = 0;
                         if (count($prodCarts) > 1) {
@@ -70,7 +70,21 @@
                         echo $this->StringFormatter->formatCurrency( $total, '$');
                     ?>
                 </div>
-
+                <div id="total">
+                    <b>Tax: </b>
+                    <?php
+                        $withoutTax = $total/13;
+                        echo $this->StringFormatter->formatCurrency( $withoutTax, '$');
+                    ?>
+                </div>
+                <div id="total">
+                    <b>Total: </b>
+                    <?php
+                        $tax= 0.0;
+                        $endTotal = $total + $withoutTax;
+                        echo $this->StringFormatter->formatCurrency( $endTotal, '$');
+                    ?>
+                </div>
             </div>
 
         </div>
