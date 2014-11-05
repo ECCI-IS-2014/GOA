@@ -185,12 +185,13 @@ CREATE TABLE IF NOT EXISTS `credit_cards` (
 -- Estructura de tabla para la tabla `bank_cards` (entidad financiera)
 --
 
-CREATE TABLE IF NOT EXISTS `cards` (
+CREATE TABLE IF NOT EXISTS `bank_cards` (
   `id` char(16) NOT NULL,
   `expiration_date` date NOT NULL,
   `card_holder` varchar(30) NOT NULL,
   `balance` decimal(20,2) NOT NULL,
   `card_brand` varchar(20) NOT NULL,
+  `verification_number` varchar(3) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -236,7 +237,7 @@ ALTER TABLE `product_sales`
 -- Filtros para la tabla `sales`
 --
 ALTER TABLE `sales`
-  ADD CONSTRAINT `FK_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+  ADD CONSTRAINT `FK_sales_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 
   
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
