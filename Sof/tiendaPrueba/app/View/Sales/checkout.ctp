@@ -85,7 +85,11 @@
                         echo $this->StringFormatter->formatCurrency( $endTotal, '$');
                     ?>
                 </div>
-            </div>
+                <div>
+                <button id="PayButton" style = "float:left; margin-left:50%; margin-bottom:5%;">
+                    <a href="$this->Html->url(array('controller' => 'sales','action' => 'add', "1" ))">Pay</a>
+                </button>
+                 </div>
 
         </div>
 

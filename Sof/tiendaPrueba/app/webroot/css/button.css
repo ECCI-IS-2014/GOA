@@ -303,27 +303,27 @@
     box-shadow: rgba(0,0,0,1) 0 1px 0;
     text-shadow: rgba(0,0,0,.4) 0 1px 0;
     color: white;
-    font-size: 13px;
+    font-size: 17px;
     font-family: Helvetica, Arial, Sans-Serif;
     text-decoration: none;
     vertical-align: middle;
-    margin-left: 50%;
+    margin-left: 10%;
 }
 
-#PayButton a
+#PayButton a:hover
 {
     text-decoration: none;
 }
 
 #PayButton:hover{
-    border-top-color: #757575;
+    border-top-color: #e0b243;
     background: #757575;
     color: #fafffe;
 
 }
 #PayButton:active{
-    border-top-color: #1b435e;
-    background: #1b435e;
+    border-top-color: #f7f9f2;
+    background: #8c8987;
 }
 
 
