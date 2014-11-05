@@ -194,6 +194,14 @@ ALTER TABLE `wishes`
   ADD CONSTRAINT `wishes_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `wishes_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`);
 
+CREATE TABLE IF NOT EXISTS `cards` (
+  `id` char(16) NOT NULL,
+  `expiration_date` date NOT NULL,
+  `card_holder` varchar(30) NOT NULL,
+  `balance` decimal(20,2) NOT NULL,
+  `card_brand` varchar(20) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Filtros para la tabla `product_sales`
@@ -212,3 +220,5 @@ ALTER TABLE `sales`
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+

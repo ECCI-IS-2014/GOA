@@ -230,3 +230,13 @@ INSERT INTO users ( `username`, `password`, `role`, `created`, `modified`, `name
 INSERT INTO users ( `username`, `password`, `role`, `created`, `modified`, `name`, `last_name`, `phone`, `address`, `email`, `gender`, `birth_date` )
                        VALUES
 			( 'usuario2', '$2a$10$VkbhvEwoxVQVpAMhiO7G1e8CbzgwkkQQ0xZMuj9sHMOIsfPsE/GSi', 0, '2014-10-22 17:51:55', '2014-10-22 17:51:55', 'Nombre', 'Apellido', 89898989, '100mts Sur de la Pulpe', 'us2@gmail.com', 'M', '1941-10-22');
+
+
+
+
+INSERT INTO `cards` (`id`, `expiration_date`, `card_holder`, `balance`, `card_brand`) VALUES
+('2897309872176284', '2016-11-18', 'Paolo', '20000.50', 'Visa'),
+('6752986723647829', '2015-03-27', 'David', '34920.22', 'Master Card'),
+('7829367022378349', '2014-12-24', 'Eduardo', '2345600.30', 'American Express'),
+('8926738498762934', '2010-12-01', 'Michelle', '3400.90', 'American Express'),
+('8937829034672819', '2019-03-23', 'Caro', '23984.71', 'Master Card');
