@@ -41,6 +41,11 @@
 						<?php echo h($product['Product']['quantity']); ?>
 						&nbsp;
 					</dd>
+					<dt><?php echo __('Discount'); ?></dt>
+					<dd>
+						<?php echo h($product['Product']['discount']).'%'; ?>
+						&nbsp;
+					</dd>
 					<dt><?php echo __('Weight'); ?></dt>
 					<dd>
 						<?php echo h($this->StringFormatter->formatWeight($product['Product']['weight'], 'kg') ); ?>

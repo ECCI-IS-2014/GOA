@@ -48,7 +48,7 @@ class Product extends AppModel {
 			),
 			'comparison' => array(
 		        'rule' => array('comparison', '>=', 0),
-		        'message' => 'Cannot be negative amount'
+		        'message' => 'Cannot be a negative amount'
 		    ),
 		),
 		'weight' => array(
@@ -58,7 +58,7 @@ class Product extends AppModel {
 			),
 			'comparison' => array(
 		        'rule' => array('comparison', '>=', 0),
-		        'message' => 'Cannot be negative amount'
+		        'message' => 'Cannot be a negative amount'
 		    ),
 		),
 		'quantity' => array(
@@ -68,7 +68,21 @@ class Product extends AppModel {
 			),
 			'comparison' => array(
 		        'rule' => array('comparison', '>=', 0),
-		        'message' => 'Cannot be negative amount'
+		        'message' => 'Cannot be a negative amount'
+		    ),
+		),
+		'discount' => array(
+			'numeric' => array(
+				'rule' => array('numeric'),
+				//'message' => 'Your custom message here',
+			),
+			'positive' => array(
+		        'rule' => array('comparison', '>=', 0),
+		        'message' => 'Cannot be a negative amount'
+		    ),
+			'bellow100' => array(
+		        'rule' => array('comparison', '<=', 100),
+		        'message' => 'The discount cannot be over 100%'
 		    ),
 		),
 		'enable_product' => array(

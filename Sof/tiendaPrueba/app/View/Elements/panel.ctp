@@ -33,10 +33,17 @@
    <p style="font-weight:bold; float:left; padding-left:3%;">Name:&nbsp;</p> <?php echo $product['Product']['name'];?>
    <div style="clear:both"></div>
    
-   <p style="font-weight:bold;float:left; padding-left:3%;">Price:&nbsp;</p> <?php  echo $this->StringFormatter->formatCurrency($product['Product']['price'],'$');?>
-   <div style="clear:both"></div>
+    <?php if ($product['Product']['discount'] == 0) : ?>
+		<p style="font-weight:bold;float:left; padding-left:3%;">Price:&nbsp;</p> <?php  echo $this->StringFormatter->formatCurrency($product['Product']['price'],'$');?>	
+	<?php else: ?>
+		<?php $price = $product['Product']['price'] - ($product['Product']['price']*$product['Product']['discount'])/100 ?>
+		<p style="font-weight:bold;float:left; padding-left:3%;">Price:&nbsp;</p> <?php  echo "<span style='text-decoration:line-through;margin-right:5px;'>".$this->StringFormatter->formatCurrency($product['Product']['price'],'$')."</span>";?>	
+		<?php  echo $this->StringFormatter->formatCurrency($price,'$');?>
+		<?php  echo "<span style='font-weight:bold; font-size:12px; color:#006699; margin-left:5px;' >Discount: ".$product['Product']['discount']."%</span>" ;?>
+	<?php endif; ?>
+	<div style="clear:both"></div>
    
-   <p style="font-weight:bold; float:left; padding-left:3%;">Quantity:&nbsp;</p> <?php   echo $product['Product']['quantity'];?>
+   <p style="font-weight:bold; float:left; padding-left:3%;">Quantity:&nbsp;</p> <?php  echo $product['Product']['quantity'];?>
    <div style="clear:both"></div>
    
    <p style="font-weight:bold;float:left; padding-left:3%;">Description:&nbsp;</p> <?php echo $product['Product']['description'];?>
@@ -46,21 +53,18 @@
    <div style="clear:both"></div>
    
    <?php if ($product['Product']['volume'] != 0) : ?>
-   <p style="font-weight:bold;float:left; padding-left:3%;">Volume:&nbsp;</p> <?php  echo $this->StringFormatter->formatVolume($product['Product']['volume'],'cm');?>
-   <div style="clear:both"></div>
+	   <p style="font-weight:bold;float:left; padding-left:3%;">Volume:&nbsp;</p> <?php  echo $this->StringFormatter->formatVolume($product['Product']['volume'],'cm');?>
+	   <div style="clear:both"></div>
    <?php endif; ?>
    
    <p style="font-weight:bold;float:left; padding-left:3%;">Rating:&nbsp;</p> <?php  echo $this->CatalogGenerator->displayRatingBox($product['Product']['rating']);?>
    <div style="clear:both"></div>
 
-
-
-
-
-
 <?php $this->end(); ?>
 
 <?php /*TERMINA PANEL DE DESCRIPCION DE PRODUCTO*/ ?>
+
+
 
 <?php $this->start('optionsPanel'); ?>
 

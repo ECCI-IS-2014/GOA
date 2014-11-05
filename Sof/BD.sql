@@ -49,6 +49,7 @@ CREATE TABLE IF NOT EXISTS `products` (
   `name` varchar(30) NOT NULL,
   `price` decimal(9,2) NOT NULL DEFAULT '0.00',
   `quantity` int(11) NOT NULL DEFAULT '0',
+  `discount` int(11) NOT NULL DEFAULT '0',
   `image` varchar(150) DEFAULT 'placeholder.png',
   `enable_product` tinyint(1) DEFAULT '1',
   `rating` float DEFAULT '0',

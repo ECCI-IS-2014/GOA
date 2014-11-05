@@ -17,6 +17,12 @@ class CatalogGeneratorHelper extends AppHelper {
         for($i = 0; $i < count($products); $i++) {
 
             if( $i < $limit || is_null($limit) ) {
+			
+				if ($products[$i]['Product']['discount'] == 0) {
+					$price = $products[$i]['Product']['price'];
+				} else {
+					$price = $products[$i]['Product']['price'] - ($products[$i]['Product']['price']*$products[$i]['Product']['discount'])/100;
+				}
 
                 $result_string = $result_string .   "<div class='catalog_item'>" .
 
@@ -29,7 +35,7 @@ class CatalogGeneratorHelper extends AppHelper {
 
                                                             "<p class='catalog_title1'>" . $products[$i]['Product']['name'] . "</p>" .
 
-                                                            "<div class='cat_text_container'><span class='catalog_title2'>" . 'Price: ' . "</span><span class='catalog_text1'>" . $this->StringFormatter->formatCurrency($products[$i]['Product']['price'], '$') . "</span></div>" .
+                                                            "<div class='cat_text_container'><span class='catalog_title2'>" . 'Price: ' . "</span><span class='catalog_text1'>" . $this->StringFormatter->formatCurrency($price, '$') . "</span></div>" .
 
                                                             "<div class='cat_text_container'><span class='catalog_title2'>" . 'In stock now: ' . "</span><span class='catalog_text1'>" . $products[$i]['Product']['quantity'] . "</span></div>" .
 
