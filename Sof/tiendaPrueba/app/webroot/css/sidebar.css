@@ -2,47 +2,180 @@
 #sidebar
 {
     float:left;
-    overflow:auto;
-    width: 450px;
-    height: 550px;
-    min-height: 300px;
+    overflow:hidden;
+    width: 280px;
+    height: 413px;
     margin-top: 30px;
-    padding-top: 5px;
+    position: relative;
 }
 
 #sidebar_content
 {
     overflow: hidden;
-    background-color: #00ace6;
+    //background-color: #00ace6;
     float: left; 
     display: inline-block; 
-    min-width: 300px;
-    height: 500px;
+    width: 100%;
+    height: 100%;
     position: relative;
+}
+
+#sidebar_frame {
+    position: relative;
+    margin-top: 4px;
+    width: 240px;
+    height: 405px;
+    background-color: #989898;
+
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
+
     -webkit-box-shadow: 0px 0px 5px 0px rgba(50, 50, 50, 0.75);
     -moz-box-shadow:    0px 0px 5px 0px rgba(50, 50, 50, 0.75);
     box-shadow:         0px 0px 5px 0px rgba(50, 50, 50, 0.75);
+
+    overflow: hidden;
+}
+
+#sidebar_top, #sidebar_bottom {
+    width: 100%;
+    height: 20px;
+    background:#336699 url('../img/mb50_1.gif') repeat-x;
+}
+
+#sidebar_top {
+
+}
+
+#sidebar_bottom {
+
 }
 
 #sidebar_content_interior {
     background-image: url('../img/Pattern6.jpg');
     background-repeat: repeat;
-    min-width: 300px;
-    height: 440px;
-    margin-top: 20px;
-    padding: 9px 9px 9px 9px;
+    width: 100%;
+    height: 365px;
+    //padding: 9px 9px 9px 9px;
+    position: relative;
+}
+
+#sidebar_content_interior #sidebar_keyword, #sidebar_content_interior #sidebar_field, #sidebar_content_interior #sidebar_category, #sidebar_content_interior #sidebar_options {
+    padding: 10px 10px 10px 10px;
+}
+
+#sidebar_content_interior #sidebar_field {
+    
+}
+
+#sidebar_content_interior #sidebar_options {
+    
+}
+
+#sidebar_content_interior label {
+    display: inline;
+}
+
+#sidebar_content_interior #sidebar_options label {
+    width: 100px;
+}
+
+#sidebar_content_interior #sidebar_options div input[type='checkbox'] {
+    //margin: auto 0;
+}
+
+#sidebar_content_interior #sidebar_options #chbx1 {
+    margin-top:  15px;
+}
+
+#sidebar_content_interior #sidebar_options #chbx2 {
+    margin-top:  5px;
+}
+
+#sidebar_content_interior a {
+    vertical-align: bottom;
+    
 }
 
 #sidebar_content p {
     color: #ededed;
 }
 
+#sidebar_content_interior label {
+    color: #ededed;
+    font-size: 11px;
+    letter-spacing: 1px;
+}
+
+#sidebar_content_interior label.title {
+    color: #ff944d;
+    //text-shadow: 0px 1px 1px #ff8533;
+    font-family: Tahoma;
+    font-size: 16px;
+    letter-spacing: 1px;
+}
+
+#sidebar_content_interior #sidebar_keyword input[type="text"] {
+    width: 95%;
+    margin-top: 10px;
+}
+
+#sidebar_content_interior #sidebar_field input[type="text"] {
+    float: right;
+    height: 20px;
+    font-size: 12px;
+    width: 73px;
+}
+
+#sidebar_content_interior #sidebar_field div.l1, #sidebar_content_interior #sidebar_field div.l2, #sidebar_content_interior #sidebar_field div.l3 {
+    margin: 10px 0 10px 0;
+}
+
+#sidebar_content_interior #sidebar_options div.l4, #sidebar_content_interior #sidebar_options div.l5 {
+    margin-bottom: 10px;
+}
+
+#sidebar_content_interior #sidebar_field select {
+    width: 85px;
+    height: 20px;
+    letter-spacing: 1px;
+    font-size: 12px;
+    display: inline-block;
+    float: right;
+}
+
+#sidebar_content_interior #sidebar_category select {
+    width: 115px;
+    height: 20px;
+    letter-spacing: 1px;
+    font-size: 12px;
+    position: absolute;
+    right: 0;
+}
+
+#sidebar_content_interior #sidebar_category {
+    position: absolute;
+    bottom: 153px;
+    width: 210px;
+}
+
+#sidebar_content_interior #sidebar_options {
+    position: absolute;
+    bottom: 63px;
+}
+
+#sidebar_content_interior #search_btn {
+    width: 140px;
+    position: absolute;
+    bottom: 26px;
+    left: 46px;
+}
+
 #sidebar #buttontog
 {
-    float:left;
-    display: inline-block;
+    position: absolute;
+    left: 240px;
+    top: 10px;
     background:#336699 url('../img/mb50_1.gif') repeat-x;
     margin-top: 8%;
     margin-left: 0%;
@@ -54,7 +187,7 @@
     border-top-left-radius: 20px;
     border: solid 1px #39F;
     letter-spacing: 1px;
-    width: 100px;
+    width: 170px;
     cursor: pointer;
 
     -webkit-transform: translateY(-100%) rotate(90deg); /* Safari */
@@ -80,4 +213,10 @@
 :focus, :active {
     outline: 0;
     border: 0;      /*elimina los puntos feos cuando uno clickea el boton*/
+}
+
+#sidebar input[type='text'] {
+    width:100px;
+    height: 20px;
+    font-size: 12px;
 }

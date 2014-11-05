@@ -99,8 +99,15 @@ class ProductsControllerTest extends ControllerTestCase {
 				'description' => 'Para hipsters.'
 			)
 		);
+		
+		// Pruebas antes del edit
+		$prod = $Products->Product->read(null, 4);
+		$this->assertEqual($prod['Product']['price'], '8200.00');
+		$this->assertEqual($prod['Product']['description'], 'No description.');
+		
 		$this->testAction('/products/edit/4', array('data' => $data));
 		
+		// Pruebas despues del edit
 		$prod = $Products->Product->read(null, 4);
 		$this->assertEqual($prod['Product']['price'], '10200.00');
 		$this->assertEqual($prod['Product']['description'], 'Para hipsters.');
@@ -119,8 +126,13 @@ class ProductsControllerTest extends ControllerTestCase {
 		));
 		$Products->Session->expects($this->any())->method('setFlash');
 		
+		// Prueba antes de disable
+		$prod = $Products->Product->read(null, 2);
+		$this->assertEqual($prod['Product']['enable_product'], '1');
+		
 		$this->testAction('/products/disable/2');		// disable producto con id 2
 		
+		// Prueba despues de disable
 		$prod = $Products->Product->read(null, 2);
 		$this->assertEqual($prod['Product']['enable_product'], false);
 	}
@@ -138,8 +150,13 @@ class ProductsControllerTest extends ControllerTestCase {
 		));
 		$Products->Session->expects($this->any())->method('setFlash');
 		
+		// Prueba antes de enable
+		$prod = $Products->Product->read(null, 1);
+		$this->assertEqual($prod['Product']['enable_product'], false);
+		
 		$this->testAction('/products/enable/1');		// enable producto con id 1
 		
+		// Prueba despues de enable
 		$prod = $Products->Product->read(null, 1);
 		$this->assertEqual($prod['Product']['enable_product'], '1');
 	}

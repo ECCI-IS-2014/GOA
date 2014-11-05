@@ -14,5 +14,17 @@ class StringFormatterHelper extends AppHelper {
     	return $currency . number_format ($number, 2, '.', ',');
 
 	}
+	
+	public function formatWeight ($number, $unit) {
+	
+		$number = floatval($number);
+		return number_format ($number, 2, '.', ',') . ' ' . $unit;
+	}
+	
+	public function formatVolume ($number, $unit) {
+	
+		$number = floatval($number);
+		return number_format ($number, 2, '.', ',') . ' ' . $unit . '<sup>3</sup>';
+	}
 
 }

@@ -42,13 +42,11 @@ class AppController extends Controller {
         'Auth' => array(
             'loginRedirect' => array(
                 'controller' => 'pages',
-                'action' => 'display',
-                'home'
+                'action' => 'home'
             ),
             'logoutRedirect' => array(
                 'controller' => 'pages',
-                'action' => 'display',
-                'home'
+                'action' => 'home'
 
             ),
             'authenticate' => array(
@@ -61,21 +59,25 @@ class AppController extends Controller {
         )
     );
 
+
+
     public function isAuthorized() {
         // Admin can access every action
         if ($this->Session->read('Auth.User.role')== 'admin') {
-            //isset($user['role']) && $user['role'] === 'admin') {
             return true;
+        } else {
+            $this->Auth->deny(array('controller'=>'products', 'action'=>'index'),array('controller'=>'products', 'action'=>'add'));
 
         }
-
         // Default deny
         return false;
     }
 
 
+
+
     public function beforeFilter() {
-        $this->Auth->allow('home');
+        $this->Auth->allow('home','productInside');
         // extra
         $this->Auth->deny('edit', 'delete');
     }

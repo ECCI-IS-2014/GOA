@@ -51,7 +51,9 @@ CREATE TABLE IF NOT EXISTS `products` (
   `quantity` int(11) NOT NULL DEFAULT '0',
   `image` varchar(150) DEFAULT 'placeholder.png',
   `enable_product` tinyint(1) DEFAULT '1',
-  `rating` int(11) DEFAULT '0',
+  `rating` float DEFAULT '0',
+  `weight` decimal(9,2) NOT NULL DEFAULT '0.00',
+  `volume` decimal(9,2) DEFAULT '0.00',
   `description` varchar(1000) NOT NULL DEFAULT 'No description.',
   PRIMARY KEY (`id`),
   KEY `FK_category_id` (`category_id`)
@@ -100,6 +102,25 @@ CREATE TABLE IF NOT EXISTS `users` (
   UNIQUE KEY `username` (`username`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `wishes`
+--
+
+CREATE TABLE IF NOT EXISTS `wishes` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `noRepit` (`user_id`,`product_id`),
+  UNIQUE KEY `user_id` (`user_id`,`product_id`),
+  KEY `product_id` (`product_id`),
+  KEY `wishes_ibfk_1` (`user_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
 --
 -- Filtros para la tabla `categories`
 --
@@ -117,6 +138,15 @@ ALTER TABLE `products`
 --
 ALTER TABLE `ratings`
   ADD CONSTRAINT `FK_product_id` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`);
+
+--
+-- Filtros para la tabla `wishes`
+--
+ALTER TABLE `wishes`
+  ADD CONSTRAINT `wishes_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `wishes_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`);
+
+
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

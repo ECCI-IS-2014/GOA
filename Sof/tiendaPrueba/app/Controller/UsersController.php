@@ -24,25 +24,34 @@ class UsersController extends AppController {
     public function beforeFilter() {
         parent::beforeFilter();
         $this->Auth->allow('add', 'logout', 'view', 'home');
+
+        $this->Session->write('cart');
+        $cart = array(0);
+        $this->Session->write('cart',$cart);
+
+        $this->Session->write('numProducts');
+        $numProducts = array(0);
+        $this->Session->write('numProducts',$numProducts);
+
+        $this->Session->write('totalCartProducts');
+        $totalCartProducts = 0;
+        $this->Session->write('totalCartProducts',$totalCartProducts);
     }
 
     public function login() {
         if ($this->request->is('post')) {
-        if ($this->Auth->login()) {
-            //return $this->redirect($this->Auth->redirect());
-            //return $this->redirect(array('action' => 'profile'));
-            return $this->redirect(array('controller' => 'Pages','action' => 'home'));
-        } else {
-            return $this->Session->setFlash(__('Invalid username or password, try again. </br> If this is your fist time here, create an <a href="http://localhost/blog/TiendaOnline/users/add">account</a>'));
+            if ($this->Auth->login()) {
+                if($this->isAuthorized()) { // if is admin
+                    return $this->redirect(array('controller'=>'products', 'action'=>'index'));
+                } else {
+                    //$this->Auth->deny(array('controller'=>'products', 'action'=>'index'));
+                    //return $this->redirect($this->Auth->redirect());
+                    return $this->redirect(array('controller'=>'Pages', 'action'=>'home'));
+                }
+            } else {
+                return $this->Session->setFlash(__('Invalid username or password, try again. </br> If this is your fist time here, create an <a href="http://localhost/blog/TiendaOnline/users/add">account</a>'));
+            }
         }
-        }
-    }
-
-
-    public function home() {
-
-        //return $this->redirect($this->Auth->logout());
-
     }
 
     public function profile()
@@ -59,7 +68,8 @@ class UsersController extends AppController {
 
 
     public function logout() {
-       return $this->redirect($this->Auth->logout());
+        $this->Session->setFlash(__('You have logged out.'));
+        return $this->redirect($this->Auth->logout());
     }
 
     public function loggedout(){
@@ -97,32 +107,20 @@ class UsersController extends AppController {
  * add method
  *
  * @return void
-
-/*	public function add() {
-		if ($this->request->is('post')) {
-			$this->User->create();
-			if ($this->User->save($this->request->data)) {
-				$this->Session->setFlash(__('The user has been saved.'));
-				return $this->redirect(array('action' => 'index'));
-			} else {
-				$this->Session->setFlash(__('The user could not be saved. Please, try again.'));
-			}
-		}
-	}
-    */
+ */
 
     public function add() {
         if ($this->request->is('post')) {
             $this->User->create();
             try {
                 if ($this->User->save($this->request->data)) {
-                    $this->Session->setFlash(__('The user has been saved.'));
-                    return $this->redirect(array('action' => 'index'));
+                    $this->Session->setFlash(__('The user has been saved! Login to start using FutureStore!'));
+                    return $this->redirect(array('controller' => 'Pages','action' => 'home'));
                 } else {
                     $this->Session->setFlash(__('The user could not be saved. Please, try again.'));
                 }
             } catch (Exception $e) {
-                $this->Session->setFlash(__('This Username is already used, please try another Username'));
+                $this->Session->setFlash(__('This Username is taken, please try another Username'));
                 return $this->redirect(array('action' => 'add'));
 
             }
@@ -142,6 +140,7 @@ class UsersController extends AppController {
 	public function edit($id = null) {
 
         $id=$this->Session->read('Auth.User.id');
+
         $this->User->id = $id;
 
 		if ($this->request->is(array('post', 'put'))) {

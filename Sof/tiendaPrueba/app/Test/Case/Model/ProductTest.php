@@ -24,6 +24,16 @@ class ProductTest extends CakeTestCase {
         $this->Product = ClassRegistry::init('Product');
     }
 
+    public function testGetAllProducts() {
+
+        $products = $this->Product->getAllProducts(
+            'price', 
+            'DESC'
+        );
+        $this->assertCount( 4, $products );
+
+    }
+
     public function testGetProductsByAttributeEquals() {
 
         $products = $this->Product->getProductsByAttributeEquals(
@@ -120,6 +130,17 @@ class ProductTest extends CakeTestCase {
             $price = floatval($prod['Product']['price']);
             $this->assertTrue( $price >= 3000 );
         }
+
+    }
+
+    public function testReplaceCategory() {
+
+        $prod = $this->Product->read(null, 4);
+        $this->assertEqual($prod['Product']['category_id'], 1);
+
+        $this->Product->replaceCategory(1,3);
+        $prod = $this->Product->read(null, 4);
+        $this->assertEqual($prod['Product']['category_id'], 3);
 
     }
 

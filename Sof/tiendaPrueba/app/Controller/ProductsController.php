@@ -1,5 +1,6 @@
 <?php
 App::uses('AppController', 'Controller');
+
 /**
  * Products Controller
  *
@@ -16,7 +17,7 @@ class ProductsController extends AppController {
  */
 	public $components = array('Paginator', 'Session');
 	public $uses = array('Product','Rating');
-	public $helpers = array('CatalogGenerator', 'Html');
+	public $helpers = array('CatalogGenerator', 'StringFormatter', 'Html');
 
 /**
  * index method
@@ -136,23 +137,52 @@ class ProductsController extends AppController {
 		}
         return $this->redirect(array('action' => 'index'));
     }
-
-    /*
-     * Cambia la categoria de todos los productos cuyo categoria sea $old_cate_id por la categoria $new_cate_id
+	
+	/*
+     * Asigna un nuevo rating con el valor $newRating al producto con id $id
      */
-    public function replaceCategory ( $old_cate_id, $new_cate_id  ) {
-		$total = $this->Product->find('count');
-		for ($id = 1; $id <= $total; ++$id) {
-			$this->Product->id = $id;
-	        if (!$this->Product->exists()) {
-	            throw new NotFoundException(__('Invalid product'));
-	        } else {
-	        	if ( $this->Product->field('category_id') == $old_cate_id ) {
-					$this->Product->set('category_id', $new_cate_id );
-					$this->Product->save();
-				}
+	public function rateProduct( $id, $newRating  ) {
+		$this->Product->id = $id;
+        if ( $this->Product->exists() && $newRating > 0 && $newRating <= 5 ) {
+            $prod = $this->Product->Rating->read( null, $id );
+			switch ( $newRating ) {
+				case 1:
+					$rating = $prod['Rating']['rating1'] + 1;
+					$this->Product->Rating->set('rating1', $rating );
+					$this->Product->Rating->save();
+					break;
+				case 2:
+					$rating = $prod['Rating']['rating2'] + 1;
+					$this->Product->Rating->set('rating2', $rating );
+					$this->Product->Rating->save();
+					break;
+				case 3:
+					$rating = $prod['Rating']['rating3'] + 1;
+					$this->Product->Rating->set('rating3', $rating );
+					$this->Product->Rating->save();
+					break;
+				case 4:
+					$rating = $prod['Rating']['rating4'] + 1;
+					$this->Product->Rating->set('rating4', $rating );
+					$this->Product->Rating->save();
+					break;
+				case 5:
+					$rating = $prod['Rating']['rating5'] + 1;
+					$this->Product->Rating->set('rating5', $rating );
+					$this->Product->Rating->save();
+					break;
 			}
+			$prod = $this->Product->Rating->read( null, $id );
+			$numRates = $prod['Rating']['rating1'] + $prod['Rating']['rating2'] + $prod['Rating']['rating3']
+					+ $prod['Rating']['rating4'] + $prod['Rating']['rating5'];
+			$rating = $prod['Rating']['rating1'] + $prod['Rating']['rating2']*2 + $prod['Rating']['rating3']*3
+					+ $prod['Rating']['rating4']*4 + $prod['Rating']['rating5']*5;
+			$rating = $rating/$numRates;
+			$this->Product->set('rating', $rating );
+			$this->Product->save();
 		}
+		return $this->redirect(array('action' => 'index'));
+		// cambiar el redirect luego!
 	}
 
     public function productInside()

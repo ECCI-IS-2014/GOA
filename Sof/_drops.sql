@@ -1,3 +1,4 @@
+DROP TABLE wishes;
 DROP TABLE ratings;
 DROP TABLE products;
 DROP TABLE categories;

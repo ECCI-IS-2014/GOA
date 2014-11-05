@@ -81,7 +81,286 @@ class PagesController extends AppController {
 
         $this->set( 'products', $this->Product->find('all') );
 
-    }
+        $query = array();
+        $url = $_SERVER['REQUEST_URI'];
+	    $parts = parse_url($url);
 
+	    if(isset($parts['query'])) {
+	    	parse_str($parts['query'], $query);
+
+	    	if(isset($query['op'])) {
+
+	    		switch ($query['type']) {
+
+	    			case '1':	//Searchbar search
+	    				$res = array(
+	    					//persistent params
+					    	'op' => $query['op'],
+					    );
+
+			        	//optional params
+			        	if(isset($query['val']) && $query['val'] != '') {
+					    	$res['val'] = $query['val'];
+					    }
+					    if(isset($query['cat']) && $query['cat'] != '') {
+					    	$res['cat'] = $query['cat'];
+					    }
+
+					    $this->set('s_params', $res);
+
+					    $arr = Array();
+
+					    if(isset($res['val'])) {
+			        		$arr['keyword'] = $this->Product->getProductsInCategoryByAttributeLike('name', strtolower($res['val']), $res['cat'], $order_by = null, $direction = 'DESC');
+			        	}
+
+			        	$this->set('s_results', $arr['keyword']);
+	    				break;
+
+	    			case '2':   //Search by equal
+	    				$res = array(
+	    					//persistent params
+					    	'op' => $query['op'],
+					    	'cat' => $query['cat'],
+					    	'match_all' => $query['match_all']
+					    );
+					    //optional params
+					    if(isset($query['keyword']) && $query['keyword'] != '') {
+					    	$res['keyword'] = $query['keyword'];
+					    }
+					    if(isset($query['attr']) && $query['attr'] != '' && isset($query['match_val']) && $query['match_val'] != '') {
+					    	$res['attr'] = $query['attr'];
+					    	$res['val'] = $query['match_val'];
+					    }
+					    
+			        	$this->set('s_params', $res);
+
+			        	$arr = Array();
+
+			        	if(isset($res['keyword'])) {
+			        		$arr['keyword'] = $this->Product->getProductsInCategoryByAttributeLike('name', strtolower($res['keyword']), $res['cat'], $order_by = null, $direction = 'DESC');
+			        	}
+			        	if(isset($res['attr']) && isset($res['val'])) {
+			        		if(strtolower($res['attr']) == 'any') {
+			        			$arr['attr'] = Array();
+			        			$arr['attr'] = $this->Product->uniteResults(
+			        				$this->Product->getProductsInCategoryByAttributeEquals('price', $res['val'], $res['cat'], $order_by = null, $direction = 'DESC'), 
+			        				$arr['attr']
+			        			);
+			        			$arr['attr'] = $this->Product->uniteResults(
+			        				$this->Product->getProductsInCategoryByAttributeEquals('rating', $res['val'], $res['cat'], $order_by = null, $direction = 'DESC'), 
+			        				$arr['attr']
+			        			);
+			        			$arr['attr'] = $this->Product->uniteResults(
+			        				$this->Product->getProductsInCategoryByAttributeEquals('weight', $res['val'], $res['cat'], $order_by = null, $direction = 'DESC'), 
+			        				$arr['attr']
+			        			);
+			        			$arr['attr'] = $this->Product->uniteResults(
+			        				$this->Product->getProductsInCategoryByAttributeEquals('volume', $res['val'], $res['cat'], $order_by = null, $direction = 'DESC'), 
+			        				$arr['attr']
+			        			);
+			        		}
+			        		else {
+			        			$arr['attr'] = $this->Product->getProductsInCategoryByAttributeEquals(strtolower($res['attr']), $res['val'], $res['cat'], $order_by = null, $direction = 'DESC');
+			        		}
+			        	}
+
+			        	$result = Array();
+
+			        	if($res['match_all'] == 'true') {
+			        		//Intersection of all results
+			        		if(isset($arr['keyword']) && isset($arr['attr'])) {
+			        			$result = $this->Product->intersectResults($arr['keyword'], $arr['attr']);
+			        		}
+			        		else {
+			        			if(isset($arr['keyword'])) {
+			        				$result = $arr['keyword'];
+			        			}
+			        			else {
+			        				if(isset($arr['attr'])) {
+			        					$result = $arr['attr'];	
+			        				}
+			        			}
+			        		}
+			        	}
+			        	else {
+			        		//Union of all results
+			        		if(isset($arr['keyword']) && isset($arr['attr'])) {
+			        			$result = $this->Product->uniteResults($arr['keyword'], $arr['attr']);
+			        		}
+			        		else {
+			        			if(isset($arr['keyword'])) {
+			        				$result = $arr['keyword'];
+			        			}
+			        			else {
+			        				if(isset($arr['attr'])) {
+			        					$result = $arr['attr'];	
+			        				}
+			        			}
+			        		}
+
+			        		
+			        	}
+
+			        	$this->set('s_results', $result);
+	    				break;
+
+	    			case '3':	//Search by range
+			        	$res = array(
+	    					//persistent params
+					    	'op' => $query['op'],
+					    	'cat' => $query['cat'],
+					    	'match_all' => $query['match_all']
+					    );
+					    //optional params
+					    if(isset($query['keyword']) && $query['keyword'] != '') {
+					    	$res['keyword'] = $query['keyword'];
+					    }
+					    if(isset($query['attr']) && $query['attr'] != '' && ((isset($query['match_lt']) && $query['match_lt'] != '') || (isset($query['match_gt']) && $query['match_gt'] != ''))) {
+					    	$res['attr'] = $query['attr'];
+					    	if(isset($query['match_gt'])) {
+					    		$res['val_gt'] = $query['match_gt'];
+					    	}
+					    	if(isset($query['match_lt'])) {
+					    		$res['val_lt'] = $query['match_lt'];	
+					    	}
+					    }
+					    
+			        	$this->set('s_params', $res);
+
+			        	$arr = Array();
+
+			        	if(isset($res['keyword'])) {
+			        		$arr['keyword'] = $this->Product->getProductsInCategoryByAttributeLike('name', strtolower($res['keyword']), $res['cat'], $order_by = null, $direction = 'DESC');
+			        	}
+			        	if(isset($res['attr'])) {
+			        		if(isset($res['val_gt']) && isset($res['val_lt'])) {
+			        			//match between two values
+			        			if(strtolower($res['attr']) == 'any') {
+			        				$arr['attr'] = Array();
+				        			$arr['attr'] = $this->Product->uniteResults(
+				        				$this->Product->getProductsInCategoryByAttributeRange('price', $res['val_gt'], $res['val_lt'], $res['cat'], $order_by = null, $direction = 'DESC'), 
+				        				$arr['attr']
+				        			);
+				        			$arr['attr'] = $this->Product->uniteResults(
+				        				$this->Product->getProductsInCategoryByAttributeRange('rating', $res['val_gt'], $res['val_lt'], $res['cat'], $order_by = null, $direction = 'DESC'), 
+				        				$arr['attr']
+				        			);
+				        			$arr['attr'] = $this->Product->uniteResults(
+				        				$this->Product->getProductsInCategoryByAttributeRange('weight', $res['val_gt'], $res['val_lt'], $res['cat'], $order_by = null, $direction = 'DESC'), 
+				        				$arr['attr']
+				        			);
+				        			$arr['attr'] = $this->Product->uniteResults(
+				        				$this->Product->getProductsInCategoryByAttributeRange('volume', $res['val_gt'], $res['val_lt'], $res['cat'], $order_by = null, $direction = 'DESC'), 
+				        				$arr['attr']
+				        			);
+			        			}
+			        			else {
+			        				$arr['attr'] = $this->Product->getProductsInCategoryByAttributeRange(strtolower($res['attr']), $res['val_gt'], $res['val_lt'], $res['cat'], $order_by = null, $direction = 'DESC');
+			        			}
+			        		}
+			        		else {
+			        			if(isset($res['val_gt'])) {
+			        				//match greater than value
+			        				if(strtolower($res['attr']) == 'any') {
+			        					$arr['attr'] = Array();
+					        			$arr['attr'] = $this->Product->uniteResults(
+					        				$this->Product->getProductsInCategoryByAttributeGreaterEquals('price', $res['val_gt'], $res['cat'], $order_by = null, $direction = 'DESC'), 
+					        				$arr['attr']
+					        			);
+					        			$arr['attr'] = $this->Product->uniteResults(
+					        				$this->Product->getProductsInCategoryByAttributeGreaterEquals('rating', $res['val_gt'], $res['cat'], $order_by = null, $direction = 'DESC'), 
+					        				$arr['attr']
+					        			);
+					        			$arr['attr'] = $this->Product->uniteResults(
+					        				$this->Product->getProductsInCategoryByAttributeGreaterEquals('weight', $res['val_gt'], $res['cat'], $order_by = null, $direction = 'DESC'), 
+					        				$arr['attr']
+					        			);
+					        			$arr['attr'] = $this->Product->uniteResults(
+					        				$this->Product->getProductsInCategoryByAttributeGreaterEquals('volume', $res['val_gt'], $res['cat'], $order_by = null, $direction = 'DESC'), 
+					        				$arr['attr']
+					        			);
+				        			}
+				        			else {
+				        				$arr['attr'] = $this->Product->getProductsInCategoryByAttributeGreaterEquals(strtolower($res['attr']), $res['val_gt'], $res['cat'], $order_by = null, $direction = 'DESC');
+				        			}
+			        			}
+			        			else {
+			        				//match lesser than value
+			        				if(strtolower($res['attr']) == 'any') {
+			        					$arr['attr'] = Array();
+					        			$arr['attr'] = $this->Product->uniteResults(
+					        				$this->Product->getProductsInCategoryByAttributeLesserEquals('price', $res['val_lt'], $res['cat'], $order_by = null, $direction = 'DESC'), 
+					        				$arr['attr']
+					        			);
+					        			$arr['attr'] = $this->Product->uniteResults(
+					        				$this->Product->getProductsInCategoryByAttributeLesserEquals('rating', $res['val_lt'], $res['cat'], $order_by = null, $direction = 'DESC'), 
+					        				$arr['attr']
+					        			);
+					        			$arr['attr'] = $this->Product->uniteResults(
+					        				$this->Product->getProductsInCategoryByAttributeLesserEquals('weight', $res['val_lt'], $res['cat'], $order_by = null, $direction = 'DESC'), 
+					        				$arr['attr']
+					        			);
+					        			$arr['attr'] = $this->Product->uniteResults(
+					        				$this->Product->getProductsInCategoryByAttributeLesserEquals('volume', $res['val_lt'], $res['cat'], $order_by = null, $direction = 'DESC'), 
+					        				$arr['attr']
+					        			);
+				        			}
+				        			else {
+				        				$arr['attr'] = $this->Product->getProductsInCategoryByAttributeLesserEquals(strtolower($res['attr']), $res['val_lt'], $res['cat'], $order_by = null, $direction = 'DESC');
+				        			}
+			        			}
+			        		}
+			        	}
+
+			        	$result = Array();
+
+			        	if($res['match_all'] == 'true') {
+			        		//Intersection of all results
+			        		if(isset($arr['keyword']) && isset($arr['attr'])) {
+			        			$result = $this->Product->intersectResults($arr['keyword'], $arr['attr']);
+			        		}
+			        		else {
+			        			if(isset($arr['keyword'])) {
+			        				$result = $arr['keyword'];
+			        			}
+			        			else {
+			        				if(isset($arr['attr'])) {
+			        					$result = $arr['attr'];	
+			        				}
+			        			}
+			        		}
+			        	}
+			        	else {
+			        		//Union of all results
+			        		if(isset($arr['keyword']) && isset($arr['attr'])) {
+			        			$result = $this->Product->uniteResults($arr['keyword'], $arr['attr']);
+			        		}
+			        		else {
+			        			if(isset($arr['keyword'])) {
+			        				$result = $arr['keyword'];
+			        			}
+			        			else {
+			        				if(isset($arr['attr'])) {
+			        					$result = $arr['attr'];	
+			        				}
+			        			}
+			        		}
+			        	}
+
+			        	$this->set('s_results', $result);
+	    				break;
+	    			
+	    			default:
+	    				# code...
+	    				break;
+	    				
+	    		}
+
+	    	}
+
+	    }
+	   
+    }
 
 }

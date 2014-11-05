@@ -26,7 +26,9 @@
 
                     <div id="content_wrapper" style="position:relative; overflow: hidden;">
                         
-                        <div style="position:absolute; z-index:10;">
+						<div class="upper_shadow"></div>
+                        
+						<div style="position:absolute; z-index:10;">
                             <?php echo $this->fetch('sidebar1'); ?>
                         </div>
 
@@ -34,12 +36,14 @@
                             <div id="panel" style="height:100%">
 
                                 <div id="panel_boundaries">
-                                    <?php echo $this->fetch('panel1'); ?>
+                                    <?php echo $this->fetch('home_panel'); ?>
                                 </div>
                                 
                             </div>
                         </div>
 
+						<div class="lower_shadow"></div>
+						
                     </div>
 
                     <div style="clear:both"></div>
@@ -65,7 +69,9 @@
             setTimeout(function(){
                 allowTopHeaderHiding = true;
                 if( $('#content_wrapper').is(":hover") ) {
-                    hideTopHeader();
+                    if(comboboxOpen != true) {
+                        hideTopHeader();    
+                    }
                 }
             }, 3000);
         });
@@ -90,38 +96,20 @@
         function configureEvents() {
 
             $("#content_wrapper").mouseenter(function(){
-                if(logoVisible == true) {
+                if(logoVisible == true && comboboxOpen != true) {
                     hideTopHeader();
                 }
             });
 
             $("#topHeader").mouseenter(function(){
-                if(logoVisible == false) {
+                if(logoVisible == false && comboboxOpen != true) {
                     showTopHeader();
                 }
             });
 
-            $(".sbm").click(function(){
-                gotoSearch();
-            });
-
-            $("input.search").keypress(function(e){
-                if(e.which == 13) {
-                    gotoSearch();
-                }
-            });
-
         }
 
-        function gotoSearch() {
-            var opts =  "/" + 'name' + 
-                        "/" + $("input.search").val() +
-                        "/" + $("input.search").val() +
-                        "/" + 'null' + 
-                        "/" + 'asc';
-            var url = "<?php echo $this->html->url('/', true); ?>" + "/Products/searchCatalog" + opts;
-            window.location.href = url;
-        }
+         
 
 
         /*
@@ -130,6 +118,7 @@
          *      -Luego de los 3 segundos iniciales, cuando el cursor se encuentre dentro del panel principal de home, el header se contrae.
          *      -Cuando el cursor se encuentre dentro del header, el header se expande.
          *      -Si el usuario ha escrito algo en la barra de búsqueda, el header se mantiene expandido bajo cualquier circunstancia.
+         *      -Si existe un elemento <select> desplegado en la página, el header no cambia de estado bajo ninguna circunstancia.
          */
 
         function hideTopHeader() {

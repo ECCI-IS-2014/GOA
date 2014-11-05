@@ -18,7 +18,7 @@ class ProductFixture extends CakeTestFixture {
 		'quantity' => array('type' => 'integer', 'null' => false, 'default' => '0', 'unsigned' => false),
 		'image' => array('type' => 'string', 'null' => true, 'default' => null, 'length' => 150, 'collate' => 'latin1_swedish_ci', 'charset' => 'latin1'),
 		'enable_product' => array('type' => 'boolean', 'null' => true, 'default' => '1'),
-		'rating' => array('type' => 'integer', 'null' => true, 'default' => '0', 'unsigned' => false),
+		'rating' => array('type' => 'float', 'null' => true, 'default' => '0', 'unsigned' => false),
 		'description' => array('type' => 'string', 'null' => false, 'default' => 'No description.', 'length' => 1000, 'collate' => 'latin1_swedish_ci', 'charset' => 'latin1'),
 		'indexes' => array(
 			'PRIMARY' => array('column' => 'id', 'unique' => 1),

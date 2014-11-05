@@ -14,7 +14,7 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
-$cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework');
+$pageDescription = __d('cake_dev', 'Future Store');
 $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 ?>
 <!DOCTYPE html>
@@ -22,8 +22,8 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 <head>
 	<?php echo $this->Html->charset(); ?>
 	<title>
-		<?php echo $cakeDescription ?>
-		<?php echo $title_for_layout; ?>
+		<?php echo $pageDescription ?>
+		<?php // echo $title_for_layout; ?>
 	</title>
 	<?php
 		echo $this->Html->meta('icon');
@@ -48,4 +48,16 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 
 	<?php echo $this->Js->writeBuffer(); ?>
 </body>
+
+<script type="text/javascript">
+	var comboboxOpen = false;
+	$(document).ready(function(){
+	    $('select').focus(function(){
+	        comboboxOpen = true;
+	    }).blur(function(){
+	        comboboxOpen = false;
+	    });
+	});
+</script>
+
 </html>
