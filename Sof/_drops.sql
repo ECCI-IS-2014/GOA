@@ -1,3 +1,4 @@
+DROP TABLE credit_cards;
 DROP TABLE wishes;
 DROP TABLE ratings;
 DROP TABLE products;
