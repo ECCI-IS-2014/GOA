@@ -29,8 +29,7 @@
             <ul>
 
                 <li><a href= <?php echo Router::url(array('controller'=>'Pages','action'=>'home')); ?> >Home</a></li>
-                 <li><a href="#">Sales</a></li>
-                <li><a href=<?php echo Router::url(array('controller'=>'Sales','action'=>'checkout')); ?>>Your order's</a></li>
+                <li><a href="#">Sales</a></li>
 
                 <?php if ($this->Session->read('Auth.User.id') != null): ?>
 
@@ -46,6 +45,12 @@
                     <li>
                         <a href="<?php echo $this->Html->url(array('controller' => 'wishes','action' => 'index'));?>">
                             MyWishlist
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="<?php echo $this->Html->url(array('controller' => 'sales','action' => 'checkout'));?>">
+                            Your orders
                         </a>
                     </li>
 
