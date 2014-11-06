@@ -104,70 +104,27 @@ class BankCardsController extends AppController {
 		return $this->redirect(array('action' => 'index'));
 	}
 
-    /**
-     * Funcion para verificar el nombre del dueño de la tarjeta
-     */
-
-    public function verify_name($card_holder_EF)
+    public function pruebaVerificaciones()
     {
-        $result = false;
-        $card_holder_store=  $this->Session->read('card_holder');
-        if($card_holder_EF===$card_holder_store)
+        $result = $this->BankCard->balance_decrease(1000.00,'7829367022378349');
+        if($result)
         {
-            $result = true;
+            echo('SI PASO');
         }
-        return $result;
-    }
-
-    public function verify_expiration_date($exp_date_EF)
-    {
-        $valid = false;
-        $exp_date =  $this->Session->read('exp_date');
-
-        $todays_date = date("Y-m-d");
-        $today = strtotime($todays_date);
-        $expiration_date = strtotime($exp_date);
-        $expira_date_EF = strtotime($exp_date_EF);
-        if ($expiration_date > $today && $expira_date_EF == $expiration_date)
+        else
         {
-            $valid = true;
+            echo('NO PASO');
         }
 
-        return $valid;
+
     }
 
-    public function balance_decrease()
-    {
-        $card_number_store = $this->Session->read('card_number');
-        $bill = $this->Session->read('bill');
-        $result = false;
-        $conditions = array('BankCard.id'=>$card_number_store);
-       if($this->BankCard->hasAny($conditions))
-       {
 
-            $card = $this->Product->find('first',array('conditions'=>array('BankCard.id'=>$card_number_store)) );
-            $money_left = $card['BankCard']['balance'];
-             if($money_left>$bill)
-             {
-                  $money_left = $money_left - $bill;
-                  $this->BankCard->id = $card_number_store;
-                  $this->BankCard->saveField('balance', $money_left);
-                 $result = true;
-              }
-      }
-        return $result;
-    }
 
-    public function verify_brand($card_brand,$card)
-    {
-        $result = false;
-        $card_brand = $this->Session->read('card_brand');
-        if($card_brand_EF===$card_brand)
-        {
-            $result = true;
-        }
-        return $result;
-    }
+
+
+
+
 
 
 }
