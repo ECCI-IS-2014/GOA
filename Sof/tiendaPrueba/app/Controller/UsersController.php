@@ -57,25 +57,13 @@ class UsersController extends AppController {
     public function profile()
     {
         $id=$this->Session->read('Auth.User.id');
-        $this->set('profile', $this->User->findByid($id));
-
-        /*// Refresh whole session
-        if ($this->User->save($this->data)) {
-            $this->_refreshAuth();
-            $this->Session->setFlash('Your information has been updated!');
-        }*/
+        $this->set('user', $this->User->read(null, $id));
     }
 
 
     public function logout() {
         $this->Session->setFlash(__('You have logged out.'));
         return $this->redirect($this->Auth->logout());
-    }
-
-    public function loggedout(){
-        // lo mismo que el index, o  la home
-        $this->User->recursive = 0;
-        $this->set('users', $this->Paginator->paginate());
     }
 
     /**
@@ -96,12 +84,8 @@ class UsersController extends AppController {
  * @return void
  */
 	public function view($id = null) {
-        /*$this->User->id = $id;
-        if (!$this->User->exists()) {
-            throw new NotFoundException(__('Invalid user'));
-        }*/
         $this->set('user', $this->User->read(null, $id));
-       }
+    }
 
 /**
  * add method
