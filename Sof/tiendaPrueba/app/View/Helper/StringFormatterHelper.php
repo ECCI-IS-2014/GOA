@@ -14,6 +14,24 @@ class StringFormatterHelper extends AppHelper {
     	return $currency . number_format ($number, 2, '.', ',');
 
 	}
+
+	public function hideCardNumber($card_num) {
+		if(strlen($card_num) == 16) {
+			return substr_replace($card_num, "************", 0, 12);
+		}
+		else {
+			return "not valid";
+		}
+	}
+
+	public function formatCardNumber($card_num, $separator) {
+		if(strlen($card_num) == 16) {
+			return substr_replace(substr_replace(substr_replace($card_num, $separator, 4, 0), $separator, 9, 0), $separator, 14, 0);
+		}
+		else {
+			return "not valid";
+		}
+	}
 	
 	public function formatWeight ($number, $unit) {
 	

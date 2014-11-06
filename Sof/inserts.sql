@@ -265,17 +265,17 @@ INSERT INTO `bank_cards` (`id`, `expiration_date`, `card_holder`, `balance`, `ca
 
 ALTER TABLE credit_cards AUTO_INCREMENT = 1;
 
-INSERT INTO credit_cards ( `user_id`, `brand`, `card_number`, `card_name`, `expiration_date`, `verification_number` )
-                  VALUES ( '4', 'Visa', '2897309872176284', 'Pepito Perez Pereira', '2022-6-14', '000' );
+INSERT INTO credit_cards ( `user_id`, `brand`, `card_number`, `card_name`, `expiration_date` )
+                  VALUES ( '4', 'Visa', '2897309872176284', 'Pepito Perez Pereira', '2022-6-14' );
 
-INSERT INTO credit_cards ( `user_id`, `brand`, `card_number`, `card_name`, `expiration_date`, `verification_number` )
-                  VALUES ( '4', 'Mastercard', '2347190873276228', 'Pepito Perez Pereira', '2014-11-4', '000' );
+INSERT INTO credit_cards ( `user_id`, `brand`, `card_number`, `card_name`, `expiration_date` )
+                  VALUES ( '4', 'Mastercard', '2347190873276228', 'Pepito Perez Pereira', '2014-11-4' );
 
-INSERT INTO credit_cards ( `user_id`, `brand`, `card_number`, `card_name`, `expiration_date`, `verification_number` )
-                  VALUES ( '5', 'Mastercard', '6752986723647829', 'Jordan Jimenez Jara', '2014-11-4', '000' );
+INSERT INTO credit_cards ( `user_id`, `brand`, `card_number`, `card_name`, `expiration_date` )
+                  VALUES ( '5', 'Mastercard', '6752986723647829', 'Jordan Jimenez Jara', '2014-11-4' );
 
-INSERT INTO credit_cards ( `user_id`, `brand`, `card_number`, `card_name`, `expiration_date`, `verification_number` )
-                  VALUES ( '6', 'American Express', '7829367022378349', 'Mafalda Mata Morera', '2014-11-4', '000' );
+INSERT INTO credit_cards ( `user_id`, `brand`, `card_number`, `card_name`, `expiration_date` )
+                  VALUES ( '6', 'American Express', '7829367022378349', 'Mafalda Mata Morera', '2014-11-4' );
 
-INSERT INTO credit_cards ( `user_id`, `brand`, `card_number`, `card_name`, `expiration_date`, `verification_number` )
-                  VALUES ( '7', 'American Express', '8926738498762934', 'Rodolfo Ramirez Ramos', '2014-11-4', '000' );
+INSERT INTO credit_cards ( `user_id`, `brand`, `card_number`, `card_name`, `expiration_date` )
+                  VALUES ( '7', 'American Express', '8926738498762934', 'Rodolfo Ramirez Ramos', '2014-11-4' );

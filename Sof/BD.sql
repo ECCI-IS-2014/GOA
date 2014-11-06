@@ -173,7 +173,6 @@ CREATE TABLE IF NOT EXISTS `credit_cards` (
   `card_number` varchar(16) NOT NULL,
   `card_name` varchar(50) NOT NULL,
   `expiration_date` date NOT NULL,
-  `verification_number` varchar(3) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `card_number` (`card_number`),
   KEY `FK_user_id` (`user_id`)
