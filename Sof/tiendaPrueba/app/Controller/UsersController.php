@@ -54,8 +54,7 @@ class UsersController extends AppController {
         }
     }
 
-    public function profile()
-    {
+    public function profile(){
         $id=$this->Session->read('Auth.User.id');
         $this->set('user', $this->User->read(null, $id));
     }

@@ -16,7 +16,6 @@
 			<fieldset>
 				<legend><?php echo __('Add Credit Card'); ?></legend>
 			<?php
-				echo $this->Form->input('user_id');
 				echo $this->Form->input('brand', array('type'=>'select','options'=>$card_brands));
 				echo $this->Form->input('card_number');
 				echo $this->Form->input('card_name');
