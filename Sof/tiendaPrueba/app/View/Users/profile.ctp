@@ -70,7 +70,7 @@
              </ul>
         </div>
 
-        <div class="related">
+        <div class="related" style="margin:0 15px;">
             <br/><br/>
             <h3><?php echo __('Your Credit Cards'); ?></h3>
             <?php if (!empty($user['CreditCard'])): ?>
@@ -80,7 +80,6 @@
                 <th><?php echo __('Card Number'); ?></th>
                 <th><?php echo __('Card Name'); ?></th>
                 <th><?php echo __('Expiration Date'); ?></th>
-                <th><?php echo __('Verification Number'); ?></th>
                 <th class="actions"><?php echo __('Actions'); ?></th>
             </tr>
             <?php foreach ($user['CreditCard'] as $creditCard): ?>
@@ -89,15 +88,14 @@
                     <td><?php echo $creditCard['card_number']; ?></td>
                     <td><?php echo $creditCard['card_name']; ?></td>
                     <td><?php echo $creditCard['expiration_date']; ?></td>
-                    <td><?php echo $creditCard['verification_number']; ?></td>
                     <td class="actions">
                         <?php echo $this->Html->link(__('Edit'), array('controller' => 'credit_cards', 'action' => 'edit', $creditCard['id'])); ?>
-                        <?php echo $this->Form->postLink(__('Delete'), array('controller' => 'credit_cards', 'action' => 'delete', $creditCard['id']), array(), __('Are you sure you want to delete # %s?', $creditCard['id'])); ?>
+                        <?php echo $this->Form->postLink(__('Delete'), array('controller' => 'credit_cards', 'action' => 'delete', $creditCard['id']), array(), __('Are you sure you want to delete this credit card?')); ?>
                     </td>
                 </tr>
             <?php endforeach; ?>
             </table>
-        <?php endif; ?>
+            <?php endif; ?>
 
             <div class="actions">
                 <ul>
