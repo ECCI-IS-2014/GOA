@@ -23,6 +23,7 @@ class CreditCardsController extends AppController {
  * @return void
  */
 	public function add() {
+		$this->set('card_brands', array('Visa', 'MasterCard', 'American Express'));
 		if ($this->request->is('post')) {
 			$this->CreditCard->create();
 			if ($this->CreditCard->save($this->request->data)) {
@@ -44,6 +45,7 @@ class CreditCardsController extends AppController {
  * @return void
  */
 	public function edit($id = null) {
+		$this->set('card_brands', array('Visa', 'MasterCard', 'American Express'));
 		if (!$this->CreditCard->exists($id)) {
 			throw new NotFoundException(__('Invalid credit card'));
 		}
