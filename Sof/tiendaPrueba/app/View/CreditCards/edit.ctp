@@ -17,7 +17,7 @@
 				<legend><?php echo __('Edit Credit Card'); ?></legend>
 			<?php
 				echo $this->Form->input('id');
-				echo $this->Form->input('brand');
+				echo $this->Form->input('brand', array('type'=>'select','options'=>$card_brands));
 				echo $this->Form->input('card_number');
 				echo $this->Form->input('card_name');
 				echo $this->Form->input('expiration_date');

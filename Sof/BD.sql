@@ -153,11 +153,13 @@ CREATE TABLE IF NOT EXISTS `sales` (
   `subtotal` decimal(9,2) NOT NULL DEFAULT '0.00',
   `frequenly_costumer_discount` decimal(9,2) NOT NULL DEFAULT '0.00',
   `total` decimal(9,2) NOT NULL DEFAULT '0.00',
+  `currency` varchar(20) NOT NULL DEFAULT 'Dolars',
   `created` datetime NOT NULL,
   `modified` datetime NOT NULL,
-  `tax` int(3) NOT NULL DEFAULT '13',
+  `tax` decimal(9,2) NOT NULL DEFAULT '0.00',
   PRIMARY KEY (`id`),
-  KEY `FK_user_id` (`user_id`)
+  KEY `FK_sales_user_id` (`user_id`),
+  KEY `FK_sales_method_payment_id` (`method_payment_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -236,8 +238,8 @@ ALTER TABLE `product_sales`
 -- Filtros para la tabla `sales`
 --
 ALTER TABLE `sales`
-  ADD CONSTRAINT `FK_sales_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
-
+  ADD CONSTRAINT `FK_sales_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
+  ADD CONSTRAINT `FK_sales_method_payment_id` FOREIGN KEY (`method_payment_id`) REFERENCES `credit_cards` (`id`);
   
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
