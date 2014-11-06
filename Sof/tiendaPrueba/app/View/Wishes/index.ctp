@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-         <?php echo $this->element('footers'); ?>
+        <?php echo $this->element('footers'); ?>
         <?php echo $this->element('headers'); ?>
         <?php echo $this->element('panel'); ?>
         <?php echo $this->element('button'); ?>

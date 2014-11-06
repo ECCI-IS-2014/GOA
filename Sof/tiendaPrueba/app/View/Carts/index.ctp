@@ -41,17 +41,23 @@
                         $total = 0;
                         if (count($prodCarts) > 1) {
                             for($i = 1; $i < count($prodCarts); $i++) {
-                                $total = $total + $prodCarts[$i]['Product']['price'] * $numProducts[$i];
+                                if ($prodCarts[$i]['Product']['discount'] == 0) {
+                                    $price = $prodCarts[$i]['Product']['price'];
+                                } else {
+                                    $price = $prodCarts[$i]['Product']['price'] - ($prodCarts[$i]['Product']['price']*$prodCarts[$i]['Product']['discount'])/100;
+                                }
+                                $total = $total + $price * $numProducts[$i];
                             }
                         }
                         echo $this->StringFormatter->formatCurrency( $total, '$'); 
                     ?>
                 </div>
+                
                 <div>
-                <button id="PayButton" style = "float:left; margin-left:50%; margin-bottom:5%;">
-                    <a href=<?php echo $this->Html->url(array('controller' => 'sales','action' => 'checkout')) ?>>Check Out</a>
-                </button>
-                 </div>
+                    <button id="PayButton" style = "float:left; margin-left:50%; margin-bottom:5%;">
+                        <a href=<?php echo $this->Html->url(array('controller' => 'sales','action' => 'checkout')) ?>>Check Out</a>
+                    </button>
+                </div>
 
             </div>
 

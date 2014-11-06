@@ -32,6 +32,11 @@
 
    <p style="font-weight:bold; float:left; padding-left:3%;">Name:&nbsp;</p> <?php echo $product['Product']['name'];?>
    <div style="clear:both"></div>
+
+   <?php if ($product['Product']['enable_product'] == 0) : ?>
+        <p style="font-weight:bold;float:left; padding-left:3%; color: red;">THIS PRODUCT IS DISABLED</p> 
+        <div style="clear:both"></div>
+    <?php endif; ?>
    
     <?php if ($product['Product']['discount'] == 0) : ?>
 		<p style="font-weight:bold;float:left; padding-left:3%;">Price:&nbsp;</p> <?php  echo $this->StringFormatter->formatCurrency($product['Product']['price'],'$');?>	

@@ -41,16 +41,15 @@
                         </a>
                     </li>
 
-
                     <li>
-                        <a href="<?php echo $this->Html->url(array('controller' => 'wishes','action' => 'index'));?>">
-                            MyWishlist
+                        <a href="<?php echo $this->Html->url(array('controller' => 'sales','action' => 'checkout'));?>">
+                            MyOrders
                         </a>
                     </li>
 
                     <li>
-                        <a href="<?php echo $this->Html->url(array('controller' => 'sales','action' => 'checkout'));?>">
-                            Your orders
+                        <a href="<?php echo $this->Html->url(array('controller' => 'wishes','action' => 'index'));?>">
+                            MyWishlist
                         </a>
                     </li>
 
