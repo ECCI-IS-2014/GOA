@@ -32,8 +32,6 @@ class CreditCardsController extends AppController {
 				$this->Session->setFlash(__('The credit card could not be saved. Please, try again.'));
 			}
 		}
-		$users = $this->CreditCard->User->find('list');
-		$this->set(compact('users'));
 	}
 
 /**

@@ -118,7 +118,6 @@
 					<th><?php echo __('Card Number'); ?></th>
 					<th><?php echo __('Card Name'); ?></th>
 					<th><?php echo __('Expiration Date'); ?></th>
-					<th><?php echo __('Verification Number'); ?></th>
 				</tr>
 				<?php foreach ($user['CreditCard'] as $creditCard): ?>
 					<tr>
@@ -126,7 +125,6 @@
 						<td><?php echo $creditCard['card_number']; ?></td>
 						<td><?php echo $creditCard['card_name']; ?></td>
 						<td><?php echo $creditCard['expiration_date']; ?></td>
-						<td><?php echo $creditCard['verification_number']; ?></td>
 					</tr>
 				<?php endforeach; ?>
 				</table>
