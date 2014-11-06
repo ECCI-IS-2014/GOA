@@ -107,6 +107,32 @@
 					</li>
 				</ul>
 			</div>
+
+			<div class="related">
+				<br/><br/>
+				<h3><?php echo __('Related Credit Cards'); ?></h3>
+				<?php if (!empty($user['CreditCard'])): ?>
+				<table cellpadding = "0" cellspacing = "0">
+				<tr>
+					<th><?php echo __('Brand'); ?></th>
+					<th><?php echo __('Card Number'); ?></th>
+					<th><?php echo __('Card Name'); ?></th>
+					<th><?php echo __('Expiration Date'); ?></th>
+					<th><?php echo __('Verification Number'); ?></th>
+				</tr>
+				<?php foreach ($user['CreditCard'] as $creditCard): ?>
+					<tr>
+						<td><?php echo $creditCard['brand']; ?></td>
+						<td><?php echo $creditCard['card_number']; ?></td>
+						<td><?php echo $creditCard['card_name']; ?></td>
+						<td><?php echo $creditCard['expiration_date']; ?></td>
+						<td><?php echo $creditCard['verification_number']; ?></td>
+					</tr>
+				<?php endforeach; ?>
+				</table>
+			<?php endif; ?>
+			</div>
+			
 			<?php endif; ?>
 
 		</div>

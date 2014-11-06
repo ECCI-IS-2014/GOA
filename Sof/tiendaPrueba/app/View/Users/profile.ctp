@@ -70,6 +70,42 @@
              </ul>
         </div>
 
+        <div class="related">
+            <br/><br/>
+            <h3><?php echo __('Your Credit Cards'); ?></h3>
+            <?php if (!empty($user['CreditCard'])): ?>
+            <table cellpadding = "0" cellspacing = "0">
+            <tr>
+                <th><?php echo __('Brand'); ?></th>
+                <th><?php echo __('Card Number'); ?></th>
+                <th><?php echo __('Card Name'); ?></th>
+                <th><?php echo __('Expiration Date'); ?></th>
+                <th><?php echo __('Verification Number'); ?></th>
+                <th class="actions"><?php echo __('Actions'); ?></th>
+            </tr>
+            <?php foreach ($user['CreditCard'] as $creditCard): ?>
+                <tr>
+                    <td><?php echo $creditCard['brand']; ?></td>
+                    <td><?php echo $creditCard['card_number']; ?></td>
+                    <td><?php echo $creditCard['card_name']; ?></td>
+                    <td><?php echo $creditCard['expiration_date']; ?></td>
+                    <td><?php echo $creditCard['verification_number']; ?></td>
+                    <td class="actions">
+                        <?php echo $this->Html->link(__('Edit'), array('controller' => 'credit_cards', 'action' => 'edit', $creditCard['id'])); ?>
+                        <?php echo $this->Form->postLink(__('Delete'), array('controller' => 'credit_cards', 'action' => 'delete', $creditCard['id']), array(), __('Are you sure you want to delete # %s?', $creditCard['id'])); ?>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+            </table>
+        <?php endif; ?>
+
+            <div class="actions">
+                <ul>
+                    <li><?php echo $this->Html->link(__('New Credit Card'), array('controller' => 'credit_cards', 'action' => 'add')); ?> </li>
+                </ul>
+            </div>
+        </div>
+
     </div> 
 
     <div style="clear:both"></div>
