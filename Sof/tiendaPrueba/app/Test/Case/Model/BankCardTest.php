@@ -13,8 +13,9 @@ class BankCardTest extends CakeTestCase {
  * @var array
  */
 	public $fixtures = array(
-		'app.card'
+		'app.BankCard'
 	);
+
 
 /**
  * setUp method
@@ -23,7 +24,7 @@ class BankCardTest extends CakeTestCase {
  */
 	public function setUp() {
 		parent::setUp();
-		$this->Card = ClassRegistry::init('Card');
+		$this->BankCard = ClassRegistry::init('BankCard');
 	}
 
 /**
@@ -36,5 +37,49 @@ class BankCardTest extends CakeTestCase {
 
 		parent::tearDown();
 	}
+
+
+    public function test_verify_brand()
+    {
+        $result = $this->BankCard->verify_brand('VISA','VISA');
+        $expected = true;
+        $this->assertEquals($expected, $result);
+    }
+
+
+
+    public function test_verify_name()
+    {
+        $result = $this->BankCard->verify_brand('Momo','Momo');
+        $expected = true;
+        $this->assertEquals($expected, $result);
+    }
+
+    public function test_expiration()
+    {
+        $registry = $this->BankCard->find('first',array('conditions'=>array('BankCard.id'=>'8926738498762934')) );
+        $result = $this->BankCard->verify_expiration($registry['BankCard']['expiration_date']);
+        $expected = false;
+        $this->assertEquals($expected, $result);
+    }
+
+    public function test_verify_information()
+    {
+        $result = $this->BankCard->verify_information('2347190873276228','Pepito Perez Pereira','Mastercard');
+        $expected = true;
+        $this->assertEquals($expected, $result);
+    }
+
+    public function test_balance_decrease()
+    {
+        $result = $this->BankCard->balance_decrease(40.32,'8926738498762934');
+        $expected = false;
+        $this->assertEquals($expected, $result);
+
+    }
+
+
+
+
 
 }
