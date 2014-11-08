@@ -28,6 +28,9 @@ class CreditCardsController extends AppController {
 			$this->CreditCard->create();
 
 			$this->request->data['CreditCard']['user_id'] = $this->Session->read('Auth.User.id');
+			$this->request->data['CreditCard']['expiration_date'] = 
+				$this->request->data['CreditCard']['expiration_date']['year'].'-'.
+				$this->request->data['CreditCard']['expiration_date']['month'].'-01';
 
 			if ($this->CreditCard->save($this->request->data)) {
 				$this->Session->setFlash(__('The credit card has been saved.'));
@@ -51,6 +54,11 @@ class CreditCardsController extends AppController {
 			throw new NotFoundException(__('Invalid credit card'));
 		}
 		if ($this->request->is(array('post', 'put'))) {
+
+			$this->request->data['CreditCard']['expiration_date'] = 
+				$this->request->data['CreditCard']['expiration_date']['year'].'-'.
+				$this->request->data['CreditCard']['expiration_date']['month'].'-01';
+			
 			if ($this->CreditCard->save($this->request->data)) {
 				$this->Session->setFlash(__('The credit card has been saved.'));
 				return $this->redirect(array('controller'=>'users','action' => 'profile'));

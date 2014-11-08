@@ -74,12 +74,16 @@
 					</dd>
 					<dt><?php echo __('Gender'); ?></dt>
 					<dd>
-						<?php echo h($user['User']['gender']); ?>
+						<?php if ($user['User']['gender'] == 'M'): ?>
+							<?php echo h('Male'); ?>
+						<?php else: ?>
+							<?php echo h('Female'); ?>
+						<?php endif ?>
 						&nbsp;
 					</dd>
 					<dt><?php echo __('Birth Date'); ?></dt>
 					<dd>
-						<?php echo h($user['User']['birth_date']); ?>
+						<?php echo h($this->StringFormatter->formatDateMDY($user['User']['birth_date'])); ?>
 						&nbsp;
 					</dd>
 					<dt><?php echo __('Status'); ?></dt>
@@ -108,9 +112,9 @@
 				</ul>
 			</div>
 
-			<div class="related">
+			<div class="related" style="margin:0 15px;">
 				<br/><br/>
-				<h3><?php echo __('Related Credit Cards'); ?></h3>
+				<h3><?php echo __('Credit Card Information'); ?></h3>
 				<?php if (!empty($user['CreditCard'])): ?>
 				<table cellpadding = "0" cellspacing = "0">
 				<tr>
@@ -122,9 +126,9 @@
 				<?php foreach ($user['CreditCard'] as $creditCard): ?>
 					<tr>
 						<td><?php echo $creditCard['brand']; ?></td>
-						<td><?php echo $creditCard['card_number']; ?></td>
+						<td><?php echo $this->StringFormatter->formatCardNumber($creditCard['card_number'], '-'); ?></td>
 						<td><?php echo $creditCard['card_name']; ?></td>
-						<td><?php echo $creditCard['expiration_date']; ?></td>
+						<td><?php echo $this->StringFormatter->formatDateMY($creditCard['expiration_date']); ?></td>
 					</tr>
 				<?php endforeach; ?>
 				</table>

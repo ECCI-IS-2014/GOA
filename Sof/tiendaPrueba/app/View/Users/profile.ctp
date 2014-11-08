@@ -51,12 +51,16 @@
                 </dd>
                 <dt><?php echo __('Gender'); ?></dt>
                 <dd>
-                    <?php echo $this->Session->read('Auth.User.gender'); ?>
+                    <?php if ($this->Session->read('Auth.User.gender') == 'M'): ?>
+                        <?php echo h('Male'); ?>
+                    <?php else: ?>
+                        <?php echo h('Female'); ?>
+                    <?php endif ?>
                     &nbsp;
                 </dd>
                 <dt><?php echo __('Birth Date'); ?></dt>
                 <dd>
-                    <?php echo $this->Session->read('Auth.User.birth_date'); ?>
+                    <?php echo $this->StringFormatter->formatDateMDY($this->Session->read('Auth.User.birth_date')); ?>
                     &nbsp;
                 </dd>
             </dl>
@@ -72,7 +76,7 @@
 
         <div class="related" style="margin:0 15px;">
             <br/><br/>
-            <h3><?php echo __('Your Credit Cards'); ?></h3>
+            <h3><?php echo __('Credit Card Information'); ?></h3>
             <?php if (!empty($user['CreditCard'])): ?>
             <table cellpadding = "0" cellspacing = "0">
             <tr>
@@ -87,7 +91,7 @@
                     <td><?php echo $creditCard['brand']; ?></td>
                     <td><?php echo $this->StringFormatter->formatCardNumber($this->StringFormatter->hideCardNumber($creditCard['card_number']), '-'); ?></td>
                     <td><?php echo $creditCard['card_name']; ?></td>
-                    <td><?php echo $creditCard['expiration_date']; ?></td>
+                    <td><?php echo $this->StringFormatter->formatDateMY($creditCard['expiration_date']); ?></td>
                     <td class="actions">
                         <?php echo $this->Html->link(__('Edit'), array('controller' => 'credit_cards', 'action' => 'edit', $creditCard['id'])); ?>
                         <?php echo $this->Form->postLink(__('Delete'), array('controller' => 'credit_cards', 'action' => 'delete', $creditCard['id']), array(), __('Are you sure you want to delete this credit card?')); ?>

@@ -19,7 +19,9 @@
 				echo $this->Form->input('brand', array('type'=>'select','options'=>$card_brands));
 				echo $this->Form->input('card_number');
 				echo $this->Form->input('card_name');
-				echo $this->Form->input('expiration_date');
+				echo $this->Form->input('expiration_date', 
+					array('type' => 'date','minYear' => 2012,'maxYear'=>2024,'dateFormat'=>'MY')
+				);
 			?>
 			</fieldset>
 		<?php echo $this->Form->end(__('Submit')); ?>

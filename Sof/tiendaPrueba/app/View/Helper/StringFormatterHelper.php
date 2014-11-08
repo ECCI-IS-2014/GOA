@@ -32,6 +32,33 @@ class StringFormatterHelper extends AppHelper {
 			return "not valid";
 		}
 	}
+
+	public function formatDateMY($date) {
+		if(strlen($date) == 10) {
+			$months = array('','January','February','March','April','May','June','July','August','September','October','November','December');
+			$year = substr($date, 0, 4);
+			$month = substr($date, 5, 2);
+			$monthNum = intval($month);
+			return $months[$monthNum].' '.$year;
+		}
+		else {
+			return "not valid";
+		}
+	}
+
+	public function formatDateMDY($date) {
+		if(strlen($date) == 10) {
+			$months = array('','January','February','March','April','May','June','July','August','September','October','November','December');
+			$year = substr($date, 0, 4);
+			$month = substr($date, 5, 2);
+			$day = substr($date, 8, 2);
+			$monthNum = intval($month);
+			return $months[$monthNum].' '.$day.', '.$year;
+		}
+		else {
+			return "not valid";
+		}
+	}
 	
 	public function formatWeight ($number, $unit) {
 	
