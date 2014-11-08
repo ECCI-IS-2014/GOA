@@ -18,7 +18,7 @@
     <div id="content">
 
         <div class="users form">
-            <h1 style="color:#1E90FF; font-size: 18px;">
+            <h1 style="color:#1E90FF; font-size: 24px;">
                 <?php echo 'Welcome to your profile ' . $this->Session->read('Auth.User.username') . '!'; ?>
             </h1>
 

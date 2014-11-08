@@ -15,7 +15,8 @@ class UsersControllerTest extends ControllerTestCase {
 
 
     public $fixtures = array(
-        'app.user'
+        'app.user',
+        'app.credit_card'
     );
 
     /**
@@ -71,7 +72,6 @@ class UsersControllerTest extends ControllerTestCase {
         );
         $result = $this->testAction('/users/add', array('data' => $data, 'method' => 'get'));
         debug($result);
-        // some assertions.
         $this->assertFalse(!empty($this->User->id));
 
     }
@@ -116,7 +116,7 @@ class UsersControllerTest extends ControllerTestCase {
      *  method get of profile
      */
 
-    public function testProfileGet() {
+    public function testProfile() {
         $result = $this->testAction('/users/profile', array(
             'method' => 'get',
             'return' => 'contents'

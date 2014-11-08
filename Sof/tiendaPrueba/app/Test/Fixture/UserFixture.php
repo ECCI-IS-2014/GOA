@@ -39,40 +39,37 @@ class UserFixture extends CakeTestFixture {
      * @var array
      */
 
-    public function init() {
-        $this->records = array(
-            array(
-                'id' => 1,
-                'username' => 'admin',
-                'password' => '$2a$10$QsNPaOWnlwAxAbYyJRpFp.ZeQeE4lelnJsaSpE1MojOqS0EgaIW0m', // admin1
-                'role' => '1',
-                'created' => '0000-00-00 00:00:00',
-                'modified' => '0000-00-00 00:00:00',
-                'name' => '',
-                'last_name' => '',
-                'phone' => '0',
-                'address' => '',
-                'email' => '',
-                'gender' => '',
-                'birth_date' => '0000-00-00',
-            ),
-            array(
-                'id' => 2,
-                'username' => 'usuario',
-                'password' => '$2a$10$qfQJOKQ89Ogh78OlbOe7f.CHWU.qJg5BOhsAxtv/bq/C0usvORZWa',
-                'role' => '0',
-                'created' => '2014-10-15 02:33:56',
-                'modified' => '2014-10-15 02:33:56',
-                'name' => 'Usuario',
-                'last_name' => 'Usuario',
-                'phone' => '88888888',
-                'address' => '200mts Norte del Palo de Mango',
-                'email' => 'us@gmail.com',
-                'gender' => 'F',
-                'birth_date' => '1994-10-15',
-            )
-        );
-        parent::init();
-    }
+    public $records = array(
+        array(
+            'id' => 1,
+            'username' => 'admin',
+            'password' => '$2a$10$QsNPaOWnlwAxAbYyJRpFp.ZeQeE4lelnJsaSpE1MojOqS0EgaIW0m', // admin1
+            'role' => '1',
+            'created' => '0000-00-00 00:00:00',
+            'modified' => '0000-00-00 00:00:00',
+            'name' => '',
+            'last_name' => '',
+            'phone' => '0',
+            'address' => '',
+            'email' => '',
+            'gender' => '',
+            'birth_date' => '0000-00-00',
+        ),
+        array(
+            'id' => 2,
+            'username' => 'usuario',
+            'password' => '$2a$10$qfQJOKQ89Ogh78OlbOe7f.CHWU.qJg5BOhsAxtv/bq/C0usvORZWa',
+            'role' => '0',
+            'created' => '2014-10-15 02:33:56',
+            'modified' => '2014-10-15 02:33:56',
+            'name' => 'Pepito',
+            'last_name' => 'Perez Pereira',
+            'phone' => '88888888',
+            'address' => '200mts Norte del Palo de Mango',
+            'email' => 'us@gmail.com',
+            'gender' => 'F',
+            'birth_date' => '1994-10-15',
+        )
+    );
 
 }
