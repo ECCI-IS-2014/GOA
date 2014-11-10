@@ -24,18 +24,6 @@ class UsersController extends AppController {
     public function beforeFilter() {
         parent::beforeFilter();
         $this->Auth->allow('add', 'logout', 'view', 'home');
-
-        $this->Session->write('cart');
-        $cart = array(0);
-        $this->Session->write('cart',$cart);
-
-        $this->Session->write('numProducts');
-        $numProducts = array(0);
-        $this->Session->write('numProducts',$numProducts);
-
-        $this->Session->write('totalCartProducts');
-        $totalCartProducts = 0;
-        $this->Session->write('totalCartProducts',$totalCartProducts);
     }
 
     public function login() {
@@ -52,6 +40,18 @@ class UsersController extends AppController {
                 return $this->Session->setFlash(__('Invalid username or password, try again. </br> If this is your fist time here, create an <a href="http://localhost/blog/TiendaOnline/users/add">account</a>'));
             }
         }
+
+        $this->Session->write('cart');
+        $cart = array(0);
+        $this->Session->write('cart',$cart);
+
+        $this->Session->write('numProducts');
+        $numProducts = array(0);
+        $this->Session->write('numProducts',$numProducts);
+
+        $this->Session->write('totalCartProducts');
+        $totalCartProducts = 0;
+        $this->Session->write('totalCartProducts',$totalCartProducts);
     }
 
     public function profile(){
