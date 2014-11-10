@@ -221,7 +221,7 @@
         <div id="menuHeaderInterno">
             <ul>
 
-                <li><a href="http://localhost/GOA/Sof/tiendaPrueba/Pages/Home">Home</a></li>
+                <li><a href= <?php echo Router::url(array('controller'=>'Pages','action'=>'home')); ?> >Home</a></li>
 
                 <li>
                     <a href="<?php echo $this->Html->url(array('controller' => 'products','action' => 'index'));?>">
