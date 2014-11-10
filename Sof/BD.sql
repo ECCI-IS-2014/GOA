@@ -242,8 +242,28 @@ ALTER TABLE `sales`
   ADD CONSTRAINT `FK_sales_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
   ADD CONSTRAINT `FK_sales_method_payment_id` FOREIGN KEY (`method_payment_id`) REFERENCES `credit_cards` (`id`);
   
+CREATE TABLE IF NOT EXISTS `reviews` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `description` varchar(5000) NOT NULL,
+  `rating` int(1) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK_user_id` (`user_id`),
+  KEY `FK_products_id` (`product_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+
+ALTER TABLE `reviews`
+  ADD CONSTRAINT `FK_prod` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`),
+  ADD CONSTRAINT `FK_` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);  
+  
+  
+  
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
 
 

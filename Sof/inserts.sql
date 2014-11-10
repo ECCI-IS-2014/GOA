@@ -252,29 +252,29 @@ INSERT INTO users ( `username`, `password`, `role`, `created`, `modified`, `name
 
 
 INSERT INTO `bank_cards` (`id`, `expiration_date`, `card_holder`, `balance`, `card_brand`, `verification_number`) VALUES
-('2897309872176284', '2016-11-18', 'Pepito Perez Pereira', '20000.50', 'Visa', '000'),
-('2347190873276228', '2016-11-18', 'Pepito Perez Pereira', '20000.50', 'Mastercard', '000'),
-('6752986723647829', '2015-03-27', 'Jordan Jimenez Jara', '34920.22', 'Mastercard', '000'),
-('7829367022378349', '2014-12-24', 'Mafalda Mata Morera', '2345600.30', 'American Express', '000'),
+('2897309872176284', '2016-11-01', 'Pepito Perez Pereira', '20000.50', 'Visa', '000'),
+('2347190873276228', '2017-11-01', 'Pepito Perez Pereira', '20000.50', 'Mastercard', '000'),
+('6752986723647829', '2015-03-01', 'Jordan Jimenez Jara', '34920.22', 'Mastercard', '000'),
+('7829367022378349', '2014-12-01', 'Mafalda Mata Morera', '2345600.30', 'American Express', '000'),
 ('8926738498762934', '2010-12-01', 'Rodolfo Ramirez Ramos', '3400.90', 'American Express', '000');
 
 
 ALTER TABLE credit_cards AUTO_INCREMENT = 1;
 
 INSERT INTO credit_cards ( `user_id`, `brand`, `card_number`, `card_name`, `expiration_date` )
-                  VALUES ( '4', 'Visa', '2897309872176284', 'Pepito Perez Pereira', '2022-6-14' );
+                  VALUES ( '4', 'Visa', '2897309872176284', 'Pepito Perez Pereira', '2016-11-01' );
 
 INSERT INTO credit_cards ( `user_id`, `brand`, `card_number`, `card_name`, `expiration_date` )
-                  VALUES ( '4', 'Mastercard', '2347190873276228', 'Pepito Perez Pereira', '2014-11-4' );
+                  VALUES ( '4', 'Mastercard', '2347190873276228', 'Pepito Perez Pereira', '2017-11-01' );
 
 INSERT INTO credit_cards ( `user_id`, `brand`, `card_number`, `card_name`, `expiration_date` )
-                  VALUES ( '5', 'Mastercard', '6752986723647829', 'Jordan Jimenez Jara', '2014-11-4' );
+                  VALUES ( '5', 'Mastercard', '6752986723647829', 'Jordan Jimenez Jara', '2013-03-01' );
 
 INSERT INTO credit_cards ( `user_id`, `brand`, `card_number`, `card_name`, `expiration_date` )
-                  VALUES ( '6', 'American Express', '7829367022378349', 'Mafalda Mata Morera', '2014-11-4' );
+                  VALUES ( '6', 'American Express', '7829367022378349', 'Mafalda Mata Morera', '2014-12-01' );
 
 INSERT INTO credit_cards ( `user_id`, `brand`, `card_number`, `card_name`, `expiration_date` )
-                  VALUES ( '7', 'American Express', '8926738498762934', 'Rodolfo Ramirez Ramos', '2014-11-4' );
+                  VALUES ( '7', 'American Express', '8926738498762934', 'Rodolfo Ramirez Ramos', '2010-12-01' );
 
 				  
 INSERT INTO `sales` (`id`, `user_id`, `method_payment_id`, `subtotal`, `frequenly_costumer_discount`, `total`, `currency`, `created`, `modified`, `tax`) VALUES

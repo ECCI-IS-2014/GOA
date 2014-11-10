@@ -1,19 +1,12 @@
 <?php
 App::uses('AppModel', 'Model');
-
 /**
- * CreditCard Model
+ * Review Model
  *
  * @property User $User
+ * @property Product $Product
  */
-class CreditCard extends AppModel {
-
-/**
- * Display field
- *
- * @var string
- */
-	public $displayField = 'card_number';
+class Review extends AppModel {
 
 /**
  * Validation rules
@@ -21,7 +14,27 @@ class CreditCard extends AppModel {
  * @var array
  */
 	public $validate = array(
-		'brand' => array(
+		'user_id' => array(
+			'numeric' => array(
+				'rule' => array('numeric'),
+				//'message' => 'Your custom message here',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
+		'product_id' => array(
+			'numeric' => array(
+				'rule' => array('numeric'),
+				//'message' => 'Your custom message here',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
+		'description' => array(
 			'notEmpty' => array(
 				'rule' => array('notEmpty'),
 				//'message' => 'Your custom message here',
@@ -31,29 +44,9 @@ class CreditCard extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-		'card_number' => array(
-			'notEmpty' => array(
-				'rule' => array('notEmpty'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
-		'card_name' => array(
-			'notEmpty' => array(
-				'rule' => array('notEmpty'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
-		'expiration_date' => array(
-			'date' => array(
-				'rule' => array('date'),
+		'rating' => array(
+			'numeric' => array(
+				'rule' => array('numeric'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
@@ -77,21 +70,13 @@ class CreditCard extends AppModel {
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
+		),
+		'Product' => array(
+			'className' => 'Product',
+			'foreignKey' => 'product_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
 		)
 	);
-	
-	public function listUserCreditCards( $user_id, $hide_number = true ) {
-		$cards = $this->find('list', array(
-			'conditions' => array('CreditCard.user_id' => $user_id)
-		));
-		
-		foreach ($cards as $id=>&$value) {
-			if ($hide_number) {
-				$value = substr_replace($value, "************", 0, 12);
-			}
-			$value = substr_replace(substr_replace(substr_replace($value, '-', 4, 0), '-', 9, 0), '-', 14, 0);
-		}
-		
-		return $cards;
-	}
 }

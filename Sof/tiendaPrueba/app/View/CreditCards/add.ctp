@@ -20,7 +20,7 @@
 				echo $this->Form->input('card_number');
 				echo $this->Form->input('card_name');
 				echo $this->Form->input('expiration_date', 
-					array('type' => 'date','minYear' => 2012,'maxYear'=>2024,'dateFormat'=>'MY')
+					array('type' => 'date','minYear' => 2010,'maxYear'=>2025,'dateFormat'=>'MY')
 				);
 			?>
 			</fieldset>
