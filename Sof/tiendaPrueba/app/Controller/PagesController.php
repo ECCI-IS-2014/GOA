@@ -79,7 +79,7 @@ class PagesController extends AppController {
 
     public function home() {
 
-        $this->set( 'products', $this->Product->find('all') );
+        $this->set( 'products', $this->Product->getAllProducts() );
 
         $query = array();
         $url = $_SERVER['REQUEST_URI'];

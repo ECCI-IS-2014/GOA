@@ -73,6 +73,10 @@
     padding-top: 30px;
 }
 
+#home_panel_wrapper #start {
+    position: relative;
+}
+
 #home_panel_wrapper .active{
     display: block;
 }
@@ -88,7 +92,7 @@
 }
 
 #home_panel_wrapper .catalog_holder {
-    margin-bottom: 100px;
+    margin-bottom: 32px;
 }
 
 #home_panel_wrapper .catalog_holder h3 {
