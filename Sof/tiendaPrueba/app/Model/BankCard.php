@@ -45,7 +45,6 @@ class BankCard extends AppModel {
 	);
 
     //obtiene el total de la cuenta y el numero de tarjeta al que hay que reducirle el saldo. Devuelve falso si la operacion tuvo algun problema
-
     public function balance_decrease($bill,$card_number)
     {
 
@@ -67,10 +66,7 @@ class BankCard extends AppModel {
         return $result;
     }
 
-
-
     //recibe la fecha de vencimiento y devuelve un true si aun NO expira o un false si ya expiro
-
     public function verify_expiration($exp_date)
     {
         $valid = false;
@@ -105,16 +101,26 @@ class BankCard extends AppModel {
         }
         return $result;
     }
+	
+	public function verify_expiration_date($card_expiration_date_EF,$card_expiration_date_store)
+    {
+        $result = false;
+        if($card_expiration_date_EF===$card_expiration_date_store)
+        {
+            $result = true;
+        }
+        return $result;
+    }
 
     //devuelve un true si la informacion es correcta
-    public function verify_information($card_number,$card_holder,$card_brand)
+    public function verify_information($card_number,$card_holder,$card_brand,$card_expiration)
     {
         $result = false;
         $conditions = array('BankCard.id'=>$card_number);
         if($this->hasAny($conditions))
         {
             $card = $this->find('first',array('conditions'=>array('BankCard.id'=>$card_number)) );
-            if($this->verify_brand($card_brand,$card['BankCard']['card_brand'])&&$this->verify_name($card_holder,$card['BankCard']['card_holder']))
+            if( $this->verify_brand($card_brand,$card['BankCard']['card_brand']) && $this->verify_name($card_holder,$card['BankCard']['card_holder']) && $this->verify_expiration_date($card_expiration,$card['BankCard']['expiration_date']) )
             {
                 $result = true;
             }

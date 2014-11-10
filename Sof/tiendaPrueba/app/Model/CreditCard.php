@@ -1,5 +1,6 @@
 <?php
 App::uses('AppModel', 'Model');
+
 /**
  * CreditCard Model
  *
@@ -78,4 +79,19 @@ class CreditCard extends AppModel {
 			'order' => ''
 		)
 	);
+	
+	public function listUserCreditCards( $user_id, $hide_number = true ) {
+		$cards = $this->find('list', array(
+			'conditions' => array('CreditCard.user_id' => $user_id)
+		));
+		
+		foreach ($cards as $id=>&$value) {
+			if ($hide_number) {
+				$value = substr_replace($value, "************", 0, 12);
+			}
+			$value = substr_replace(substr_replace(substr_replace($value, '-', 4, 0), '-', 9, 0), '-', 14, 0);
+		}
+		
+		return $cards;
+	}
 }

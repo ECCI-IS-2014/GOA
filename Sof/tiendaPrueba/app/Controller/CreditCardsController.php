@@ -15,7 +15,7 @@ class CreditCardsController extends AppController {
  * @var array
  */
 	public $components = array('Paginator', 'Session');
-
+	public $uses = array('CreditCard','BankCard');
 
 /**
  * add method
@@ -25,49 +25,28 @@ class CreditCardsController extends AppController {
 	public function add() {
 		$this->set('card_brands', array('Visa'=>'Visa', 'MasterCard'=>'MasterCard', 'American Express'=>'American Express'));
 		if ($this->request->is('post')) {
-			$this->CreditCard->create();
-
 			$this->request->data['CreditCard']['user_id'] = $this->Session->read('Auth.User.id');
 			$this->request->data['CreditCard']['expiration_date'] = 
 				$this->request->data['CreditCard']['expiration_date']['year'].'-'.
 				$this->request->data['CreditCard']['expiration_date']['month'].'-01';
+				
+			if ($this->BankCard->verify_information($this->request->data['CreditCard']['card_number'],$this->request->data['CreditCard']['card_name'],$this->request->data['CreditCard']['brand'],$this->request->data['CreditCard']['expiration_date'])) {
+				$this->CreditCard->create();
 
-			if ($this->CreditCard->save($this->request->data)) {
-				$this->Session->setFlash(__('The credit card has been saved.'));
-				return $this->redirect(array('controller'=>'users','action' => 'profile'));
+				try {
+					if ($this->CreditCard->save($this->request->data)) {
+						$this->Session->setFlash(__('The credit card has been saved.'));
+						return $this->redirect(array('controller'=>'users','action' => 'profile'));
+					} else {
+						$this->Session->setFlash(__('The credit card could not be saved. Please, try again.'));
+					}
+				} catch (Exception $e) {
+					$this->Session->setFlash(__('The credit card could not be saved. This credit card has already been added.'));
+				}
+				
 			} else {
-				$this->Session->setFlash(__('The credit card could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('The credit card could not be saved. The information is not valid.'));
 			}
-		}
-	}
-
-/**
- * edit method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
-	public function edit($id = null) {
-		$this->set('card_brands', array('Visa'=>'Visa', 'MasterCard'=>'MasterCard', 'American Express'=>'American Express'));
-		if (!$this->CreditCard->exists($id)) {
-			throw new NotFoundException(__('Invalid credit card'));
-		}
-		if ($this->request->is(array('post', 'put'))) {
-
-			$this->request->data['CreditCard']['expiration_date'] = 
-				$this->request->data['CreditCard']['expiration_date']['year'].'-'.
-				$this->request->data['CreditCard']['expiration_date']['month'].'-01';
-			
-			if ($this->CreditCard->save($this->request->data)) {
-				$this->Session->setFlash(__('The credit card has been saved.'));
-				return $this->redirect(array('controller'=>'users','action' => 'profile'));
-			} else {
-				$this->Session->setFlash(__('The credit card could not be saved. Please, try again.'));
-			}
-		} else {
-			$options = array('conditions' => array('CreditCard.' . $this->CreditCard->primaryKey => $id));
-			$this->request->data = $this->CreditCard->find('first', $options);
 		}
 	}
 
