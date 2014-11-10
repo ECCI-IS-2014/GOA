@@ -22,7 +22,7 @@ class SalesController extends AppController {
  * @var array
  */
 	public $components = array('Paginator', 'Session');
-    public $uses = array('Product','Cart', 'Sale', 'Credit_Card');
+    public $uses = array('Product','Cart', 'Sale', 'Credit_Card','ProductSale','User');
 /**
  * index method
  *
@@ -63,7 +63,7 @@ class SalesController extends AppController {
         $this->set('totalCartProducts',$totalCartProducts);
         $this->set('prodCarts',$cart_Ids);
         $this->set('numProducts',$numProducts);
-
+		 $this->check_frequentcy();
     }
 
 
@@ -168,4 +168,80 @@ class SalesController extends AppController {
 
         return $this->redirect(array('controller' => 'sales', 'action' => 'checkout'));
     }
+	
+	public function check_frequentcy(){
+        date_default_timezone_set('America/Costa_Rica');
+        $monthQuantity=3;
+        $productQuantity=10;
+        $entryCondition=true; //condición de mes encontrado
+        $entryCondition1=true; //condición del vector query
+        $cont=0;
+        $i=0;
+        $Fecha = mktime(0, 0, 0,date('m')-$monthQuantity+1, date('m'), date('Y'));
+        $Fecha=date("Y-m", $Fecha);
+        $query = $this->Sale->find('all',array('conditions'=>array('Sale.user_id'=>$this->Session->read('Auth.User.id'),'Sale.created >='=>$Fecha)));
+
+       while($entryCondition && $cont < $monthQuantity){
+           while($i<sizeof($query) && $entryCondition1 ){
+               $yearMonth=$query[$i]['Sale']['created'];
+               $Fecha = mktime(0, 0, 0,date('m')-$monthQuantity+1+$cont, date('m'), date('Y'));
+
+                if(substr($yearMonth, 0, -12) != date("Y-m", $Fecha) ){
+                    $i++;
+                }else{
+                    $entryCondition1=false;
+                }
+           }
+           $entryCondition1=true;
+
+           if($i>=sizeof($query)){
+              $entryCondition=false;
+            }else{$cont++;}
+           $i++;
+       }
+        $i=0;
+       if($cont == $monthQuantity){
+        $entryCondition=true;
+        $contProduct=0;
+
+        while($i<sizeof($query) && $entryCondition){ //la condicion revisara si el mes alcanzo la cantidad de productos establecida
+            $j=0;
+
+            while($i<sizeof($query) && $contProduct>=$productQuantity  && substr($query[$i]['Sale']['created'], 0, -12)== substr($query[$i-1]['Sale']['created'], 0, -12)){
+                $i++;
+            }
+
+            if($i<sizeof($query)){
+                if($contProduct!=0 && substr($query[$i]['Sale']['created'], 0, -12)!= substr($query[$i-1]['Sale']['created'], 0, -12) ){//reinicia el contador si cambió el mes después de que se llegó a max de productos del mes pasado
+                    $contProduct=0;
+                }
+
+                $productQuery = $this->ProductSale->find('all',array('conditions'=>array('ProductSale.sale_id'=>$query[$i]['Sale']['id'])));
+                while($j<sizeof($productQuery) && $contProduct < $productQuantity ){
+
+                    if($contProduct < $productQuantity){
+                        $contProduct+= $productQuery[$j]['ProductSale']['quantity'];
+
+                        $j++;
+                    }
+                }
+
+                if($j>=sizeof($productQuery) && $contProduct < $productQuantity && ($i+1==sizeof($query) || substr($query[$i+1]['Sale']['created'], 0, -12)!= substr($query[$i]['Sale']['created'], 0, -12))){
+                    $entryCondition=false;
+                }else{
+                    $i++;}
+
+            }
+        }
+        }
+        if($i>=sizeof($query)){ //condicion de cliente frecuente
+            $this->User->query("UPDATE users SET frecuent_client = 1 WHERE id = ".$this->Session->read('Auth.User.id').";");
+
+       }else{ //condicion de cliente no frecuente
+            $this->User->query("UPDATE users SET frecuent_client = 0 WHERE id = ".$this->Session->read('Auth.User.id').";");
+
+        }
+
+    }
+	
 }

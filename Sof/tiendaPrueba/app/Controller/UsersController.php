@@ -57,6 +57,8 @@ class UsersController extends AppController {
     public function profile(){
         $id=$this->Session->read('Auth.User.id');
         $this->set('user', $this->User->read(null, $id));
+		$fclient = $this->User->find('all',array('conditions'=>array('User.id'=>$this->Session->read('Auth.User.id'))));
+        $this->set('frecuentuser',$fclient[0]['User']['frecuent_client']);
     }
 
 

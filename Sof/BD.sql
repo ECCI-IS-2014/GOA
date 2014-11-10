@@ -99,6 +99,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `gender` char(1) NOT NULL,
   `birth_date` date NOT NULL,
   `status` tinyint(1) DEFAULT '1',
+  `frecuent_client` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1;

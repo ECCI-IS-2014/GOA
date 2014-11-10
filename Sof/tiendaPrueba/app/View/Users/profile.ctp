@@ -67,6 +67,10 @@
         </div>
 
         <div class="actions">
+		 <?php
+              if ($frecuentuser) {?>
+                <h1 style="font-size: 0px; text-align: auto;"><img src = "http://i.imgur.com/xJafY27.png" /><h1>
+         <?php  } ?>
             <h3><?php echo __('Actions'); ?></h3>
             <ul>
                 <li><?php echo $this->Html->link(__('Edit User'), array('action' => 'edit', $this->Session->read('Auth.User.id'))); ?> </li>
