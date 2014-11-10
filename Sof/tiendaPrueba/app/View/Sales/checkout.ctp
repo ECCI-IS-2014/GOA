@@ -27,13 +27,19 @@
                         <!-- payment method image -->
                         <img src = "http://i.imgur.com/oOHHzdb.png" />
                            <!-- for que muestre todas las tarjetas del user -->
-                           <p style="font-size: 15px; text-align: left;"> Please add a payment method<p> <select name="example">
-                               <option value="A">1-***********4563</option>
-                               <option value="B">1-***********4563</option>
-                               <option value="-">1-***********4563</option>
-                           </select>
-                           <!-- -->
-                         <li><?php echo $this->Form->postLink(__('Add other'), array('action' => '')); ?> </li>
+                           <p style="font-size: 15px; text-align: left;"> Please choose a payment method<p> 
+						   <select name="example">
+                           
+						   <?php
+								$cards = ClassRegistry::init('CreditCard')->listUserCreditCards($this->Session->read('Auth.User.id'));
+								$this->set(compact('cards'));
+								foreach ($cards as $id=>$card) {
+									echo '<option value = "' . $id . '">' . $card . '</option>';
+								}
+							?>
+							</select>
+                            <p style="font-size: 14px; text-align: left;"> or<p> 
+                         <li><?php echo $this->Html->link(__('Add New Credit Card'), array('controller' => 'credit_cards', 'action' => 'add')); ?> </li>
                      </ul>
                         <!-- products image -->
                         <img src = "http://i.imgur.com/Tm3qbhM.png" />
