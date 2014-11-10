@@ -15,10 +15,7 @@
 
     <div id="head"> <?php echo $this->fetch('header1'); ?> </div>
 
-    <div style = "margin-left:5%;>
-        <h1 style="font-size: 18px; text-align: left;"> Review Your Order<h1>
-        <h3 style="font-size: 18px; text-align: left;"> By clicking on "Pay" button, you agree on FutureStore in the conditions of use. <h2>
-    </div>
+
   <div class="actions" style = "margin-left:3%;">
                     <ul>
                         <!-- delivery address image -->
@@ -30,13 +27,12 @@
                         <!-- payment method image -->
                         <img src = "http://i.imgur.com/oOHHzdb.png" />
                            <!-- for que muestre todas las tarjetas del user -->
-                           <p style="font-size: 15px; text-align: left;"> Credit Card <p> <select name="example">
+                           <p style="font-size: 15px; text-align: left;"> Please add a payment method<p> <select name="example">
                                <option value="A">1-***********4563</option>
                                <option value="B">1-***********4563</option>
                                <option value="-">1-***********4563</option>
                            </select>
                            <!-- -->
-
                          <li><?php echo $this->Form->postLink(__('Add other'), array('action' => '')); ?> </li>
                      </ul>
                         <!-- products image -->
@@ -50,14 +46,9 @@
             <div id="bodyCart">
                 <?php
                 if ( $totalCartProducts > 0 ) {
-
                     echo $this->CatalogGenerator->formatSale($prodCarts, $numProducts, 30 );
-
                 } else { ?>
-
-
                 <?php } ?>
-
                 <div id="total">
                     <b>Sub Total: </b>
                     <?php
@@ -73,21 +64,23 @@
                 <div id="total">
                     <b>Tax: </b>
                     <?php
-                        $withoutTax = $total/13;
-                        echo $this->StringFormatter->formatCurrency( $withoutTax, '$');
+                        $tax = 0.0;
+                        $tax = $total/13;
+                        echo $this->StringFormatter->formatCurrency( $tax, '$');
                     ?>
                 </div>
                 <div id="total">
                     <b>Total: </b>
                     <?php
-                        $tax= 0.0;
-                        $endTotal = $total + $withoutTax;
+                        $endTotal = 0.0;
+                        $endTotal = $total + $tax;
                         echo $this->StringFormatter->formatCurrency( $endTotal, '$');
                     ?>
                 </div>
                 <div>
-                <button id="PayButton" style = "float:left; margin-left:50%; margin-bottom:5%;">
-                    <a href="$this->Html->url(array('controller' => 'sales','action' => 'add', "1" ))">Pay</a>
+                <h3 style="font-size: 18px; text-align: left; margin-left:4%"> By clicking on "Pay" button, you agree on FutureStore in the conditions of use. </h3>
+                <button id="PayButton" style = "float:left; margin-left:10%; margin-bottom:5%;">
+                    <a href=<?php echo $this->Html->url(array('controller' => 'sales','action' => 'add',  $total,  $tax,  $endTotal ))?>>Pay</a>
                 </button>
                  </div>
 

@@ -22,7 +22,7 @@ class SalesController extends AppController {
  * @var array
  */
 	public $components = array('Paginator', 'Session');
-    public $uses = array('Product','Cart');
+    public $uses = array('Product','Cart', 'Sale', 'Credit_Card');
 /**
  * index method
  *
@@ -35,11 +35,11 @@ class SalesController extends AppController {
     }
 
 
+    // index de factura practicamente
     public function checkout() {
         $cart = $this->Session->read('cart');
         $numProducts = $this->Session->read('numProducts');
         $totalCartProducts = 0;
-
         $cart_Ids = array();
 
         for( $i = 0; $i < count($cart); $i++ ) {
@@ -58,7 +58,6 @@ class SalesController extends AppController {
             }
             $totalCartProducts = $totalCartProducts + $numProducts[$i];
         }
-
         $this->Session->write('totalCartProducts',$totalCartProducts);
 
         $this->set('totalCartProducts',$totalCartProducts);
@@ -88,19 +87,31 @@ class SalesController extends AppController {
  *
  * @return void
  */
-	public function add() {
-		if ($this->request->is('post')) {
-			$this->Sale->create();
-			if ($this->Sale->save($this->request->data)) {
-				$this->Session->setFlash(__('The sale has been saved.'));
-				return $this->redirect(array('action' => 'index'));
-			} else {
-				$this->Session->setFlash(__('The sale could not be saved. Please, try again.'));
-			}
-		}
-		$users = $this->Sale->User->find('list');
-		$this->set(compact('users'));
+
+	public function add($subtotal = 0.0, $tax = 0.0, $total= 0.0, $currency = 'dolar') {
+        $user_id=$this->Session->read('Auth.User.id');
+        //$method_payment_id = $this->Sale->query("SELECT id FROM credit_cards WHERE user_id = ".$user_id.";");
+        $method_payment_id = 3;
+        $frequenly_costumer_discount = 0.0;
+        // save all in table
+        //$this->set('sales', $this->Paginator->paginate());
+        $data = array('user_id' => $user_id,'method_payment_id' => $method_payment_id, 'subtotal' =>  $subtotal, 'frequenly_costumer_discount' => $frequenly_costumer_discount, 'total' => $total, 'currency' => $currency, 'tax' => $tax);
+        if ($this->Sale->save($data)) {
+            $this->Session->write('sale_id',$this->Sale->id);
+            $this->Session->setFlash(__('Thank you for buying in FutureStore, your products are on the way!'));
+
+            return $this->redirect(array('controller' => 'Product_Sales', 'action' => 'pay'));
+        } else {
+            $this->Session->setFlash(__('The sale could not be saved. Please, try again.'));
+        }
 	}
+
+    public function buys() {
+        $sale_id=$this->Session->read('sale_id');
+        //$this->set('sales',$this->Sale->find('all', array ('conditions' => array('id' => $sale_id))));
+        $options = array('conditions' => array('Sale.' . $this->Sale->primaryKey => $sale_id));
+        $this->set('sale', $this->Sale->find('first', $options));
+    }
 
 /**
  * edit method

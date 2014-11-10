@@ -265,8 +265,6 @@ class CatalogGeneratorHelper extends AppHelper {
     // metodo que muestra productos en facturas
 
 
-    //Método que muestra productos del carro.
-
     public function formatSale($prodCarts, $numProducts) {
         echo $this->Html->css('catalogs');
         $result_string = '<div>';
@@ -282,7 +280,7 @@ class CatalogGeneratorHelper extends AppHelper {
                     "<p style='width:40%; margin-bottom:0%; margin-right:0%;'> ".
                     $prodCarts[$i]['Product']['name'].
                     "</p>".
-                    "<button id='deleteCartButton'>".
+                    "<button id='deleteSaleButton'>".
                     "<a href=".$this->Html->url(array('controller' => 'sales','action' => 'delete', 'id'=>$prodCarts[$i]['Product']['id'])).">".
                     'Delete'.
                     "</a>".
@@ -297,7 +295,7 @@ class CatalogGeneratorHelper extends AppHelper {
                     "<br>".
                     '<form id="EditForm'. $prodCarts[$i]['Product']['id'] .'" method="post" action="'.$this->Html->url(array('controller' => 'carts','action' => 'edit', $prodCarts[$i]['Product']['id'])).'">'.
                     "<p style='font-weight:bold; float:left; margin-left:10%;'>".'&nbsp;Amount:&nbsp;'."</p>".
-                    "<select name='cantidad'>";
+                    "<select id = 'cant' name='cantidad'>";
 
                 for ( $j = 1; $j <= $prodCarts[$i]['Product']['quantity']; ++$j ) {
                     if ( $j == $numProducts[$i] ) {

@@ -16,6 +16,7 @@ class ProductSalesController extends AppController {
  */
 	public $components = array('Paginator', 'Session');
     public $helpers = array('CatalogGenerator', 'StringFormatter', 'Html');
+    public $uses = array('Product','Cart', 'Sale', 'CreditCard', 'ProductSale');
 /**
  * index method
  *
@@ -46,19 +47,14 @@ class ProductSalesController extends AppController {
  *
  * @return void
  */
-	public function add() {
-		if ($this->request->is('post')) {
-			$this->ProductSale->create();
-			if ($this->ProductSale->save($this->request->data)) {
-				$this->Session->setFlash(__('The product sale has been saved.'));
-				return $this->redirect(array('action' => 'index'));
-			} else {
-				$this->Session->setFlash(__('The product sale could not be saved. Please, try again.'));
-			}
-		}
-		$sales = $this->ProductSale->Sale->find('list');
-		$products = $this->ProductSale->Product->find('list');
-		$this->set(compact('sales', 'products'));
+	public function pay() {
+        $cart = $this->Session->read('cart');
+        for( $i = 1; $i < count($cart); $i++ ) {
+            $product = $this->Product->find('first', array('conditions'=>array('Product.id'=>$cart[$i])));
+            $this->ProductSale->query("INSERT INTO product_sales (sale_id,product_id,quantity, price,discount) VALUES(".$this->Session->read('sale_id').",".$product['Product']['id'].",".$product['Product']['quantity'].",".$product['Product']['price'].",".$product['Product']['discount'].");");
+       }
+
+        return $this->redirect(array('controller' => 'Sales', 'action' => 'buys'));
 	}
 
 /**
