@@ -248,13 +248,11 @@ CREATE TABLE IF NOT EXISTS `reviews` (
   `product_id` int(11) NOT NULL,
   `description` varchar(5000) NOT NULL,
   `rating` int(1) NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `FK_reviews_user_id` (`user_id`),
+  KEY `FK_reviews_product_id` (`product_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-
-ALTER TABLE `reviews`
-  ADD CONSTRAINT `FK_reviews_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
-  ADD CONSTRAINT `FK_reviews_product_id` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`);
   
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
