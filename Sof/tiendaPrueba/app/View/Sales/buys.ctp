@@ -17,7 +17,7 @@
 
     <div class="bill" style = "margin-left:20%;">
             <img src = "http://i.imgur.com/izLAJTe.png" />
-            <p style="font-weight:bold;  margin-left:10%;">Bill Number:&nbsp;</p> <h1 style="font-size: 15px; margin-left:20%;"> <?php echo $this->Session->read('sale_id'); ?> </h1>
+            <p style="font-weight:bold;  margin-left:10%;">Bill Number:&nbsp;</p> <h1 style="font-size: 15px; margin-left:20%;"> <?php echo $this->Session->read('sale_id');  ?> </h1>
             <p style="font-weight:bold;  margin-left:10%;">Date:&nbsp;</p> <h1 style="font-size: 15px; margin-left:20%;"> <?php echo h($sale['Sale']['created']); ?> </h1>
             <p style="font-weight:bold;  margin-left:10%;">User:&nbsp;</p> <h1 style="font-size: 15px; margin-left:20%;"> <?php echo $this->Html->link($sale['User']['name'], array('controller' => 'users', 'action' => 'profile')); ?> </h1>
             <p style="font-weight:bold; margin-left:10%;">Delivery:&nbsp;</p>
@@ -27,7 +27,19 @@
                 <h1> 3 floor, Dep 12 <h1>
             </div>
             <p style="font-weight:bold;  margin-left:10%;">Payment Method:&nbsp;</p> <h1 style="font-size: 15px; margin-left:20%;"> <?php echo h($sale['Sale']['method_payment_id']); ?> </h1>
-            <p style="font-weight:bold;  margin-left:10%;">Products:&nbsp;</p> <h1 style="font-size: 15px; margin-left:20%;"> Aún estoy en eso lalalala .__. </h1>
+            <?php
+                   $cart = $this->Session->read('cart');
+                   $numProducts = $this->Session->read('numProducts');
+                   /*for( $i = 1; $i < count($cart); $i++ ) {
+                        echo $product['Product']['id'];
+
+                       }*/
+
+            ?>
+
+
+            <p style="font-weight:bold;  margin-left:10%;">Products:&nbsp;</p> <h1 style="font-size: 15px; margin-left:20%;">  hola  </h1>
+
 
             <p style="font-weight:bold;  margin-left:10%;">SubTotal:&nbsp;</p> <h1 style="font-size: 15px; margin-left:20%;"> <?php echo h($sale['Sale']['subtotal']); ?> </h1>
             <p style="font-weight:bold;  margin-left:10%;">Tax:&nbsp;</p> <h1 style="font-size: 15px; margin-left:20%;"> <?php echo h($sale['Sale']['tax']); ?> </h1>

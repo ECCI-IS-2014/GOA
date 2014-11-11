@@ -49,10 +49,16 @@ class ProductSalesController extends AppController {
  */
 	public function pay() {
         $cart = $this->Session->read('cart');
+        //$sale_id=$this->Session->read('sale_id');
+        $numProducts = $this->Session->read('numProducts');
         for( $i = 1; $i < count($cart); $i++ ) {
             $product = $this->Product->find('first', array('conditions'=>array('Product.id'=>$cart[$i])));
-            $this->ProductSale->query("INSERT INTO product_sales (sale_id,product_id,quantity, price,discount) VALUES(".$this->Session->read('sale_id').",".$product['Product']['id'].",".$product['Product']['quantity'].",".$product['Product']['price'].",".$product['Product']['discount'].");");
+
+            $this->ProductSale->query("INSERT INTO product_sales (sale_id,product_id,quantity, price,discount) VALUES(".$this->Session->read('sale_id').",".$product['Product']['id'].",".$numProducts[$i].",".$product['Product']['price'].",".$product['Product']['discount'].");");
        }
+
+       // $options = array('conditions' => array('ProductSale.' . $this->ProductSale->sale_id => $sale_id));
+        //$this->set('productSale', $this->ProductSale->find('all', $options));
 
         return $this->redirect(array('controller' => 'Sales', 'action' => 'buys'));
 	}

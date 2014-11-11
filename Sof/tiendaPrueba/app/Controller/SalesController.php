@@ -63,7 +63,7 @@ class SalesController extends AppController {
         $this->set('totalCartProducts',$totalCartProducts);
         $this->set('prodCarts',$cart_Ids);
         $this->set('numProducts',$numProducts);
-		 $this->check_frequentcy();
+		$this->check_frequentcy();
     }
 
 
@@ -99,7 +99,6 @@ class SalesController extends AppController {
         if ($this->Sale->save($data)) {
             $this->Session->write('sale_id',$this->Sale->id);
             $this->Session->setFlash(__('Thank you for buying in FutureStore, your products are on the way!'));
-
             return $this->redirect(array('controller' => 'Product_Sales', 'action' => 'pay'));
         } else {
             $this->Session->setFlash(__('The sale could not be saved. Please, try again.'));
@@ -108,9 +107,12 @@ class SalesController extends AppController {
 
     public function buys() {
         $sale_id=$this->Session->read('sale_id');
-        //$this->set('sales',$this->Sale->find('all', array ('conditions' => array('id' => $sale_id))));
         $options = array('conditions' => array('Sale.' . $this->Sale->primaryKey => $sale_id));
         $this->set('sale', $this->Sale->find('first', $options));
+
+        $sale_id=$this->Session->read('sale_id');
+        $products = $this->ProductSales->find('all', array('conditions'=>array('ProductSales.sale_id'=>$sale_id)));
+        $this->set('productsFact', $products);
     }
 
 /**
@@ -125,7 +127,8 @@ class SalesController extends AppController {
     $cart = $this->Session->read('cart');
     $numProducts = $this->Session->read('numProducts');
 
-    $pos = array_search($id,$cart);
+
+        $pos = array_search($id,$cart);
     if ( $pos != false ) {
         if ($this->request->is(array('post', 'put'))) {
             $data = $this->request->data;
@@ -133,7 +136,7 @@ class SalesController extends AppController {
         }
     }
     $this->Session->write('numProducts',$numProducts);
-
+        //$this->set('canti', $numProducts[$pos]);
     return $this->redirect(array('controller' => 'carts', 'action' => 'index'));
 
 }

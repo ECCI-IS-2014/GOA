@@ -295,7 +295,7 @@ class CatalogGeneratorHelper extends AppHelper {
                     "<br>".
                     '<form id="EditForm'. $prodCarts[$i]['Product']['id'] .'" method="post" action="'.$this->Html->url(array('controller' => 'carts','action' => 'edit', $prodCarts[$i]['Product']['id'])).'">'.
                     "<p style='font-weight:bold; float:left; margin-left:10%;'>".'&nbsp;Amount:&nbsp;'."</p>".
-                    "<select id = 'cant' name='cantidad'>";
+                    "<select id = 'cant' name='cantidad' disabled>";
 
                 for ( $j = 1; $j <= $prodCarts[$i]['Product']['quantity']; ++$j ) {
                     if ( $j == $numProducts[$i] ) {
@@ -307,11 +307,13 @@ class CatalogGeneratorHelper extends AppHelper {
                     }
                 }
 
+                ?>
+                <?php
                 $result_string = $result_string.
                     "</select>".
-                    '<span id="setCart" style="margin-left:5px; ">'.
-                    '<input type="submit" value="Set" style="font-size:16px; position:relative;top: -3px;"/>'.
-                    '</span>'.
+                    //'<span id="setCart" style="margin-left:5px; ">'.
+                    //'<input type="submit" value="Set" style="font-size:16px; position:relative;top: -3px;"/>'.
+                    //'</span>'.
                     "</form>".
                     "<div>"."</div>".
                     "<br>".
@@ -324,12 +326,18 @@ class CatalogGeneratorHelper extends AppHelper {
                     "</div>".
                     "<div style='clear:both'></div>".
                     "<hr>".
-
+                    //"<div>".
+                    //"<h3 style='font-size: 18px; text-align: left; margin-left:4%'>".'By clicking on "Pay" button, you agree on FutureStore in the conditions of use'."</h3>".
+                    //"<button id='PayButton' style = 'float:left; margin-left:10%; margin-bottom:5%;'>".
+                    //"<a href=".$this->Html->url(array('controller' => 'sales','action' => 'add',  $total,  $tax,  $endTotal )).">".'Pay'."</a>".
+                    //"</button>".
+                    //"</div>".
                     "</div>";
             }
         }
 
         return $result_string.'</div>';
+
 
     }
 
