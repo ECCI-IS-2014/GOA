@@ -35,7 +35,9 @@
             <p style="font-weight:bold;  margin-left:10%;">Total:&nbsp;</p> <h1 style="font-size: 15px; margin-left:20%;"> <?php echo h($sale['Sale']['total']); ?> </h1>
 
     </div>
-
+        <button id="PayButton" style = "float:left; margin-left:10%; margin-bottom:5%;">
+           <a href=<?php echo $this->Html->url(array('controller' => 'sales','action' => 'viewPdf'))?>>Create PDF</a>
+        </button>
     <tbody>
     <div style="clear:both"></div>
 

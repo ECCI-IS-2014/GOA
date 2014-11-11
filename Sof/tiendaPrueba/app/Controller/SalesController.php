@@ -90,6 +90,7 @@ class SalesController extends AppController {
  */
 
 	public function add($subtotal = 0.0, $tax = 0.0, $total= 0.0) {
+	 date_default_timezone_set('America/Costa_Rica');
         if (!empty($this->request->data)) {
             $data = $this->request->data;
             $method_payment_id = $data['cards'];
@@ -258,6 +259,43 @@ class SalesController extends AppController {
 
         }
 
+    }
+	
+	 public function viewPdf(){
+        $id=$this->Session->read('Auth.User.id');
+        $uid=$this->Session->read('Auth.User.username');
+
+        if (!$id)
+        {
+            $this->Session->setFlash('Sorry, there was no property ID submitted.');
+            $this->redirect(array('action'=>'buys'), null, true);
+        }
+
+        $datos_factura = $this->Sale->find('all',array('conditions'=>array('Sale.user_id'=>$this->Session->read('Auth.User.id'))));
+        $vid=$datos_factura[sizeof($datos_factura)-1]['Sale']['id'];
+        $vmethod_payment_id=$datos_factura[sizeof($datos_factura)-1]['Sale']['method_payment_id'];
+        $vsubtotal=$datos_factura[sizeof($datos_factura)-1]['Sale']['subtotal'];
+        $vfrequenly_costumer_discount=$datos_factura[sizeof($datos_factura)-1]['Sale']['frequenly_costumer_discount'];
+        $vtotal=$datos_factura[sizeof($datos_factura)-1]['Sale']['total'];
+        $vcreated=$datos_factura[sizeof($datos_factura)-1]['Sale']['created'];
+        $vtax=$datos_factura[sizeof($datos_factura)-1]['Sale']['tax'];
+        $i=0;
+
+        $vproduct = $this->ProductSale->find('all',array('conditions'=>array('ProductSale.sale_id'=>$datos_factura[sizeof($datos_factura)-1]['Sale']['id']),'contain'=>array('Product'=>array('conditions'=>array('Product.id'=>'ProductSale.product_id')))));
+
+        $this->set('i', $i);
+        $this->set('user_id', $uid);
+        $this->set('vprod', $vproduct);
+        $this->set('factura_id', $vid);
+        $this->set('method_payment_id', $vmethod_payment_id);
+        $this->set('subtotal', $vsubtotal);
+        $this->set('frequenly_costumer_discount', $vfrequenly_costumer_discount);
+        $this->set('total', $vtotal);
+        $this->set('created', $vcreated);
+        $this->set('tax', $vtax);
+
+        $this->layout = 'pdf'; //this will use the pdf.ctp layout
+        $this->render();
     }
 	
 }
