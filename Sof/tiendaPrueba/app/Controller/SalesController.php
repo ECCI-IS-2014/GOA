@@ -104,7 +104,7 @@ class SalesController extends AppController {
             $this->Session->setFlash(__('The sale could not be saved. Please, try again.'));*/
 	public function add($subtotal = 0.0, $tax = 0.0, $total= 0.0) {
 	 date_default_timezone_set('America/Costa_Rica');
-        if (!empty($this->request->data)) {
+       // if (!empty($this->request->data)) {
             $data = $this->request->data;
             $method_payment_id = $data['cards'];
             $coin = $data['currency'];
@@ -132,8 +132,8 @@ class SalesController extends AppController {
             } else {
                 $this->Session->setFlash(__('The sale could not be saved. Please, try again.'));
             }
-        }
-        return $this->redirect(array('controller' => 'Sales', 'action' => 'checkout'));     
+        //}
+        //return $this->redirect(array('controller' => 'Sales', 'action' => 'checkout'));
 	}
 
     public function buys() {

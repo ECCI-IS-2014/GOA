@@ -101,13 +101,13 @@
                     <br/><br/>
 
                 </div>
-                <div>
+                <!--<div>
                 <h3 style="font-size: 18px; text-align: left; margin-left:4%"> By clicking on "Pay" button, you agree on FutureStore in the conditions of use. </h3>
                 <button id="PayButton" style = "float:left; margin-left:10%; margin-bottom:5%;">
                 <a href=<?php echo $this->Html->url(array('controller' => 'sales','action' => 'add',  $total,  $tax,  $endTotal ))?>>Pay</a>
                 </button>
-                 </div>
-                
+                 </div>-->
+
                 <br/>
                 <h3 style="font-size: 18px; text-align: left; margin-left:4%;">
                     By clicking on the "Pay" button, you agree on FutureStore's conditions of use.

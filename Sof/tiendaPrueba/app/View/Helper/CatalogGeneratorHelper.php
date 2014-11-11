@@ -293,7 +293,7 @@ class CatalogGeneratorHelper extends AppHelper {
                     "<div>"."</div>".
                     "<br>".
                     "<br>".
-                    '<form id="EditForm'. $prodCarts[$i]['Product']['id'] .'" method="post" action="'.$this->Html->url(array('controller' => 'carts','action' => 'edit', $prodCarts[$i]['Product']['id'])).'">'.
+                    /*'<form id="EditForm'. $prodCarts[$i]['Product']['id'] .'" method="post" action="'.$this->Html->url(array('controller' => 'carts','action' => 'edit', $prodCarts[$i]['Product']['id'])).'">'.
                     "<p style='font-weight:bold; float:left; margin-left:10%;'>".'&nbsp;Amount:&nbsp;'."</p>".
                     "<select id = 'cant' name='cantidad' disabled>";
 
@@ -314,7 +314,7 @@ class CatalogGeneratorHelper extends AppHelper {
                     //'<span id="setCart" style="margin-left:5px; ">'.
                     //'<input type="submit" value="Set" style="font-size:16px; position:relative;top: -3px;"/>'.
                     //'</span>'.
-                    "</form>".
+                    "</form>".*/
                     "<p style='font-weight:bold; float:left; margin-left:2%;'>".'Amount:&nbsp;'."</p>".
                     "<p style='width:40%; margin-bottom:0%; margin-right:0%; float:left;'> ".
                     $numProducts[$i].
