@@ -117,36 +117,34 @@
 <?php $this->start('home_panel'); ?>
 
 
-   
-
     <div id="home_panel_wrapper">
 
       <div id="start" class="active">
-        <div class="catalog_holder named">
+        <div id="hot_pane" class="catalog_holder named">
           <h3>Hot</h3>
           <?php 
             echo $this->CatalogGenerator->formatProducts( $products, 12 ); 
           ?>
         </div>
-        <div class="catalog_holder named">
+        <div id="sales_pane" class="catalog_holder named">
           <h3>On sale</h3>
           <?php 
             echo $this->CatalogGenerator->formatProducts( $products, 18 ); 
           ?>
         </div>
-        <div class="catalog_holder named">
+        <div id="top_rated_pane" class="catalog_holder named">
           <h3>Top rated</h3>
           <?php 
             echo $this->CatalogGenerator->formatProducts( $products, 5 ); 
           ?>
         </div>
-        <div class="catalog_holder named">
+        <div id="new_pane" class="catalog_holder named">
           <h3>Newly added</h3>
           <?php 
             echo $this->CatalogGenerator->formatProducts( $products, 8 ); 
           ?>
         </div>
-        <div class="catalog_holder named">
+        <div id="picks_pane" class="catalog_holder named">
           <h3>Our picks for you</h3>
           <?php 
             echo $this->CatalogGenerator->formatProducts( $products, 3 ); 
@@ -174,6 +172,32 @@
     <script type="text/javascript">
 
       var activePanel = "start";
+      var catalog_item_width = 199;
+      var catalog_item_height = 316;
+
+      //set sliders
+      $(document).ready(function(){
+        var hot_slider = new FutureSlider("#hot_pane div[type='catalog']", catalog_item_width, catalog_item_height);
+        var sales_slider = new FutureSlider("#sales_pane div[type='catalog']", catalog_item_width, catalog_item_height);
+        var top_rated_slider = new FutureSlider("#top_rated_pane div[type='catalog']", catalog_item_width, catalog_item_height);
+        var new_slider = new FutureSlider("#new_pane div[type='catalog']", catalog_item_width, catalog_item_height);
+        var picks_slider = new FutureSlider("#picks_pane div[type='catalog']", catalog_item_width, catalog_item_height);
+
+        var slider_interval = window.setInterval(function(){
+            hot_slider.moveForward();
+            sales_slider.moveForward();
+            top_rated_slider.moveForward();
+            new_slider.moveForward();
+            picks_slider.moveForward();
+        }, 3500);
+
+        $(document).keypress(function(){
+          hot_slider.moveForward();
+        });
+
+      });
+
+      
 
     </script>
 

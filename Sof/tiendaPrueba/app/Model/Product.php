@@ -151,6 +151,8 @@ class Product extends AppModel {
      */
 	public function getAllProducts($order_by = null, $direction = 'DESC') {
 
+		$conditions = array('Product.enable_product' => '1');
+
 		if($order_by != null) {
 			$order = array('Product.' . $order_by . ' ' . $direction);
 		}
@@ -159,6 +161,7 @@ class Product extends AppModel {
 		}
 
 		$result = $this->find('all', array( 
+			'conditions'=>$conditions,
 			'order'=>$order
 		));
 
@@ -174,7 +177,7 @@ class Product extends AppModel {
 
 		$equals = strtolower($equals);
 
-		$conditions = array('Product.' . $attribute => $equals);
+		$conditions = array('Product.enable_product' => '1', 'Product.' . $attribute => $equals);
 
 		if($order_by != null) {
 			$order = array('Product.' . $order_by . ' ' . $direction);
@@ -201,7 +204,7 @@ class Product extends AppModel {
 
 		$equals = strtolower($equals);
 
-		$conditions = array('Product.' . $attribute => $equals);
+		$conditions = array('Product.enable_product' => '1', 'Product.' . $attribute => $equals);
 
 		if($cate_id > 0) {
 			$conditions = array('Product.' . $attribute => $equals, 'Product.category_id' => $cate_id);
@@ -231,8 +234,6 @@ class Product extends AppModel {
 
 		$like = strtolower($like);
 
-		$conditions = array('Product.' . $attribute => $like);
-
 		if($order_by != null) {
 			$order = "ORDER BY " . $order_by . " " . $direction;
 		}
@@ -241,7 +242,7 @@ class Product extends AppModel {
 		}
 
 		// TODO: Proteger consulta contra inyección SQL.
-		$result = $this->query("SELECT * FROM products AS Product WHERE " . $attribute . " LIKE '%" . $like . "%' " . $order . ";");
+		$result = $this->query("SELECT * FROM products AS Product WHERE " . " enable_product = 1 AND " . $attribute . " LIKE '%" . $like . "%' " . $order . ";");
 
 		return $result;
 
@@ -276,7 +277,7 @@ class Product extends AppModel {
 			$category_condition = $or_str;
 		}
 
-		$result = $this->query("SELECT * FROM products AS Product WHERE " . $attribute . " LIKE '%" . $like . "%' " . $category_condition . " " . $order . ";");
+		$result = $this->query("SELECT * FROM products AS Product WHERE " . " enable_product = 1 AND " . $attribute . " LIKE '%" . $like . "%' " . $category_condition . " " . $order . ";");
 
 		return $result;
 
@@ -291,7 +292,7 @@ class Product extends AppModel {
 	public function getProductsInCategoryByAttributeRange($attribute, $greater_or_equals, $lesser_or_equals, $cate_id, $order_by = null, $direction = 'DESC') {
 
 		$conditions = array(
-			'Product.' . $attribute . ' BETWEEN ? AND ?' => array($greater_or_equals, $lesser_or_equals)
+			'Product.enable_product' => '1', 'Product.' . $attribute . ' BETWEEN ? AND ?' => array($greater_or_equals, $lesser_or_equals)
 		);
 
 		if($cate_id > 0) {
@@ -331,7 +332,7 @@ class Product extends AppModel {
      */
 	public function getProductsInCategoryByAttributeLesserEquals($attribute, $lesser_equals, $cate_id, $order_by = null, $direction = 'DESC') {
 
-		$conditions = array('Product.' . $attribute . ' <=' => $lesser_equals);
+		$conditions = array('Product.enable_product' => '1', 'Product.' . $attribute . ' <=' => $lesser_equals);
 
 		if($cate_id > 0) {
 			$children_categories = $this->Category->getChildrenCategories($cate_id);
@@ -370,7 +371,7 @@ class Product extends AppModel {
      */
 	public function getProductsInCategoryByAttributeGreaterEquals($attribute, $greater_equals, $cate_id, $order_by = null, $direction = 'DESC') {
 
-		$conditions = array('Product.' . $attribute . ' >=' => $greater_equals);
+		$conditions = array('Product.enable_product' => '1', 'Product.' . $attribute . ' >=' => $greater_equals);
 
 		if($cate_id > 0) {
 			$children_categories = $this->Category->getChildrenCategories($cate_id);

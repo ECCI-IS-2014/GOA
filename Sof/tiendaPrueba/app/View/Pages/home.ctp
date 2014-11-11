@@ -13,6 +13,7 @@
              <?php echo $this->Html->css('button'); ?>
              <?php echo $this->Html->css('home'); ?>
              <?php echo $this->Html->script('jquery-ui'); ?>
+             <?php echo $this->Html->script('future-slider'); ?>
         </head>
 
 
@@ -74,6 +75,7 @@
                     }
                 }
             }, 3000);
+
         });
 
         $(window).resize(function(){

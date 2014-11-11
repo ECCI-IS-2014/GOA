@@ -12,7 +12,7 @@ class CatalogGeneratorHelper extends AppHelper {
 
     	echo $this->Html->css('catalogs');
 
-    	$result_string = '<div>';
+    	$result_string = '<div type="catalog">';
 
         for($i = 0; $i < count($products); $i++) {
 
@@ -273,11 +273,11 @@ class CatalogGeneratorHelper extends AppHelper {
 
             if ( $numProducts[$i] > 0 ) {
                 $result_string = $result_string.
-                    "<div class='cart_item'>".
-                    $this->Html->image('product_icons/'.$prodCarts[$i]['Product']['image'], array('alt' => 'CakePHP', 'class' => 'p_photo','style'=>'height:100%; width:8%; float:left;')) .
+                    "<div class='cart_item' style='width: 650px;'>".
+                    $this->Html->image('product_icons/'.$prodCarts[$i]['Product']['image'], array('alt' => 'CakePHP', 'class' => 'p_photo','style'=>'height:100%; width:12%; float:left;margin-bottom:25px;')) .
                     "<div class='infoPan' style='margin-bottom: 1.5%;'>".
                     "<p style='font-weight:bold; float:left; margin-left:2%;'>".'Name:&nbsp;'."</p >".
-                    "<p style='width:40%; margin-bottom:0%; margin-right:0%;'> ".
+                    "<p style='width:60%; margin-bottom:0%; margin-right:0%;'> ".
                     $prodCarts[$i]['Product']['name'].
                     "</p>".
                     "<button id='deleteSaleButton'>".
@@ -287,7 +287,7 @@ class CatalogGeneratorHelper extends AppHelper {
                     "</button>".
                     "<div>"."</div>".
                     "<p style='font-weight:bold; float:left; margin-left:2%;'>".'Price:&nbsp;'."</p>".
-                    "<p style='width:40%; margin-bottom:0%; margin-right:0%; float:left;'> ".
+                    "<p style='width:40%; margin-bottom:0%; margin-right:0%; float:left;' class='currency'> ".
                     $this->StringFormatter->formatCurrency($prodCarts[$i]['Product']['price'], '$').
                     "</p>".
                     "<div>"."</div>".
@@ -315,10 +315,15 @@ class CatalogGeneratorHelper extends AppHelper {
                     //'<input type="submit" value="Set" style="font-size:16px; position:relative;top: -3px;"/>'.
                     //'</span>'.
                     "</form>".
+                    "<p style='font-weight:bold; float:left; margin-left:2%;'>".'Amount:&nbsp;'."</p>".
+                    "<p style='width:40%; margin-bottom:0%; margin-right:0%; float:left;'> ".
+                    $numProducts[$i].
+                    "</p>".
                     "<div>"."</div>".
                     "<br>".
-                    "<p style='font-weight:bold; float:left; margin-left:10%;'>".'Total:&nbsp;'."</p>".
-                    "<p style='width:40%; margin-bottom:0%; margin-right:0%; float:left;'> ".
+                    "<br>".
+                    "<p style='font-weight:bold; float:left; margin-left:14%;'>".'Total:&nbsp;'."</p>".
+                    "<p style='width:40%; margin-bottom:0%; margin-right:0%; float:left;' class='currency'> ".
                     $this->StringFormatter->formatCurrency($prodCarts[$i]['Product']['price'] * $numProducts[$i], '$').
                     "</p>".
                     "<div>"."</div>".

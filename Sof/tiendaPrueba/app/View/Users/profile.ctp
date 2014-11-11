@@ -88,7 +88,7 @@
                 <th><?php echo __('Card Number'); ?></th>
                 <th><?php echo __('Card Name'); ?></th>
                 <th><?php echo __('Expiration Date'); ?></th>
-                <th class="actions"><?php echo __('Actions'); ?></th>
+                <th class="actions"><?php echo __(' '); ?></th>
             </tr>
             <?php foreach ($user['CreditCard'] as $creditCard): ?>
                 <tr>
@@ -97,7 +97,6 @@
                     <td><?php echo $creditCard['card_name']; ?></td>
                     <td><?php echo $this->StringFormatter->formatDateMY($creditCard['expiration_date']); ?></td>
                     <td class="actions">
-                        <?php echo $this->Html->link(__('Edit'), array('controller' => 'credit_cards', 'action' => 'edit', $creditCard['id'])); ?>
                         <?php echo $this->Form->postLink(__('Delete'), array('controller' => 'credit_cards', 'action' => 'delete', $creditCard['id']), array(), __('Are you sure you want to delete this credit card?')); ?>
                     </td>
                 </tr>

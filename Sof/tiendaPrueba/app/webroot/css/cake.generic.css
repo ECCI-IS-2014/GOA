@@ -293,6 +293,12 @@ form div {
 	padding: .5em;
 	vertical-align: text-top;
 }
+form.checkout div {
+	clear: none;
+	margin-bottom: 0;
+	padding: 0;
+	vertical-align: text-top;
+}
 form .input {
 	color: #444;
 }
