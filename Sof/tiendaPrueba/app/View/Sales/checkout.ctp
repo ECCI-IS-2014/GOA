@@ -65,7 +65,7 @@
                 <br/>
 
                 <br/>
-                <p style="font-size: 15px; text-align: left;"> Please choose type of coin you want to pay</p>
+                <p style="font-size: 15px; text-align: left;"> Please choose the type of coin you want to pay with</p>
 
                 <select name="currency" id="currency">
                     <option value="1">Dollar</option>

@@ -23,13 +23,13 @@ function refresh(){
     for(var i = 0; i < currency.length; i++){
         switch(coin) {
             case '1':
-                currency[i].textContent = '$' + currencyOriginal[i];
+                currency[i].textContent = '$' + (currencyOriginal[i] * 1).toFixed(2);
                 break;
             case '2':
-                currency[i].textContent = "€" + (currencyOriginal[i] * 0.804547301);
+                currency[i].textContent = "€" + (currencyOriginal[i] * 0.804547301).toFixed(2);
                 break;
             case '3':
-                currency[i].textContent = "¢" + (currencyOriginal[i] * 539.374326);
+                currency[i].textContent = "¢" + (currencyOriginal[i] * 539.374326).toFixed(2);
                 break;
         }
     }
