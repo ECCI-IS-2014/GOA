@@ -88,30 +88,15 @@ class SalesController extends AppController {
  * @return void
  */
 
-/*	public function add($subtotal = 0.0, $tax = 0.0, $total= 0.0, $currency = 'dolar') {
-        $user_id=$this->Session->read('Auth.User.id');
-        //$method_payment_id = $this->Sale->query("SELECT id FROM credit_cards WHERE user_id = ".$user_id.";");
-        $method_payment_id = 3;
-        $frequenly_costumer_discount = 0.0;
-        // save all in table
-        //$this->set('sales', $this->Paginator->paginate());
-        $data = array('user_id' => $user_id,'method_payment_id' => $method_payment_id, 'subtotal' =>  $subtotal, 'frequenly_costumer_discount' => $frequenly_costumer_discount, 'total' => $total, 'currency' => $currency, 'tax' => $tax);
-        if ($this->Sale->save($data)) {
-            $this->Session->write('sale_id',$this->Sale->id);
-            $this->Session->setFlash(__('Thank you for buying in FutureStore, your products are on the way!'));
-            return $this->redirect(array('controller' => 'Product_Sales', 'action' => 'pay'));
-        } else {
-            $this->Session->setFlash(__('The sale could not be saved. Please, try again.'));*/
+
 	public function add($subtotal = 0.0, $tax = 0.0, $total= 0.0) {
 	 date_default_timezone_set('America/Costa_Rica');
-       // if (!empty($this->request->data)) {
+        if (!empty($this->request->data)) {
             $data = $this->request->data;
             $method_payment_id = $data['cards'];
             $coin = $data['currency'];
             $user_id=$this->Session->read('Auth.User.id');
             $frequenly_costumer_discount = 0.0;
-            // save all in table
-            //$this->set('sales', $this->Paginator->paginate());
 
             switch($coin){
                 case '1':
@@ -132,18 +117,14 @@ class SalesController extends AppController {
             } else {
                 $this->Session->setFlash(__('The sale could not be saved. Please, try again.'));
             }
-        //}
-        //return $this->redirect(array('controller' => 'Sales', 'action' => 'checkout'));
+        }
+        return $this->redirect(array('controller' => 'Sales', 'action' => 'checkout'));
 	}
 
     public function buys() {
         $sale_id=$this->Session->read('sale_id');
         $options = array('conditions' => array('Sale.' . $this->Sale->primaryKey => $sale_id));
         $this->set('sale', $this->Sale->find('first', $options));
-
-        //$sale_id=$this->Session->read('sale_id');
-        //$products = $this->ProductSales->find('all', array('conditions'=>array('ProductSales.sale_id'=>$sale_id)));
-        //$this->set('productsFact', $products);
     }
 
 /**
