@@ -1,9 +1,10 @@
-DROP TABLE credit_cards;
 DROP TABLE wishes;
 DROP TABLE product_sales;
 DROP TABLE sales;
 DROP TABLE ratings;
+DROP TABLE reviews;
 DROP TABLE products;
 DROP TABLE categories;
+DROP TABLE credit_cards;
 DROP TABLE users;
 DROP TABLE bank_cards;
