@@ -88,7 +88,7 @@ class SalesController extends AppController {
  * @return void
  */
 
-	public function add($subtotal = 0.0, $tax = 0.0, $total= 0.0, $currency = 'dolar') {
+/*	public function add($subtotal = 0.0, $tax = 0.0, $total= 0.0, $currency = 'dolar') {
         $user_id=$this->Session->read('Auth.User.id');
         //$method_payment_id = $this->Sale->query("SELECT id FROM credit_cards WHERE user_id = ".$user_id.";");
         $method_payment_id = 3;
@@ -101,7 +101,7 @@ class SalesController extends AppController {
             $this->Session->setFlash(__('Thank you for buying in FutureStore, your products are on the way!'));
             return $this->redirect(array('controller' => 'Product_Sales', 'action' => 'pay'));
         } else {
-            $this->Session->setFlash(__('The sale could not be saved. Please, try again.'));
+            $this->Session->setFlash(__('The sale could not be saved. Please, try again.'));*/
 	public function add($subtotal = 0.0, $tax = 0.0, $total= 0.0) {
 	 date_default_timezone_set('America/Costa_Rica');
         if (!empty($this->request->data)) {
@@ -141,9 +141,9 @@ class SalesController extends AppController {
         $options = array('conditions' => array('Sale.' . $this->Sale->primaryKey => $sale_id));
         $this->set('sale', $this->Sale->find('first', $options));
 
-        $sale_id=$this->Session->read('sale_id');
-        $products = $this->ProductSales->find('all', array('conditions'=>array('ProductSales.sale_id'=>$sale_id)));
-        $this->set('productsFact', $products);
+        //$sale_id=$this->Session->read('sale_id');
+        //$products = $this->ProductSales->find('all', array('conditions'=>array('ProductSales.sale_id'=>$sale_id)));
+        //$this->set('productsFact', $products);
     }
 
 /**
