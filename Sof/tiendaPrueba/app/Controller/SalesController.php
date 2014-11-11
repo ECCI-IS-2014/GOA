@@ -63,7 +63,8 @@ class SalesController extends AppController {
         $this->set('totalCartProducts',$totalCartProducts);
         $this->set('prodCarts',$cart_Ids);
         $this->set('numProducts',$numProducts);
-		 $this->check_frequentcy();
+
+		$this->check_frequentcy();
     }
 
 
@@ -89,21 +90,23 @@ class SalesController extends AppController {
  */
 
 	public function add($subtotal = 0.0, $tax = 0.0, $total= 0.0, $currency = 'dolar') {
-        $user_id=$this->Session->read('Auth.User.id');
-        //$method_payment_id = $this->Sale->query("SELECT id FROM credit_cards WHERE user_id = ".$user_id.";");
-        $method_payment_id = 3;
-        $frequenly_costumer_discount = 0.0;
-        // save all in table
-        //$this->set('sales', $this->Paginator->paginate());
-        $data = array('user_id' => $user_id,'method_payment_id' => $method_payment_id, 'subtotal' =>  $subtotal, 'frequenly_costumer_discount' => $frequenly_costumer_discount, 'total' => $total, 'currency' => $currency, 'tax' => $tax);
-        if ($this->Sale->save($data)) {
-            $this->Session->write('sale_id',$this->Sale->id);
-            $this->Session->setFlash(__('Thank you for buying in FutureStore, your products are on the way!'));
-
-            return $this->redirect(array('controller' => 'Product_Sales', 'action' => 'pay'));
-        } else {
-            $this->Session->setFlash(__('The sale could not be saved. Please, try again.'));
+        if (!empty($this->request->data)) {
+            $data = $this->request->data;
+            $method_payment_id = $data['cards'];
+            $user_id=$this->Session->read('Auth.User.id');
+            $frequenly_costumer_discount = 0.0;
+            // save all in table
+            //$this->set('sales', $this->Paginator->paginate());
+            $data = array('user_id' => $user_id,'method_payment_id' => $method_payment_id, 'subtotal' =>  $subtotal, 'frequenly_costumer_discount' => $frequenly_costumer_discount, 'total' => $total, 'currency' => $currency, 'tax' => $tax);
+            if ($this->Sale->save($data)) {
+                $this->Session->write('sale_id',$this->Sale->id);
+                $this->Session->setFlash(__('Thank you for buying in FutureStore, your products are on the way!'));
+                return $this->redirect(array('controller' => 'Product_Sales', 'action' => 'pay'));
+            } else {
+                $this->Session->setFlash(__('The sale could not be saved. Please, try again.'));
+            }
         }
+        return $this->redirect(array('controller' => 'Sales', 'action' => 'checkout'));     
 	}
 
     public function buys() {

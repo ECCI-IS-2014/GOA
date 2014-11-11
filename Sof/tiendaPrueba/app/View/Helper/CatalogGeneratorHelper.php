@@ -273,11 +273,11 @@ class CatalogGeneratorHelper extends AppHelper {
 
             if ( $numProducts[$i] > 0 ) {
                 $result_string = $result_string.
-                    "<div class='cart_item'>".
-                    $this->Html->image('product_icons/'.$prodCarts[$i]['Product']['image'], array('alt' => 'CakePHP', 'class' => 'p_photo','style'=>'height:100%; width:8%; float:left;')) .
+                    "<div class='cart_item' style='width: 650px;'>".
+                    $this->Html->image('product_icons/'.$prodCarts[$i]['Product']['image'], array('alt' => 'CakePHP', 'class' => 'p_photo','style'=>'height:100%; width:12%; float:left;margin-bottom:25px;')) .
                     "<div class='infoPan' style='margin-bottom: 1.5%;'>".
                     "<p style='font-weight:bold; float:left; margin-left:2%;'>".'Name:&nbsp;'."</p >".
-                    "<p style='width:40%; margin-bottom:0%; margin-right:0%;'> ".
+                    "<p style='width:60%; margin-bottom:0%; margin-right:0%;'> ".
                     $prodCarts[$i]['Product']['name'].
                     "</p>".
                     "<button id='deleteSaleButton'>".
@@ -293,29 +293,14 @@ class CatalogGeneratorHelper extends AppHelper {
                     "<div>"."</div>".
                     "<br>".
                     "<br>".
-                    '<form id="EditForm'. $prodCarts[$i]['Product']['id'] .'" method="post" action="'.$this->Html->url(array('controller' => 'carts','action' => 'edit', $prodCarts[$i]['Product']['id'])).'">'.
-                    "<p style='font-weight:bold; float:left; margin-left:10%;'>".'&nbsp;Amount:&nbsp;'."</p>".
-                    "<select id = 'cant' name='cantidad'>";
-
-                for ( $j = 1; $j <= $prodCarts[$i]['Product']['quantity']; ++$j ) {
-                    if ( $j == $numProducts[$i] ) {
-                        $result_string = $result_string .
-                            '<option value = "' . $j . '" selected>' . $j . '</option>';
-                    } else {
-                        $result_string = $result_string .
-                            '<option value = "' . $j . '">' . $j . '</option>';
-                    }
-                }
-
-                $result_string = $result_string.
-                    "</select>".
-                    '<span id="setCart" style="margin-left:5px; ">'.
-                    '<input type="submit" value="Set" style="font-size:16px; position:relative;top: -3px;"/>'.
-                    '</span>'.
-                    "</form>".
+                    "<p style='font-weight:bold; float:left; margin-left:2%;'>".'Amount:&nbsp;'."</p>".
+                    "<p style='width:40%; margin-bottom:0%; margin-right:0%; float:left;'> ".
+                    $numProducts[$i].
+                    "</p>".
                     "<div>"."</div>".
                     "<br>".
-                    "<p style='font-weight:bold; float:left; margin-left:10%;'>".'Total:&nbsp;'."</p>".
+                    "<br>".
+                    "<p style='font-weight:bold; float:left; margin-left:14%;'>".'Total:&nbsp;'."</p>".
                     "<p style='width:40%; margin-bottom:0%; margin-right:0%; float:left;'> ".
                     $this->StringFormatter->formatCurrency($prodCarts[$i]['Product']['price'] * $numProducts[$i], '$').
                     "</p>".
