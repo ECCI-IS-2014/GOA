@@ -5,6 +5,7 @@
          <?php echo $this->element('headers'); ?>
          <?php echo $this->Html->css('footers'); ?>
          <?php echo $this->Html->css('headers'); ?>
+         <?php echo $this->Html->script('info_messages'); ?>
     </head>
 
     <div id="head"><?php echo $this->fetch('header1'); ?> </div>

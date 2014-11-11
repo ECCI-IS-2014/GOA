@@ -11,6 +11,8 @@
          <?php echo $this->Html->css('headers'); ?>
          <?php echo $this->Html->css('panel'); ?>
          <?php echo $this->Html->css('button'); ?>
+         <?php echo $this->Html->css('checkout'); ?>
+         <?php echo $this->Html->script('currency'); ?>
     </head>
 
     <?php
@@ -45,7 +47,7 @@
             
             <form method="post" action="<?php echo $this->Html->url(array('controller' => 'sales','action' => 'add', $total,  $tax,  $endTotal ))?>" class="checkout">
 
-                <select name="cards">   
+                <select name="cards">
                 <?php
                     $cards = ClassRegistry::init('CreditCard')->listUserCreditCards($this->Session->read('Auth.User.id'));
                     $this->set(compact('cards'));
@@ -62,6 +64,17 @@
 
                 <br/>
 
+                <br/>
+                <p style="font-size: 15px; text-align: left;"> Please choose type of coin you want to pay</p>
+
+                <select name="currency" id="currency">
+                    <option value="1">Dollar</option>
+                    <option value="2">Euro</option>
+                    <option value="3">Colon</option>
+                </select >
+
+                <br/>
+
                 <!-- products image -->
                 <img src = "http://i.imgur.com/Tm3qbhM.png"  />
                 <div id="bodyCart">
@@ -75,11 +88,18 @@
                 </div>
 
                 <div id ='total'>
-                    <b>Sub Total: </b> <?php echo $this->StringFormatter->formatCurrency( $total, '$'); ?>
+                    <p><b>Sub Total: </b></p>
+                    <p class="currency"><?php echo $this->StringFormatter->formatCurrency( $total, '$'); ?></p>
                     <br/><br/>
-                    <b>Tax: </b> <?php echo $this->StringFormatter->formatCurrency( $tax, '$'); ?>
+
+                    <p><b>Tax: </b></p>
+                    <p class="currency"><?php echo $this->StringFormatter->formatCurrency( $tax, '$'); ?></p>
                     <br/><br/>
-                    <b>Total: </b> <?php echo $this->StringFormatter->formatCurrency( $endTotal, '$'); ?>
+
+                    <p><b>Total: </b></p>
+                    <p class="currency"><?php echo $this->StringFormatter->formatCurrency( $endTotal, '$'); ?></p>
+                    <br/><br/>
+
                 </div>
                 
                 <br/>
