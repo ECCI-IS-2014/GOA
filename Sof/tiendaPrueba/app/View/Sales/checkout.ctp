@@ -13,6 +13,7 @@
          <?php echo $this->Html->css('button'); ?>
          <?php echo $this->Html->css('checkout'); ?>
          <?php echo $this->Html->script('currency'); ?>
+         <?php echo $this->Html->css('facture'); ?>
     </head>
 
     <?php
@@ -28,44 +29,41 @@
 
     <div id="head"> <?php echo $this->fetch('header1'); ?> </div>
 
-    <div id="content">
-
-        <div id="content_wrapper" style="position:relative; margin-left:3%;">
+    <div id="contentF">
 
             <!-- delivery address image -->
             <img src = "http://i.imgur.com/jYNSZ38.png" />
-            <h1 style="font-size: 15px; text-align: left;"> San Jose, Costa Rica </h1>
-            <h1 style="font-size: 15px; text-align: left;"> 8 Street, 13 Avenue Garden's S.A  </h1>
-            <h1 style="font-size: 15px; text-align: left;"> 3 floor, Dep 12  </h1>
-            <div class="link"><?php echo $this->Html->link(__('Change Address'), array('action' => '')); ?> </div>
+            <div id = "text">
 
+                    <h1> San Jose, Costa Rica </h1>
+                    <h1> 8 Street, 13 Avenue Garden's S.A  </h1>
+                    <h1> 3 floor, Dep 12  </h1>
+                    <div class="link"><?php echo $this->Html->link(__('Change Address'), array('action' => '')); ?> </div>
+            </div>
             <br/>
 
             <!-- payment method image -->
             <img src = "http://i.imgur.com/oOHHzdb.png" />
-            <p style="font-size: 15px; text-align: left;"> Please choose a payment method</p> 
-            
-            <form method="post" action="<?php echo $this->Html->url(array('controller' => 'sales','action' => 'add', $total,  $tax,  $endTotal ))?>" class="checkout">
+            <div id = "text">
+                <h1> Please choose a payment method</h1>
+                <form method="post" action="<?php echo $this->Html->url(array('controller' => 'sales','action' => 'add', $total,  $tax,  $endTotal ))?>" class="checkout">
 
                 <select name="cards">
-                <?php
-                    $cards = ClassRegistry::init('CreditCard')->listUserCreditCards($this->Session->read('Auth.User.id'));
-                    $this->set(compact('cards'));
-                    foreach ($cards as $id=>$card) {
-                        echo '<option value = "' . $id . '">' . $card . '</option>';
-                    }
-                ?>
+                    <?php
+                        $cards = ClassRegistry::init('CreditCard')->listUserCreditCards($this->Session->read('Auth.User.id'));
+                        $this->set(compact('cards'));
+                        foreach ($cards as $id=>$card) {
+                            echo '<option value = "' . $id . '">' . $card . '</option>';
+                        }
+                    ?>
                 </select>
-            
 
-                <p style="font-size: 14px; text-align: left;margin-top:10px;"> or<p> 
-                <div class="link"><?php echo $this->Html->link(__('Add New Credit Card'), array('controller' => 'credit_cards', 'action' => 'add')); ?>
-                </div>
-
+                <h1> or </h1>
+                <div class="link"><?php echo $this->Html->link(__('Add New Credit Card'), array('controller' => 'credit_cards', 'action' => 'add')); ?></div>
                 <br/>
                 <!-- type of coin -->
                 <br/>
-                <p style="font-size: 15px; text-align: left;"> Please choose the type of coin you want to pay with</p>
+                <h1> Please choose the type of coin you want to pay with</h1>
 
                 <select name="currency" id="currency">
                     <option value="1">Dollar</option>
@@ -74,42 +72,40 @@
                 </select >
 
                 <br/>
+            </div>
 
-                <!-- products image -->
-                <img src = "http://i.imgur.com/Tm3qbhM.png"  />
-                <div id="bodyCart">
-                    
-                    <?php
-                    if ( $totalCartProducts > 0 ) {
-                        echo $this->CatalogGenerator->formatSale($prodCarts, $numProducts );
-                    } 
-                    ?>
+            <!-- products image -->
+            <img src = "http://i.imgur.com/Tm3qbhM.png"  />
+            <div id="bodyCart">
+                <?php
+                if ( $totalCartProducts > 0 ) {
+                    echo $this->CatalogGenerator->formatSale($prodCarts, $numProducts );
+                }
+                ?>
+            </div>
 
-                </div>
+             <div id = "total">
+                <p><b>Sub Total: </b></p>
+                <p class="currency"><?php echo $this->StringFormatter->formatCurrency( $total, '$'); ?></p>
+                <br/><br/>
 
-                <div id ='total'>
-                    <p><b>Sub Total: </b></p>
-                    <p class="currency"><?php echo $this->StringFormatter->formatCurrency( $total, '$'); ?></p>
-                    <br/><br/>
+                <p><b>Tax: </b></p>
+                <p class="currency"><?php echo $this->StringFormatter->formatCurrency( $tax, '$'); ?></p>
+                <br/><br/>
 
-                    <p><b>Tax: </b></p>
-                    <p class="currency"><?php echo $this->StringFormatter->formatCurrency( $tax, '$'); ?></p>
-                    <br/><br/>
+                <p><b>Total: </b></p>
+                <p class="currency"><?php echo $this->StringFormatter->formatCurrency( $endTotal, '$'); ?></p>
+                <br/><br/>
 
-                    <p><b>Total: </b></p>
-                    <p class="currency"><?php echo $this->StringFormatter->formatCurrency( $endTotal, '$'); ?></p>
-                    <br/><br/>
+            </div>
 
-                </div>
-                <br/>
-                <h3 style="font-size: 18px; text-align: left; margin-left:4%;">
-                    By clicking on the "Pay" button, you agree on FutureStore's conditions of use.
-                </h3>
-                <input id="PayButton" style = "float:left; margin-bottom:5%; margin-left:4%;"type="submit" value="Pay"/>
+            <h1 style="font-size: 16px; text-align: left; margin-left:4%;">
+                By clicking on the "Pay" button, you agree on FutureStore's conditions of use.
+            </h1>
+            <input id="PayButton" style = "float:left; margin-bottom:5%; margin-left:4%;"type="submit" value="Pay"/>
 
             </form>
 
-        </div>
 
     </div>
 

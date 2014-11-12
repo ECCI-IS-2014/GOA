@@ -30,12 +30,12 @@ body {
 	margin: 0;
 }
 a {
-	color: #4c4345;
+	color: #000000;
 	text-decoration: none;
 	font-weight: bold;
 }
 a:hover {
-	color: #fdfff8;
+	color: #f6a53f;
 	text-decoration:none;
 }
 a img {

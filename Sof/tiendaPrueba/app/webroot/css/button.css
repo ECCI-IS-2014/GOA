@@ -240,12 +240,12 @@
 {
 
     border-top: 1px solid #f2f2f2;
-    background: #878787;
-    background: -webkit-gradient(linear, left top, left bottom, from(#afbab3), to(#878787));
-    background: -webkit-linear-gradient(top, #afbab3, #878787);
-    background: -moz-linear-gradient(top, #afbab3, #878787);
-    background: -ms-linear-gradient(top, #afbab3, #878787);
-    background: -o-linear-gradient(top, #afbab3, #878787);
+    background: #f68507;
+    background: -webkit-gradient(linear, left top, left bottom, from(#f6a53f), to(#f68507));
+    background: -webkit-linear-gradient(top, #f6a53f, #f68507);
+    background: -moz-linear-gradient(top, #f6a53f, #f68507);
+    background: -ms-linear-gradient(top, #f6a53f, #f68507);
+    background: -o-linear-gradient(top, #f6a53f, #f68507);
     padding: 6px 12px;
     padding-top: 0%;
     padding-bottom: 0%;
@@ -270,8 +270,8 @@
 }
 
 #deleteCartButton:hover{
-    border-top-color: #757575;
-    background: #757575;
+    border-top-color: #4c474a;
+    background: #4c4345;
     color: #fafffe;
 
 }
@@ -316,8 +316,8 @@
 }
 
 #deleteSaleButton:hover{
-    border-top-color: #757575;
-    background: #757575;
+    border-top-color: #4c474a;
+    background: #4c4345;
     color: #fafffe;
 
 }
@@ -361,8 +361,8 @@
 
 #PayButton:hover{
     border-top-color: #4c474a;
-    background: #757575;
-    color: #fafffe;
+    background: #4c4345;
+    color: #f68507;
 
 }
 #PayButton:active{

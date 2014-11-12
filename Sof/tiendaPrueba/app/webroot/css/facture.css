@@ -1,0 +1,18 @@
+
+
+#contentF{
+    /*text-align:center;*/
+    background: #fff;
+    clear: both;
+    color: #333;
+    margin-left:25%;
+    overflow: auto;
+    position:relative;
+}
+
+#text {
+    color: #ff756d;
+    font-size: 15px;
+    margin-left:10%;
+    text-align: left;
+}
