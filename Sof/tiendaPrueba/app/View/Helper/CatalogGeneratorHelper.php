@@ -321,7 +321,7 @@ class CatalogGeneratorHelper extends AppHelper {
     }
 
 
-    public function formatSaleFact($prodCarts, $numProducts) {
+    public function formatSaleFact($prodCarts, $numProducts, $currency) {
         echo $this->Html->css('catalogs');
         $result_string = '<div>';
         for($i = 1; $i < count($prodCarts); $i++) {
@@ -331,6 +331,14 @@ class CatalogGeneratorHelper extends AppHelper {
                 } else {
                     $price = $prodCarts[$i]['Product']['price'] - ($prodCarts[$i]['Product']['price']*$prodCarts[$i]['Product']['discount'])/100;
                 }
+                $var = '$';
+                if ($currency == "Colon") {
+                    $price = $price * 539.37;
+                    $var = '¢';
+                } else if ($currency == "Euro") {
+                    $price = $price * 0.80;
+                    $var = '€';
+                }
                 $result_string = $result_string.
                     "<div class='cart_item' style='width: 650px;'>".
                     $this->Html->image('product_icons/'.$prodCarts[$i]['Product']['image'], array('alt' => 'CakePHP', 'class' => 'p_photo','style'=>'height:30%; width:8%; float:left;margin-bottom:25px;')) .
@@ -338,14 +346,14 @@ class CatalogGeneratorHelper extends AppHelper {
                     "<p style='float:left; margin-left:2%;'>".$numProducts[$i].' units of '.$prodCarts[$i]['Product']['name']."</p >".
                     "<p style='float:left; margin-left:2%;'>".'&nbsp;'."</p>".
                     "<p style='width:40%; margin-bottom:0%; margin-right:0%; float:left;' class='currency'> ".
-                    $this->StringFormatter->formatCurrency($price , '$').' p/u.'.
+                    $this->StringFormatter->formatCurrency($price , $var).' p/u.'.
                     "</p>".
                     "<div>"."</div>".
                     "<br>".
                     "<br>".
                     "<p style='font-weight:bold; float:left; margin-left:2%;'>".'Total:&nbsp;'."</p>".
                     "<p style='width:40%; margin-bottom:0%; margin-right:0%; float:left;' class='currency'> ".
-                    $this->StringFormatter->formatCurrency($price * $numProducts[$i], '$').
+                    $this->StringFormatter->formatCurrency($price * $numProducts[$i], $var).
                     "</p>".
                     "</div>".
                     "<div style='clear:both'></div>".
@@ -354,13 +362,6 @@ class CatalogGeneratorHelper extends AppHelper {
         }
         return $result_string.'</div>';
     }
-
-
-
-
-
-
-
 
 }
 

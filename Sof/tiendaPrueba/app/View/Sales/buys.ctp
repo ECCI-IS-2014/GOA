@@ -38,14 +38,14 @@
             <p style="font-weight:bold; margin-left:10%;margin-top:20px;">Products:&nbsp;</p>
             <div style="font-size: 15px; margin-left:20%;">
                  <div id="bodyCart">
-                         <?php
-                            if ( $totalCartProducts > 0 ) {
-                                echo $this->CatalogGenerator->formatSaleFact($prodCarts, $numProducts );
-                            }
-                         ?>
-                  </div>
-            </div>
-
+                    <?php
+                        $currency =   h($sale['Sale']['currency']);
+                       if ( $totalCartProducts > 0 ) {
+                           echo $this->CatalogGenerator->formatSaleFact($prodCarts, $numProducts, $currency);
+                       }
+                    ?>
+                    </div>
+         </div>
             <?php
                 $currency = h($sale['Sale']['currency']);
 
