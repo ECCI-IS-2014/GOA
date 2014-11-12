@@ -25,13 +25,18 @@
             <p style="font-weight:bold;  margin-left:10%;">User:&nbsp;</p> <h1 style="font-size: 15px; margin-left:20%;"> <?php echo $this->Html->link($sale['User']['name'], array('controller' => 'users', 'action' => 'profile')); ?> </h1>
             <p style="font-weight:bold; margin-left:10%;">Delivery:&nbsp;</p>
             <div id="delivery" style = "margin-left:20%; margin-bottom:3%; font-size: 15px;">
-                <h1> San Jose, Costa Rica <h1>
-                <h1"> 8 Street, 13 Avenue Garden's S.A <h1>
-                <h1> 3 floor, Dep 12 <h1>
+                <h1> San Jose, Costa Rica </h1>
+                <h1> 8 Street, 13 Avenue Garden's S.A </h1>
+                <h1> 3 floor, Dep 12 </h1>
             </div>
-            <p style="font-weight:bold;  margin-left:10%;">Payment Method:&nbsp;</p> <h1 style="font-size: 15px; margin-left:20%;"> <?php echo h($sale['Sale']['method_payment_id']); ?> </h1>
 
-            <p style="font-weight:bold;  margin-left:10%;">Products:&nbsp;</p> <h1 style="font-size: 15px; margin-left:20%;">
+            <p style="font-weight:bold;  margin-left:10%;">Payment Method:&nbsp;</p>
+            <h1 style="font-size: 15px; margin-left:20%;"> 
+                <?php echo h($payment_method['CreditCard']['brand']).' **'.$this->StringFormatter->formatCardLastNumbers($payment_method['CreditCard']['card_number']); ?> 
+            </h1>
+
+            <p style="font-weight:bold; margin-left:10%;margin-top:20px;">Products:&nbsp;</p>
+            <div style="font-size: 15px; margin-left:20%;">
                  <div id="bodyCart">
                          <?php
                             if ( $totalCartProducts > 0 ) {
@@ -39,9 +44,9 @@
                             }
                          ?>
                   </div>
-              </p>
+            </div>
 
-             <p style="font-weight:bold;  margin-left:10%;">&nbsp;</p> <h1 style="font-size: 15px; margin-left:20%;"> <?php echo ""; ?> </h1>
+            
             <p style="font-weight:bold;  margin-left:10%;">Currency:&nbsp;</p> <h1 style="font-size: 15px; margin-left:20%;"> <?php echo h($sale['Sale']['currency']); ?> </h1>
             <p style="font-weight:bold;  margin-left:10%;">SubTotal:&nbsp;</p> <h1 style="font-size: 15px; margin-left:20%;"> <?php echo h($sale['Sale']['subtotal']); ?> </h1>
             <p style="font-weight:bold;  margin-left:10%;">Tax:&nbsp;</p> <h1 style="font-size: 15px; margin-left:20%;"> <?php echo h($sale['Sale']['tax']); ?> </h1>

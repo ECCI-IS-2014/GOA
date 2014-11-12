@@ -22,7 +22,7 @@ class SalesController extends AppController {
  * @var array
  */
 	public $components = array('Paginator', 'Session');
-    public $uses = array('Product','Cart', 'Sale', 'Credit_Card','ProductSale','User');
+    public $uses = array('Product','Cart', 'Sale', 'CreditCard','ProductSale','User');
 /**
  * index method
  *
@@ -137,7 +137,10 @@ class SalesController extends AppController {
         $this->Session->write('flag',0);
         $sale_id=$this->Session->read('sale_id');
         $options = array('conditions' => array('Sale.' . $this->Sale->primaryKey => $sale_id));
-        $this->set('sale', $this->Sale->find('first', $options));
+        $sale = $this->Sale->find('first', $options);
+        $this->set('sale', $sale);
+        $payment_method = $this->CreditCard->find('first', array('conditions'=>array('CreditCard.id'=>$sale['Sale']['method_payment_id'])));
+        $this->set('payment_method', $payment_method);
 
         // proce checkout
         $cart = $this->Session->read('saleCart');
