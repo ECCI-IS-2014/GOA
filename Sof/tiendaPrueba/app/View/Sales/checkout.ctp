@@ -63,7 +63,7 @@
                 </div>
 
                 <br/>
-
+                <!-- type of coin -->
                 <br/>
                 <p style="font-size: 15px; text-align: left;"> Please choose the type of coin you want to pay with</p>
 

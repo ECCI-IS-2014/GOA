@@ -11,6 +11,9 @@
          <?php echo $this->Html->css('headers'); ?>
          <?php echo $this->Html->css('panel'); ?>
          <?php echo $this->Html->css('button'); ?>
+
+         <?php echo $this->Html->css('checkout'); ?>
+         <?php echo $this->Html->script('currency'); ?>
     </head>
 
     <div id="head"> <?php echo $this->fetch('header1'); ?> </div>
@@ -27,19 +30,18 @@
                 <h1> 3 floor, Dep 12 <h1>
             </div>
             <p style="font-weight:bold;  margin-left:10%;">Payment Method:&nbsp;</p> <h1 style="font-size: 15px; margin-left:20%;"> <?php echo h($sale['Sale']['method_payment_id']); ?> </h1>
-            <?php
-                   $cart = $this->Session->read('cart');
-                   $numProducts = $this->Session->read('numProducts');
-                   /*for( $i = 1; $i < count($cart); $i++ ) {
-                        echo $product['Product']['id'];
 
-                       }*/
+            <p style="font-weight:bold;  margin-left:10%;">Products:&nbsp;</p> <h1 style="font-size: 15px; margin-left:20%;">
+                 <div id="bodyCart">
+                         <?php
+                            if ( $totalCartProducts > 0 ) {
+                                echo $this->CatalogGenerator->formatSaleFact($prodCarts, $numProducts );
+                            }
+                         ?>
+                  </div>
+              </p>
 
-            ?>
-
-
-            <p style="font-weight:bold;  margin-left:10%;">Products:&nbsp;</p> <h1 style="font-size: 15px; margin-left:20%;">  hola  </h1>
-
+             <p style="font-weight:bold;  margin-left:10%;">&nbsp;</p> <h1 style="font-size: 15px; margin-left:20%;"> <?php echo ""; ?> </h1>
 
             <p style="font-weight:bold;  margin-left:10%;">SubTotal:&nbsp;</p> <h1 style="font-size: 15px; margin-left:20%;"> <?php echo h($sale['Sale']['subtotal']); ?> </h1>
             <p style="font-weight:bold;  margin-left:10%;">Tax:&nbsp;</p> <h1 style="font-size: 15px; margin-left:20%;"> <?php echo h($sale['Sale']['tax']); ?> </h1>

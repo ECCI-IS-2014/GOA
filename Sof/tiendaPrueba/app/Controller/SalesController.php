@@ -122,9 +122,38 @@ class SalesController extends AppController {
 	}
 
     public function buys() {
+        // proced de buys
         $sale_id=$this->Session->read('sale_id');
         $options = array('conditions' => array('Sale.' . $this->Sale->primaryKey => $sale_id));
         $this->set('sale', $this->Sale->find('first', $options));
+
+        // proce checkout
+        $cart = $this->Session->read('cart');
+        $numProducts = $this->Session->read('numProducts');
+        $totalCartProducts = 0;
+        $cart_Ids = array();
+
+        for( $i = 0; $i < count($cart); $i++ ) {
+            $product = $this->Product->find('first', array('conditions'=>array('Product.id'=>$cart[$i])));
+            array_push($cart_Ids,$product);
+            if ( $i > 0 ) {
+                if ( $i > 0 && $product['Product']['enable_product'] == 0 ) {
+                    // Revisa que el producto no haya sido deshabilitado
+                    $numProducts[$i] = 0;
+                    $this->Session->write('numProducts',$numProducts);
+                } elseif( $product['Product']['quantity'] < $numProducts[$i] ) {
+                    // Mantiene la cantidad de productos por comprar limitada por la quantity del producto
+                    $numProducts[$i] = $product['Product']['quantity'];
+                    $this->Session->write('numProducts',$numProducts);
+                }
+            }
+            $totalCartProducts = $totalCartProducts + $numProducts[$i];
+        }
+        $this->Session->write('totalCartProducts',$totalCartProducts);
+
+        $this->set('totalCartProducts',$totalCartProducts);
+        $this->set('prodCarts',$cart_Ids);
+        $this->set('numProducts',$numProducts);
     }
 
 /**

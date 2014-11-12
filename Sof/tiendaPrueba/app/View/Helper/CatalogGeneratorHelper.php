@@ -293,28 +293,6 @@ class CatalogGeneratorHelper extends AppHelper {
                     "<div>"."</div>".
                     "<br>".
                     "<br>".
-                    /*'<form id="EditForm'. $prodCarts[$i]['Product']['id'] .'" method="post" action="'.$this->Html->url(array('controller' => 'carts','action' => 'edit', $prodCarts[$i]['Product']['id'])).'">'.
-                    "<p style='font-weight:bold; float:left; margin-left:10%;'>".'&nbsp;Amount:&nbsp;'."</p>".
-                    "<select id = 'cant' name='cantidad' disabled>";
-
-                for ( $j = 1; $j <= $prodCarts[$i]['Product']['quantity']; ++$j ) {
-                    if ( $j == $numProducts[$i] ) {
-                        $result_string = $result_string .
-                            '<option value = "' . $j . '" selected>' . $j . '</option>';
-                    } else {
-                        $result_string = $result_string .
-                            '<option value = "' . $j . '">' . $j . '</option>';
-                    }
-                }
-
-                ?>
-                <?php
-                $result_string = $result_string.
-                    "</select>".
-                    //'<span id="setCart" style="margin-left:5px; ">'.
-                    //'<input type="submit" value="Set" style="font-size:16px; position:relative;top: -3px;"/>'.
-                    //'</span>'.
-                    "</form>".*/
                     "<p style='font-weight:bold; float:left; margin-left:2%;'>".'Amount:&nbsp;'."</p>".
                     "<p style='width:40%; margin-bottom:0%; margin-right:0%; float:left;'> ".
                     $numProducts[$i].
@@ -331,20 +309,42 @@ class CatalogGeneratorHelper extends AppHelper {
                     "</div>".
                     "<div style='clear:both'></div>".
                     "<hr>".
-                    //"<div>".
-                    //"<h3 style='font-size: 18px; text-align: left; margin-left:4%'>".'By clicking on "Pay" button, you agree on FutureStore in the conditions of use'."</h3>".
-                    //"<button id='PayButton' style = 'float:left; margin-left:10%; margin-bottom:5%;'>".
-                    //"<a href=".$this->Html->url(array('controller' => 'sales','action' => 'add',  $total,  $tax,  $endTotal )).">".'Pay'."</a>".
-                    //"</button>".
-                    //"</div>".
                     "</div>";
             }
         }
-
         return $result_string.'</div>';
-
-
     }
+
+
+    public function formatSaleFact($prodCarts, $numProducts) {
+        echo $this->Html->css('catalogs');
+        $result_string = '<div>';
+        for($i = 1; $i < count($prodCarts); $i++) {
+            if ( $numProducts[$i] > 0 ) {
+                $result_string = $result_string.
+                    "<div class='cart_item' style='width: 650px;'>".
+                    $this->Html->image('product_icons/'.$prodCarts[$i]['Product']['image'], array('alt' => 'CakePHP', 'class' => 'p_photo','style'=>'height:30%; width:8%; float:left;margin-bottom:25px;')) .
+                    "<div class='infoPan' style='margin-bottom: 1%;'>".
+                    "<p style='float:left; margin-left:2%;'>".$numProducts[$i].' units of '.$prodCarts[$i]['Product']['name']."</p >".
+                    "<p style='float:left; margin-left:2%;'>".'&nbsp;'."</p>".
+                    "<p style='width:40%; margin-bottom:0%; margin-right:0%; float:left;' class='currency'> ".
+                    $this->StringFormatter->formatCurrency($prodCarts[$i]['Product']['price'], '$').' p/u.'.
+                    "</p>".
+                    "<div>"."</div>".
+                    "<br>".
+                    "<br>".
+                    "<p style='font-weight:bold; float:left; margin-left:2%;'>".'Total:&nbsp;'."</p>".
+                    "<p style='width:40%; margin-bottom:0%; margin-right:0%; float:left;' class='currency'> ".
+                    $this->StringFormatter->formatCurrency($prodCarts[$i]['Product']['price'] * $numProducts[$i], '$').
+                    "</p>".
+                    "</div>".
+                    "<div style='clear:both'></div>".
+                    "</div>";
+            }
+        }
+        return $result_string.'</div>';
+    }
+
 
 
 
