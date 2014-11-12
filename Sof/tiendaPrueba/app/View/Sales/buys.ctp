@@ -20,7 +20,7 @@
 
     <div class="bill" style = "margin-left:25%;">
             <img src = "http://i.imgur.com/izLAJTe.png" />
-            <p style="font-weight:bold;  margin-left:10%;">Bill Number:&nbsp;</p> <h1 style="font-size: 15px; margin-left:20%;"> <?php echo $this->Session->read('sale_id');  ?> </h1>
+            <p style="font-weight:bold;  margin-left:10%;">Bill Number:&nbsp;</p> <h1 style="font-size: 15px; margin-left:20%;"> <?php echo $this->Session->read('sale_id');?> </h1>
             <p style="font-weight:bold;  margin-left:10%;">Date:&nbsp;</p> <h1 style="font-size: 15px; margin-left:20%;"> <?php echo h($sale['Sale']['created']); ?> </h1>
             <p style="font-weight:bold;  margin-left:10%;">User:&nbsp;</p> <h1 style="font-size: 15px; margin-left:20%;"> <?php echo $this->Html->link($sale['User']['name'], array('controller' => 'users', 'action' => 'profile')); ?> </h1>
             <p style="font-weight:bold; margin-left:10%;">Delivery:&nbsp;</p>

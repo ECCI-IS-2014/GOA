@@ -34,7 +34,7 @@
             <!-- delivery address image -->
             <img src = "http://i.imgur.com/jYNSZ38.png" />
             <div id = "text">
-
+                    <h1 style = "font-weight: bold;"> Please to continue with your order, select a place to make the delivery. </h1>
                     <h1> San Jose, Costa Rica </h1>
                     <h1> 8 Street, 13 Avenue Garden's S.A  </h1>
                     <h1> 3 floor, Dep 12  </h1>
@@ -45,9 +45,13 @@
             <!-- payment method image -->
             <img src = "http://i.imgur.com/oOHHzdb.png" />
             <div id = "text">
-                <h1> Please choose a payment method</h1>
+                <h1 style = "font-weight: bold;"> Please to continue with your order, select a method of payment. </h1>
+                <h1> We are please to accept: </h1>
+                <img src = "http://i.imgur.com/CM6REpc.png" />
+                <br>
                 <form method="post" action="<?php echo $this->Html->url(array('controller' => 'sales','action' => 'add', $total,  $tax,  $endTotal ))?>" class="checkout">
-
+                <h1> You can select one of your cards already save it, or add a new card. </h1>
+                <div>
                 <select name="cards">
                     <?php
                         $cards = ClassRegistry::init('CreditCard')->listUserCreditCards($this->Session->read('Auth.User.id'));
@@ -57,14 +61,14 @@
                         }
                     ?>
                 </select>
-
-                <h1> or </h1>
-                <div class="link"><?php echo $this->Html->link(__('Add New Credit Card'), array('controller' => 'credit_cards', 'action' => 'add')); ?></div>
+                </div>
+                <br>
+                <div class="link" style = "float: left;"><?php echo $this->Html->link(__('Add New Card'), array('controller' => 'credit_cards', 'action' => 'add')); ?></div>
                 <br/>
                 <!-- type of coin -->
                 <br/>
-                <h1> Please choose the type of coin you want to pay with</h1>
-
+                <h1 style = "font-weight: bold;">  Please choose the type of coin you want to pay with. </h1>
+                <br>
                 <select name="currency" id="currency">
                     <option value="1">Dollar</option>
                     <option value="2">Euro</option>
