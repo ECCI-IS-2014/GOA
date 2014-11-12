@@ -46,6 +46,7 @@ class SalesController extends AppController {
         $this->Session->write('flag',1);
         $this->Session->write('saleCart',$saleCart);
         $numProducts = $this->Session->read('numProducts');
+		 $fclient=$this->Session->read('Auth.User.frecuent_client');
         $this->Session->write('numProductsSaleCart',$numProducts);
         $totalCartProducts = 0;
         $cart_Ids = array();
@@ -71,6 +72,7 @@ class SalesController extends AppController {
         $this->set('totalCartProducts',$totalCartProducts);
         $this->set('prodCarts',$cart_Ids);
         $this->set('numProducts',$numProducts);
+		$this->set('fclient',$fclient);
 		$this->check_frequentcy();
     }
 
@@ -99,14 +101,13 @@ class SalesController extends AppController {
  */
 
 
-	public function add($subtotal = 0.0, $tax = 0.0, $total= 0.0) {
+	public function add($subtotal = 0.0, $tax = 0.0,  $frequenly_costumer_discount = 0.0, $total= 0.0) {
 	 date_default_timezone_set('America/Costa_Rica');
         if (!empty($this->request->data)) {
             $data = $this->request->data;
             $method_payment_id = $data['cards'];
             $coin = $data['currency'];
-            $user_id=$this->Session->read('Auth.User.id');
-            $frequenly_costumer_discount = 0.0;
+            $user_id=$this->Session->read('Auth.User.id');            
 
             switch($coin){
                 case '1':
@@ -317,13 +318,27 @@ class SalesController extends AppController {
         $vtotal=$datos_factura[sizeof($datos_factura)-1]['Sale']['total'];
         $vcreated=$datos_factura[sizeof($datos_factura)-1]['Sale']['created'];
         $vtax=$datos_factura[sizeof($datos_factura)-1]['Sale']['tax'];
+        $vcurrency=$datos_factura[sizeof($datos_factura)-1]['Sale']['currency'];
         $i=0;
 
         $vproduct = $this->ProductSale->find('all',array('conditions'=>array('ProductSale.sale_id'=>$datos_factura[sizeof($datos_factura)-1]['Sale']['id']),'contain'=>array('Product'=>array('conditions'=>array('Product.id'=>'ProductSale.product_id')))));
 
+
+         switch($vcurrency){
+             case 'Dollar':
+                 $vcurrency = '$';
+                 break;
+             case 'Euro':
+                 $vcurrency = '€';
+                 break;
+             case 'Colon':
+                 $vcurrency = '¢';
+         }
+
         $this->set('i', $i);
         $this->set('user_id', $uid);
         $this->set('vprod', $vproduct);
+        $this->set('currency', $vcurrency);
         $this->set('factura_id', $vid);
         $this->set('method_payment_id', $vmethod_payment_id);
         $this->set('subtotal', $vsubtotal);

@@ -20,11 +20,17 @@
         $total = 0;
         if (count($prodCarts) > 1) {
             for($i = 1; $i < count($prodCarts); $i++) {
-                $total = $total + $prodCarts[$i]['Product']['price'] * $numProducts[$i];
+                 $price = $prodCarts[$i]['Product']['price'] - ($prodCarts[$i]['Product']['price']*$prodCarts[$i]['Product']['discount'])/100;
+                $total = $total + $price * $numProducts[$i];
             }
         }
         $tax = $total/13;
-        $endTotal = $total + $tax;
+		if($fclient){
+            $Frequenly_Costumer_Discount=$total/10;
+        }else{
+            $Frequenly_Costumer_Discount=0;
+        }
+         $endTotal = $total + $tax - $Frequenly_Costumer_Discount;
     ?>
 
     <div id="head"> <?php echo $this->fetch('header1'); ?> </div>
@@ -46,7 +52,7 @@
             <img src = "http://i.imgur.com/oOHHzdb.png" />
             <div id = "text">
                 <h1> Please choose a payment method</h1>
-                <form method="post" action="<?php echo $this->Html->url(array('controller' => 'sales','action' => 'add', $total,  $tax,  $endTotal ))?>" class="checkout">
+                <form method="post" action="<?php echo $this->Html->url(array('controller' => 'sales','action' => 'add', $total,  $tax, $Frequenly_Costumer_Discount,  $endTotal ))?>" class="checkout">
 
                 <select name="cards">
                     <?php
@@ -93,7 +99,11 @@
                 <p class="currency"><?php echo $this->StringFormatter->formatCurrency( $tax, '$'); ?></p>
                 <br/><br/>
 
-                <p><b>Total: </b></p>
+                 <p><b>Frequenly Costumer Discount: </b></p>
+                 <p class="currency"><?php echo $this->StringFormatter->formatCurrency( $Frequenly_Costumer_Discount, '$'); ?></p>
+                 <br/><br/>
+				
+				<p><b>Total: </b></p>
                 <p class="currency"><?php echo $this->StringFormatter->formatCurrency( $endTotal, '$'); ?></p>
                 <br/><br/>
 
