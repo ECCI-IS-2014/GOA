@@ -101,26 +101,32 @@ class SalesController extends AppController {
  */
 
 
-	public function add($subtotal = 0.0, $tax = 0.0,  $frequenly_costumer_discount = 0.0, $total= 0.0) {
-	 date_default_timezone_set('America/Costa_Rica');
+    public function add($subtotal = 0.0, $tax = 0.0,  $frequenly_costumer_discount = 0.0, $total= 0.0) {
+        date_default_timezone_set('America/Costa_Rica');
         if (!empty($this->request->data)) {
             $data = $this->request->data;
             $method_payment_id = $data['cards'];
             $coin = $data['currency'];
-            $user_id=$this->Session->read('Auth.User.id');            
+            $user_id=$this->Session->read('Auth.User.id');
 
             switch($coin){
                 case '1':
                     $coin = 'Dollar';
-                break;
+                    break;
                 case '2':
                     $coin = 'Euro';
-                break;
+                    $total = $total * 0.804547301;
+                    $subtotal = $subtotal * 0.804547301;
+                    $tax = $tax * 0.804547301;
+                    break;
                 case '3':
                     $coin = 'Colon';
+                    $total = $total * 539.374326;
+                    $subtotal = $subtotal * 539.374326;
+                    $tax = $tax * 539.374326;
             }
 
-            $data = array('user_id' => $user_id,'method_payment_id' => $method_payment_id, 'subtotal' =>  $subtotal, 'frequenly_costumer_discount' => $frequenly_costumer_discount, 'total' => $total, 'currency' => $coin, 'tax' => $tax);
+            $data = array('user_id' => $user_id,'method_payment_id' => $method_payment_id, 'subtotal' =>  round($subtotal,2), 'frequenly_costumer_discount' => $frequenly_costumer_discount, 'total' => round($total,2), 'currency' => $coin, 'tax' => round($tax,2));
             if ($this->Sale->save($data)) {
                 $this->Session->write('sale_id',$this->Sale->id);
                 $this->Session->setFlash(__('Thank you for buying in FutureStore, your products are on the way!'));
@@ -130,7 +136,7 @@ class SalesController extends AppController {
             }
         }
         return $this->redirect(array('controller' => 'Sales', 'action' => 'checkout'));
-	}
+    }
 
     public function buys() {
         // proced de buys

@@ -270,8 +270,8 @@ INSERT INTO `credit_cards` (`id`, `user_id`, `brand`, `card_number`, `card_name`
 		(2, 4, 'Mastercard', '2347190873276228', 'Pepito Perez Pereira', '2017-11-01'),
 		(3, 5, 'Mastercard', '6752986723647829', 'Jordan Jimenez Jara', '2013-03-01'),
 		(4, 2, 'Mastercard', '9785463215648544', 'Usuario Usuario', '2021-08-01'),
-		(4, 6, 'American Express', '7829367022378349', 'Mafalda Mata Morera', '2014-12-01'),
-		(5, 7, 'American Express', '8926738498762934', 'Rodolfo Ramirez Ramos', '2010-12-01');
+		(5, 6, 'American Express', '7829367022378349', 'Mafalda Mata Morera', '2014-12-01'),
+		(6, 7, 'American Express', '8926738498762934', 'Rodolfo Ramirez Ramos', '2010-12-01');
 		
 INSERT INTO `products` (`id`, `category_id`, `name`, `price`, `quantity`, `discount`, `image`, `enable_product`, `rating`, `weight`, `volume`, `description`) VALUES
 		(1, 8, 'Sandals', '30.00', 14, 30, 'sandalias.jpg', 0, 0, '0.25', '0.00', 'No description.'),
