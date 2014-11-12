@@ -15,6 +15,9 @@ class ReviewsController extends AppController {
  * @var array
  */
 	public $components = array('Paginator', 'Session');
+    public $uses = array('ProductSale','Rating','Sale');
+
+
 
 /**
  * index method
@@ -25,6 +28,8 @@ class ReviewsController extends AppController {
 		$this->Review->recursive = 0;
 		$this->set('reviews', $this->Paginator->paginate());
 	}
+
+
 
 /**
  * view method
@@ -108,4 +113,42 @@ class ReviewsController extends AppController {
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
+
+
+    public function verify_purchase()
+    {
+        $prod_id = $this->passedArgs['id'];
+        $user_id=$this->Session->read('Auth.User.id');
+        $bills = $this->Sale->find('all', array('conditions'=>array('Sale.user_id'=>$user_id)));
+        $result = false;
+        for($i = 0; $i<count($bills); $i++)
+        {
+            $exist =  $this->ProductSale->find('first', array('conditions'=>array('ProductSale.sale_id'=>$bills[$i]['Sale']['id'],'ProductSale.product_id'=>$prod_id)));
+            if($exist!=null)
+            {
+                $result = true;
+            }
+        }
+
+        if($result==true)
+        {
+            return $this->redirect(array('controller' => 'Reviews', 'action' => 'add_review','id'=>$prod_id));
+        }
+        else
+        {
+            $this->Session->setFlash(__('You need to buy this product before you can review it!'));
+            return $this->redirect(array('controller' => 'Products', 'action' => 'productInside','id'=>$prod_id));
+        }
+    }
+
+    public function add_review()
+    {
+
+    }
+
+    public function save_review()
+    {
+
+    }
+
 }

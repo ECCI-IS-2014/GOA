@@ -78,8 +78,13 @@
     <br>
     <button id="addWishListButton"><a href="<?php echo $this->Html->url(array('controller' => 'wishes','action' => 'add','id'=>$product['Product']['id']));?>"> Add to Wish List </a></button>
     <br>
-    <button id="reviewButton"><a href=" <?php echo $this->Html->url(array("controller" => "products","action" => "addReview","id"=>"")).$product['Product']['id'];?>">Add Review</a></button>
-
+    <?php
+    $us=$this->Session->Read('Auth');
+    $result = empty($us);
+    if($result==false){
+        echo ("<button id='reviewButton'><a href='".$this->Html->url(array("controller" => "reviews","action" => "verify_purchase","id"=>"")).$product['Product']['id']."'>Add Review</a></button>");
+    }
+   ?>
 
     </div>
 
