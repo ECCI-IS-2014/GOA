@@ -31,7 +31,7 @@ $tcpdf->AddPage();
 $tcpdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
 
 // set the text font and size
-$tcpdf->SetFont('times','',18);
+$tcpdf->SetFont('times','',15);
 
 // set some text to print
 $txt = <<<EOD
@@ -51,17 +51,26 @@ Products:
 EOD;
 //¢ $ € //los simbolos se pueden usar cuando lo de el cambio de  modena funcione bien
 // print a block of text using Write()
-$tcpdf->Write(10, $txt, '', 0, 'L', true, 3, false, false, 0);
+$tcpdf->Write(10, $txt, '', 0, 'L', true, 0, false, false, 100, 100);
 
 for($i=0;$i<sizeof($vprod);$i++){
     $pname = $vprod[$i]['Product']['name'];
     $pprice = $vprod[$i]['Product']['price'] - ($vprod[$i]['Product']['price']*$vprod[$i]['Product']['discount'])/100;;
+    $pquantity = $quantity[$i]['ProductSale']['quantity'];
+
+if($pquantity>1){
+    $punit='units';
+}else{
+    $punit='unit';
+}
 
 $txt1 = <<<EOD
-  *  $pname   $currency$pprice  p/u.
+  *  $pname:
+          $pquantity  $punit
+          $currency$pprice  p/u.
 
 EOD;
-$tcpdf->Write(10, $txt1, '', 0, 'L', true, 3, false, false, 0);
+$tcpdf->Write(10, $txt1, '', 0, 'L', true, 0, false, false, 100, 100);
 }
 
 $txt2 = <<<EOD
@@ -74,12 +83,12 @@ Frequenly Costumer Discount: $currency$frequenly_costumer_discount
 Total: $currency$total
 EOD;
 
-$tcpdf->Write(10, $txt2, '', 0, 'L', true, 3, false, false, 0);
+$tcpdf->Write(10, $txt2, '', 0, 'L', true, 0, false, false, 100, 100);
 
 
 // reset pointer to the last page
 $tcpdf->lastPage();
 
-echo $tcpdf->Output('bill.pdf', 'D');
+echo $tcpdf->Output('Bill_FutureStore.pdf', 'D');
 
 ?>

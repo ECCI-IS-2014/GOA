@@ -319,19 +319,19 @@ class SalesController extends AppController {
             $this->redirect(array('action'=>'buys'), null, true);
         }
 
-        $datos_factura = $this->Sale->find('all',array('conditions'=>array('Sale.user_id'=>$this->Session->read('Auth.User.id'))));
-        $vid=$datos_factura[sizeof($datos_factura)-1]['Sale']['id'];
-        $vmethod_payment_id=$datos_factura[sizeof($datos_factura)-1]['Sale']['method_payment_id'];
-        $vsubtotal=$datos_factura[sizeof($datos_factura)-1]['Sale']['subtotal'];
-        $vfrequenly_costumer_discount=$datos_factura[sizeof($datos_factura)-1]['Sale']['frequenly_costumer_discount'];
-        $vtotal=$datos_factura[sizeof($datos_factura)-1]['Sale']['total'];
-        $vcreated=$datos_factura[sizeof($datos_factura)-1]['Sale']['created'];
-        $vtax=$datos_factura[sizeof($datos_factura)-1]['Sale']['tax'];
-        $vcurrency=$datos_factura[sizeof($datos_factura)-1]['Sale']['currency'];
+        $datos_factura = $this->Sale->find('all',array('conditions'=>array('Sale.user_id'=>$this->Session->read('Auth.User.id')),'order'=>array('Sale.id'=>'DESC')));
+        $vid=$datos_factura[0]['Sale']['id'];
+        $vmethod_payment_id=$datos_factura[0]['Sale']['method_payment_id'];
+        $vsubtotal=$datos_factura[0]['Sale']['subtotal'];
+        $vfrequenly_costumer_discount=$datos_factura[0]['Sale']['frequenly_costumer_discount'];
+        $vtotal=$datos_factura[0]['Sale']['total'];
+        $vcreated=$datos_factura[0]['Sale']['created'];
+        $vtax=$datos_factura[0]['Sale']['tax'];
+        $vcurrency=$datos_factura[0]['Sale']['currency'];
         $i=0;
 
-        $vproduct = $this->ProductSale->find('all',array('conditions'=>array('ProductSale.sale_id'=>$datos_factura[sizeof($datos_factura)-1]['Sale']['id']),'contain'=>array('Product'=>array('conditions'=>array('Product.id'=>'ProductSale.product_id')))));
-
+        $vproduct = $this->ProductSale->find('all',array('conditions'=>array('ProductSale.sale_id'=>$datos_factura[0]['Sale']['id']),'contain'=>array('Product'=>array('conditions'=>array('Product.id'=>'ProductSale.product_id')))));
+        $quantity = $this->ProductSale->find('all',array('conditions'=>array('ProductSale.sale_id'=>$datos_factura[0]['Sale']['id'])));
 
          switch($vcurrency){
              case 'Dollar':
@@ -346,6 +346,7 @@ class SalesController extends AppController {
 
         $this->set('i', $i);
         $this->set('user_id', $uid);
+        $this->set('quantity', $quantity);
         $this->set('vprod', $vproduct);
         $this->set('currency', $vcurrency);
         $this->set('factura_id', $vid);
