@@ -55,11 +55,9 @@
                 <h1> We are please to accept: </h1>
                 <img src = "http://i.imgur.com/CM6REpc.png" />
                 <br>
-                <form method="post" action="<?php echo $this->Html->url(array('controller' => 'sales','action' => 'add', $total,  $tax,  $endTotal ))?>" class="checkout">
                 <h1> You can select one of your cards already save it, or add a new card. </h1>
                 <div>
-                <h1> Please choose a payment method</h1>
-                <form method="post" action="<?php echo $this->Html->url(array('controller' => 'sales','action' => 'add', $total,  $tax, $Frequenly_Costumer_Discount,  $endTotal ))?>" class="checkout">
+               <form method="post" action="<?php echo $this->Html->url(array('controller' => 'sales','action' => 'add', $total,  $tax, $Frequenly_Costumer_Discount,  $endTotal ))?>" class="checkout">
 
                 <select name="cards">
                     <?php
