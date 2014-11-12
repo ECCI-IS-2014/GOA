@@ -46,12 +46,25 @@
                   </div>
             </div>
 
-            
-            <p style="font-weight:bold;  margin-left:10%;">Currency:&nbsp;</p> <h1 style="font-size: 15px; margin-left:20%;"> <?php echo h($sale['Sale']['currency']); ?> </h1>
-            <p style="font-weight:bold;  margin-left:10%;">SubTotal:&nbsp;</p> <h1 style="font-size: 15px; margin-left:20%;"> <?php echo h($sale['Sale']['subtotal']); ?> </h1>
-            <p style="font-weight:bold;  margin-left:10%;">Tax:&nbsp;</p> <h1 style="font-size: 15px; margin-left:20%;"> <?php echo h($sale['Sale']['tax']); ?> </h1>
-            <p style="font-weight:bold;  margin-left:10%;">Frequenly Costumer Discount:&nbsp;</p> <h1 style="font-size: 15px; margin-left:20%;"> <?php echo h($sale['Sale']['frequenly_costumer_discount']); ?> </h1>
-            <p style="font-weight:bold;  margin-left:10%;">Total:&nbsp;</p> <h1 style="font-size: 15px; margin-left:20%;"> <?php echo h($sale['Sale']['total']); ?> </h1>
+            <?php
+                $currency = h($sale['Sale']['currency']);
+
+                $symbol = '$';
+                if($currency == 'Euro') {
+                    $symbol = '€';
+                } else {
+                    if($currency == 'Colon') {
+                        $symbol = '¢';
+                    }
+                }
+            ?>
+
+
+            <p style="font-weight:bold;  margin-left:10%;">Currency:&nbsp;</p> <h1 style="font-size: 15px; margin-left:20%;"> <?php echo h($sale['Sale']['currency']); ?></h1>
+            <p style="font-weight:bold;  margin-left:10%;">SubTotal:&nbsp;</p> <h1 style="font-size: 15px; margin-left:20%;"> <?php echo $symbol . h($sale['Sale']['subtotal']); ?> </h1>
+            <p style="font-weight:bold;  margin-left:10%;">Tax:&nbsp;</p> <h1 style="font-size: 15px; margin-left:20%;"> <?php echo $symbol .h($sale['Sale']['tax']); ?> </h1>
+            <p style="font-weight:bold;  margin-left:10%;">Frequenly Costumer Discount:&nbsp;</p> <h1 style="font-size: 15px; margin-left:20%;"> <?php echo $symbol .h($sale['Sale']['frequenly_costumer_discount']); ?> </h1>
+            <p style="font-weight:bold;  margin-left:10%;">Total:&nbsp;</p> <h1 style="font-size: 15px; margin-left:20%;"> <?php echo $symbol .h($sale['Sale']['total']); ?> </h1>
 
     </div>
         <button id="PayButton" style = "float:left; margin-left:10%; margin-bottom:5%;">
