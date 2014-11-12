@@ -22,7 +22,7 @@ class SalesController extends AppController {
  * @var array
  */
 	public $components = array('Paginator', 'Session');
-    public $uses = array('Product','Cart', 'Sale', 'Credit_Card','ProductSale','User');
+    public $uses = array('Product','Cart', 'Sale', 'CreditCard','ProductSale','User');
 /**
  * index method
  *
@@ -46,6 +46,7 @@ class SalesController extends AppController {
         $this->Session->write('flag',1);
         $this->Session->write('saleCart',$saleCart);
         $numProducts = $this->Session->read('numProducts');
+		 $fclient=$this->Session->read('Auth.User.frecuent_client');
         $this->Session->write('numProductsSaleCart',$numProducts);
         $totalCartProducts = 0;
         $cart_Ids = array();
@@ -71,6 +72,7 @@ class SalesController extends AppController {
         $this->set('totalCartProducts',$totalCartProducts);
         $this->set('prodCarts',$cart_Ids);
         $this->set('numProducts',$numProducts);
+		$this->set('fclient',$fclient);
 		$this->check_frequentcy();
     }
 
@@ -99,27 +101,32 @@ class SalesController extends AppController {
  */
 
 
-	public function add($subtotal = 0.0, $tax = 0.0, $total= 0.0) {
-	 date_default_timezone_set('America/Costa_Rica');
+    public function add($subtotal = 0.0, $tax = 0.0,  $frequenly_costumer_discount = 0.0, $total= 0.0) {
+        date_default_timezone_set('America/Costa_Rica');
         if (!empty($this->request->data)) {
             $data = $this->request->data;
             $method_payment_id = $data['cards'];
             $coin = $data['currency'];
             $user_id=$this->Session->read('Auth.User.id');
-            $frequenly_costumer_discount = 0.0;
 
             switch($coin){
                 case '1':
                     $coin = 'Dollar';
-                break;
+                    break;
                 case '2':
                     $coin = 'Euro';
-                break;
+                    $total = $total * 0.804547301;
+                    $subtotal = $subtotal * 0.804547301;
+                    $tax = $tax * 0.804547301;
+                    break;
                 case '3':
                     $coin = 'Colon';
+                    $total = $total * 539.374326;
+                    $subtotal = $subtotal * 539.374326;
+                    $tax = $tax * 539.374326;
             }
 
-            $data = array('user_id' => $user_id,'method_payment_id' => $method_payment_id, 'subtotal' =>  $subtotal, 'frequenly_costumer_discount' => $frequenly_costumer_discount, 'total' => $total, 'currency' => $coin, 'tax' => $tax);
+            $data = array('user_id' => $user_id,'method_payment_id' => $method_payment_id, 'subtotal' =>  round($subtotal,2), 'frequenly_costumer_discount' => $frequenly_costumer_discount, 'total' => round($total,2), 'currency' => $coin, 'tax' => round($tax,2));
             if ($this->Sale->save($data)) {
                 $this->Session->write('sale_id',$this->Sale->id);
                 $this->Session->setFlash(__('Thank you for buying in FutureStore, your products are on the way!'));
@@ -129,14 +136,17 @@ class SalesController extends AppController {
             }
         }
         return $this->redirect(array('controller' => 'Sales', 'action' => 'checkout'));
-	}
+    }
 
     public function buys() {
         // proced de buys
         $this->Session->write('flag',0);
         $sale_id=$this->Session->read('sale_id');
         $options = array('conditions' => array('Sale.' . $this->Sale->primaryKey => $sale_id));
-        $this->set('sale', $this->Sale->find('first', $options));
+        $sale = $this->Sale->find('first', $options);
+        $this->set('sale', $sale);
+        $payment_method = $this->CreditCard->find('first', array('conditions'=>array('CreditCard.id'=>$sale['Sale']['method_payment_id'])));
+        $this->set('payment_method', $payment_method);
 
         // proce checkout
         $cart = $this->Session->read('saleCart');
@@ -317,13 +327,27 @@ class SalesController extends AppController {
         $vtotal=$datos_factura[sizeof($datos_factura)-1]['Sale']['total'];
         $vcreated=$datos_factura[sizeof($datos_factura)-1]['Sale']['created'];
         $vtax=$datos_factura[sizeof($datos_factura)-1]['Sale']['tax'];
+        $vcurrency=$datos_factura[sizeof($datos_factura)-1]['Sale']['currency'];
         $i=0;
 
         $vproduct = $this->ProductSale->find('all',array('conditions'=>array('ProductSale.sale_id'=>$datos_factura[sizeof($datos_factura)-1]['Sale']['id']),'contain'=>array('Product'=>array('conditions'=>array('Product.id'=>'ProductSale.product_id')))));
 
+
+         switch($vcurrency){
+             case 'Dollar':
+                 $vcurrency = '$';
+                 break;
+             case 'Euro':
+                 $vcurrency = '€';
+                 break;
+             case 'Colon':
+                 $vcurrency = '¢';
+         }
+
         $this->set('i', $i);
         $this->set('user_id', $uid);
         $this->set('vprod', $vproduct);
+        $this->set('currency', $vcurrency);
         $this->set('factura_id', $vid);
         $this->set('method_payment_id', $vmethod_payment_id);
         $this->set('subtotal', $vsubtotal);

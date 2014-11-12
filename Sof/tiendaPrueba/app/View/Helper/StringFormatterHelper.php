@@ -33,6 +33,15 @@ class StringFormatterHelper extends AppHelper {
 		}
 	}
 
+	public function formatCardLastNumbers($card_num) {
+		if(strlen($card_num) == 16) {
+			return substr($card_num, 12, 4);
+		}
+		else {
+			return "not valid";
+		}
+	}
+
 	public function formatDateMY($date) {
 		if(strlen($date) == 10) {
 			$months = array('','January','February','March','April','May','June','July','August','September','October','November','December');

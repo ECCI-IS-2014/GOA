@@ -13,7 +13,7 @@ class BankCardTest extends CakeTestCase {
  * @var array
  */
 	public $fixtures = array(
-		'app.BankCard'
+		'app.bank_card'
 	);
 
 
@@ -33,8 +33,7 @@ class BankCardTest extends CakeTestCase {
  * @return void
  */
 	public function tearDown() {
-		unset($this->Card);
-
+		unset($this->BankCard);
 		parent::tearDown();
 	}
 
@@ -46,8 +45,6 @@ class BankCardTest extends CakeTestCase {
         $this->assertEquals($expected, $result);
     }
 
-
-
     public function test_verify_name()
     {
         $result = $this->BankCard->verify_brand('Momo','Momo');
@@ -57,7 +54,7 @@ class BankCardTest extends CakeTestCase {
 
     public function test_expiration()
     {
-        $registry = $this->BankCard->find('first',array('conditions'=>array('BankCard.id'=>'8926738498762934')) );
+        $registry = $this->BankCard->find('first',array('conditions'=>array('id'=>'3333444477771111')) );
         $result = $this->BankCard->verify_expiration($registry['BankCard']['expiration_date']);
         $expected = false;
         $this->assertEquals($expected, $result);
@@ -65,7 +62,7 @@ class BankCardTest extends CakeTestCase {
 
     public function test_verify_information()
     {
-        $result = $this->BankCard->verify_information('2347190873276228','Pepito Perez Pereira','Mastercard');
+        $result = $this->BankCard->verify_information('2347190873276228','Pepito Perez Pereira','Mastercard','2015-11-01');
         $expected = true;
         $this->assertEquals($expected, $result);
     }
@@ -77,8 +74,6 @@ class BankCardTest extends CakeTestCase {
         $this->assertEquals($expected, $result);
 
     }
-
-
 
 
 

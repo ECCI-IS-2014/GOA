@@ -236,6 +236,7 @@ INSERT INTO `bank_cards` (`id`, `expiration_date`, `card_holder`, `balance`, `ca
 		('2897309872176284', '2016-11-01', 'Pepito Perez Pereira', '20000.50', 'Visa', '000'),
 		('2347190873276228', '2017-11-01', 'Pepito Perez Pereira', '20000.50', 'Mastercard', '000'),
 		('6752986723647829', '2015-03-01', 'Jordan Jimenez Jara', '34920.22', 'Mastercard', '000'),
+		('9785463215648544', '2021-08-01', 'Usuario Usuario ', '5846000.90', 'Mastercard', '000'),
 		('7829367022378349', '2014-12-01', 'Mafalda Mata Morera', '2345600.30', 'American Express', '000'),
 		('8926738498762934', '2010-12-01', 'Rodolfo Ramirez Ramos', '3400.90', 'American Express', '000');
 
@@ -268,8 +269,9 @@ INSERT INTO `credit_cards` (`id`, `user_id`, `brand`, `card_number`, `card_name`
 		(1, 4, 'Visa', '2897309872176284', 'Pepito Perez Pereira', '2016-11-01'),
 		(2, 4, 'Mastercard', '2347190873276228', 'Pepito Perez Pereira', '2017-11-01'),
 		(3, 5, 'Mastercard', '6752986723647829', 'Jordan Jimenez Jara', '2013-03-01'),
-		(4, 6, 'American Express', '7829367022378349', 'Mafalda Mata Morera', '2014-12-01'),
-		(5, 7, 'American Express', '8926738498762934', 'Rodolfo Ramirez Ramos', '2010-12-01');
+		(4, 2, 'Mastercard', '9785463215648544', 'Usuario Usuario', '2021-08-01'),
+		(5, 6, 'American Express', '7829367022378349', 'Mafalda Mata Morera', '2014-12-01'),
+		(6, 7, 'American Express', '8926738498762934', 'Rodolfo Ramirez Ramos', '2010-12-01');
 		
 INSERT INTO `products` (`id`, `category_id`, `name`, `price`, `quantity`, `discount`, `image`, `enable_product`, `rating`, `weight`, `volume`, `description`) VALUES
 		(1, 8, 'Sandals', '30.00', 14, 30, 'sandalias.jpg', 0, 0, '0.25', '0.00', 'No description.'),

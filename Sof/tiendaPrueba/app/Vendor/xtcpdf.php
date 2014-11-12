@@ -3,7 +3,7 @@ App::import('Vendor','tcpdf/tcpdf');
 
 class XTCPDF  extends TCPDF {
 
-    var $xheadertext  = 'PDF created using CakePHP and TCPDF';
+    var $xheadertext  = 'Future Store';
     var $xheadercolor = array(0,0,200);
     var $xfootertext  = 'Copyright Â© %d XXXXXXXXXXX. All rights reserved.';
     var $xfooterfont  = PDF_FONT_NAME_MAIN ;
@@ -19,29 +19,22 @@ class XTCPDF  extends TCPDF {
      * set the font in the view using
      *    $fpdf->setHeaderFont(array('YourFont','',fontsize));
      */
-    function Header()
-    {
-
-        list($r, $b, $g) = $this->xheadercolor;
-        $this->setY(10); // shouldn't be needed due to page margin, but helas, otherwise it's at the page top
-        $this->SetFillColor($r, $b, $g);
-        $this->SetTextColor(0 , 0, 0);
-        $this->Cell(0,20, '', 0,1,'C', 1);
-        $this->Text(15,26,$this->xheadertext );
+    //Page header
+    public function Header() {
+        // Logo
+        $this->Image('http://i.imgur.com/7nXSwKo.png', 0, 0, 220, 35, 'PNG', '', 'T', false, 300, '', false, false, 0, false, false, false);
+        // Set font
+        $this->SetFont('helvetica', 'B', 20);
+        // Title
+        //$this->Cell(0, 15, $this->xheadertext, 0, false, 'C', 0, '', 0, false, 'M', 'M');
     }
 
-    /**
-     * Overwrites the default footer
-     * set the text in the view using
-     * $fpdf->xfootertext = 'Copyright Â© %d YOUR ORGANIZATION. All rights reserved.';
-     */
-    function Footer()
-    {
+    function Footer() {
         $year = date('Y');
         $footertext = sprintf($this->xfootertext, $year);
         $this->SetY(-20);
         $this->SetTextColor(0, 0, 0);
-        $this->SetFont($this->xfooterfont,'',$this->xfooterfontsize);
+        $this->SetFont('helvetica','',15);
         $this->Cell(0,8, $footertext,'T',1,'C');
     }
 }

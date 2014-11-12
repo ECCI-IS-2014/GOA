@@ -272,6 +272,11 @@ class CatalogGeneratorHelper extends AppHelper {
         for($i = 1; $i < count($prodCarts); $i++) {
 
             if ( $numProducts[$i] > 0 ) {
+			 if ($prodCarts[$i]['Product']['discount'] == 0) {
+                    $price = $prodCarts[$i]['Product']['price'];
+                } else {
+                    $price = $prodCarts[$i]['Product']['price'] - ($prodCarts[$i]['Product']['price']*$prodCarts[$i]['Product']['discount'])/100;
+                }
                 $result_string = $result_string.
                     "<div class='cart_item' style='width: 650px;'>".
                     $this->Html->image('product_icons/'.$prodCarts[$i]['Product']['image'], array('alt' => 'CakePHP', 'class' => 'p_photo','style'=>'height:100%; width:12%; float:left;margin-bottom:25px;')) .
@@ -288,7 +293,7 @@ class CatalogGeneratorHelper extends AppHelper {
                     "<div>"."</div>".
                     "<p style='font-weight:bold; float:left; margin-left:2%;'>".'Price:&nbsp;'."</p>".
                     "<p style='width:40%; margin-bottom:0%; margin-right:0%; float:left;' class='currency'> ".
-                    $this->StringFormatter->formatCurrency($prodCarts[$i]['Product']['price'], '$').
+                    $this->StringFormatter->formatCurrency($price , '$').
                     "</p>".
                     "<div>"."</div>".
                     "<br>".
@@ -302,7 +307,7 @@ class CatalogGeneratorHelper extends AppHelper {
                     "<br>".
                     "<p style='font-weight:bold; float:left; margin-left:14%;'>".'Total:&nbsp;'."</p>".
                     "<p style='width:40%; margin-bottom:0%; margin-right:0%; float:left;' class='currency'> ".
-                    $this->StringFormatter->formatCurrency($prodCarts[$i]['Product']['price'] * $numProducts[$i], '$').
+                    $this->StringFormatter->formatCurrency($price * $numProducts[$i], '$').
                     "</p>".
                     "<div>"."</div>".
                     "<br>".
@@ -321,6 +326,11 @@ class CatalogGeneratorHelper extends AppHelper {
         $result_string = '<div>';
         for($i = 1; $i < count($prodCarts); $i++) {
             if ( $numProducts[$i] > 0 ) {
+			 if ($prodCarts[$i]['Product']['discount'] == 0) {
+                    $price = $prodCarts[$i]['Product']['price'];
+                } else {
+                    $price = $prodCarts[$i]['Product']['price'] - ($prodCarts[$i]['Product']['price']*$prodCarts[$i]['Product']['discount'])/100;
+                }
                 $result_string = $result_string.
                     "<div class='cart_item' style='width: 650px;'>".
                     $this->Html->image('product_icons/'.$prodCarts[$i]['Product']['image'], array('alt' => 'CakePHP', 'class' => 'p_photo','style'=>'height:30%; width:8%; float:left;margin-bottom:25px;')) .
@@ -328,14 +338,14 @@ class CatalogGeneratorHelper extends AppHelper {
                     "<p style='float:left; margin-left:2%;'>".$numProducts[$i].' units of '.$prodCarts[$i]['Product']['name']."</p >".
                     "<p style='float:left; margin-left:2%;'>".'&nbsp;'."</p>".
                     "<p style='width:40%; margin-bottom:0%; margin-right:0%; float:left;' class='currency'> ".
-                    $this->StringFormatter->formatCurrency($prodCarts[$i]['Product']['price'], '$').' p/u.'.
+                    $this->StringFormatter->formatCurrency($price , '$').' p/u.'.
                     "</p>".
                     "<div>"."</div>".
                     "<br>".
                     "<br>".
                     "<p style='font-weight:bold; float:left; margin-left:2%;'>".'Total:&nbsp;'."</p>".
                     "<p style='width:40%; margin-bottom:0%; margin-right:0%; float:left;' class='currency'> ".
-                    $this->StringFormatter->formatCurrency($prodCarts[$i]['Product']['price'] * $numProducts[$i], '$').
+                    $this->StringFormatter->formatCurrency($price * $numProducts[$i], '$').
                     "</p>".
                     "</div>".
                     "<div style='clear:both'></div>".
