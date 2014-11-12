@@ -37,28 +37,36 @@ class SalesController extends AppController {
 
     // index de factura practicamente
     public function checkout() {
-        $cart = $this->Session->read('cart');
+
+        if ($this->Session->read('flag') == 0) {
+            $saleCart = $this->Session->read('cart');
+        } else {
+            $saleCart = $this->Session->read('saleCart');
+        }
+        $this->Session->write('flag',1);
+        $this->Session->write('saleCart',$saleCart);
         $numProducts = $this->Session->read('numProducts');
+        $this->Session->write('numProductsSaleCart',$numProducts);
         $totalCartProducts = 0;
         $cart_Ids = array();
 
-        for( $i = 0; $i < count($cart); $i++ ) {
-            $product = $this->Product->find('first', array('conditions'=>array('Product.id'=>$cart[$i])));
+        for( $i = 0; $i < count($saleCart); $i++ ) {
+            $product = $this->Product->find('first', array('conditions'=>array('Product.id'=>$saleCart[$i])));
             array_push($cart_Ids,$product);
             if ( $i > 0 ) {
                 if ( $i > 0 && $product['Product']['enable_product'] == 0 ) {
                     // Revisa que el producto no haya sido deshabilitado
                     $numProducts[$i] = 0;
-                    $this->Session->write('numProducts',$numProducts);
+                    $this->Session->write('numProductsSaleCart',$numProducts);
                 } elseif( $product['Product']['quantity'] < $numProducts[$i] ) {
                     // Mantiene la cantidad de productos por comprar limitada por la quantity del producto
                     $numProducts[$i] = $product['Product']['quantity'];
-                    $this->Session->write('numProducts',$numProducts);
+                    $this->Session->write('numProductsSaleCart',$numProducts);
                 }
             }
             $totalCartProducts = $totalCartProducts + $numProducts[$i];
         }
-        $this->Session->write('totalCartProducts',$totalCartProducts);
+        $this->Session->write('totalSaleCartProducts',$totalCartProducts);
 
         $this->set('totalCartProducts',$totalCartProducts);
         $this->set('prodCarts',$cart_Ids);
@@ -74,13 +82,15 @@ class SalesController extends AppController {
  * @param string $id
  * @return void
  */
+
+    /*
 	public function view($id = null) {
 		if (!$this->Sale->exists($id)) {
 			throw new NotFoundException(__('Invalid sale'));
 		}
 		$options = array('conditions' => array('Sale.' . $this->Sale->primaryKey => $id));
 		$this->set('sale', $this->Sale->find('first', $options));
-	}
+	}*/
 
 /**
  * add method
@@ -123,13 +133,14 @@ class SalesController extends AppController {
 
     public function buys() {
         // proced de buys
+        $this->Session->write('flag',0);
         $sale_id=$this->Session->read('sale_id');
         $options = array('conditions' => array('Sale.' . $this->Sale->primaryKey => $sale_id));
         $this->set('sale', $this->Sale->find('first', $options));
 
         // proce checkout
-        $cart = $this->Session->read('cart');
-        $numProducts = $this->Session->read('numProducts');
+        $cart = $this->Session->read('saleCart');
+        $numProducts = $this->Session->read('numProductsSaleCart');
         $totalCartProducts = 0;
         $cart_Ids = array();
 
@@ -140,16 +151,16 @@ class SalesController extends AppController {
                 if ( $i > 0 && $product['Product']['enable_product'] == 0 ) {
                     // Revisa que el producto no haya sido deshabilitado
                     $numProducts[$i] = 0;
-                    $this->Session->write('numProducts',$numProducts);
+                    $this->Session->write('numProductsSaleCart',$numProducts);
                 } elseif( $product['Product']['quantity'] < $numProducts[$i] ) {
                     // Mantiene la cantidad de productos por comprar limitada por la quantity del producto
                     $numProducts[$i] = $product['Product']['quantity'];
-                    $this->Session->write('numProducts',$numProducts);
+                    $this->Session->write('numProductsSaleCart',$numProducts);
                 }
             }
             $totalCartProducts = $totalCartProducts + $numProducts[$i];
         }
-        $this->Session->write('totalCartProducts',$totalCartProducts);
+        $this->Session->write('totalSaleCartProducts',$totalCartProducts);
 
         $this->set('totalCartProducts',$totalCartProducts);
         $this->set('prodCarts',$cart_Ids);
@@ -164,6 +175,7 @@ class SalesController extends AppController {
  * @return void
  *
  */
+    /*
     public function edit($id = null) {
     $cart = $this->Session->read('cart');
     $numProducts = $this->Session->read('numProducts');
@@ -177,10 +189,9 @@ class SalesController extends AppController {
         }
     }
     $this->Session->write('numProducts',$numProducts);
-        //$this->set('canti', $numProducts[$pos]);
     return $this->redirect(array('controller' => 'carts', 'action' => 'index'));
 
-}
+}*/
 
 /**
  * delete method
@@ -192,8 +203,8 @@ class SalesController extends AppController {
 
     public function delete() {
         $prod_id = $this->passedArgs['id'];
-        $cart = $this->Session->read('cart');
-        $numProducts = $this->Session->read('numProducts');
+        $cart = $this->Session->read('saleCart');
+        $numProducts = $this->Session->read('numProductsSaleCart');
 
         $pos = array_search($prod_id,$cart);
 
@@ -207,8 +218,8 @@ class SalesController extends AppController {
             array_push($first_num,$second_num[$i]);
         }
 
-        $this->Session->write('cart',$first_cart);
-        $this->Session->write('numProducts',$first_num);
+        $this->Session->write('saleCart',$first_cart);
+        $this->Session->write('numProductsSaleCart',$first_num);
 
         return $this->redirect(array('controller' => 'sales', 'action' => 'checkout'));
     }

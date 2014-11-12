@@ -48,9 +48,9 @@ class ProductSalesController extends AppController {
  * @return void
  */
 	public function pay() {
-        $cart = $this->Session->read('cart');
+        $cart = $this->Session->read('saleCart');
         $sale_id=$this->Session->read('sale_id');
-        $numProducts = $this->Session->read('numProducts');
+        $numProducts = $this->Session->read('numProductsSaleCart');
         for( $i = 1; $i < count($cart); $i++ ) {
             $product = $this->Product->find('first', array('conditions'=>array('Product.id'=>$cart[$i])));
 

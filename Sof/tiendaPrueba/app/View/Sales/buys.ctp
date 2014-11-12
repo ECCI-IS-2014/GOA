@@ -42,7 +42,7 @@
               </p>
 
              <p style="font-weight:bold;  margin-left:10%;">&nbsp;</p> <h1 style="font-size: 15px; margin-left:20%;"> <?php echo ""; ?> </h1>
-
+            <p style="font-weight:bold;  margin-left:10%;">Currency:&nbsp;</p> <h1 style="font-size: 15px; margin-left:20%;"> <?php echo h($sale['Sale']['currency']); ?> </h1>
             <p style="font-weight:bold;  margin-left:10%;">SubTotal:&nbsp;</p> <h1 style="font-size: 15px; margin-left:20%;"> <?php echo h($sale['Sale']['subtotal']); ?> </h1>
             <p style="font-weight:bold;  margin-left:10%;">Tax:&nbsp;</p> <h1 style="font-size: 15px; margin-left:20%;"> <?php echo h($sale['Sale']['tax']); ?> </h1>
             <p style="font-weight:bold;  margin-left:10%;">Frequenly Costumer Discount:&nbsp;</p> <h1 style="font-size: 15px; margin-left:20%;"> <?php echo h($sale['Sale']['frequenly_costumer_discount']); ?> </h1>

@@ -52,6 +52,8 @@ class UsersController extends AppController {
         $this->Session->write('totalCartProducts');
         $totalCartProducts = 0;
         $this->Session->write('totalCartProducts',$totalCartProducts);
+
+        $this->Session->write('flag',0);
     }
 
     public function profile(){
