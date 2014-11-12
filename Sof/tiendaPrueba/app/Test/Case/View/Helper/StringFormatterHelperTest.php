@@ -35,6 +35,11 @@ class StringFormatterHelperTest extends CakeTestCase {
 		$this->assertEquals('5555 2222 1111 4444', $this->helper->formatCardNumber('5555222211114444',' '));
 	}
 
+	public function testFormatCardLastNumbers() {
+		$this->assertEquals('1221', $this->helper->formatCardLastNumbers('5555999977771221'));
+		$this->assertEquals('4443', $this->helper->formatCardLastNumbers('5555222211114443'));
+	}
+
 	public function testFormatDateMY() {
 		$this->assertEquals('June 2014', $this->helper->formatDateMY('2014-06-07'));
 		$this->assertEquals('January 2017', $this->helper->formatDateMY('2017-01-04'));

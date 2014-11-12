@@ -14,7 +14,8 @@ class CreditCardsControllerTest extends ControllerTestCase {
  */
 	public $fixtures = array(
 		'app.credit_card',
-		'app.user'
+		'app.user',
+		'app.bank_card'
 	);
 
 /**
@@ -46,44 +47,6 @@ class CreditCardsControllerTest extends ControllerTestCase {
 
 		$count = $Cards->CreditCard->find('count');
 		$this->assertEquals($count, 3);
-	}
-
-/**
- * testEdit method
- *
- * @return void
- */
-	public function testEdit() {
-		$Cards = $this->generate('CreditCards', array(
-            'components' => array(
-                'Session'
-            )
-        ));
-        $Cards->Session->expects($this->any())->method('setFlash');
-		
-		$data = array(
-			'CreditCard' => array(
-				'id' => '2',
-				'user_id' => '2',
-				'brand' => 'Visa',
-				'card_number' => '2347190873276228',
-				'card_name' => 'Pepito Perez Pereira',
-				'expiration_date' => array(
-					'year' => '2015',
-					'month' => '11',
-				),
-			),
-		);
-
-		// Prueba antes del edit
-		$card = $Cards->CreditCard->read(null, 2);
-		$this->assertEqual($card['CreditCard']['brand'], 'Mastercard');
-
-		$this->testAction('/credit_cards/edit/2', array('data' => $data));
-
-		// Prueba despues del edit
-		$card = $Cards->CreditCard->read(null, 2);
-		$this->assertEqual($card['CreditCard']['brand'], 'Visa');
 	}
 
 /**
