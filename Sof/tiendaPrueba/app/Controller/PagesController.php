@@ -79,6 +79,10 @@ class PagesController extends AppController {
 
     public function home() {
 
+    	$query = array();
+    	$url = $_SERVER['REQUEST_URI'];
+    	$parts = parse_url($url);
+
 	    if(!isset($parts['query'])) {
 
 	    	// HOME CATEGORIES
@@ -94,13 +98,7 @@ class PagesController extends AppController {
 
 	    	// SEARCH FUNCTION
 
-        	$query = array();
-        	$url = $_SERVER['REQUEST_URI'];
-	    	$parts = parse_url($url);
-	    	debug($parts);
-
 	    	parse_str($parts['query'], $query);
-
 	    	if(isset($query['op'])) {
 
 	    		switch ($query['type']) {
