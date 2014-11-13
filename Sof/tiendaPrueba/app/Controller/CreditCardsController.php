@@ -23,7 +23,7 @@ class CreditCardsController extends AppController {
  * @return void
  */
 	public function add() {
-		$this->set('card_brands', array('Visa'=>'Visa', 'MasterCard'=>'MasterCard', 'American Express'=>'American Express'));
+		$this->set('card_brands', array('Visa'=>'Visa', 'Mastercard'=>'MasterCard', 'American Express'=>'American Express'));
 		if ($this->request->is('post')) {
 			$this->request->data['CreditCard']['user_id'] = $this->Session->read('Auth.User.id');
 			$this->request->data['CreditCard']['expiration_date'] = 

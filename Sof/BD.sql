@@ -237,7 +237,7 @@ INSERT INTO `bank_cards` (`id`, `expiration_date`, `card_holder`, `balance`, `ca
 		('2897309872176284', '2016-11-01', 'Pepito Perez Pereira', '20000.50', 'Visa', '000'),
 		('2347190873276228', '2017-11-01', 'Pepito Perez Pereira', '20000.50', 'Mastercard', '000'),
 		('6752986723647829', '2015-03-01', 'Jordan Jimenez Jara', '34920.22', 'Mastercard', '000'),
-		('9785463215648544', '2021-08-01', 'Usuario Usuario ', '5846000.90', 'Mastercard', '000'),
+		('9785463215648544', '2021-08-01', 'Usuario Usuario', '5846000.90', 'Mastercard', '000'),
 		('7829367022378349', '2014-12-01', 'Mafalda Mata Morera', '2345600.30', 'American Express', '000'),
 		('8926738498762934', '2010-12-01', 'Rodolfo Ramirez Ramos', '3400.90', 'American Express', '000');
 
