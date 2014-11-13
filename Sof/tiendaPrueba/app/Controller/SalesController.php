@@ -303,9 +303,10 @@ class SalesController extends AppController {
 
     }
 	
-	 public function viewPdf(){
+	  public function viewPdf(){
         $id=$this->Session->read('Auth.User.id');
-        $uid=$this->Session->read('Auth.User.username');
+        $uname=$this->Session->read('Auth.User.name');
+        $ulast_name=$this->Session->read('Auth.User.last_name');
 
         if (!$id)
         {
@@ -315,7 +316,6 @@ class SalesController extends AppController {
 
         $datos_factura = $this->Sale->find('all',array('conditions'=>array('Sale.user_id'=>$this->Session->read('Auth.User.id')),'order'=>array('Sale.id'=>'DESC')));
         $vid=$datos_factura[0]['Sale']['id'];
-        $vmethod_payment_id=$datos_factura[0]['Sale']['method_payment_id'];
         $vsubtotal=$datos_factura[0]['Sale']['subtotal'];
         $vfrequenly_costumer_discount=$datos_factura[0]['Sale']['frequenly_costumer_discount'];
         $vtotal=$datos_factura[0]['Sale']['total'];
@@ -326,6 +326,8 @@ class SalesController extends AppController {
 
         $vproduct = $this->ProductSale->find('all',array('conditions'=>array('ProductSale.sale_id'=>$datos_factura[0]['Sale']['id']),'contain'=>array('Product'=>array('conditions'=>array('Product.id'=>'ProductSale.product_id')))));
         $quantity = $this->ProductSale->find('all',array('conditions'=>array('ProductSale.sale_id'=>$datos_factura[0]['Sale']['id'])));
+        $credit = $this->CreditCard->find('all',array('conditions'=>array('CreditCard.id'=>$datos_factura[0]['Sale']['method_payment_id'])));
+        $card=$credit[0]['CreditCard']['card_number'];
 
          switch($vcurrency){
              case 'Dollar':
@@ -338,13 +340,16 @@ class SalesController extends AppController {
                  $vcurrency = '¢';
          }
 
+
         $this->set('i', $i);
-        $this->set('user_id', $uid);
+        $this->set('user_name', $uname);
+        $this->set('user_last_name', $ulast_name);
         $this->set('quantity', $quantity);
         $this->set('vprod', $vproduct);
+        $this->set('card', $card);
         $this->set('currency', $vcurrency);
         $this->set('factura_id', $vid);
-        $this->set('method_payment_id', $vmethod_payment_id);
+        $this->set('credit', $credit);
         $this->set('subtotal', $vsubtotal);
         $this->set('frequenly_costumer_discount', $vfrequenly_costumer_discount);
         $this->set('total', $vtotal);
