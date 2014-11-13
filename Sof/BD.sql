@@ -220,8 +220,7 @@ ALTER TABLE `reviews`
 	ADD CONSTRAINT `FK_` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 
 ALTER TABLE `sales`
-	ADD CONSTRAINT `FK_sales_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
-	ADD CONSTRAINT `FK_sales_method_payment_id` FOREIGN KEY (`method_payment_id`) REFERENCES `credit_cards` (`id`);
+	ADD CONSTRAINT `FK_sales_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 
 ALTER TABLE `wishes`
 	ADD CONSTRAINT `wishes_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
