@@ -37,7 +37,59 @@
                             <div id="panel" style="height:100%">
 
                                 <div id="panel_boundaries">
-                                    <?php echo $this->fetch('home_panel'); ?>
+                                    
+                                    <div id="home_panel_wrapper">
+
+                                      <div id="start" class="active">
+                                        <div id="hot_pane" class="catalog_holder named">
+                                          <h3>Hot</h3>
+                                          <?php 
+                                            echo $this->CatalogGenerator->formatProducts( $products_hot ); 
+                                          ?>
+                                        </div>
+                                        <div id="sales_pane" class="catalog_holder named">
+                                          <h3>On sale</h3>
+                                          <?php 
+                                            echo $this->CatalogGenerator->formatProducts( $products_sale ); 
+                                          ?>
+                                        </div>
+                                        <div id="top_rated_pane" class="catalog_holder named">
+                                          <h3>Top rated</h3>
+                                          <?php 
+                                            echo $this->CatalogGenerator->formatProducts( $products_top_rated ); 
+                                          ?>
+                                        </div>
+                                        <div id="new_pane" class="catalog_holder named">
+                                          <h3>Newly added</h3>
+                                          <?php 
+                                            echo $this->CatalogGenerator->formatProducts( $products_new ); 
+                                          ?>
+                                        </div>
+                                        <div id="picks_pane" class="catalog_holder named">
+                                          <h3>Our picks for <?php echo $this->Session->read('Auth.User.name'); ?></h3>
+                                          <?php 
+                                            echo $this->CatalogGenerator->formatProducts( $products_picks ); 
+                                          ?>
+                                        </div>
+                                      </div>
+
+                                      <div id="search_results" class="inactive">
+                                        <div class="catalog_holder named">
+                                          <h3>Your search results.</h3>
+                                          <?php 
+                                            if($s_params['op'] == 'search') {
+                                              echo $this->CatalogGenerator->formatProducts( $s_results );
+                                            } 
+                                          ?>
+                                        </div>
+                                      </div>
+
+                                      <div id="loading" class="inactive">
+                                        <img src="<?php echo $this->webroot; ?>img/loading.gif" class="loading_graphic">
+                                      </div>
+
+                                    </div>
+
                                 </div>
                                 
                             </div>
@@ -62,8 +114,21 @@
         var logoVisible = true;
         var allowTopHeaderHiding = false;
         var topHeaderHideMargin = 96;
+        
+        var activePanel = "start";
+        var catalog_item_width = 174;   // Width of each element in catalog, including paddings and margins
+        var catalog_item_height = 316;  // Height of each element in catalog, including paddings and margins
+
+        var hot_slider = '';
+        var sales_slider = '';
+        var top_rated_slider = '';
+        var new_slider = '';
+        var picks_slider = '';
+
+        var slider_interval = '';
 
         $(document).ready(function() {
+
             $("body").css("overflow", "hidden");
             resizeContent();
             configureEvents();
@@ -76,7 +141,135 @@
                 }
             }, 3000);
 
+            //set slider
+            hot_slider = new FutureSlider("#hot_pane div[type='catalog']", catalog_item_width, catalog_item_height);
+            sales_slider = new FutureSlider("#sales_pane div[type='catalog']", catalog_item_width, catalog_item_height);
+            top_rated_slider = new FutureSlider("#top_rated_pane div[type='catalog']", catalog_item_width, catalog_item_height);
+            new_slider = new FutureSlider("#new_pane div[type='catalog']", catalog_item_width, catalog_item_height);
+            picks_slider = new FutureSlider("#picks_pane div[type='catalog']", catalog_item_width, catalog_item_height);
+
+            //auto advance every 3500ms
+            slider_interval = window.setInterval(function(){
+                if(hot_slider.isSliding != true && hot_slider.completedSliding != true) {
+                    hot_slider.moveForward();
+                }
+                if(sales_slider.isSliding != true && hot_slider.completedSliding != true) {
+                    sales_slider.moveForward();
+                }
+                if(top_rated_slider.isSliding != true && hot_slider.completedSliding != true) {
+                    top_rated_slider.moveForward();
+                }
+                if(new_slider.isSliding != true && hot_slider.completedSliding != true) {
+                    new_slider.moveForward();
+                }
+                if(picks_slider.isSliding != true && hot_slider.completedSliding != true) {
+                    picks_slider.moveForward();
+                }
+            }, 3500);
+
         });
+
+        //Hot slider manual events
+        $("#hot_pane.catalog_holder").mousemove(function(e){
+            if ((e.pageX - $(this).offset().left) < $(this).width() / 5) {
+                hot_slider.startSlidingLeft();
+            }
+            else {
+                if ((e.pageX - $(this).offset().left) > ($(this).width() / 5)*4) {
+                    hot_slider.startSlidingRight();
+                }
+                else {
+                    hot_slider.stopSliding();
+                }
+            }
+        });
+
+        $("#hot_pane.catalog_holder").mouseleave(function(){
+            hot_slider.stopSliding();
+        });
+
+
+        //Sales slider manual events
+        $("#sales_pane.catalog_holder").mousemove(function(e){
+            if ((e.pageX - $(this).offset().left) < $(this).width() / 5) {
+                sales_slider.startSlidingLeft();
+            }
+            else {
+                if ((e.pageX - $(this).offset().left) > ($(this).width() / 5)*4) {
+                    sales_slider.startSlidingRight();
+                }
+                else {
+                    sales_slider.stopSliding();
+                }
+            }
+        });
+
+        $("#sales_pane.catalog_holder").mouseleave(function(){
+            sales_slider.stopSliding();
+        });
+
+
+        //Top rated slider manual events
+        $("#top_rated_pane.catalog_holder").mousemove(function(e){
+            if ((e.pageX - $(this).offset().left) < $(this).width() / 5) {
+                top_rated_slider.startSlidingLeft();
+            }
+            else {
+                if ((e.pageX - $(this).offset().left) > ($(this).width() / 5)*4) {
+                    top_rated_slider.startSlidingRight();
+                }
+                else {
+                    top_rated_slider.stopSliding();
+                }
+            }
+        });
+
+        $("#top_rated_pane.catalog_holder").mouseleave(function(){
+            top_rated_slider.stopSliding();
+        });
+
+
+        //Newly added slider manual events
+        $("#new_pane.catalog_holder").mousemove(function(e){
+            if ((e.pageX - $(this).offset().left) < $(this).width() / 5) {
+                new_slider.startSlidingLeft();
+            }
+            else {
+                if ((e.pageX - $(this).offset().left) > ($(this).width() / 5)*4) {
+                    new_slider.startSlidingRight();
+                }
+                else {
+                    new_slider.stopSliding();
+                }
+            }
+        });
+
+        $("#new_pane.catalog_holder").mouseleave(function(){
+            new_slider.stopSliding();
+        });
+
+
+        //Our picks slider manual events
+        $("#picks_pane.catalog_holder").mousemove(function(e){
+            if ((e.pageX - $(this).offset().left) < $(this).width() / 5) {
+                picks_slider.startSlidingLeft();
+            }
+            else {
+                if ((e.pageX - $(this).offset().left) > ($(this).width() / 5)*4) {
+                    picks_slider.startSlidingRight();
+                }
+                else {
+                    picks_slider.stopSliding();
+                }
+            }
+        });
+
+        $("#picks_pane.catalog_holder").mouseleave(function(){
+            picks_slider.stopSliding();
+        });
+
+
+
 
         $(window).resize(function(){
             resizeContent();
@@ -111,7 +304,7 @@
 
         }
 
-         
+        
 
 
         /*

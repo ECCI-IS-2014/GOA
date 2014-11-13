@@ -7,6 +7,10 @@ App::uses('AppModel', 'Model');
  */
 class Product extends AppModel {
 
+	public $uses = array('ProductSale', 'Sale');
+	public $components = array('Paginator', 'Session');
+    public $helpers = array('CatalogGenerator', 'Html');
+
 /**
  * Display field
  *
@@ -164,6 +168,91 @@ class Product extends AppModel {
 			'conditions'=>$conditions,
 			'order'=>$order
 		));
+
+		return $result;
+
+	}
+
+	public function getHotProducts() {
+
+		$prod_array = array();
+		foreach (ClassRegistry::init('ProductSale')->find('all') as $row) {
+			$prod_id = $row['ProductSale']['product_id'];
+			$qty = intval($row['ProductSale']['quantity']);
+			if(array_key_exists($prod_id, $prod_array)) {
+				$prod_array[$prod_id] = $prod_array[$prod_id] + $qty;
+			}
+			else {
+				$prod_array[$prod_id] = $qty;
+			}
+		}
+
+		arsort($prod_array);
+
+		$result = array();
+		foreach ($prod_array as $prod => $value) {
+			array_push($result, $this->find('first', array(
+				'conditions' => array('Product.id' => $prod)
+			)));
+		}
+
+		return $result;
+
+	}
+
+	public function getSaleProducts() {
+		
+		$result = $this->find('all', array(
+			'conditions' => array('Product.discount >' => '0'),
+			'order' => array('Product.discount' => 'desc')
+		));
+
+		return $result;
+
+	}
+
+	public function getTopRatedProducts() {
+		
+		$result = $this->find('all', array(
+			'conditions' => array('Product.rating >' => '1'),
+			'order' => array('Product.rating' => 'desc')
+		));
+
+		return $result;
+
+	}
+
+	public function getNewProducts() {
+	
+		
+
+	}
+
+	public function getPicksProducts($user_id) {
+
+		$sales_array = array();
+		$prod_ids_array = array();
+		$result = array();
+		foreach (ClassRegistry::init('Sale')->find('all', array('conditions'=>array('Sale.user_id' => $user_id))) as $row) {
+
+			$sale_id = $row['Sale']['id'];
+			$prod_sale = ClassRegistry::init('ProductSale')->find('all', array(
+				'conditions' => array('ProductSale.sale_id' => $sale_id)
+			));
+			foreach ($prod_sale as $row2) {
+				$prod_id = $row2['ProductSale']['product_id'];
+				if(!in_array($prod_id, $prod_ids_array)) {
+					array_push($prod_ids_array, $prod_id);
+				}
+			}			
+
+			foreach ($prod_ids_array as $prod) {
+				array_push($result, $this->find('first', array(
+					'conditions' => array('Product.id' => $prod),
+				)));
+			}
+
+		}
 
 		return $result;
 

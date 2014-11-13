@@ -79,13 +79,26 @@ class PagesController extends AppController {
 
     public function home() {
 
-        $this->set( 'products', $this->Product->getAllProducts() );
+	    if(!isset($parts['query'])) {
 
-        $query = array();
-        $url = $_SERVER['REQUEST_URI'];
-	    $parts = parse_url($url);
+	    	// HOME CATEGORIES
 
-	    if(isset($parts['query'])) {
+	        $this->set( 'products_hot', $this->Product->getHotProducts() );
+	        $this->set( 'products_sale', $this->Product->getSaleProducts() );
+	        $this->set( 'products_top_rated', $this->Product->getTopRatedProducts() );
+	        $this->set( 'products_new', $this->Product->getNewProducts() );
+	        $this->set( 'products_picks', $this->Product->getPicksProducts($this->Session->read('Auth.User.id')) );
+
+	    }
+	    else {
+
+	    	// SEARCH FUNCTION
+
+        	$query = array();
+        	$url = $_SERVER['REQUEST_URI'];
+	    	$parts = parse_url($url);
+	    	debug($parts);
+
 	    	parse_str($parts['query'], $query);
 
 	    	if(isset($query['op'])) {

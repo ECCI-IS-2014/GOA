@@ -1,7 +1,7 @@
 
 .catalog_item {
 
-	width: 193px;
+	width: 168px;
 	height: 310px;
 	display: inline-block;
 	float: left;
@@ -13,9 +13,9 @@
 
 .catalog_item img.product_photo {
 
-	width: 100px;
-	height: 100px;
-	margin-left: 40px;
+	width: 80px;
+	height: 80px;
+	margin-left: 45px;
 	margin-top: 20px;
 	cursor: pointer;
 
