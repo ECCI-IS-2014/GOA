@@ -173,6 +173,17 @@ class SalesController extends AppController {
         $this->set('totalCartProducts',$totalCartProducts);
         $this->set('prodCarts',$cart_Ids);
         $this->set('numProducts',$numProducts);
+
+        // borra carrito luego de pagar
+        $cart = array(0);
+        $this->Session->write('cart',$cart);
+        $numProducts = array(0);
+        $this->Session->write('numProducts',$numProducts);
+        $totalCartProducts = 0;
+        $this->Session->write('totalCartProducts',$totalCartProducts);
+        $this->Session->write('flag',0);
+
+
     }
 
 
