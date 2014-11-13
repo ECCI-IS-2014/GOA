@@ -35,19 +35,6 @@ class WishesController extends AppController {
         $this->set('wishesPro',$wishesPro);
 	}
 
-/**
- * view method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
-	public function view($id = null) {
-		if (!$this->Wish->exists($id)) {
-			throw new NotFoundException(__('Invalid wish'));
-		}
-
-	}
 
 /**
  * add method

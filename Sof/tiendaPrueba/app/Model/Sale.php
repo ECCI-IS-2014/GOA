@@ -31,4 +31,20 @@ class Sale extends AppModel {
 			'order' => ''
 		)
 	);
+
+/**
+ * hasMany associations
+ *
+ * @var array
+ */
+	public $hasMany = array(
+		'ProductSale' => array(
+			'className' => 'ProductSale',
+			'foreignKey' => 'sale_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+		)
+	);
 }

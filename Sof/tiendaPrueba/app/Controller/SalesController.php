@@ -22,16 +22,31 @@ class SalesController extends AppController {
  * @var array
  */
 	public $components = array('Paginator', 'Session');
-    public $uses = array('Product','Cart', 'Sale', 'CreditCard','ProductSale','User');
+    public $uses = array('Sale','Product','Cart','CreditCard','ProductSale','User');
+
 /**
  * index method
  *
  * @return void
  */
-
     public function index() {
         $this->Sale->recursive = 0;
         $this->set('sales', $this->Paginator->paginate());
+    }
+
+/**
+ * view method
+ *
+ * @throws NotFoundException
+ * @param string $id
+ * @return void
+ */
+    public function view($id = null) {
+        if (!$this->Sale->exists($id)) {
+            throw new NotFoundException(__('Invalid sale'));
+        }
+        $options = array('conditions' => array('Sale.' . $this->Sale->primaryKey => $id));
+        $this->set('sale', $this->Sale->find('first', $options));
     }
 
 
@@ -46,7 +61,7 @@ class SalesController extends AppController {
         $this->Session->write('flag',1);
         $this->Session->write('saleCart',$saleCart);
         $numProducts = $this->Session->read('numProducts');
-		 $fclient=$this->Session->read('Auth.User.frecuent_client');
+		$fclient=$this->Session->read('Auth.User.frecuent_client');
         $this->Session->write('numProductsSaleCart',$numProducts);
         $totalCartProducts = 0;
         $cart_Ids = array();
@@ -83,8 +98,6 @@ class SalesController extends AppController {
  *
  * @return void
  */
-
-
     public function add($subtotal = 0.0, $tax = 0.0,  $frequenly_costumer_discount = 0.0, $total= 0.0) {
         date_default_timezone_set('America/Costa_Rica');
         if (!empty($this->request->data)) {
