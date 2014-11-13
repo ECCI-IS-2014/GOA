@@ -23,16 +23,31 @@ class SalesController extends AppController {
  * @var array
  */
 	public $components = array('Paginator', 'Session');
-    public $uses = array('Product','Cart', 'Sale', 'CreditCard','ProductSale','User');
+    public $uses = array('Sale','Product','Cart','CreditCard','ProductSale','User');
+
 /**
  * index method
  *
  * @return void
  */
-
     public function index() {
         $this->Sale->recursive = 0;
         $this->set('sales', $this->Paginator->paginate());
+    }
+
+/**
+ * view method
+ *
+ * @throws NotFoundException
+ * @param string $id
+ * @return void
+ */
+    public function view($id = null) {
+        if (!$this->Sale->exists($id)) {
+            throw new NotFoundException(__('Invalid sale'));
+        }
+        $options = array('conditions' => array('Sale.' . $this->Sale->primaryKey => $id));
+        $this->set('sale', $this->Sale->find('first', $options));
     }
 
 
@@ -47,7 +62,7 @@ class SalesController extends AppController {
         $this->Session->write('flag',1);
         $this->Session->write('saleCart',$saleCart);
         $numProducts = $this->Session->read('numProducts');
-		 $fclient=$this->Session->read('Auth.User.frecuent_client');
+		$fclient=$this->Session->read('Auth.User.frecuent_client');
         $this->Session->write('numProductsSaleCart',$numProducts);
         $totalCartProducts = 0;
         $cart_Ids = array();
@@ -84,8 +99,6 @@ class SalesController extends AppController {
  *
  * @return void
  */
-
-
     public function add($subtotal = 0.0, $tax = 0.0,  $frequenly_costumer_discount = 0.0, $total= 0.0) {
         date_default_timezone_set('America/Costa_Rica');
         if (!empty($this->request->data)) {
@@ -280,9 +293,10 @@ class SalesController extends AppController {
 
     }
 	
-	 public function viewPdf(){
+	  public function viewPdf(){
         $id=$this->Session->read('Auth.User.id');
-        $uid=$this->Session->read('Auth.User.username');
+        $uname=$this->Session->read('Auth.User.name');
+        $ulast_name=$this->Session->read('Auth.User.last_name');
 
         if (!$id)
         {
@@ -292,7 +306,6 @@ class SalesController extends AppController {
 
         $datos_factura = $this->Sale->find('all',array('conditions'=>array('Sale.user_id'=>$this->Session->read('Auth.User.id')),'order'=>array('Sale.id'=>'DESC')));
         $vid=$datos_factura[0]['Sale']['id'];
-        $vmethod_payment_id=$datos_factura[0]['Sale']['method_payment_id'];
         $vsubtotal=$datos_factura[0]['Sale']['subtotal'];
         $vfrequenly_costumer_discount=$datos_factura[0]['Sale']['frequenly_costumer_discount'];
         $vtotal=$datos_factura[0]['Sale']['total'];
@@ -303,6 +316,8 @@ class SalesController extends AppController {
 
         $vproduct = $this->ProductSale->find('all',array('conditions'=>array('ProductSale.sale_id'=>$datos_factura[0]['Sale']['id']),'contain'=>array('Product'=>array('conditions'=>array('Product.id'=>'ProductSale.product_id')))));
         $quantity = $this->ProductSale->find('all',array('conditions'=>array('ProductSale.sale_id'=>$datos_factura[0]['Sale']['id'])));
+        $credit = $this->CreditCard->find('all',array('conditions'=>array('CreditCard.id'=>$datos_factura[0]['Sale']['method_payment_id'])));
+        $card=$credit[0]['CreditCard']['card_number'];
 
          switch($vcurrency){
              case 'Dollar':
@@ -315,13 +330,16 @@ class SalesController extends AppController {
                  $vcurrency = '¢';
          }
 
+
         $this->set('i', $i);
-        $this->set('user_id', $uid);
+        $this->set('user_name', $uname);
+        $this->set('user_last_name', $ulast_name);
         $this->set('quantity', $quantity);
         $this->set('vprod', $vproduct);
+        $this->set('card', $card);
         $this->set('currency', $vcurrency);
         $this->set('factura_id', $vid);
-        $this->set('method_payment_id', $vmethod_payment_id);
+        $this->set('credit', $credit);
         $this->set('subtotal', $vsubtotal);
         $this->set('frequenly_costumer_discount', $vfrequenly_costumer_discount);
         $this->set('total', $vtotal);

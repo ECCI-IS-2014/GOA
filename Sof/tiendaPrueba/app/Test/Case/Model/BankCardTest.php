@@ -62,7 +62,11 @@ class BankCardTest extends CakeTestCase {
 
     public function test_verify_information()
     {
+<<<<<<< Updated upstream
         $result = $this->BankCard->verify_information('2347190873276228','Pepito Perez Pereira','Mastercard','2015-11-01');
+=======
+        $result = $this->BankCard->verify_information('2347190873276228','Pepito Perez Pereira','Mastercard','2017-11-01');
+>>>>>>> Stashed changes
         $expected = true;
         $this->assertEquals($expected, $result);
     }

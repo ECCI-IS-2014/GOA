@@ -143,12 +143,15 @@ class ReviewsController extends AppController {
 
     public function add_review()
     {
-
+        $prod_id = $this->passedArgs['id'];
+        $this->set( 'prod_id', $prod_id);
     }
 
     public function save_review()
     {
-
+       $product_id = $this->passedArgs['id'];
+       $description = $this->data['Review']['description'];
+        echo $description;
     }
 
 }

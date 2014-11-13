@@ -25,12 +25,12 @@
             }
         }
         $tax = $total*0.13;
-		if($fclient){
+        if($fclient){
             $Frequenly_Costumer_Discount=$total*0.10;
         }else{
             $Frequenly_Costumer_Discount=0;
         }
-         $endTotal = $total + $tax - $Frequenly_Costumer_Discount;
+        $endTotal = $total + $tax - $Frequenly_Costumer_Discount;
     ?>
 
     <div id="head"> <?php echo $this->fetch('header1'); ?> </div>
@@ -40,7 +40,7 @@
             <!-- delivery address image -->
             <img src = "http://i.imgur.com/jYNSZ38.png" />
             <div id = "text">
-                    <h1 style = "font-weight: bold;"> Please to continue with your order, select a place to make the delivery. </h1>
+                    <h1 style = "font-weight: bold;"> To continue with your order, please select a delivery place. </h1>
                     <h1> San Jose, Costa Rica </h1>
                     <h1> 8 Street, 13 Avenue Garden's S.A  </h1>
                     <h1> 3 floor, Dep 12  </h1>
@@ -48,76 +48,73 @@
             </div>
             <br/>
 
-            <!-- payment method image -->
-            <img src = "http://i.imgur.com/oOHHzdb.png" />
-            <div id = "text">
-                <h1 style = "font-weight: bold;"> Please to continue with your order, select a method of payment. </h1>
-                <h1> We are please to accept: </h1>
-                <img src = "http://i.imgur.com/CM6REpc.png" />
-                <br>
-                <h1> You can select one of your cards already save it, or add a new card. </h1>
-                <div>
-               <form method="post" action="<?php echo $this->Html->url(array('controller' => 'sales','action' => 'add', $total,  $tax, $Frequenly_Costumer_Discount,  $endTotal ))?>" class="checkout">
+            <form method="post" action="<?php echo $this->Html->url(array('controller' => 'sales','action' => 'add', $total,  $tax, $Frequenly_Costumer_Discount,  $endTotal ))?>" class="checkout">
 
-                <select name="cards">
-                    <?php
-                        $cards = ClassRegistry::init('CreditCard')->listUserCreditCards($this->Session->read('Auth.User.id'));
-                        $this->set(compact('cards'));
-                        foreach ($cards as $id=>$card) {
-                            echo '<option value = "' . $id . '">' . $card . '</option>';
-                        }
-                    ?>
-                </select>
+                <!-- payment method image -->
+                <img src = "http://i.imgur.com/oOHHzdb.png" />
+                <div id="text">
+                    <h1 style = "font-weight: bold;"> To continue with your order, please select a method of payment. </h1>
+                    <h1> We are pleased to accept: </h1>
+                    <img src = "http://i.imgur.com/CM6REpc.png" />
+                    <br>
+                    <h1> You can select one of your credit cards, or add a new credit card. </h1>
+
+                    <select name="cards">
+                        <?php
+                            $cards = ClassRegistry::init('CreditCard')->listUserCreditCards($this->Session->read('Auth.User.id'));
+                            $this->set(compact('cards'));
+                            foreach ($cards as $id=>$card) {
+                                echo '<option value = "' . $id . '">' . $card . '</option>';
+                            }
+                        ?>
+                    </select>
+                    <br/><br/>
+                    <div class="link" style = "float: left;"><?php echo $this->Html->link(__('Add New Card'), array('controller' => 'credit_cards', 'action' => 'add')); ?></div>
+                    
+                    <!-- type of coin -->
+                    <br/><br/><br/>
+                    <h1 style = "font-weight: bold;">  Please choose the type of coin you want to pay with. </h1>
+                    <select name="currency" id="currency">
+                        <option value="1">Dollar</option>
+                        <option value="2">Euro</option>
+                        <option value="3">Colon</option>
+                    </select >
                 </div>
-                <br>
-                <div class="link" style = "float: left;"><?php echo $this->Html->link(__('Add New Card'), array('controller' => 'credit_cards', 'action' => 'add')); ?></div>
-                <br/>
-                <!-- type of coin -->
-                <br/>
-                <h1 style = "font-weight: bold;">  Please choose the type of coin you want to pay with. </h1>
-                <br>
-                <select name="currency" id="currency">
-                    <option value="1">Dollar</option>
-                    <option value="2">Euro</option>
-                    <option value="3">Colon</option>
-                </select >
 
                 <br/>
-            </div>
 
-            <!-- products image -->
-            <img src = "http://i.imgur.com/Tm3qbhM.png"  />
-            <div id="bodyCart">
-                <?php
-                if ( $totalCartProducts > 0 ) {
-                    echo $this->CatalogGenerator->formatSale($prodCarts, $numProducts );
-                }
-                ?>
-            </div>
+                <!-- products image -->
+                <img src = "http://i.imgur.com/Tm3qbhM.png"  />
+                <div id="bodyCart">
+                    <?php
+                    if ( $totalCartProducts > 0 ) {
+                        echo $this->CatalogGenerator->formatSale($prodCarts, $numProducts );
+                    }
+                    ?>
+                </div>
 
-             <div id = "total">
-                <p><b>Sub Total: </b></p>
-                <p class="currency"><?php echo $this->StringFormatter->formatCurrency( $total, '$'); ?></p>
-                <br/><br/>
+                <div id = "total">
+                    <p><b>Sub Total: </b></p>
+                    <p class="currency"><?php echo $this->StringFormatter->formatCurrency( $total, '$'); ?></p>
+                    <br/><br/>
 
-                <p><b>Tax: </b></p>
-                <p class="currency"><?php echo $this->StringFormatter->formatCurrency( $tax, '$'); ?></p>
-                <br/><br/>
+                    <p><b>Tax: </b></p>
+                    <p class="currency"><?php echo $this->StringFormatter->formatCurrency( $tax, '$'); ?></p>
+                    <br/><br/>
 
-                 <p><b>Frequenly Costumer Discount: </b></p>
-                 <p class="currency"><?php echo $this->StringFormatter->formatCurrency( $Frequenly_Costumer_Discount, '$'); ?></p>
-                 <br/><br/>
-				
-				<p><b>Total: </b></p>
-                <p class="currency"><?php echo $this->StringFormatter->formatCurrency( $endTotal, '$'); ?></p>
-                <br/><br/>
+                    <p><b>Frequent Customer Discount: </b></p>
+                    <p class="currency"><?php echo $this->StringFormatter->formatCurrency( $Frequenly_Costumer_Discount, '$'); ?></p>
+                    <br/><br/>
+                    
+                    <p><b>Total: </b></p>
+                    <p class="currency"><?php echo $this->StringFormatter->formatCurrency( $endTotal, '$'); ?></p>
+                    <br/><br/>
+                </div>
 
-            </div>
-
-            <h1 style="font-size: 16px; text-align: left; margin-left:4%;">
-                By clicking on the "Pay" button, you agree on FutureStore's conditions of use.
-            </h1>
-            <input id="PayButton" style = "float:left; margin-bottom:5%; margin-left:4%;"type="submit" value="Pay"/>
+                <h1 style="font-size: 16px; text-align: left; margin-left:4%;">
+                    By clicking on the "Pay" button, you agree on FutureStore's conditions of use.
+                </h1>
+                <input id="PayButton" style = "float:left; margin-bottom:5%; margin-left:4%;"type="submit" value="Pay"/>
 
             </form>
 

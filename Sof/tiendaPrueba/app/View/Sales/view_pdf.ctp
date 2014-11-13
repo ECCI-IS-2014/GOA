@@ -33,25 +33,28 @@ $tcpdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
 // set the text font and size
 $tcpdf->SetFont('times','',15);
 
+    $brand = $credit[0]['CreditCard']['brand'];
+    $last_number=substr($card, 12, 4);
+
 // set some text to print
 $txt = <<<EOD
 Date: $created
 Bill Number:  $factura_id
 
-User:  $user_id
+User:  $user_name $user_last_name
 
 Delivery Information:
     San Jose, Costa Rica
     8 Street, 13 Avenue Garden's S.A
     3 floor, Dep 12
 
-Payment Method:  $method_payment_id
+Payment Method:  $brand  ****-****-****-$last_number
 
 Products:
 EOD;
-//¢ $ € //los simbolos se pueden usar cuando lo de el cambio de  modena funcione bien
+
 // print a block of text using Write()
-$tcpdf->Write(10, $txt, '', 0, 'L', true, 0, false, false, 100, 100);
+$tcpdf->Write(10, $txt, '', 0, 'L', true, 0, false, false);
 
 for($i=0;$i<sizeof($vprod);$i++){
     $pname = $vprod[$i]['Product']['name'];
@@ -70,7 +73,7 @@ $txt1 = <<<EOD
           $currency$pprice  p/u.
 
 EOD;
-$tcpdf->Write(10, $txt1, '', 0, 'L', true, 0, false, false, 100, 100);
+$tcpdf->Write(10, $txt1, '', 0, 'L', true, 0, false, false);
 }
 
 $txt2 = <<<EOD
@@ -83,7 +86,7 @@ Frequenly Costumer Discount: $currency$frequenly_costumer_discount
 Total: $currency$total
 EOD;
 
-$tcpdf->Write(10, $txt2, '', 0, 'L', true, 0, false, false, 100, 100);
+$tcpdf->Write(10, $txt2, '', 0, 'L', true, 0, false, false);
 
 
 // reset pointer to the last page

@@ -20,12 +20,168 @@
 
 <div id="content">
 
-    AQUI VAN LOS PANELES DEL REVIEW
+
+    <div id="starHolder">
+
+        <img src="http://static.b2bmarketing.net/sites/default/files/image/articles/empty%20star_0.png" class="starHugger" id="star1">
+        <img src="http://static.b2bmarketing.net/sites/default/files/image/articles/empty%20star_0.png" class="starHugger" id="star2">
+        <img src="http://static.b2bmarketing.net/sites/default/files/image/articles/empty%20star_0.png" class="starHugger" id="star3">
+        <img src="http://static.b2bmarketing.net/sites/default/files/image/articles/empty%20star_0.png" class="starHugger" id="star4">
+        <img src="http://static.b2bmarketing.net/sites/default/files/image/articles/empty%20star_0.png" class="starHugger" id="star5">
+
+        <!--<img src="https://animationfascination.files.wordpress.com/2014/10/review-star.jpg"> -->
+
+    </div>
+    <div id="reviewHolder">
+        <?php
+
+            echo $this->Form->create(null, array('url' => array('controller' => 'reviews', 'action' => 'save_review','id'=>$prod_id) ));
+
+            echo $this->Form->input('Review.description',array('style'=>'width:45%; margin-left:28%; border-style:solid; border-width:1px; margin-top:2%; font-size:80%;','label'=>'','default'=>'No description','div'=>false));
+            echo $this->Form->button('Save',array('id'=>'saveReview'));
+            echo $this->Form->end();
+        ?>
+
+    </div>
 
 
 </div>
 
 <div id="foot">
 		<?php echo $this->fetch('footer1'); ?>
-
 </div>
+
+     <script type="text/javascript">
+         $(document).ready(function() {
+
+                    starText = $("<p style=\"display: inline;\"></p>")[0];
+                    rating = 0;
+                    clicked = false;
+                    $("#starHolder").append(starText);
+
+                    $("#star1").mouseenter(function()
+                    {
+                        $("#star1").attr('src', 'https://animationfascination.files.wordpress.com/2014/10/review-star.jpg');
+                        $("#star1").click(function()
+                        {
+                            rating=1;
+                            clicked = true;
+
+                        });
+                        if(clicked==false){starText.textContent = "Don't buy it!";}
+                    });
+
+                    $("#star1").mouseleave(function()
+                     {
+                       if(clicked==false)
+                       {
+                            $("#star1").attr('src', 'http://static.b2bmarketing.net/sites/default/files/image/articles/empty%20star_0.png');
+
+                            starText.textContent = "";
+                       }
+
+                     });
+
+                     $("#star2").mouseenter(function()
+                     {
+                       $("#star1").attr('src', 'https://animationfascination.files.wordpress.com/2014/10/review-star.jpg');
+                       $("#star2").attr('src', 'https://animationfascination.files.wordpress.com/2014/10/review-star.jpg');
+                       $("#star2").click(function()
+                       {
+                          rating=2;
+                          clicked = true;
+
+                       });
+                       if(clicked==false){starText.textContent = "Order something else!";}
+                     });
+
+                     $("#star2").mouseleave(function()
+                     {
+                       if(clicked==false)
+                       {
+                          $("#star1").attr('src', 'http://static.b2bmarketing.net/sites/default/files/image/articles/empty%20star_0.png');
+                          $("#star2").attr('src', 'http://static.b2bmarketing.net/sites/default/files/image/articles/empty%20star_0.png');
+                           starText.textContent = "";
+                       }
+                     });
+
+                     $("#star3").mouseenter(function()
+                     {
+                       $("#star1").attr('src', 'https://animationfascination.files.wordpress.com/2014/10/review-star.jpg');
+                       $("#star2").attr('src', 'https://animationfascination.files.wordpress.com/2014/10/review-star.jpg');
+                       $("#star3").attr('src', 'https://animationfascination.files.wordpress.com/2014/10/review-star.jpg');
+                       $("#star3").click(function()
+                                                                      {
+                                                                          rating=3;
+                                                                          clicked = true;
+
+                                                                      });
+
+                       if(clicked==false){starText.textContent = "You get what u paid for!";}
+                     });
+
+                     $("#star3").mouseleave(function()
+                     {
+                        if(clicked==false)
+                        {
+                          $("#star1").attr('src', 'http://static.b2bmarketing.net/sites/default/files/image/articles/empty%20star_0.png');
+                          $("#star2").attr('src', 'http://static.b2bmarketing.net/sites/default/files/image/articles/empty%20star_0.png');
+                          $("#star3").attr('src', 'http://static.b2bmarketing.net/sites/default/files/image/articles/empty%20star_0.png');
+                          starText.textContent = "";
+                        }
+
+                     });
+
+                      $("#star4").mouseenter(function()
+                     {
+                       $("#star1").attr('src', 'https://animationfascination.files.wordpress.com/2014/10/review-star.jpg');
+                       $("#star2").attr('src', 'https://animationfascination.files.wordpress.com/2014/10/review-star.jpg');
+                       $("#star3").attr('src', 'https://animationfascination.files.wordpress.com/2014/10/review-star.jpg');
+                       $("#star4").attr('src', 'https://animationfascination.files.wordpress.com/2014/10/review-star.jpg');
+                        $("#star4").click(function()
+                        {
+                            rating=4;
+                            clicked = true;
+                        });
+                       if(clicked==false){starText.textContent = "Really nice product!";}
+                     });
+
+                      $("#star4").mouseleave(function()
+                      {
+                        if(clicked==false){ $("#star1").attr('src', 'http://static.b2bmarketing.net/sites/default/files/image/articles/empty%20star_0.png');
+                        $("#star2").attr('src', 'http://static.b2bmarketing.net/sites/default/files/image/articles/empty%20star_0.png');
+                        $("#star3").attr('src', 'http://static.b2bmarketing.net/sites/default/files/image/articles/empty%20star_0.png');
+                        $("#star4").attr('src', 'http://static.b2bmarketing.net/sites/default/files/image/articles/empty%20star_0.png');
+                         starText.textContent = "";
+                         }
+                      });
+
+                      $("#star5").mouseenter(function()
+                      {
+                        $("#star1").attr('src', 'https://animationfascination.files.wordpress.com/2014/10/review-star.jpg');
+                        $("#star2").attr('src', 'https://animationfascination.files.wordpress.com/2014/10/review-star.jpg');
+                        $("#star3").attr('src', 'https://animationfascination.files.wordpress.com/2014/10/review-star.jpg');
+                        $("#star4").attr('src', 'https://animationfascination.files.wordpress.com/2014/10/review-star.jpg');
+                        $("#star5").attr('src', 'https://animationfascination.files.wordpress.com/2014/10/review-star.jpg');
+                        $("#star5").click(function()
+                        {
+                            rating=5;
+                            clicked = true;
+                        });
+
+                        if(clicked==false){starText.textContent = "Damn it's amazing!";}
+                      });
+
+                      $("#star5").mouseleave(function()
+                      {
+                        if(clicked==false){$("#star1").attr('src', 'http://static.b2bmarketing.net/sites/default/files/image/articles/empty%20star_0.png');
+                        $("#star2").attr('src', 'http://static.b2bmarketing.net/sites/default/files/image/articles/empty%20star_0.png');
+                        $("#star3").attr('src', 'http://static.b2bmarketing.net/sites/default/files/image/articles/empty%20star_0.png');
+                        $("#star4").attr('src', 'http://static.b2bmarketing.net/sites/default/files/image/articles/empty%20star_0.png');
+                        $("#star5").attr('src', 'http://static.b2bmarketing.net/sites/default/files/image/articles/empty%20star_0.png');
+                         starText.textContent = "";}
+                      });
+
+                });
+
+     </script>

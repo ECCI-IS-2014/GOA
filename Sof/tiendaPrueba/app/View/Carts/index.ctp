@@ -29,8 +29,11 @@
                 } else { ?>
 
                     <div>
-                        <h1 style="font-size: 18px; text-align: center;"> Your Cart is empty in this moment, what are you waiting to add some items!<h1>
-                        <h1 style="font-size: 18px; text-align: center;"><img src = "http://i.imgur.com/P7ssHqI.gif" /><h1>
+                        <br/>
+                        <h1 style="font-size: 18px; text-align: center;">
+                            Your Cart is empty at the moment, what are you waiting to add some items?!
+                        </h1>
+                        <div style="font-size: 18px; text-align: center;"><img src = "http://i.imgur.com/P7ssHqI.gif" /></div>
                     </div>
 
                 <?php } ?>
@@ -52,12 +55,14 @@
                         echo $this->StringFormatter->formatCurrency( $total, '$'); 
                     ?>
                 </div>
-                
+
+                <?php if ( $totalCartProducts > 0 ): ?>
                 <div>
                     <button id="PayButton" style = "float:left; margin-left:50%; margin-bottom:5%;">
                         <a href=<?php  echo $this->Html->url(array('controller' => 'sales','action' => 'checkout')); ?>>Check Out</a>
                     </button>
                 </div>
+                <?php endif ?>
 
             </div>
 

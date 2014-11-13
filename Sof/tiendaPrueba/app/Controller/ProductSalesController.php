@@ -16,7 +16,8 @@ class ProductSalesController extends AppController {
  */
 	public $components = array('Paginator', 'Session');
     public $helpers = array('CatalogGenerator', 'StringFormatter', 'Html');
-    public $uses = array('Product','Cart', 'Sale', 'CreditCard', 'ProductSale');
+    public $uses = array('ProductSale','Product','Cart', 'Sale', 'CreditCard');
+
 /**
  * index method
  *
@@ -25,21 +26,6 @@ class ProductSalesController extends AppController {
 	public function index() {
 		$this->ProductSale->recursive = 0;
 		$this->set('productSales', $this->Paginator->paginate());
-	}
-
-/**
- * view method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
-	public function view($id = null) {
-		if (!$this->ProductSale->exists($id)) {
-			throw new NotFoundException(__('Invalid product sale'));
-		}
-		$options = array('conditions' => array('ProductSale.' . $this->ProductSale->primaryKey => $id));
-		$this->set('productSale', $this->ProductSale->find('first', $options));
 	}
 
 /**

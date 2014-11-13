@@ -241,6 +241,12 @@
                     </a>
                 </li>
 
+                <li>
+                    <a href="<?php echo $this->Html->url(array('controller' => 'sales','action' => 'index'));?>">
+                        Sales
+                    </a>
+                </li>
+
                 <?php if ($this->Session->read('Auth.User.id') != null): ?>
                 <li>
                     <?php echo $this->Html->link('Logout', array('controller' => 'users', 'action' => 'logout')); ?>
