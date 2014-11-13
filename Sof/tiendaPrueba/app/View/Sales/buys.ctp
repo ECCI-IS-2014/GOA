@@ -37,25 +37,23 @@
 
             <p style="font-weight:bold; margin-left:10%;margin-top:20px;">Products:&nbsp;</p>
             <div style="font-size: 15px; margin-left:20%;">
-                 <div id="bodyCart">
+                <div id="bodyCart">
                     <?php
                         $currency =   h($sale['Sale']['currency']);
-                       if ( $totalCartProducts > 0 ) {
+                        if ( $totalCartProducts > 0 ) {
                            echo $this->CatalogGenerator->formatSaleFact($prodCarts, $numProducts, $currency);
-                       }
+                        }
                     ?>
-                    </div>
-         </div>
+                </div>
+            </div>
             <?php
                 $currency = h($sale['Sale']['currency']);
 
                 $symbol = '$';
                 if($currency == 'Euro') {
                     $symbol = '€';
-                } else {
-                    if($currency == 'Colon') {
-                        $symbol = '¢';
-                    }
+                } elseif($currency == 'Colon') {
+                    $symbol = '¢';
                 }
             ?>
             <?php
@@ -63,15 +61,16 @@
             ?>
             <p style="font-weight:bold;  margin-left:10%;">Currency:&nbsp;   <?php echo h($sale['Sale']['currency']); ?> </p>
             <p style="font-weight:bold;  margin-left:10%;">SubTotal:&nbsp; <?php echo $symbol . h($sale['Sale']['subtotal']); ?></p>
-            <p style="font-weight:bold;  margin-left:10%;">Tax:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp; <?php echo '+'.$symbol .h($sale['Sale']['tax']); ?></p>
-            <p style="font-weight:bold;  margin-left:10%;">Frequenly Costumer Discount:&nbsp;</p> <h1 style="font-size: 15px; margin-left:19%;font-weight:bold;"> <?php echo '-'.$symbol .h($sale['Sale']['frequenly_costumer_discount']); ?> </h1>
-            <p style="font-weight:bold;  margin-left:10%;">Total:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp;  <?php echo $symbol .h($sale['Sale']['total']); ?> </p>
+            <p style="font-weight:bold;  margin-left:10%;">Tax:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo '+'.$symbol .h($sale['Sale']['tax']); ?></p>
+            <p style="font-weight:bold;  margin-left:10%;">Frequent Customer Discount:&nbsp;</p> <h1 style="font-size: 15px; margin-left:19%;font-weight:bold;"> <?php echo '-'.$symbol .h($sale['Sale']['frequenly_costumer_discount']); ?> </h1>
+            <p style="font-weight:bold;  margin-left:10%;">Total:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <?php echo $symbol .h($sale['Sale']['total']); ?> </p>
 
     </div>
-        <button id="PayButton" style = "float:left; margin-left:50%; margin-bottom:5%;">
-           <a href=<?php echo $this->Html->url(array('controller' => 'sales','action' => 'viewPdf'))?>>Create PDF</a>
-        </button>
-    <tbody>
+
+    <button id="PayButton" style = "float:left; margin-left:50%; margin-bottom:5%;">
+       <a href=<?php echo $this->Html->url(array('controller' => 'sales','action' => 'viewPdf'))?>>Create PDF</a>
+    </button>
+    
     <div style="clear:both"></div>
 
     <div id="foot"><?php echo $this->fetch('footer1'); ?></div>
