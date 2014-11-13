@@ -15,7 +15,7 @@ class ReviewsController extends AppController {
  * @var array
  */
 	public $components = array('Paginator', 'Session');
-    public $uses = array('ProductSale','Rating','Sale');
+    public $uses = array('ProductSale','Rating','Sale','Review','Product');
 
 
 
@@ -145,13 +145,67 @@ class ReviewsController extends AppController {
     {
         $prod_id = $this->passedArgs['id'];
         $this->set( 'prod_id', $prod_id);
+        $this->set( 'rating', 0);
     }
 
     public function save_review()
     {
-       $product_id = $this->passedArgs['id'];
-       $description = $this->data['Review']['description'];
-        echo $description;
+       $prod_id = $this->passedArgs['id'];
+       $rating = $this->passedArgs['rating'];
+       $description = $this->passedArgs['description'];
+       $user_id=$this->Session->read('Auth.User.id');
+       $data = array('user_id' => $user_id,'product_id'=>$prod_id,'description'=>$description,'rating'=>$rating);
+       $this->Review->save($data);
+       if($rating>0)
+       {
+           $this->rateProduct($prod_id,$rating);
+       }
+      return $this->redirect(array('controller' => 'Products', 'action' => 'productInside','id'=>$prod_id));
+        //echo $rating;
+    }
+
+    public function rateProduct( $id, $newRating  ) {
+        $this->Product->id = $id;
+        if ( $this->Product->exists() && $newRating > 0 && $newRating <= 5 ) {
+            $prod = $this->Product->Rating->read( null, $id );
+            switch ( $newRating ) {
+                case 1:
+                    $rating = $prod['Rating']['rating1'] + 1;
+                    $this->Product->Rating->set('rating1', $rating );
+                    $this->Product->Rating->save();
+                    break;
+                case 2:
+                    $rating = $prod['Rating']['rating2'] + 1;
+                    $this->Product->Rating->set('rating2', $rating );
+                    $this->Product->Rating->save();
+                    break;
+                case 3:
+                    $rating = $prod['Rating']['rating3'] + 1;
+                    $this->Product->Rating->set('rating3', $rating );
+                    $this->Product->Rating->save();
+                    break;
+                case 4:
+                    $rating = $prod['Rating']['rating4'] + 1;
+                    $this->Product->Rating->set('rating4', $rating );
+                    $this->Product->Rating->save();
+                    break;
+                case 5:
+                    $rating = $prod['Rating']['rating5'] + 1;
+                    $this->Product->Rating->set('rating5', $rating );
+                    $this->Product->Rating->save();
+                    break;
+            }
+            $prod = $this->Product->Rating->read( null, $id );
+            $numRates = $prod['Rating']['rating1'] + $prod['Rating']['rating2'] + $prod['Rating']['rating3']
+                + $prod['Rating']['rating4'] + $prod['Rating']['rating5'];
+            $rating = $prod['Rating']['rating1'] + $prod['Rating']['rating2']*2 + $prod['Rating']['rating3']*3
+                + $prod['Rating']['rating4']*4 + $prod['Rating']['rating5']*5;
+            $rating = $rating/$numRates;
+            $this->Product->set('rating', $rating );
+            $this->Product->save();
+        }
+
+
     }
 
 }

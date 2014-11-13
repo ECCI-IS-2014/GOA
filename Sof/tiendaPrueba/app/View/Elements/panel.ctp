@@ -97,19 +97,7 @@
 
 <?php $this->start('reviewsPanel'); ?>
 
-    Reviews
-
-    <div id = "OtherUsersReviewsPanel">
-
-
-
-    </div>
-
-    <div id="addReviewPanel">
-
-
-
-    </div>
+    <?php echo $this->CatalogGenerator->displayReviews($reviews, 30 ); ?>
 
 
 <?php $this->end(); ?>

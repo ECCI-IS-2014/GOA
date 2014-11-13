@@ -363,6 +363,25 @@ class CatalogGeneratorHelper extends AppHelper {
         return $result_string.'</div>';
     }
 
+    public function displayReviews($reviews, $limit = null)
+    {
+        echo $this->Html->css('catalogs');
+        $result_string = '<div type="review">';
+
+        for($i = 0; $i < count($reviews); $i++) {
+
+            if( $i < $limit || is_null($limit) ) {
+
+
+                $result_string = $result_string."<div style='float:left'>".$this->displayRatingBox($reviews[$i]['Review']['rating'])."</div>"."<p style='float:left'>".$reviews[$i]['Review']['description']."</p>"."<p style='float:left'>".$reviews[$i]['Review']['user_id']."</p>"."<div style='clear:both'></div>";
+            }
+
+        }
+
+        return $result_string . '</div>';
+
+    }
+
 }
 
 

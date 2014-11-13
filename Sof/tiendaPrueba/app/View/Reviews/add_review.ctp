@@ -33,14 +33,9 @@
 
     </div>
     <div id="reviewHolder">
-        <?php
 
-            echo $this->Form->create(null, array('url' => array('controller' => 'reviews', 'action' => 'save_review','id'=>$prod_id) ));
 
-            echo $this->Form->input('Review.description',array('style'=>'width:45%; margin-left:28%; border-style:solid; border-width:1px; margin-top:2%; font-size:80%;','label'=>'','default'=>'No description','div'=>false));
-            echo $this->Form->button('Save',array('id'=>'saveReview'));
-            echo $this->Form->end();
-        ?>
+        <input type="text" id="ReviewDescription" value="No description provided">
 
     </div>
 
@@ -55,7 +50,12 @@
          $(document).ready(function() {
 
                     starText = $("<p style=\"display: inline;\"></p>")[0];
-                    rating = 0;
+                    product_id = "<?php echo $prod_id; ?>";
+                    s1c = false;
+                    s2c = false;
+                    s3c = false;
+                    s4c = false;
+                    s5c = false;
                     clicked = false;
                     $("#starHolder").append(starText);
 
@@ -66,7 +66,15 @@
                         {
                             rating=1;
                             clicked = true;
+                            s1c = true;
 
+                            var butt = "<button id='saveReview'><a id = 'lin' href = 'http://localhost/GOA/Sof/tiendaPrueba/reviews/save_review/id:"+product_id+"/rating:1'>Save</a></button>";
+                            $("#ReviewDescription").after(butt);
+                            $("#lin").click(function()
+                            {
+                                var t = $("#ReviewDescription").value;
+                                $("#lin").attr('href', 'http://localhost/GOA/Sof/tiendaPrueba/reviews/save_review/id:'+product_id+'/rating:1/description:'+t);
+                            });
                         });
                         if(clicked==false){starText.textContent = "Don't buy it!";}
                     });
@@ -90,6 +98,15 @@
                        {
                           rating=2;
                           clicked = true;
+                          s2c = true;
+                           s1c = true;
+                                                         var butt = "<button id='saveReview'><a id = 'lin' href = 'http://localhost/GOA/Sof/tiendaPrueba/reviews/save_review/id:"+product_id+"/rating:2'>Save</a></button>";
+                                                      $("#ReviewDescription").after(butt);
+                                                       $("#lin").click(function()
+                                                                                  {
+                                                                                      var t = $("#ReviewDescription").value;
+                                                                                      $("#lin").attr('href', 'http://localhost/GOA/Sof/tiendaPrueba/reviews/save_review/id:'+product_id+'/rating:2/description:'+t);
+                                                                                  });
 
                        });
                        if(clicked==false){starText.textContent = "Order something else!";}
@@ -114,6 +131,15 @@
                                                                       {
                                                                           rating=3;
                                                                           clicked = true;
+                                                                          s3c = true;
+                                                                           s1c = true;
+                                                                             var butt = "<button id='saveReview'><a id = 'lin' href = 'http://localhost/GOA/Sof/tiendaPrueba/reviews/save_review/id:"+product_id+"/rating:3'>Save</a></button>";
+                                                                                                      $("#ReviewDescription").after(butt);
+                                                                                                       $("#lin").click(function()
+                                                                                                                                  {
+                                                                                                                                      var t = $("#ReviewDescription").value;
+                                                                                                                                      $("#lin").attr('href', 'http://localhost/GOA/Sof/tiendaPrueba/reviews/save_review/id:'+product_id+'/rating:3/description:'+t);
+                                                                                                                                  });
 
                                                                       });
 
@@ -140,8 +166,18 @@
                        $("#star4").attr('src', 'https://animationfascination.files.wordpress.com/2014/10/review-star.jpg');
                         $("#star4").click(function()
                         {
+                            s4c = true;
                             rating=4;
                             clicked = true;
+                             s1c = true;
+
+                               var butt = "<button id='saveReview'><a id = 'lin' href = 'http://localhost/GOA/Sof/tiendaPrueba/reviews/save_review/id:"+product_id+"/rating:4'>Save</a></button>";
+                                                        $("#ReviewDescription").after(butt);
+                                                         $("#lin").click(function()
+                                                                                    {
+                                                                                        var t = $("#ReviewDescription").value;
+                                                                                        $("#lin").attr('href', 'http://localhost/GOA/Sof/tiendaPrueba/reviews/save_review/id:'+product_id+'/rating:4/description:'+t);
+                                                                                    });
                         });
                        if(clicked==false){starText.textContent = "Really nice product!";}
                      });
@@ -165,8 +201,17 @@
                         $("#star5").attr('src', 'https://animationfascination.files.wordpress.com/2014/10/review-star.jpg');
                         $("#star5").click(function()
                         {
+                            s5c = true;
                             rating=5;
                             clicked = true;
+                             s1c = true;
+                                 var butt = "<button id='saveReview'><a id = 'lin' href = 'http://localhost/GOA/Sof/tiendaPrueba/reviews/save_review/id:"+product_id+"/rating:5'>Save</a></button>";
+                                                        $("#ReviewDescription").after(butt);
+                                                         $("#lin").click(function()
+                                                                                    {
+                                                                                        var t = $("#ReviewDescription").value;
+                                                                                        $("#lin").attr('href', 'http://localhost/GOA/Sof/tiendaPrueba/reviews/save_review/id:'+product_id+'/rating:5/description:'+t);
+                                                                                    });
                         });
 
                         if(clicked==false){starText.textContent = "Damn it's amazing!";}
