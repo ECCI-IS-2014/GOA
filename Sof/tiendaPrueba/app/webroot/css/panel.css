@@ -113,3 +113,25 @@
     margin-bottom: 20px;
     margin-top: 25px;
 }
+
+.starHugger
+{
+    height:4.5%;
+    width:4.5%;
+
+
+}
+
+#starHolder
+{
+    margin-top: 3%;
+    margin-left: 40%;
+}
+
+#saveReview
+{
+    margin-left:50%;
+    margin-top:2%;
+    margin-bottom:2%;
+
+}
