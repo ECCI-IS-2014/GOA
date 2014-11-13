@@ -24,9 +24,9 @@
                 $total = $total + $price * $numProducts[$i];
             }
         }
-        $tax = $total/13;
+        $tax = $total*0.13;
 		if($fclient){
-            $Frequenly_Costumer_Discount=$total/10;
+            $Frequenly_Costumer_Discount=$total*0.10;
         }else{
             $Frequenly_Costumer_Discount=0;
         }

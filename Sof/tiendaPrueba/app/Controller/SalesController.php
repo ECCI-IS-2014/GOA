@@ -77,22 +77,6 @@ class SalesController extends AppController {
     }
 
 
-/**
- * view method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
-
-    /*
-	public function view($id = null) {
-		if (!$this->Sale->exists($id)) {
-			throw new NotFoundException(__('Invalid sale'));
-		}
-		$options = array('conditions' => array('Sale.' . $this->Sale->primaryKey => $id));
-		$this->set('sale', $this->Sale->find('first', $options));
-	}*/
 
 /**
  * add method
@@ -177,31 +161,41 @@ class SalesController extends AppController {
         $this->set('numProducts',$numProducts);
     }
 
-/**
- * edit method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- *
- */
-    /*
-    public function edit($id = null) {
-    $cart = $this->Session->read('cart');
-    $numProducts = $this->Session->read('numProducts');
 
+    public function order () {
+        $cart = $this->Session->read('saleCart');
+        $numProducts = $this->Session->read('numProductsSaleCart');
+        $totalCartProducts = 0;
+        $cart_Ids = array();
 
-        $pos = array_search($id,$cart);
-    if ( $pos != false ) {
-        if ($this->request->is(array('post', 'put'))) {
-            $data = $this->request->data;
-            $numProducts[$pos] = $data['cantidad'];
+        for( $i = 0; $i < count($cart); $i++ ) {
+            $product = $this->Product->find('first', array('conditions'=>array('Product.id'=>$cart[$i])));
+            array_push($cart_Ids,$product);
+            if ( $i > 0 ) {
+                if ( $i > 0 && $product['Product']['enable_product'] == 0 ) {
+                    // Revisa que el producto no haya sido deshabilitado
+                    $numProducts[$i] = 0;
+                    $this->Session->write('numProductsSaleCart',$numProducts);
+                } elseif( $product['Product']['quantity'] < $numProducts[$i] ) {
+                    // Mantiene la cantidad de productos por comprar limitada por la quantity del producto
+                    $numProducts[$i] = $product['Product']['quantity'];
+                    $this->Session->write('numProductsSaleCart',$numProducts);
+                }
+            }
+            $totalCartProducts = $totalCartProducts + $numProducts[$i];
         }
-    }
-    $this->Session->write('numProducts',$numProducts);
-    return $this->redirect(array('controller' => 'carts', 'action' => 'index'));
 
-}*/
+
+
+
+        $this->set('totalCartProducts',$totalCartProducts);
+        $this->set('numProducts',$numProducts);
+        $this->set('prodCarts',$cart_Ids);
+        $allSales = $this->Sale->find('all',array('conditions'=>array('Sale.user_id'=>$this->Session->read('Auth.User.id'))));
+        $this->set('allSales', $allSales);
+    }
+
+
 
 /**
  * delete method

@@ -42,7 +42,7 @@
                     </li>
 
                     <li>
-                        <a href="<?php echo $this->Html->url(array('controller' => 'sales','action' => 'buys'));?>">
+                        <a href="<?php echo $this->Html->url(array('controller' => 'sales','action' => 'order'));?>">
                             MyOrders
                         </a>
                     </li>
