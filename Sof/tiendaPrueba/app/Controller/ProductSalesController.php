@@ -64,4 +64,11 @@ class ProductSalesController extends AppController {
         return $this->redirect(array('controller' => 'Sales', 'action' => 'buys'));
 	}
 
+
+    public function getProdsFacts(){
+
+        $allProdBySales = $this->ProductSale->find('all',array('order'=>array('Sale.id'=>'DESC')));
+        return $allProdBySales;
+    }
+
 }

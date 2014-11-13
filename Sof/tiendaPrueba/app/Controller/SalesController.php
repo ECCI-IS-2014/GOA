@@ -1,5 +1,6 @@
 <?php
 App::uses('AppController', 'Controller');
+App::import('Controller', 'ProductSales');
 /**
  * Sales Controller
  *
@@ -163,35 +164,11 @@ class SalesController extends AppController {
 
 
     public function order () {
-        $cart = $this->Session->read('saleCart');
-        $numProducts = $this->Session->read('numProductsSaleCart');
-        $totalCartProducts = 0;
-        $cart_Ids = array();
+        $ProductSales = new ProductSalesController;
+        $allProdBySales = $ProductSales->getProdsFacts();
+        $this->set('allProdBySales', $allProdBySales);
 
-        for( $i = 0; $i < count($cart); $i++ ) {
-            $product = $this->Product->find('first', array('conditions'=>array('Product.id'=>$cart[$i])));
-            array_push($cart_Ids,$product);
-            if ( $i > 0 ) {
-                if ( $i > 0 && $product['Product']['enable_product'] == 0 ) {
-                    // Revisa que el producto no haya sido deshabilitado
-                    $numProducts[$i] = 0;
-                    $this->Session->write('numProductsSaleCart',$numProducts);
-                } elseif( $product['Product']['quantity'] < $numProducts[$i] ) {
-                    // Mantiene la cantidad de productos por comprar limitada por la quantity del producto
-                    $numProducts[$i] = $product['Product']['quantity'];
-                    $this->Session->write('numProductsSaleCart',$numProducts);
-                }
-            }
-            $totalCartProducts = $totalCartProducts + $numProducts[$i];
-        }
-
-
-
-
-        $this->set('totalCartProducts',$totalCartProducts);
-        $this->set('numProducts',$numProducts);
-        $this->set('prodCarts',$cart_Ids);
-        $allSales = $this->Sale->find('all',array('conditions'=>array('Sale.user_id'=>$this->Session->read('Auth.User.id'))));
+        $allSales = $this->Sale->find('all',array('conditions'=>array('Sale.user_id'=>$this->Session->read('Auth.User.id')), 'order'=>array('Sale.id'=>'DESC')));
         $this->set('allSales', $allSales);
     }
 
