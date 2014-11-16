@@ -36,6 +36,14 @@ class ProductSaleTest extends CakeTestCase {
  *
  * @return void
  */
+
+    public function testGetAll() {
+        $p_sales = $this->ProductSale->getAllProductSales();
+        // en fixtures se tienen 1 product sale definida
+        $this->assertCount( 1, $p_sales );
+    }
+
+
 	public function tearDown() {
 		unset($this->ProductSale);
 

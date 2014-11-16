@@ -27,6 +27,15 @@ class SaleTest extends CakeTestCase {
 		$this->Sale = ClassRegistry::init('Sale');
 	}
 
+
+/*
+    public function testGetAll() {
+        $p_sales = $this->Sale->getAllSales();
+        // en fixtures se tienen 1 product sale definida
+        $this->assertCount( 1, $p_sales );
+    }
+*/
+
 /**
  * tearDown method
  *

@@ -32,4 +32,14 @@ class ProductSale extends AppModel {
 			'order' => ''
 		)
 	);
+
+
+    public function getAllProductSales() {
+        $result = $this->find('all');
+        return $result;
+    }
+
+
 }
+
+

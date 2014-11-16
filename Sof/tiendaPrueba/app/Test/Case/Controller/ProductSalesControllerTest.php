@@ -27,43 +27,61 @@ class ProductSalesControllerTest extends ControllerTestCase {
  * @return void
  */
 	public function testIndex() {
-		$this->markTestIncomplete('testIndex not implemented.');
+        $result = $this->testAction('/productSales/index');
+        $this->assertInternalType('array', $this->vars['productSales']);
+        debug($result);
+
+        //$this->markTestIncomplete('testIndex not implemented.');
 	}
 
-/**
- * testView method
- *
- * @return void
- */
-	public function testView() {
-		$this->markTestIncomplete('testView not implemented.');
-	}
 
-/**
- * testAdd method
- *
- * @return void
- */
-	public function testAdd() {
-		$this->markTestIncomplete('testAdd not implemented.');
-	}
+    public function testPay() {
 
-/**
- * testEdit method
- *
- * @return void
- */
-	public function testEdit() {
-		$this->markTestIncomplete('testEdit not implemented.');
-	}
+        $ProductSales = $this->generate('ProductSales', array(
+            'components' => array(
+                'Session'
+            )
+        ));
+        $Products = $this->generate('Products', array(
+            'components' => array(
+                'Session'
+            )
+        ));
 
-/**
- * testDelete method
- *
- * @return void
- */
-	public function testDelete() {
-		$this->markTestIncomplete('testDelete not implemented.');
-	}
+        $product = $Products->Product->find('first', array('conditions'=>array('Product.id'=>1)));
+        $ProductSales->ProductSale->query("INSERT INTO product_sales (sale_id,product_id,quantity, price,discount) VALUES(2,".$product['Product']['id'].",1,".$product['Product']['price'].",0);");
+
+        $productsFact = $ProductSales->ProductSale->find('all', array('conditions'=>array('ProductSale.sale_id'=>2)));
+        if ($productsFact != null) {
+            $expected = true;
+        } else {
+            $expected = false;
+        }
+        //primera prueba, find wishes
+        $this->assertEquals(true, $expected);
+
+
+    }
+
+
+    public function testGetProdsFacts(){
+        $ProductSales = $this->generate('ProductSales', array(
+            'components' => array(
+                'Session'
+            )
+        ));
+
+        $allProdBySales = $ProductSales->ProductSale->find('all', array('conditions'=>array('ProductSale.id'=>1)));
+        if ($allProdBySales != null) {
+            $expected = true;
+        } else {
+            $expected = false;
+        }
+        //primera prueba, find wishes
+        $this->assertEquals(true, $expected);
+
+    }
+
+
 
 }

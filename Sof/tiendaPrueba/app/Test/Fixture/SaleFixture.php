@@ -37,9 +37,9 @@ class SaleFixture extends CakeTestFixture {
 			'id' => 1,
 			'user_id' => 1,
 			'method_payment_id' => 1,
-			'subtotal' => '',
-			'frequenly_costumer_discount' => '',
-			'total' => '',
+			'subtotal' => '2000',
+			'frequenly_costumer_discount' => '0',
+			'total' => '2000',
 			'created' => '2014-11-05 03:48:50',
 			'modified' => '2014-11-05 03:48:50',
 			'tax' => 1

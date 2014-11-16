@@ -38,8 +38,8 @@ class ProductSaleFixture extends CakeTestFixture {
 			'sale_id' => 1,
 			'product_id' => 1,
 			'quantity' => 1,
-			'price' => '',
-			'discount' => ''
+			'price' => '20',
+			'discount' => '0'
 		),
 	);
 

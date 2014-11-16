@@ -47,4 +47,11 @@ class Sale extends AppModel {
 			'order' => '',
 		)
 	);
+
+
+    public function getAllSales() {
+        $result = $this->find('all');
+        return $result;
+    }
+
 }
