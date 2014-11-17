@@ -14,6 +14,7 @@ class SaleTest extends CakeTestCase {
  */
 	public $fixtures = array(
 		'app.sale',
+        'app.product_sale',
 		'app.user'
 	);
 
@@ -28,13 +29,17 @@ class SaleTest extends CakeTestCase {
 	}
 
 
-/*
+
     public function testGetAll() {
         $p_sales = $this->Sale->getAllSales();
         // en fixtures se tienen 1 product sale definida
-        $this->assertCount( 1, $p_sales );
+        $this->assertCount( 2, $p_sales );
     }
-*/
+
+
+
+
+
 
 /**
  * tearDown method
