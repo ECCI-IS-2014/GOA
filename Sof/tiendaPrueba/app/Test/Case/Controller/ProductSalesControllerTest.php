@@ -30,8 +30,6 @@ class ProductSalesControllerTest extends ControllerTestCase {
         $result = $this->testAction('/productSales/index');
         $this->assertInternalType('array', $this->vars['productSales']);
         debug($result);
-
-        //$this->markTestIncomplete('testIndex not implemented.');
 	}
 
 

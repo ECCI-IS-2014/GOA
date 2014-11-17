@@ -25,33 +25,8 @@ class SalesController extends AppController {
 	public $components = array('Paginator', 'Session');
     public $uses = array('Sale','Product','Cart','CreditCard','ProductSale','User');
 
-/**
- * index method
- *
- * @return void
- */
-    public function index() {
-        $this->Sale->recursive = 0;
-        $this->set('sales', $this->Paginator->paginate());
-    }
 
-/**
- * view method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
-    public function view($id = null) {
-        if (!$this->Sale->exists($id)) {
-            throw new NotFoundException(__('Invalid sale'));
-        }
-        $options = array('conditions' => array('Sale.' . $this->Sale->primaryKey => $id));
-        $this->set('sale', $this->Sale->find('first', $options));
-    }
-
-
-    // index de factura practicamente
+    // works like the index
     public function checkout() {
 
         if ($this->Session->read('flag') == 0) {

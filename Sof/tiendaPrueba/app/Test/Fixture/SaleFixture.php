@@ -44,6 +44,17 @@ class SaleFixture extends CakeTestFixture {
 			'modified' => '2014-11-05 03:48:50',
 			'tax' => 1
 		),
+        array(
+            'id' => 2,
+            'user_id' => 1,
+            'method_payment_id' => 1,
+            'subtotal' => '5000',
+            'frequenly_costumer_discount' => '1000',
+            'total' => '5000',
+            'created' => '2014-11-05 03:48:50',
+            'modified' => '2014-11-05 03:48:50',
+            'tax' => 1
+        ),
 	);
 
 }
