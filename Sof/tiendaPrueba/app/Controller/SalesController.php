@@ -341,8 +341,8 @@ class SalesController extends AppController {
 
     public function check_tracking(){
         date_default_timezone_set('America/Costa_Rica');
-        $primera=2;
-        $segunda=3;
+        $primera=1;
+        $segunda=2;
         $tracking = "Not dispatched";
         $fechafactura1= mktime(date('h'), date('i')+$primera, 0, date('m'), date('d'), date('Y'));
         //$fechafactura1=date("Y-m-d h:i", $fechafactura1);
@@ -361,14 +361,19 @@ class SalesController extends AppController {
         for ($i=0; $i < sizeof($query); $i++) {
            $fechafactura=$query[$i]['Sale']['created'];
 
-            if(substr($fechafactura, 0, 16)>= date("Y-m-d h:i", $fechafactura1))
+            if(substr($fechafactura, 0, 16)> date("Y-m-d h:i", $fechafactura2))
             {
+
                 $tracking = "mailBox";
 
-            }elseif (substr($fechafactura, 0, 16)>= date("Y-m-d h:i", $fechafactura2)){
+            }elseif (substr($fechafactura, 0, 16)<= date("Y-m-d h:i", $fechafactura1)){
 
                 $tracking = "Committed";
+            }else{
+
+                $tracking = "Not dispatched";
             }
+
             $this->Sale->query("UPDATE sales SET tracking='$tracking' WHERE id = ".$query[$i]['Sale']['id'].";");
 
         }
