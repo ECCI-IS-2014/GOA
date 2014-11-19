@@ -23,7 +23,7 @@ class SalesController extends AppController {
  * @var array
  */
 	public $components = array('Paginator', 'Session');
-    public $uses = array('Sale','Product','Cart','CreditCard','ProductSale','User');
+    public $uses = array('Sale','Product','Cart','CreditCard','ProductSale','User','Adress');
 
 
     // works like the index
@@ -59,7 +59,8 @@ class SalesController extends AppController {
             $totalCartProducts = $totalCartProducts + $numProducts[$i];
         }
         $this->Session->write('totalSaleCartProducts',$totalCartProducts);
-
+        $adresses = $this->Adress->find('all', array('conditions'=>array('Adress.user_id'=>$this->Session->read('Auth.User.id'))));
+        $this->set('adresses',$adresses);
         $this->set('totalCartProducts',$totalCartProducts);
         $this->set('prodCarts',$cart_Ids);
         $this->set('numProducts',$numProducts);

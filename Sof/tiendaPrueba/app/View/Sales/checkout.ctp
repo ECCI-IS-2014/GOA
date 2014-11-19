@@ -39,12 +39,16 @@
 
             <!-- delivery address image -->
             <img src = "http://i.imgur.com/jYNSZ38.png" />
-            <div id = "text">
-                    <h1 style = "font-weight: bold;"> To continue with your order, please select a delivery place. </h1>
+            <div id = "adressHugher">
+                   <!-- <h1 style = "font-weight: bold;"> To continue with your order, please select a delivery place. </h1>
                     <h1> San Jose, Costa Rica </h1>
                     <h1> 8 Street, 13 Avenue Garden's S.A  </h1>
                     <h1> 3 floor, Dep 12  </h1>
                     <div class="link"><?php echo $this->Html->link(__('Change Address'), array('action' => '')); ?> </div>
+                    -->
+                  <?php  echo $this->CatalogGenerator->formatAdress($adresses, null); ?>
+
+
             </div>
             <br/>
 
