@@ -342,43 +342,41 @@ class SalesController extends AppController {
     public function check_tracking(){
         date_default_timezone_set('America/Costa_Rica');
         $primera=1;
-        $segunda=2;
+        $segunda=3;
         $tracking = "Not dispatched";
-        $fechafactura1= mktime(date('h'), date('i')+$primera, 0, date('m'), date('d'), date('Y'));
+        //$fechaSistema1= mktime(date('H'), date('i')+$primera, 0, date('m'), date('d'), date('Y'));
         //$fechafactura1=date("Y-m-d h:i", $fechafactura1);
         //$this->set('fechafactura1', $fechafactura1);
 
-        $fechafactura2= mktime(date('h'), date('i')+$segunda, 0, date('m'), date('d'), date('Y'));
+        //$fechaSistema3= mktime(date('H'), date('i')+$segunda, 0, date('m'), date('d'), date('Y'));
         //$fechafactura2=date("Y-m-d h:i", $fechafactura2);
         //$this->set('fechafactura2', $fechafactura2);
+
+
         $query = $this->Sale->find('all',array('conditions'=>array('Sale.user_id'=>$this->Session->read('Auth.User.id'))));
-
-       // $fechafactura=$query[0]['Sale']['created'];
-       // $hola =substr($fechafactura, 0, 16);
-        //$this->set('fechafactura1', $hola);
-        //$this->set('fechafactura2', date("Y-m-d h:i", $fechafactura1));
-
         for ($i=0; $i < sizeof($query); $i++) {
            $fechafactura=$query[$i]['Sale']['created'];
+            $fechafactura1 = mktime(substr($fechafactura, 11, 2), substr($fechafactura, 14, 2)+$primera, 0, substr($fechafactura, 5, 2), substr($fechafactura, 8, 2), substr($fechafactura, 0, 4));
+            $fechafactura2 = mktime(substr($fechafactura, 11, 2), substr($fechafactura, 14, 2)+$segunda, 0, substr($fechafactura, 5, 2), substr($fechafactura, 8, 2), substr($fechafactura, 0, 4));
+            $fechafactura11=date("Y-m-d H:i", $fechafactura1);
+            $fechafactura22=date("Y-m-d H:i", $fechafactura2);
+            $fechaSistema = date('Y-m-d H:i');
 
-            if(substr($fechafactura, 0, 16)> date("Y-m-d h:i", $fechafactura2))
+
+            if($fechaSistema < $fechafactura11)
             {
+                $tracking = "Not dispatched";
+
+            }elseif (($fechaSistema >= $fechafactura11) && ($fechaSistema<=$fechafactura22)){
 
                 $tracking = "mailBox";
-
-            }elseif (substr($fechafactura, 0, 16)<= date("Y-m-d h:i", $fechafactura1)){
-
+            }else {
                 $tracking = "Committed";
-            }else{
 
-                $tracking = "Not dispatched";
             }
-
             $this->Sale->query("UPDATE sales SET tracking='$tracking' WHERE id = ".$query[$i]['Sale']['id'].";");
 
         }
-
-
     }
 
 
