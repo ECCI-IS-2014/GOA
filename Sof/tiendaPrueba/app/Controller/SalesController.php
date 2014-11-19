@@ -167,6 +167,7 @@ class SalesController extends AppController {
         $allProdBySales = $ProductSales->getProdsFacts();
         $this->set('allProdBySales', $allProdBySales);
 
+        $this->check_tracking();
         $allSales = $this->Sale->find('all',array('conditions'=>array('Sale.user_id'=>$this->Session->read('Auth.User.id')), 'order'=>array('Sale.id'=>'DESC')));
         $this->set('allSales', $allSales);
     }
@@ -335,5 +336,45 @@ class SalesController extends AppController {
         $this->layout = 'pdf'; //this will use the pdf.ctp layout
         $this->render();
     }
+
+
+    public function check_tracking(){
+        date_default_timezone_set('America/Costa_Rica');
+        $primera=2;
+        $segunda=3;
+        $tracking = "Not dispatched";
+        $fechafactura1= mktime(date('h'), date('i')+$primera, 0, date('m'), date('d'), date('Y'));
+        //$fechafactura1=date("Y-m-d h:i", $fechafactura1);
+        //$this->set('fechafactura1', $fechafactura1);
+
+        $fechafactura2= mktime(date('h'), date('i')+$segunda, 0, date('m'), date('d'), date('Y'));
+        //$fechafactura2=date("Y-m-d h:i", $fechafactura2);
+        //$this->set('fechafactura2', $fechafactura2);
+        $query = $this->Sale->find('all',array('conditions'=>array('Sale.user_id'=>$this->Session->read('Auth.User.id'))));
+
+       // $fechafactura=$query[0]['Sale']['created'];
+       // $hola =substr($fechafactura, 0, 16);
+        //$this->set('fechafactura1', $hola);
+        //$this->set('fechafactura2', date("Y-m-d h:i", $fechafactura1));
+
+        for ($i=0; $i < sizeof($query); $i++) {
+           $fechafactura=$query[$i]['Sale']['created'];
+
+            if(substr($fechafactura, 0, 16)>= date("Y-m-d h:i", $fechafactura1))
+            {
+                $tracking = "mailBox";
+
+            }elseif (substr($fechafactura, 0, 16)>= date("Y-m-d h:i", $fechafactura2)){
+
+                $tracking = "Committed";
+            }
+            $this->Sale->query("UPDATE sales SET tracking='$tracking' WHERE id = ".$query[$i]['Sale']['id'].";");
+
+        }
+
+
+    }
+
+
 	
 }

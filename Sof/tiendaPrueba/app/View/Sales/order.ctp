@@ -91,7 +91,8 @@
             </div>
             <p style="font-weight:bold;  margin-left:10%;">Total:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp;  <?php echo $symbol .h($sale['Sale']['total']); ?> </p>
             <h1 style="margin-left:9%;margin-top:10px;"><img src = "http://i.imgur.com/PYPOkLu.png" /><h1>
-
+                 <?php   // echo $fechafactura1." ||| ";
+                         // echo  $fechafactura2; ?>
              <?php if  (h($sale['Sale']['tracking'])== "Not dispatched") { ?>
 
                  <p style=" margin-left:10%;margin-top:20px;"> <b/>Right now:</b>  Not Dispatched. Packing installations FutureStore. &nbsp;</p>
