@@ -111,6 +111,66 @@
             </div>
         </div>
 
+
+        <div class="related" style="margin:0 15px;">
+            <br/><br/>
+            <h3><?php echo __('Addresses'); ?></h3>
+            <?php if (/*!empty($user['CreditCard'])*/1): ?>
+
+            <h4 style="color: #2c6877"><?php echo __('Billing address'); ?></h4>
+            <table cellpadding = "0" cellspacing = "0">
+            <tr>
+                <th><?php echo __('Country'); ?></th>
+                <th><?php echo __('State/Province'); ?></th>
+                <th><?php echo __('Detail'); ?></th>
+                <th><?php echo __('ZIP code'); ?></th>
+                <th class="actions"><?php echo __(' '); ?></th>
+            </tr>
+                <tr>
+                    <td>Costa Rica</td>
+                    <td>San José</td>
+                    <td>Contiguo al palo de mango</td>
+                    <td>11111</td>
+                    <td class="actions">
+                        <?php echo $this->Form->postLink(__('Edit'), array('controller' => 'addresses', 'action' => 'edit', 1), array()); ?>
+                    </td>
+                </tr>
+            </table>
+
+            <br /><br /><br />
+
+            <h4 style="color: #2c6877"><?php echo __('Shipping addresses'); ?></h4>
+            <table cellpadding = "0" cellspacing = "0">
+            <tr>
+                <th><?php echo __('Country'); ?></th>
+                <th><?php echo __('State/Province'); ?></th>
+                <th><?php echo __('Detail'); ?></th>
+                <th><?php echo __('ZIP code'); ?></th>
+                <th class="actions"><?php echo __(' '); ?></th>
+            </tr>
+            <?php /*foreach ($user['CreditCard'] as $creditCard):*/ ?>
+                <tr>
+                    <td>Costa Rica</td>
+                    <td>San José</td>
+                    <td>Contiguo al palo de mango</td>
+                    <td>11111</td>
+                    <td class="actions">
+                        <?php echo $this->Form->postLink(__('Edit'), array('controller' => 'addresses', 'action' => 'edit', 1), array()); ?>
+                        <?php echo $this->Form->postLink(__('Delete'), array('controller' => 'addresses', 'action' => 'delete', 1), array(), __('Are you sure you want to delete this address?')); ?>
+                    </td>
+                </tr>
+            <?php /*endforeach;*/ ?>
+            </table>
+
+            <?php endif; ?>
+
+            <div class="actions">
+                <ul>
+                    <li><?php echo $this->Html->link(__('New Address'), array('controller' => 'addresses', 'action' => 'add')); ?> </li>
+                </ul>
+            </div>
+        </div>
+
     </div> 
 
     <div style="clear:both"></div>
