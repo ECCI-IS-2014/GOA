@@ -46,7 +46,7 @@
                     <h1> 3 floor, Dep 12  </h1>
                     <div class="link"><?php echo $this->Html->link(__('Change Address'), array('action' => '')); ?> </div>
                     -->
-                  <?php  echo $this->CatalogGenerator->formatAdress($adresses, null); ?>
+                  <?php  echo $this->CatalogGenerator->formatAddress($addresses, null); ?>
 
 
             </div>
