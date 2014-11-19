@@ -92,12 +92,23 @@
             <p style="font-weight:bold;  margin-left:10%;">Total:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp;  <?php echo $symbol .h($sale['Sale']['total']); ?> </p>
             <h1 style="margin-left:9%;margin-top:10px;"><img src = "http://i.imgur.com/PYPOkLu.png" /><h1>
 
-            <p style=" margin-left:10%;margin-top:20px;"> <b/>Right now:</b> Packing installations FutureStore Laboratory 105.&nbsp;</p>
-            <p style=" margin-left:10%;margin-top:20px;"><b>Next installment:</b> Arrival at a regional hub near destination. &nbsp;</p>
+             <?php if  (h($sale['Sale']['tracking'])== "Not dispatched") { ?>
+
+                 <p style=" margin-left:10%;margin-top:20px;"> <b/>Right now:</b>  Not Dispatched. Packing installations FutureStore. &nbsp;</p>
+                 <p style=" margin-left:10%;margin-top:20px;"><b>Next installment:</b> Arrival at a mailBox. &nbsp;</p>
+                <h1 style="margin-left:10%;"><img src = "http://i.imgur.com/qIoXxXY.png" /><h1>
+              <?php } elseif  (h($sale['Sale']['tracking'])== "mailBox") { ?>
+                   <p style=" margin-left:10%;margin-top:20px;"> <b/>Right now:</b>  Arrival at a mailBox.  &nbsp;</p>
+                   <p style=" margin-left:10%;margin-top:20px;"><b>Next installment:</b> Committed. Arrival at a regional hub near destination. &nbsp;</p>
+                   <h1 style="margin-left:10%;"><img src = "http://i.imgur.com/MQ6iaEr.png" /><h1>
+             <?php } else { ?>
+                   <p style=" margin-left:10%;margin-top:20px;"> <b/>Right now:</b>  Committed.  &nbsp;</p>
+                   <h1 style="margin-left:10%;"><img src = "http://i.imgur.com/Cbmllcx.png" /><h1>
+             <?php }?>
         </div>
      <?php endforeach; ?>
     <?php } else { ?>
-      <h1 style="font-size: 18px; text-align: center;"> You haven't ordered anything yet. Go choose something you like!<h1>
+      <h1 style="font-size: 18px; text-align: center;"> You haven't ordered anything yet. Go choose something you like! <h1>
       <h1 style="font-size: 18px; text-align: center;"><img src = "http://i.imgur.com/ogQxWJu.gif" /><h1>
     <?php }  ?>
     <div style="clear:both"></div>

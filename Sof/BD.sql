@@ -151,6 +151,7 @@ CREATE TABLE IF NOT EXISTS `sales` (
 	`created` datetime NOT NULL,
 	`modified` datetime NOT NULL,
 	`tax` decimal(9,2) NOT NULL DEFAULT '0.00',
+	`tracking` varchar(30) NOT NULL DEFAULT 'Not dispatched',
 	PRIMARY KEY (`id`),
 	KEY `FK_sales_user_id` (`user_id`),
 	KEY `FK_sales_method_payment_id` (`method_payment_id`)
