@@ -382,6 +382,35 @@ class CatalogGeneratorHelper extends AppHelper {
 
     }
 
+    public function formatAdress($adresses, $limit = null)
+    {
+        echo $this->Html->css('catalogs');
+        $result_string = '<div>';
+
+        for($i = 0; $i < count($adresses); $i++) {
+
+            if( $i < $limit || is_null($limit) ) {
+
+                $result_string = $result_string."<div class='adress_item'>".
+                "<p>".$adresses[$i]['Adress']['city']."</p>".
+
+
+
+
+
+
+
+                "</div>";
+            }
+
+        }
+
+        return $result_string . '</div>';
+
+
+
+    }
+
 }
 
 
