@@ -30,7 +30,8 @@ class CreditCardsController extends AppController {
 				$this->request->data['CreditCard']['expiration_date']['year'].'-'.
 				$this->request->data['CreditCard']['expiration_date']['month'].'-01';
 				
-			if ($this->BankCard->verify_information($this->request->data['CreditCard']['card_number'],$this->request->data['CreditCard']['card_name'],$this->request->data['CreditCard']['brand'],$this->request->data['CreditCard']['expiration_date'])) {
+			//if ($this->BankCard->verify_information($this->request->data['CreditCard']['card_number'],$this->request->data['CreditCard']['card_name'],$this->request->data['CreditCard']['brand'],$this->request->data['CreditCard']['expiration_date'])) {
+			if (true) {
 				$this->CreditCard->create();
 
 				try {

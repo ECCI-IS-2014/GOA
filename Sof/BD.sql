@@ -35,11 +35,24 @@ CREATE TABLE IF NOT EXISTS `addresses` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `country` varchar(50) NOT NULL,
+  `state` varchar(50) NOT NULL,
   `city` varchar(50) NOT NULL,
   `street` varchar(50) NOT NULL,
+  `is_billing` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `addresses_ibfk_1` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+
+--
+-- Volcado de datos para la tabla `addresses`
+--
+
+INSERT INTO `addresses` (`id`, `user_id`, `country`, `state`, `city`, `street`, `is_billing`) VALUES
+(1, 3, 'Costa Rica', 'San Jose', 'San Pedro', '250mts Norte de la iglesia', 1),
+(2, 3, 'Costa Rica', 'San Jose', 'Curridabat', '125mts Oeste del palo de mango', 0),
+(3, 2, 'Costa Rica', 'Heredia', 'Heredia', 'Al lado de la esquina', 1),
+(4, 2, 'Costa Rica', 'Heredia', 'Belen', '50mts Norte de la escuela', 0),
+(5, 2, 'Costa Rica', 'Heredia', 'San Joaquin', 'Al frente de la plaza', 0);
 
 -- --------------------------------------------------------
 
