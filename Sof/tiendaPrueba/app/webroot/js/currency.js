@@ -7,6 +7,7 @@ $(document).ready(init);
 function init() {
 
     currency = $('.currency');
+
     currencyOriginal = [];
 
     for(var i = 0; i < currency.length; i++) {
@@ -14,6 +15,7 @@ function init() {
     }
 
     $('#currency').on('change', refresh);
+    $('.addressSelect').on('click',ship);
 }
 
 function refresh(){
@@ -32,5 +34,17 @@ function refresh(){
                 currency[i].textContent = "¢" + (currencyOriginal[i] * 539.374326).toFixed(2);
                 break;
         }
+    }
+}
+
+function ship()
+{
+    //var address = $('#addressSelect').
+    var id = $('input[type=radio][name=addressSelector]:checked').attr('id');
+    var t = $("#"+id+".select").text();
+    if(t=='Costa Rica'){
+        $("#ship").text("$6");
+    }else{
+        $("#ship").text("$35");
     }
 }

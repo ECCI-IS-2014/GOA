@@ -16,3 +16,14 @@
     margin-left:10%;
     text-align: left;
 }
+
+.address_item
+{
+    float:left;
+    margin-right: 2%;
+    border: solid;
+    border-width: 1px;
+    border-color: lightgray;
+    padding: .5% .5% .5% .5%;
+
+}

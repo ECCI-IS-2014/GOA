@@ -34,25 +34,20 @@
     ?>
 
     <div id="head"> <?php echo $this->fetch('header1'); ?> </div>
-
+     <form method="post" action="<?php echo $this->Html->url(array('controller' => 'sales','action' => 'add', $total,  $tax, $Frequenly_Costumer_Discount,  $endTotal ))?>" class="checkout">
     <div id="contentF">
 
             <!-- delivery address image -->
             <img src = "http://i.imgur.com/jYNSZ38.png" />
             <div id = "adressHugher">
-                   <!-- <h1 style = "font-weight: bold;"> To continue with your order, please select a delivery place. </h1>
-                    <h1> San Jose, Costa Rica </h1>
-                    <h1> 8 Street, 13 Avenue Garden's S.A  </h1>
-                    <h1> 3 floor, Dep 12  </h1>
-                    <div class="link"><?php echo $this->Html->link(__('Change Address'), array('action' => '')); ?> </div>
-                    -->
+
                   <?php  echo $this->CatalogGenerator->formatAddress($addresses, null); ?>
 
 
             </div>
             <br/>
 
-            <form method="post" action="<?php echo $this->Html->url(array('controller' => 'sales','action' => 'add', $total,  $tax, $Frequenly_Costumer_Discount,  $endTotal ))?>" class="checkout">
+
 
                 <!-- payment method image -->
                 <img src = "http://i.imgur.com/oOHHzdb.png" />
@@ -113,6 +108,11 @@
                     <p><b>Total: </b></p>
                     <p class="currency"><?php echo $this->StringFormatter->formatCurrency( $endTotal, '$'); ?></p>
                     <br/><br/>
+
+                    <p><b>Shipping: </b></p>
+                    <p id="ship"></p>
+                    <br/><br/>
+
                 </div>
 
                 <h1 style="font-size: 16px; text-align: left; margin-left:4%;">

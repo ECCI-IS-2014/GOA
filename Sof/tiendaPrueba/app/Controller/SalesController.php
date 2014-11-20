@@ -81,6 +81,7 @@ class SalesController extends AppController {
             $data = $this->request->data;
             $method_payment_id = $data['cards'];
             $coin = $data['currency'];
+            $address = $data['addressSelector'];
             $user_id=$this->Session->read('Auth.User.id');
 
             switch($coin){
@@ -100,7 +101,7 @@ class SalesController extends AppController {
                     $tax = $tax * 539.374326;
             }
 
-            $data = array('user_id' => $user_id,'method_payment_id' => $method_payment_id, 'subtotal' =>  round($subtotal,2), 'frequenly_costumer_discount' => $frequenly_costumer_discount, 'total' => round($total,2), 'currency' => $coin, 'tax' => round($tax,2));
+            $data = array('user_id' => $user_id,'method_payment_id' => $method_payment_id, 'subtotal' =>  round($subtotal,2), 'frequenly_costumer_discount' => $frequenly_costumer_discount, 'total' => round($total,2), 'currency' => $coin, 'tax' => round($tax,2), 'address_id' => $address);
             if ($this->Sale->save($data)) {
                 $this->Session->write('sale_id',$this->Sale->id);
                 $this->Session->setFlash(__('Thank you for buying in FutureStore, your products are on the way!'));
