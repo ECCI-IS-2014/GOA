@@ -339,21 +339,18 @@ class SalesController extends AppController {
     }
 
 
-    public function check_tracking(){
+    public function check_tracking($idUser = null){
         date_default_timezone_set('America/Costa_Rica');
         $primera=1;
         $segunda=3;
         $tracking = "Not dispatched";
-        //$fechaSistema1= mktime(date('H'), date('i')+$primera, 0, date('m'), date('d'), date('Y'));
-        //$fechafactura1=date("Y-m-d h:i", $fechafactura1);
-        //$this->set('fechafactura1', $fechafactura1);
-
-        //$fechaSistema3= mktime(date('H'), date('i')+$segunda, 0, date('m'), date('d'), date('Y'));
-        //$fechafactura2=date("Y-m-d h:i", $fechafactura2);
-        //$this->set('fechafactura2', $fechafactura2);
 
 
-        $query = $this->Sale->find('all',array('conditions'=>array('Sale.user_id'=>$this->Session->read('Auth.User.id'))));
+       if ($idUser == null) {
+            $query = $this->Sale->find('all',array('conditions'=>array('Sale.user_id'=>$this->Session->read('Auth.User.id'))));
+        } else {  // es una test
+           $query = $this->Sale->find('all',array('conditions'=>array('Sale.user_id'=>1)));
+        }
         for ($i=0; $i < sizeof($query); $i++) {
            $fechafactura=$query[$i]['Sale']['created'];
             $fechafactura1 = mktime(substr($fechafactura, 11, 2), substr($fechafactura, 14, 2)+$primera, 0, substr($fechafactura, 5, 2), substr($fechafactura, 8, 2), substr($fechafactura, 0, 4));

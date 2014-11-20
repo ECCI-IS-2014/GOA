@@ -14,12 +14,16 @@ class SalesControllerTest extends ControllerTestCase {
  */
 	public $fixtures = array(
 		'app.sale',
-		'app.user'
+		'app.user',
+        'app.product_sale'
 	);
+
+    public $components = array('Paginator', 'Session');
+    public $uses = array('Sale', 'Product_Sale');
 
 
 	public function testCheckout() {
-/*
+
         $Sales = $this->generate('Sales', array(
             'components' => array(
                 'Session'
@@ -31,7 +35,7 @@ class SalesControllerTest extends ControllerTestCase {
             )
         ));
 
-
+/*
         // reiniciando parametros
 
         $this->Session->write('saleCart');
@@ -58,26 +62,68 @@ class SalesControllerTest extends ControllerTestCase {
         $this->Session->write('frequent_client',false);
         $Sales->Session->write('flag',1);
  */
-        // llamando metodo de checkout */
-        $this->markTestIncomplete('testEdit not implemented.');
+
 	}
 
 /**
- * testEdit method
+ * test de seguimiento [tracking]  method
  *
  * @return void
  */
-	public function testEdit() {
-		$this->markTestIncomplete('testEdit not implemented.');
-	}
+	public function testCheck_tracking() {
+        $Sales = $this->generate('Sales', array(
+            'components' => array(
+                'Session'
+            )
+        ));
 
-/**
- * testDelete method
- *
- * @return void
- */
-	public function testDelete() {
-		$this->markTestIncomplete('testDelete not implemented.');
-	}
+        $ProductSales = $this->generate('ProductSales', array(
+            'components' => array(
+                'Session'
+            )
+        ));
+
+
+        // se probará que el user con id 1 tiene 2 facturas asociadas, ya hechas en fixtures
+        $query = $Sales->Sale->find('all',array('conditions'=>array('Sale.user_id'=>1)));
+        if ($query != null) {
+            $expected = true;
+        } else {
+            $expected = false;
+        }
+        //primera prueba
+        $this->assertEquals(true, $expected);
+
+        // segunda prueba
+
+       // se llama al metodo checkout con el id del usuario que queremos probar (en este caso nuestro usuario con id = 1)
+        // para corroborar el metodo con sus facturas en fixture tenemos una factura en pasado a la fecha del servidor y
+        // otra en un tiempo muy futuro al servidor
+
+        $Sales->Sale = new SalesController();
+        $Sales->Sale->check_tracking(1);
+        if ($query[0]['Sale']['tracking'] == "Committed") {
+            $expected = true;
+        } else {
+            $expected = false;
+        }
+        // prueba del primer fixture con date pasada -> deberia estar entregada
+        $this->assertEquals(true, $expected);
+
+        if ($query[1]['Sale']['tracking'] == "Not dispatched") {
+            $expected = true;
+        } else {
+            $expected = false;
+        }
+        // prueba del primer fixture con date futura -> deberia estar en Not dispatched
+        $this->assertEquals(true, $expected);
+
+
+
+
+    }
+
+
+
 
 }
