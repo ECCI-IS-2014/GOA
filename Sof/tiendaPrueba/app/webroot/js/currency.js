@@ -21,17 +21,24 @@ function init() {
 function refresh(){
 
     var coin = $('#currency')[0].selectedOptions[0].value;
+    var shipping =  $('#ship').text($('#ship').text().replace('$',''));
 
     for(var i = 0; i < currency.length; i++){
         switch(coin) {
             case '1':
                 currency[i].textContent = '$' + (currencyOriginal[i] * 1).toFixed(2);
+                shipping = (shipping * 1).toFixed(2);
+                $("#ship").text("$"+shipping);
                 break;
             case '2':
                 currency[i].textContent = "€" + (currencyOriginal[i] * 0.804547301).toFixed(2);
+               shipping = (shipping * 0.804547301).toFixed(2);
+               $("#ship").text("€"+shipping);
                 break;
             case '3':
                 currency[i].textContent = "¢" + (currencyOriginal[i] * 539.374326).toFixed(2);
+                shipping = (shipping * 539.374326).toFixed(2);
+                $("#ship").text("¢"+shipping);
                 break;
         }
     }
