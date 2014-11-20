@@ -59,12 +59,12 @@
                                             echo $this->CatalogGenerator->formatProducts( $products_top_rated ); 
                                           ?>
                                         </div>
-                                        <div id="new_pane" class="catalog_holder named">
+                                        <!--<div id="new_pane" class="catalog_holder named">
                                           <h3>Newly added</h3>
                                           <?php 
                                             echo $this->CatalogGenerator->formatProducts( $products_new ); 
                                           ?>
-                                        </div>
+                                        </div>-->
                                         <div id="picks_pane" class="catalog_holder named">
                                           <h3>Our picks for <?php echo $this->Session->read('Auth.User.name'); ?></h3>
                                           <?php 
@@ -169,104 +169,7 @@
 
         });
 
-        //Hot slider manual events
-        $("#hot_pane.catalog_holder").mousemove(function(e){
-            if ((e.pageX - $(this).offset().left) < $(this).width() / 5) {
-                hot_slider.startSlidingLeft();
-            }
-            else {
-                if ((e.pageX - $(this).offset().left) > ($(this).width() / 5)*4) {
-                    hot_slider.startSlidingRight();
-                }
-                else {
-                    hot_slider.stopSliding();
-                }
-            }
-        });
-
-        $("#hot_pane.catalog_holder").mouseleave(function(){
-            hot_slider.stopSliding();
-        });
-
-
-        //Sales slider manual events
-        $("#sales_pane.catalog_holder").mousemove(function(e){
-            if ((e.pageX - $(this).offset().left) < $(this).width() / 5) {
-                sales_slider.startSlidingLeft();
-            }
-            else {
-                if ((e.pageX - $(this).offset().left) > ($(this).width() / 5)*4) {
-                    sales_slider.startSlidingRight();
-                }
-                else {
-                    sales_slider.stopSliding();
-                }
-            }
-        });
-
-        $("#sales_pane.catalog_holder").mouseleave(function(){
-            sales_slider.stopSliding();
-        });
-
-
-        //Top rated slider manual events
-        $("#top_rated_pane.catalog_holder").mousemove(function(e){
-            if ((e.pageX - $(this).offset().left) < $(this).width() / 5) {
-                top_rated_slider.startSlidingLeft();
-            }
-            else {
-                if ((e.pageX - $(this).offset().left) > ($(this).width() / 5)*4) {
-                    top_rated_slider.startSlidingRight();
-                }
-                else {
-                    top_rated_slider.stopSliding();
-                }
-            }
-        });
-
-        $("#top_rated_pane.catalog_holder").mouseleave(function(){
-            top_rated_slider.stopSliding();
-        });
-
-
-        //Newly added slider manual events
-        $("#new_pane.catalog_holder").mousemove(function(e){
-            if ((e.pageX - $(this).offset().left) < $(this).width() / 5) {
-                new_slider.startSlidingLeft();
-            }
-            else {
-                if ((e.pageX - $(this).offset().left) > ($(this).width() / 5)*4) {
-                    new_slider.startSlidingRight();
-                }
-                else {
-                    new_slider.stopSliding();
-                }
-            }
-        });
-
-        $("#new_pane.catalog_holder").mouseleave(function(){
-            new_slider.stopSliding();
-        });
-
-
-        //Our picks slider manual events
-        $("#picks_pane.catalog_holder").mousemove(function(e){
-            if ((e.pageX - $(this).offset().left) < $(this).width() / 5) {
-                picks_slider.startSlidingLeft();
-            }
-            else {
-                if ((e.pageX - $(this).offset().left) > ($(this).width() / 5)*4) {
-                    picks_slider.startSlidingRight();
-                }
-                else {
-                    picks_slider.stopSliding();
-                }
-            }
-        });
-
-        $("#picks_pane.catalog_holder").mouseleave(function(){
-            picks_slider.stopSliding();
-        });
+        
 
 
 

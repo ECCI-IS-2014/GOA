@@ -110,13 +110,11 @@
 }
 
 #home_panel_wrapper > div, #home_panel_wrapper .catalog_holder {
-    width: 100%;
+    width: 1050px;
     min-height: 40px;
     overflow: hidden;
-}
-
-#home_panel_wrapper .catalog_holder {
-    margin-bottom: 5px;
+    margin: 0 auto 5px auto;
+    z-index: 100;
 }
 
 #home_panel_wrapper .catalog_holder h3 {
@@ -136,4 +134,24 @@
     margin-left: 4%;
     margin-bottom: 20px;
     margin-top: 25px;
+}
+
+#hot_pane {
+
+}
+
+#sales_pane {
+
+}
+
+#top_rated_pane {
+
+}
+
+#new_pane {
+
+}
+
+#picks_pane {
+
 }

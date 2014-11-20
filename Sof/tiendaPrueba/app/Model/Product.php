@@ -214,7 +214,7 @@ class Product extends AppModel {
 	public function getTopRatedProducts() {
 		
 		$result = $this->find('all', array(
-			'conditions' => array('Product.rating >' => '1'),
+			'conditions' => array('Product.rating >' => '2'),
 			'order' => array('Product.rating' => 'desc')
 		));
 
