@@ -301,6 +301,7 @@ class SalesController extends AppController {
         $vcreated=$datos_factura[0]['Sale']['created'];
         $vtax=$datos_factura[0]['Sale']['tax'];
         $vcurrency=$datos_factura[0]['Sale']['currency'];
+        $vshipping=$datos_factura[0]['Sale']['shipping'];
         $i=0;
 
         $vproduct = $this->ProductSale->find('all',array('conditions'=>array('ProductSale.sale_id'=>$datos_factura[0]['Sale']['id']),'contain'=>array('Product'=>array('conditions'=>array('Product.id'=>'ProductSale.product_id')))));
@@ -319,8 +320,18 @@ class SalesController extends AppController {
                  $vcurrency = '¢';
          }
 
+          $Address=$this->Address->find('all',array('conditions'=>array('Address.id'=>$datos_factura[0]['Sale']['address_id'])));
+          $country=$Address[0]['Address']['country'];
+          $state=$Address[0]['Address']['state'];
+          $city=$Address[0]['Address']['city'];
+          $street=$Address[0]['Address']['street'];
 
         $this->set('i', $i);
+        $this->set('country', $country);
+        $this->set('state', $state);
+        $this->set('city', $city);
+        $this->set('street', $street);
+        $this->set('shipping', $vshipping);
         $this->set('user_name', $uname);
         $this->set('user_last_name', $ulast_name);
         $this->set('quantity', $quantity);
@@ -342,17 +353,25 @@ class SalesController extends AppController {
 
     public function check_tracking($idUser = null){
         date_default_timezone_set('America/Costa_Rica');
-        $primera=1;
-        $segunda=3;
-        $tracking = "Not dispatched";
 
 
-       if ($idUser == null) {
+        if ($idUser == null) {
             $query = $this->Sale->find('all',array('conditions'=>array('Sale.user_id'=>$this->Session->read('Auth.User.id'))));
         } else {  // es una test
-           $query = $this->Sale->find('all',array('conditions'=>array('Sale.user_id'=>1)));
+            $query = $this->Sale->find('all',array('conditions'=>array('Sale.user_id'=>1)));
         }
+
         for ($i=0; $i < sizeof($query); $i++) {
+            $Address=$this->Address->find('all',array('conditions'=>array('Address.id'=>$query[$i]['Sale']['address_id'])));
+
+            if($Address[0]['Address']['country']=='Costa Rica'){ //local
+                $primera=1;
+                $segunda=2;
+            }else{ //internacional
+                $primera=2;
+                $segunda=3;
+            }
+
            $fechafactura=$query[$i]['Sale']['created'];
             $fechafactura1 = mktime(substr($fechafactura, 11, 2), substr($fechafactura, 14, 2)+$primera, 0, substr($fechafactura, 5, 2), substr($fechafactura, 8, 2), substr($fechafactura, 0, 4));
             $fechafactura2 = mktime(substr($fechafactura, 11, 2), substr($fechafactura, 14, 2)+$segunda, 0, substr($fechafactura, 5, 2), substr($fechafactura, 8, 2), substr($fechafactura, 0, 4));
@@ -365,7 +384,7 @@ class SalesController extends AppController {
             {
                 $tracking = "Not dispatched";
 
-            }elseif (($fechaSistema >= $fechafactura11) && ($fechaSistema<=$fechafactura22)){
+            }elseif (($fechaSistema >= $fechafactura11) && ($fechaSistema<$fechafactura22)){
 
                 $tracking = "mailBox";
             }else {

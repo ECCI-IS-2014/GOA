@@ -326,6 +326,8 @@ CREATE TABLE IF NOT EXISTS `sales` (
   `modified` datetime NOT NULL,
   `tax` decimal(9,2) NOT NULL DEFAULT '0.00',
   `tracking` varchar(30) NOT NULL DEFAULT 'Not dispatched',
+  `shipping` decimal(10,2) NOT NULL DEFAULT '0.00',
+  `address_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_sales_user_id` (`user_id`),
   KEY `FK_sales_method_payment_id` (`method_payment_id`)
@@ -335,15 +337,15 @@ CREATE TABLE IF NOT EXISTS `sales` (
 -- Volcado de datos para la tabla `sales`
 --
 
-INSERT INTO `sales` (`id`, `user_id`, `method_payment_id`, `subtotal`, `frequenly_costumer_discount`, `total`, `currency`, `created`, `modified`, `tax`, `tracking`) VALUES
-(1, 2, 2, '100.20', '0.00', '123.50', 'Dollar', '2014-01-17 22:12:27', '2014-11-08 22:12:27', '12.50', 'Not dispatched'),
-(2, 2, 2, '100.20', '0.00', '123.50', 'Dollar', '2014-02-20 22:12:27', '2014-11-08 22:12:27', '12.50', 'Not dispatched'),
-(3, 2, 2, '100.20', '0.00', '123.50', 'Dollar', '2014-04-02 22:12:27', '2014-11-08 22:12:27', '12.50', 'Not dispatched'),
-(4, 2, 2, '100.20', '0.00', '123.50', 'Dollar', '2014-05-07 22:12:27', '2014-11-08 22:12:27', '12.50', 'Not dispatched'),
-(5, 2, 2, '162.20', '0.00', '123.70', 'Dollar', '2014-06-22 22:12:27', '2014-11-10 22:02:40', '23.50', 'Not dispatched'),
-(6, 2, 2, '100.20', '0.00', '123.50', 'Dollar', '2014-09-14 22:12:27', '2014-11-08 22:12:27', '12.50', 'Not dispatched'),
-(7, 2, 2, '100.20', '0.00', '123.50', 'Dollar', '2014-10-02 22:12:27', '2014-11-08 22:12:27', '12.50', 'Not dispatched'),
-(8, 2, 2, '100.20', '0.00', '123.50', 'Dollar', '2014-11-08 22:12:27', '2014-11-08 22:12:27', '12.50', 'Not dispatched');
+INSERT INTO `sales` (`id`, `user_id`, `method_payment_id`, `subtotal`, `frequenly_costumer_discount`, `total`, `currency`, `created`, `modified`, `tax`, `tracking`, `shipping`, `address_id`) VALUES
+(1, 2, 2, '100.20', '0.00', '123.50', 'Dollar', '2014-01-17 22:12:27', '2014-11-08 22:12:27', '12.50', 'Not dispatched', '0.00', 3),
+(2, 2, 2, '100.20', '0.00', '123.50', 'Dollar', '2014-02-20 22:12:27', '2014-11-08 22:12:27', '12.50', 'Not dispatched', '0.00', 3),
+(3, 2, 2, '100.20', '0.00', '123.50', 'Dollar', '2014-04-02 22:12:27', '2014-11-08 22:12:27', '12.50', 'Not dispatched', '0.00', 5),
+(4, 2, 2, '100.20', '0.00', '123.50', 'Dollar', '2014-05-07 22:12:27', '2014-11-08 22:12:27', '12.50', 'Not dispatched', '0.00', 5),
+(5, 2, 2, '162.20', '0.00', '123.70', 'Dollar', '2014-06-22 22:12:27', '2014-11-10 22:02:40', '23.50', 'Not dispatched', '0.00', 5),
+(6, 2, 2, '100.20', '0.00', '123.50', 'Dollar', '2014-09-14 22:12:27', '2014-11-08 22:12:27', '12.50', 'Not dispatched', '0.00', 4),
+(7, 2, 2, '100.20', '0.00', '123.50', 'Dollar', '2014-10-02 22:12:27', '2014-11-08 22:12:27', '12.50', 'Not dispatched', '0.00', 4),
+(8, 2, 2, '100.20', '0.00', '123.50', 'Dollar', '2014-11-08 22:12:27', '2014-11-08 22:12:27', '12.50', 'Not dispatched', '0.00', 4);
 
 -- --------------------------------------------------------
 

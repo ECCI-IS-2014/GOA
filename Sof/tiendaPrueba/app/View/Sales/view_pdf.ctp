@@ -44,9 +44,9 @@ Bill Number:  $factura_id
 User:  $user_name $user_last_name
 
 Delivery Information:
-    San Jose, Costa Rica
-    8 Street, 13 Avenue Garden's S.A
-    3 floor, Dep 12
+
+    $state, $country
+    $city, $street
 
 Payment Method:  $brand  ****-****-****-$last_number
 
@@ -80,6 +80,8 @@ $txt2 = <<<EOD
 SubTotal: $currency$subtotal
 
 Tax: $currency$tax
+
+Shipping: $currency$shipping
 
 Frequenly Costumer Discount: $currency$frequenly_costumer_discount
 
