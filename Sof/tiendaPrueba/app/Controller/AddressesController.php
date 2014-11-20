@@ -26,14 +26,12 @@ class AddressesController extends AppController {
 			$this->request->data['Address']['user_id'] = $this->Session->read('Auth.User.id');
 			$this->Address->create();
 			if ($this->Address->save($this->request->data)) {
-				$this->Session->setFlash(__('The address has been saved.'));
+				$this->Session->setFlash(__('The shipping address has been saved.'));
 				return $this->redirect(array('controller'=>'users','action' => 'profile'));
 			} else {
 				$this->Session->setFlash(__('The address could not be saved. Please, try again.'));
 			}
 		}
-		$users = $this->Address->User->find('list');
-		$this->set(compact('users'));
 	}
 
 /**
@@ -47,14 +45,12 @@ class AddressesController extends AppController {
 			$this->request->data['Address']['is_billing'] = 1;
 			$this->Address->create();
 			if ($this->Address->save($this->request->data)) {
-				$this->Session->setFlash(__('The address has been saved.'));
+				$this->Session->setFlash(__('The billing address has been saved.'));
 				return $this->redirect(array('controller'=>'users','action' => 'profile'));
 			} else {
 				$this->Session->setFlash(__('The address could not be saved. Please, try again.'));
 			}
 		}
-		$users = $this->Address->User->find('list');
-		$this->set(compact('users'));
 	}
 
 /**
