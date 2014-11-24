@@ -124,6 +124,7 @@ class SalesController extends AppController {
         $this->set('payment_method', $payment_method);
         //modifica la tabla de sales para poner el costo del shipping usando tipo de cambios dolar->Colones a 530 y dolar->euro a 0.84
         $address = $this->Address->find('first', array('conditions'=>array('Address.id'=>$sale['Sale']['address_id'])));
+        $this->set('address', $address);
         if($address['Address']['country']=='Costa Rica')
         {
             switch ($sale['Sale']['currency'])

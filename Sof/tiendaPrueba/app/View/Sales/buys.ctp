@@ -25,9 +25,10 @@
             <p style="font-weight:bold;  margin-left:10%;">User:&nbsp; <?php echo h($sale['User']['name']); ?> <?php echo $this->Session->read('Auth.User.last_name'); ?> </p>
             <p style="font-weight:bold; margin-left:10%;">Delivery:&nbsp;</p>
             <div id="delivery" style = "margin-left:20%; margin-bottom:3%; font-size: 15px;">
-                <h1> San Jose, Costa Rica </h1>
-                <h1> 8 Street, 13 Avenue Garden's S.A </h1>
-                <h1> 3 floor, Dep 12 </h1>
+                <h1> <p style="display:inline; font-weight:bold">Country:&nbsp</p><?php echo $address['Address']['country'];?></h1>
+                <h1> <p style="display:inline;font-weight:bold">City:&nbsp</p><?php echo $address['Address']['city'];?></h1>
+                <h1> <p style="display:inline;font-weight:bold">State:&nbsp</p><?php echo $address['Address']['state'];?></h1>
+                <h1> <p style="display:inline;font-weight:bold">Street:&nbsp</p><?php echo $address['Address']['street'];?></h1>
             </div>
 
             <p style="font-weight:bold;  margin-left:10%;">Payment Method:&nbsp;</p>
@@ -63,6 +64,7 @@
             ?>
             <p style="font-weight:bold;  margin-left:10%;">Currency:&nbsp;   <?php echo h($sale['Sale']['currency']); ?> </p>
             <p style="font-weight:bold;  margin-left:10%;">SubTotal:&nbsp; <?php echo $symbol . h($sale['Sale']['subtotal']); ?></p>
+            <p style="font-weight:bold;  margin-left:10%;">Shipping:&nbsp; <?php echo $symbol . h($sale['Sale']['shipping']); ?></p>
             <p style="font-weight:bold;  margin-left:10%;">Tax:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo '+'.$symbol .h($sale['Sale']['tax']); ?></p>
             <p style="font-weight:bold;  margin-left:10%;">Frequent Customer Discount:&nbsp;</p> <h1 style="font-size: 15px; margin-left:19%;font-weight:bold;"> <?php echo '-'.$symbol .h($sale['Sale']['frequenly_costumer_discount']); ?> </h1>
             <p style="font-weight:bold;  margin-left:10%;">Total:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <?php echo $symbol .h($sale['Sale']['total']); ?> </p>
