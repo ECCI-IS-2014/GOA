@@ -32,7 +32,9 @@
 
             <p style="font-weight:bold;  margin-left:10%;">Payment Method:&nbsp;</p>
             <h1 style="font-size: 15px; margin-left:20%;"> 
-                Credit Card: <?php echo h($payment_method['CreditCard']['brand']).'<br> Last 4 numbers: '.$this->StringFormatter->formatCardLastNumbers($payment_method['CreditCard']['card_number']); ?>
+                Credit Card: <?php echo h($payment_method['CreditCard']['brand']).'<br> Last 4 numbers: '.$this->StringFormatter->formatCardLastNumbers($payment_method['CreditCard']['card_number']);
+                //echo h($sale['Sale']['address_id']);
+                ?>
             </h1>
 
             <p style="font-weight:bold; margin-left:10%;margin-top:20px;">Products:&nbsp;</p>

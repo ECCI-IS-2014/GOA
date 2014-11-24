@@ -122,6 +122,40 @@ class SalesController extends AppController {
         $this->set('sale', $sale);
         $payment_method = $this->CreditCard->find('first', array('conditions'=>array('CreditCard.id'=>$sale['Sale']['method_payment_id'])));
         $this->set('payment_method', $payment_method);
+        //modifica la tabla de sales para poner el costo del shipping usando tipo de cambios dolar->Colones a 530 y dolar->euro a 0.84
+        $address = $this->Address->find('first', array('conditions'=>array('Address.id'=>$sale['Sale']['address_id'])));
+        if($address['Address']['country']=='Costa Rica')
+        {
+            switch ($sale['Sale']['currency'])
+            {
+                case 'Dollar': $this->Sale->query("UPDATE sales SET shipping = 6.00 WHERE id = ".$sale['Sale']['id'].";");
+                    break;
+                case 'Euro': $this->Sale->query("UPDATE sales SET shipping = 4.80 WHERE id = ".$sale['Sale']['id'].";");
+                    break;
+                case 'Colon': $this->Sale->query("UPDATE sales SET shipping = 3180.00 WHERE id = ".$sale['Sale']['id'].";");
+                    break;
+                default: $this->Sale->query("UPDATE sales SET shipping = 0.00 WHERE id = ".$sale['Sale']['id'].";");
+                    break;
+
+            }
+            //$this->Sale->query("UPDATE sales SET shipping = 6.00 WHERE id = ".$sale['Sale']['id'].";");
+        }else
+        {
+            switch ($sale['Sale']['currency'])
+            {
+                case 'Dollar': $this->Sale->query("UPDATE sales SET shipping = 30.00 WHERE id = ".$sale['Sale']['id'].";");
+                    break;
+                case 'Euro': $this->Sale->query("UPDATE sales SET shipping = 24.00 WHERE id = ".$sale['Sale']['id'].";");
+                    break;
+                case 'Colon': $this->Sale->query("UPDATE sales SET shipping = 15.900 WHERE id = ".$sale['Sale']['id'].";");
+                    break;
+                default: $this->Sale->query("UPDATE sales SET shipping = 0.00 WHERE id = ".$sale['Sale']['id'].";");
+            }
+            //$this->Sale->query("UPDATE sales SET shipping = 30.00 WHERE id = ".$sale['Sale']['id'].";");
+        }
+
+
+
 
         // proce checkout
         $cart = $this->Session->read('saleCart');
