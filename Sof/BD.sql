@@ -52,7 +52,8 @@ INSERT INTO `addresses` (`id`, `user_id`, `country`, `state`, `city`, `street`, 
 (2, 3, 'Costa Rica', 'San Jose', 'Curridabat', '125mts Oeste del palo de mango', 0),
 (3, 2, 'Costa Rica', 'Heredia', 'Heredia', 'Al lado de la esquina', 1),
 (4, 2, 'Costa Rica', 'Heredia', 'Belen', '50mts Norte de la escuela', 0),
-(5, 2, 'Costa Rica', 'Heredia', 'San Joaquin', 'Al frente de la plaza', 0);
+(5, 2, 'Costa Rica', 'Heredia', 'San Joaquin', 'Al frente de la plaza', 0),
+(6, 2, 'Francia', 'Paris', 'Paris 1º', ' 7, rue Jean-Jacques Rousseau', 0);
 
 -- --------------------------------------------------------
 
