@@ -11,7 +11,11 @@ function init() {
     currencyOriginal = [];
 
     for(var i = 0; i < currency.length; i++) {
-        currencyOriginal.push(currency[i].textContent.replace("$",""));
+        var text = currency[i].textContent.replace(/[^0-9]/g,"");
+        if (text == "") {
+            text = 0;
+        }
+        currencyOriginal.push(text);
     }
 
     $('#currency').on('change', refresh);
@@ -21,37 +25,35 @@ function init() {
 function refresh(){
 
     var coin = $('#currency')[0].selectedOptions[0].value;
-    var shipping =  $('#ship').text($('#ship').text().replace('$',''));
 
     for(var i = 0; i < currency.length; i++){
         switch(coin) {
             case '1':
                 currency[i].textContent = '$' + (currencyOriginal[i] * 1).toFixed(2);
-                shipping = (shipping * 1).toFixed(2);
-                $("#ship").text("$"+shipping);
                 break;
             case '2':
                 currency[i].textContent = "€" + (currencyOriginal[i] * 0.804547301).toFixed(2);
-               shipping = (shipping * 0.804547301).toFixed(2);
-               $("#ship").text("€"+shipping);
                 break;
             case '3':
                 currency[i].textContent = "¢" + (currencyOriginal[i] * 539.374326).toFixed(2);
-                shipping = (shipping * 539.374326).toFixed(2);
-                $("#ship").text("¢"+shipping);
                 break;
         }
     }
+
+    if(currencyOriginal[currency.length - 1] == 0) {
+        currency[currency.length - 1].textContent = "Choose a shipping address";
+    }
+
 }
 
-function ship()
-{
+function ship() {
     //var address = $('#addressSelect').
-    var id = $('input[type=radio][name=addressSelector]:checked').attr('id');
-    var t = $("#"+id+".select").text();
-    if(t=='Costa Rica'){
-        $("#ship").text("$6");
+    var country = $('input[type=radio][name=addressSelector]:checked ').parent().children().filter('p.country').text();
+    if(country == 'Costa Rica'){
+        currency[currency.length - 1].textContent = '$6'
+        currencyOriginal[currency.length - 1] = 6;
     }else{
-        $("#ship").text("$35");
+        currency[currency.length - 1].textContent = '$35'
+        currencyOriginal[currency.length - 1] = 35;
     }
 }

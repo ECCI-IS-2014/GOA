@@ -110,7 +110,7 @@
                     <br/><br/>
 
                     <p><b>Shipping: </b></p>
-                    <p id="ship"></p>
+                    <p class="currency">Choose a shipping address</p>
                     <br/><br/>
 
                 </div>

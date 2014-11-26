@@ -387,25 +387,22 @@ class CatalogGeneratorHelper extends AppHelper {
         echo $this->Html->css('catalogs');
         $result_string = '<div>';
 
-        if(count($addresses)>0){for($i = 0; $i < count($addresses); $i++)
-        {
-
-            if( $i < $limit || is_null($limit) ) {
-
+        if(count($addresses)>0){
+            for($i = 0; $i < count($addresses); $i++) {
+                if( $i < $limit || is_null($limit) ) {
                     $result_string = $result_string."<div class='address_item'>".
                     "<input type='radio' name='addressSelector' style='margin-left:50%' value='".$addresses[$i]['Address']['id']."' class='addressSelect' id='".$addresses[$i]['Address']['id']."'>".
                     "<br>".
                     "<br>".
-                    "<p style='font-weight:bold; display:inline;'>"."Country:"."</p>"."<p id='".$addresses[$i]['Address']['id']."' class='select' style='display:inline;'>".$addresses[$i]['Address']['country']."</p>".
+                    "<p style='font-weight:bold; display:inline;'>"."Country:"."</p>"."<p class='country' style='display:inline;'>".$addresses[$i]['Address']['country']."</p>".
                     "<br>".
                     "<br>".
                     "<p style='font-weight:bold; display:inline;'>"."State:"."</p>".$addresses[$i]['Address']['state']."</p>".
                     "<p style='font-weight:bold; display:inline;'>"."City:"."</p>".$addresses[$i]['Address']['city']."</p>".
                     "<p style='font-weight:bold; display:inline;'>"."Street:"."</p>".$addresses[$i]['Address']['street']."</p>".
                     "</div>";
+               }
             }
-
-        }
         }
 
         $result_string = $result_string."<div style='clear:both'>"."</div>";
