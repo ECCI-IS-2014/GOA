@@ -404,7 +404,7 @@ class SalesController extends AppController {
                 $segunda=2;
             }else{ //internacional
                 $primera=2;
-                $segunda=3;
+                $segunda=4;
             }
 
            $fechafactura=$query[$i]['Sale']['created'];
