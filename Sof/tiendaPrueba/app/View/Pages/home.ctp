@@ -55,7 +55,7 @@
                                           <h3>On sale</h3>
                                           <div class="slider_wrapper">
                                             <?php 
-                                              echo $this->CatalogGenerator->formatProducts( $products_top_rated ); 
+                                              echo $this->CatalogGenerator->formatProducts( $products_sale ); 
                                             ?>
                                           </div>
                                           <div id="#sales_slider_btn_left" class="slider_btn_left"></div>
@@ -81,7 +81,7 @@
                                           <div id="#new_slider_btn_left" class="slider_btn_left"></div>
                                           <div id="#new_slider_btn_right" class="slider_btn_right"></div>
                                         </div>-->
-                                        <?php if($this->Session->check('Auth.User')) { ?>
+                                        <?php if($this->Session->check('Auth.User') && count($products_picks) > 0) { ?>
                                         <div id="picks_pane" class="catalog_holder named">
                                           <h3>Our picks for <?php echo $this->Session->read('Auth.User.name'); ?></h3>
                                           <div class="slider_wrapper">
@@ -89,8 +89,8 @@
                                               echo $this->CatalogGenerator->formatProducts( $products_picks ); 
                                             ?>
                                           </div>
-                                          <div id="#picks_slider_btn_left" class="slider_btn_left">asasa</div>
-                                          <div id="#picks_slider_btn_right" class="slider_btn_right">uff</div> 
+                                          <div id="#picks_slider_btn_left" class="slider_btn_left"></div>
+                                          <div id="#picks_slider_btn_right" class="slider_btn_right"></div> 
                                         </div>
                                         <?php } ?>
                                       </div>
