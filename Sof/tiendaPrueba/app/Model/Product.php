@@ -177,13 +177,15 @@ class Product extends AppModel {
 
 		$prod_array = array();
 		foreach (ClassRegistry::init('ProductSale')->find('all') as $row) {
-			$prod_id = $row['ProductSale']['product_id'];
-			$qty = intval($row['ProductSale']['quantity']);
-			if(array_key_exists($prod_id, $prod_array)) {
-				$prod_array[$prod_id] = $prod_array[$prod_id] + $qty;
-			}
-			else {
-				$prod_array[$prod_id] = $qty;
+			if($row['Product']['enable_product'] == true) {
+				$prod_id = $row['ProductSale']['product_id'];
+				$qty = intval($row['ProductSale']['quantity']);
+				if(array_key_exists($prod_id, $prod_array)) {
+					$prod_array[$prod_id] = $prod_array[$prod_id] + $qty;
+				}
+				else {
+					$prod_array[$prod_id] = $qty;
+				}
 			}
 		}
 
@@ -203,7 +205,7 @@ class Product extends AppModel {
 	public function getSaleProducts() {
 		
 		$result = $this->find('all', array(
-			'conditions' => array('Product.discount >' => '0'),
+			'conditions' => array('Product.discount >' => '1', 'Product.enable_product' => true),
 			'order' => array('Product.discount' => 'desc')
 		));
 
@@ -214,7 +216,7 @@ class Product extends AppModel {
 	public function getTopRatedProducts() {
 		
 		$result = $this->find('all', array(
-			'conditions' => array('Product.rating >' => '2'),
+			'conditions' => array('Product.rating >' => '2', 'Product.enable_product' => true),
 			'order' => array('Product.rating' => 'desc')
 		));
 
@@ -233,25 +235,29 @@ class Product extends AppModel {
 		$sales_array = array();
 		$prod_ids_array = array();
 		$result = array();
-		foreach (ClassRegistry::init('Sale')->find('all', array('conditions'=>array('Sale.user_id' => $user_id))) as $row) {
+		if (ClassRegistry::init('Sale')->find('count', array('conditions'=>array('Sale.user_id' => $user_id))) > 0) {
+			foreach (ClassRegistry::init('Sale')->find('all', array('conditions'=>array('Sale.user_id' => $user_id))) as $row) {
 
-			$sale_id = $row['Sale']['id'];
-			$prod_sale = ClassRegistry::init('ProductSale')->find('all', array(
-				'conditions' => array('ProductSale.sale_id' => $sale_id)
-			));
-			foreach ($prod_sale as $row2) {
-				$prod_id = $row2['ProductSale']['product_id'];
-				if(!in_array($prod_id, $prod_ids_array)) {
-					array_push($prod_ids_array, $prod_id);
+				$sale_id = $row['Sale']['id'];
+				$prod_sale = ClassRegistry::init('ProductSale')->find('all', array(
+					'conditions' => array('ProductSale.sale_id' => $sale_id)
+				));
+
+				foreach ($prod_sale as $row2) {
+					$prod_id = $row2['ProductSale']['product_id'];
+					if(!in_array($prod_id, $prod_ids_array)) {
+						array_push($prod_ids_array, $prod_id);
+					}
+				}			
+
+				foreach ($prod_ids_array as $prod) {
+					array_push($result, $this->find('first', array(
+						'conditions' => array('Product.id' => $prod),
+					)));
 				}
-			}			
 
-			foreach ($prod_ids_array as $prod) {
-				array_push($result, $this->find('first', array(
-					'conditions' => array('Product.id' => $prod),
-				)));
 			}
-
+			
 		}
 
 		return $result;
