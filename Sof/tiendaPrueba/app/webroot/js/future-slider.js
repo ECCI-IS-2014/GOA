@@ -3,6 +3,8 @@ function FutureSlider(container, element_width, element_height){
 
    // Add object properties 
    this.container = container;
+   this.button_left;
+   this.button_right;
    this.num_items = $(container + " > div").length;
    this.element_width = element_width;
    this.element_height = element_height;
@@ -14,6 +16,7 @@ function FutureSlider(container, element_width, element_height){
    this.linear_distance = 0;
    this.animation_in_progress = false;
    this.animation_duration = 1500;
+   this.animation_duration_fast = 800;
    this.animation_easing = "easeOutQuart";
    this.isSliding = false;
 
@@ -92,13 +95,17 @@ FutureSlider.prototype = {
         }
     },
 
-    moveForward : function() {
+    moveForward : function(move_fast) {
         if(this.has_slider == true && this.is_playing == true && this.animation_in_progress == false) {
+            var dur = this.animation_duration;
             var myself = this;
+            if(move_fast == true) {
+              dur = this.animation_duration_fast;
+            }
             this.animationStarted();
             $(this.container).stop().animate({
                 left: "-=" + this.element_width,
-            }, this.animation_duration, this.animation_easing, function() {
+            }, dur, this.animation_easing, function() {
                 $(this).append($(this).find("div.catalog_item").first());
                 $(this).css("left", (parseInt($(this).css("left")) + myself.element_width) + "px");
                 myself.animationCompleted();
@@ -106,15 +113,19 @@ FutureSlider.prototype = {
         }
     },
 
-    moveBackwards : function() {
+    moveBackwards : function(move_fast) {
         if(this.has_slider == true && this.is_playing == true && this.animation_in_progress == false) {
+            var dur = this.animation_duration;
             var myself = this;
+            if(move_fast == true) {
+              dur = this.animation_duration_fast;
+            }
             this.animationStarted();
             $(this.container).css("left", "-=" + this.element_width + 'px' );
             $(this.container).prepend($(this.container).find("div.catalog_item").last());
             $(this.container).stop().animate({
                 left: "+=" + this.element_width,
-            }, this.animation_duration, this.animation_easing, function() {
+            }, dur, this.animation_easing, function() {
                 myself.animationCompleted();
             });
         }
@@ -164,6 +175,30 @@ FutureSlider.prototype = {
 
     stop : function() {
          this.is_playing = false;
+    },
+
+    setButtons : function(button_left, button_right) {
+
+        var myself = this;
+
+        if(this.has_slider != true) {
+            $(this.container).parent().parent().find(".slider_btn_left").remove();
+            $(this.container).parent().parent().find(".slider_btn_right").remove();
+        }
+        else {
+            this.button_left = $(this.container).parent().parent().find(".slider_btn_left");
+            this.button_right = $(this.container).parent().parent().find(".slider_btn_right");
+
+            this.button_left.click(function(){
+                myself.moveBackwards(true);
+            });
+
+            this.button_right.click(function(){
+                myself.moveForward(true);
+            });
+
+        }
+
     }
 
 }

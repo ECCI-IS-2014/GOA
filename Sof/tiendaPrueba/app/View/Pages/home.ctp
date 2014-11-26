@@ -43,34 +43,56 @@
                                       <div id="start" class="active">
                                         <div id="hot_pane" class="catalog_holder named">
                                           <h3>Hot</h3>
-                                          <?php 
-                                            echo $this->CatalogGenerator->formatProducts( $products_hot ); 
-                                          ?>
+                                          <div class="slider_wrapper">
+                                            <?php 
+                                              echo $this->CatalogGenerator->formatProducts( $products_hot ); 
+                                            ?>
+                                          </div>
+                                          <div id="#hot_slider_btn_left" class="slider_btn_left"></div>
+                                          <div id="#hot_slider_btn_right" class="slider_btn_right"></div>
                                         </div>
                                         <div id="sales_pane" class="catalog_holder named">
                                           <h3>On sale</h3>
-                                          <?php 
-                                            echo $this->CatalogGenerator->formatProducts( $products_sale ); 
-                                          ?>
+                                          <div class="slider_wrapper">
+                                            <?php 
+                                              echo $this->CatalogGenerator->formatProducts( $products_top_rated ); 
+                                            ?>
+                                          </div>
+                                          <div id="#sales_slider_btn_left" class="slider_btn_left"></div>
+                                          <div id="#sales_slider_btn_right" class="slider_btn_right"></div>
                                         </div>
                                         <div id="top_rated_pane" class="catalog_holder named">
                                           <h3>Top rated</h3>
-                                          <?php 
-                                            echo $this->CatalogGenerator->formatProducts( $products_top_rated ); 
-                                          ?>
+                                          <div class="slider_wrapper">
+                                            <?php 
+                                              echo $this->CatalogGenerator->formatProducts( $products_top_rated ); 
+                                            ?>
+                                          </div>
+                                          <div id="#trated_slider_btn_left" class="slider_btn_left"></div>
+                                          <div id="#trated_slider_btn_right" class="slider_btn_right"></div>
                                         </div>
                                         <!--<div id="new_pane" class="catalog_holder named">
                                           <h3>Newly added</h3>
-                                          <?php 
-                                            echo $this->CatalogGenerator->formatProducts( $products_new ); 
-                                          ?>
+                                          <div class="slider_wrapper">
+                                            <?php 
+                                              echo $this->CatalogGenerator->formatProducts( $products_new ); 
+                                            ?>
+                                          </div>
+                                          <div id="#new_slider_btn_left" class="slider_btn_left"></div>
+                                          <div id="#new_slider_btn_right" class="slider_btn_right"></div>
                                         </div>-->
+                                        <?php if($this->Session->check('Auth.User')) { ?>
                                         <div id="picks_pane" class="catalog_holder named">
                                           <h3>Our picks for <?php echo $this->Session->read('Auth.User.name'); ?></h3>
-                                          <?php 
-                                            echo $this->CatalogGenerator->formatProducts( $products_picks ); 
-                                          ?>
+                                          <div class="slider_wrapper">
+                                            <?php 
+                                              echo $this->CatalogGenerator->formatProducts( $products_picks ); 
+                                            ?>
+                                          </div>
+                                          <div id="#picks_slider_btn_left" class="slider_btn_left">asasa</div>
+                                          <div id="#picks_slider_btn_right" class="slider_btn_right">uff</div> 
                                         </div>
+                                        <?php } ?>
                                       </div>
 
                                       <div id="search_results" class="inactive">
@@ -151,21 +173,27 @@
             //auto advance every 3500ms
             slider_interval = window.setInterval(function(){
                 if(hot_slider.isSliding != true && hot_slider.completedSliding != true) {
-                    hot_slider.moveForward();
+                    hot_slider.moveForward(false);
                 }
                 if(sales_slider.isSliding != true && hot_slider.completedSliding != true) {
-                    sales_slider.moveForward();
+                    sales_slider.moveForward(false);
                 }
                 if(top_rated_slider.isSliding != true && hot_slider.completedSliding != true) {
-                    top_rated_slider.moveForward();
+                    top_rated_slider.moveForward(false);
                 }
                 if(new_slider.isSliding != true && hot_slider.completedSliding != true) {
-                    new_slider.moveForward();
+                    new_slider.moveForward(false);
                 }
                 if(picks_slider.isSliding != true && hot_slider.completedSliding != true) {
-                    picks_slider.moveForward();
+                    picks_slider.moveForward(false);
                 }
             }, 3500);
+
+            hot_slider.setButtons("#hot_slider_btn_left", "#hot_slider_btn_right");
+            top_rated_slider.setButtons("#trated_slider_btn_left", "#trated_slider_btn_right");
+            new_slider.setButtons("#new_slider_btn_left", "#new_slider_btn_right");
+            picks_slider.setButtons("#picks_slider_btn_left", "#picks_slider_btn_right");
+            sales_slider.setButtons("#sales_slider_btn_left", "#sales_slider_btn_right");
 
         });
 
