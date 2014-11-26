@@ -23,7 +23,9 @@ class AddressesController extends AppController {
  */
 	public function add() {
 		if ($this->request->is('post')) {
-			$this->request->data['Address']['user_id'] = $this->Session->read('Auth.User.id');
+			if ($this->Session->read('Auth.User.id') != false) {
+				$this->request->data['Address']['user_id'] = $this->Session->read('Auth.User.id');
+			}
 			$this->Address->create();
 			if ($this->Address->save($this->request->data)) {
 				$this->Session->setFlash(__('The shipping address has been saved.'));
@@ -41,7 +43,9 @@ class AddressesController extends AppController {
  */
 	public function addBilling() {
 		if ($this->request->is('post')) {
-			$this->request->data['Address']['user_id'] = $this->Session->read('Auth.User.id');
+			if ($this->Session->read('Auth.User.id') != false) {
+				$this->request->data['Address']['user_id'] = $this->Session->read('Auth.User.id');
+			}
 			$this->request->data['Address']['is_billing'] = 1;
 			$this->Address->create();
 			if ($this->Address->save($this->request->data)) {
