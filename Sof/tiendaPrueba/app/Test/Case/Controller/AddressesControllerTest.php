@@ -42,7 +42,10 @@ class AddressesControllerTest extends ControllerTestCase {
 		$this->testAction('/addresses/add', array('data' => $data));
 
 		$count = $Addresses->Address->find('count');
-		$this->assertEquals($count, 2);
+		$this->assertEquals($count, 3);
+		
+		$addr = $Addresses->Address->read(null, 3);
+		$this->assertEqual($addr['Address']['is_billing'], false);
 	}
 
 /**
@@ -70,7 +73,10 @@ class AddressesControllerTest extends ControllerTestCase {
 		$this->testAction('/addresses/addBilling', array('data' => $data));
 
 		$count = $Addresses->Address->find('count');
-		$this->assertEquals($count, 2);
+		$this->assertEquals($count, 3);
+		
+		$addr = $Addresses->Address->read(null, 3);
+		$this->assertEqual($addr['Address']['is_billing'], true);
 	}
 
 /**
