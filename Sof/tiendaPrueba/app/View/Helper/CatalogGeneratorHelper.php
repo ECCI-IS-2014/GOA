@@ -12,7 +12,7 @@ class CatalogGeneratorHelper extends AppHelper {
 
     	echo $this->Html->css('catalogs');
 
-    	$result_string = '<div type="catalog" style="z-index: -10;">';
+    	$result_string = '<div type="catalog">';
 
         for($i = 0; $i < count($products); $i++) {
 
