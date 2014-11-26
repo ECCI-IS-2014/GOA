@@ -144,18 +144,19 @@ class SalesController extends AppController {
         {
             switch ($sale['Sale']['currency'])
             {
-                case 'Dollar': $this->Sale->query("UPDATE sales SET shipping = 30.00 WHERE id = ".$sale['Sale']['id'].";");
+                case 'Dollar': $this->Sale->query("UPDATE sales SET shipping = 35.00 WHERE id = ".$sale['Sale']['id'].";");
                     break;
-                case 'Euro': $this->Sale->query("UPDATE sales SET shipping = 24.00 WHERE id = ".$sale['Sale']['id'].";");
+                case 'Euro': $this->Sale->query("UPDATE sales SET shipping = 28.00 WHERE id = ".$sale['Sale']['id'].";");
                     break;
-                case 'Colon': $this->Sale->query("UPDATE sales SET shipping = 15.900 WHERE id = ".$sale['Sale']['id'].";");
+                case 'Colon': $this->Sale->query("UPDATE sales SET shipping = 18.550 WHERE id = ".$sale['Sale']['id'].";");
                     break;
                 default: $this->Sale->query("UPDATE sales SET shipping = 0.00 WHERE id = ".$sale['Sale']['id'].";");
             }
             //$this->Sale->query("UPDATE sales SET shipping = 30.00 WHERE id = ".$sale['Sale']['id'].";");
         }
 
-
+        $shipping = $this->Sale->find('first', array('conditions'=>array('Sale.id'=>$sale['Sale']['id'])));
+        $this->set('shipping', $shipping);
 
 
         // proce checkout
