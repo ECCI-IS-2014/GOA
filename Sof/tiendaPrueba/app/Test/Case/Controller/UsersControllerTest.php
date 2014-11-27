@@ -20,21 +20,6 @@ class UsersControllerTest extends ControllerTestCase {
     );
 
     /**
-     * testIndex method
-     * only the admin can access the index of the users
-     *
-     * @return void
-     */
-    public function testIndex() {
-        $result = $this->testAction('/users/index');
-        $results = $this->headers['Location'];
-        $expected = 'http://localhost/GOA/Sof/tiendaPrueba/users/login';
-        // check redirect
-        $this->assertEquals($results, $expected);
-        debug($result);
-    }
-
-    /**
      * testView method
      * only the administrator can access the view of all the user al ready register
      *
@@ -44,7 +29,6 @@ class UsersControllerTest extends ControllerTestCase {
         $result = $this->testAction('/users/view');
         debug($result);
     }
-
 
     /**
      * testAdding method
