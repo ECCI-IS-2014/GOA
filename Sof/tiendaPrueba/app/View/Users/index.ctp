@@ -54,8 +54,9 @@
 							<?php endif; ?>&nbsp;
 						</td>
 						<td class="actions">
-							<?php echo $this->Html->link(__('View'), array('action' => 'view', $user['User']['id'])); ?>
+		
 							<?php if ( $user['User']['role'] == '0'): ?>
+								<?php echo $this->Html->link(__('View'), array('action' => 'view', $user['User']['id'])); ?>
 								<?php if ( $user['User']['status'] == '1'): ?>
 									<?php echo $this->Form->postLink(__('Disable'), array('action' => 'disable', $user['User']['id']), array(), __('Are you sure you want to disable # %s?', $user['User']['id'])); ?>
 								<?php else: ?>

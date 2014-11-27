@@ -32,12 +32,10 @@ class UsersController extends AppController {
                 if($this->isAuthorized()) { // if is admin
                     return $this->redirect(array('controller'=>'products', 'action'=>'index'));
                 } else {
-                    //$this->Auth->deny(array('controller'=>'products', 'action'=>'index'));
-                    //return $this->redirect($this->Auth->redirect());
                     return $this->redirect(array('controller'=>'Pages', 'action'=>'home'));
                 }
             } else {
-                return $this->Session->setFlash(__('Invalid username or password, try again. </br> If this is your fist time here, create an <a href="http://localhost/blog/TiendaOnline/users/add">account</a>'));
+                return $this->Session->setFlash(__('Invalid username or password, try again. </br> If this is your first time here, create an <a href="http://localhost/blog/TiendaOnline/users/add">account</a>'));
             }
         }
 
@@ -69,11 +67,11 @@ class UsersController extends AppController {
         return $this->redirect($this->Auth->logout());
     }
 
-    /**
-     * index method
-     *
-     * @return void
-     */
+/**
+ * index method
+ *
+ * @return void
+ */
     public function index() {
         $this->User->recursive = 0;
         $this->set('users', $this->Paginator->paginate());
@@ -95,10 +93,10 @@ class UsersController extends AppController {
  *
  * @return void
  */
-
     public function add() {
         if ($this->request->is('post')) {
             $this->User->create();
+			$this->request->data['User']['address'] = "null";
             try {
                 if ($this->User->save($this->request->data)) {
                     $this->Session->setFlash(__('The user has been saved! Login to start using FutureStore!'));
@@ -111,11 +109,8 @@ class UsersController extends AppController {
                 return $this->redirect(array('action' => 'add'));
 
             }
-
-
         }
     }
-
 
 /**
  * edit method
@@ -131,9 +126,7 @@ class UsersController extends AppController {
         $this->User->id = $id;
 
 		if ($this->request->is(array('post', 'put'))) {
-
 			if ($this->User->save($this->request->data)) {
-                //$this->_refreshAuth();
                 $this->Session->write('Auth', $this->User->read(null, $this->Auth->User('id')));
                 $this->Session->setFlash(__('The user has been updated.'));
                 return $this->redirect(array('action' => 'profile'));
@@ -145,11 +138,6 @@ class UsersController extends AppController {
 
             $options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
 			$this->request->data = $this->User->find('first', $options);
-
-			// extra paolo
-
-            //$this->request->data = $this->User->read(null, $id);
-            //unset($this->request->data['User']['password']);
 		}
 	}
 
@@ -166,7 +154,7 @@ class UsersController extends AppController {
 		if (!$this->User->exists($id)) {
 			throw new NotFoundException(__('Invalid user'));
 		}
-		$this->request->allowMethod('post', 'delete');  //$this->request->onlyAllow('post');
+		$this->request->allowMethod('post', 'delete');
 		if ($this->User->delete()) {
 			$this->Session->setFlash(__('The user has been deleted.'));
 		} else {
@@ -202,8 +190,7 @@ class UsersController extends AppController {
         return $this->redirect(array('action' => 'index'));
     }
 
-    function convertPasswords()
-    {
+    function convertPasswords() {
         if(!empty( $this->data['User']['password'] ) ){
             $this->data['User']['password'] = $this->Auth->password($this->data['User']['password'] );
         }

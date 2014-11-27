@@ -39,11 +39,6 @@
                     <?php echo $this->Session->read('Auth.User.phone'); ?>
                     &nbsp;
                 </dd>
-                <dt><?php echo __('Address'); ?></dt>
-                <dd>
-                    <?php echo $this->Session->read('Auth.User.address'); ?>
-                    &nbsp;
-                </dd>
                 <dt><?php echo __('Email'); ?></dt>
                 <dd>
                     <?php echo $this->Session->read('Auth.User.email'); ?>
@@ -151,9 +146,10 @@
                     <li><?php echo $this->Html->link(__('Add Billing Address'), array('controller' => 'addresses', 'action' => 'addBilling')); ?> </li>
                 </ul>
             </div>
+			<br /><br />
             <?php endif; ?>
 
-            <br /><br /><br />
+			<br />
 
             <h4 style="color: #2c6877"><?php echo __('Shipping addresses'); ?></h4>
             <?php if (!empty($user['Address'])): ?>
