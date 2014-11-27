@@ -21,6 +21,8 @@ class SaleFixture extends CakeTestFixture {
 		'modified' => array('type' => 'datetime', 'null' => false, 'default' => null),
 		'tax' => array('type' => 'integer', 'null' => false, 'default' => '13', 'length' => 3, 'unsigned' => false),
         'tracking' => array('type' => 'string', 'null' => false, 'default' => 'Not dispatched', 'length' => 30),
+        'shipping' => array('type' => 'decimal', 'null' => false, 'default' => '0.00', 'length' => '9,2', 'unsigned' => false),
+        'address_id' => array('type' => 'integer','null' => false, 'default' => null, 'unsigned' => false),
 		'indexes' => array(
 			'PRIMARY' => array('column' => 'id', 'unique' => 1),
 			'FK_user_id' => array('column' => 'user_id', 'unique' => 0)
@@ -44,7 +46,9 @@ class SaleFixture extends CakeTestFixture {
 			'created' => '2014-11-05 03:48:50',
 			'modified' => '2014-11-05 03:48:50',
 			'tax' => 1,
-            'tracking' => 'Committed'
+            'tracking' => 'Committed',
+            'shipping' => '20',
+            'address_id' => '1'
 		),
         array(
             'id' => 2,
@@ -56,7 +60,9 @@ class SaleFixture extends CakeTestFixture {
             'created' => '2015-11-05 03:48:50',
             'modified' => '2015-11-05 03:48:50',
             'tax' => 1,
-            'tracking' => 'Not dispatched'
+            'tracking' => 'Not dispatched',
+            'shipping' => '20',
+            'address_id' => '1'
         ),
 	);
 

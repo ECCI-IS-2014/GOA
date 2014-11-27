@@ -39,11 +39,6 @@
                     <?php echo $this->Session->read('Auth.User.phone'); ?>
                     &nbsp;
                 </dd>
-                <dt><?php echo __('Address'); ?></dt>
-                <dd>
-                    <?php echo $this->Session->read('Auth.User.address'); ?>
-                    &nbsp;
-                </dd>
                 <dt><?php echo __('Email'); ?></dt>
                 <dd>
                     <?php echo $this->Session->read('Auth.User.email'); ?>
@@ -118,45 +113,49 @@
 
             <h4 style="color: #2c6877"><?php echo __('Billing address'); ?></h4>
             <?php $billing = false; ?>
-            <?php if (!empty($user['Address'])): ?>
-            <table cellpadding = "0" cellspacing = "0">
-                <tr>
-                    <th><?php echo __('Country'); ?></th>
-                    <th><?php echo __('State/Province'); ?></th>
-                    <th><?php echo __('City'); ?></th>
-                    <th><?php echo __('Street'); ?></th>
-                    <th class="actions"><?php echo __(' '); ?></th>
-                </tr>
-                
-                <?php foreach ($user['Address'] as $address): ?>
-                    <?php if ($address['is_billing'] == 1) : ?>
-                        <?php $billing = true; ?>
-                    <tr>
-                        <td><?php echo $address['country']; ?></td>
-                        <td><?php echo $address['state']; ?></td>
-                        <td><?php echo $address['city']; ?></td>
-                        <td><?php echo $address['street']; ?></td>
-                        <td class="actions">
-                            <?php echo $this->Html->link(__('Edit'), array('controller' => 'addresses', 'action' => 'edit', $address['id'])); ?>
-                        </td>
-                    </tr>
-                    <?php endif; ?>
-                <?php endforeach; ?>
-            </table>
-            <?php endif; ?>
-
+			<?php $shipping = false; ?>
+			<?php foreach ($user['Address'] as $address): ?>
+				<?php if ($address['is_billing'] == 1) : ?>
+				
+					<?php $billing = true; ?>
+					<table cellpadding = "0" cellspacing = "0">
+						<tr>
+							<th><?php echo __('Country'); ?></th>
+							<th><?php echo __('State/Province'); ?></th>
+							<th><?php echo __('City'); ?></th>
+							<th><?php echo __('Street'); ?></th>
+							<th class="actions"><?php echo __(' '); ?></th>
+						</tr>
+						<tr>
+							<td><?php echo $address['country']; ?></td>
+							<td><?php echo $address['state']; ?></td>
+							<td><?php echo $address['city']; ?></td>
+							<td><?php echo $address['street']; ?></td>
+							<td class="actions">
+								<?php echo $this->Html->link(__('Edit'), array('controller' => 'addresses', 'action' => 'edit', $address['id'])); ?>
+							</td>
+						</tr>
+					</table>
+					
+				<?php else: ?>
+					<?php $shipping = true; ?>
+				<?php endif; ?>
+				
+			<?php endforeach; ?>
+            
             <?php if ($billing == false) : ?>
             <div class="actions">
                 <ul>
                     <li><?php echo $this->Html->link(__('Add Billing Address'), array('controller' => 'addresses', 'action' => 'addBilling')); ?> </li>
                 </ul>
             </div>
+			<br /><br />
             <?php endif; ?>
 
-            <br /><br /><br />
+			<br />
 
             <h4 style="color: #2c6877"><?php echo __('Shipping addresses'); ?></h4>
-            <?php if (!empty($user['Address'])): ?>
+            <?php if ($shipping): ?>
             <table cellpadding = "0" cellspacing = "0">
                 <tr>
                     <th><?php echo __('Country'); ?></th>

@@ -6,17 +6,16 @@
          <?php echo $this->Html->css('footers'); ?>
          <?php echo $this->Html->css('headers'); ?>
     </head>
-    <?php
-    if($this->Session->read('Auth.User.role')== 'admin') { // if is admin
-    ?>
+	
+    <?php if ($this->Session->read('Auth.User.role')== 'admin'): ?>
+	
     <div id="head"> <?php echo $this->fetch('headerAdmin'); ?> </div>
-
+	
     <div id="content">
-
+	
         <div id="content_wrapper" style="position:relative;">
-
 			<div class="users view">
-			<h2><?php echo __('User'); ?></h2>
+				<h2><?php echo __('User'); ?></h2>
 				<dl>
 					<dt><?php echo __('Id'); ?></dt>
 					<dd>
@@ -62,11 +61,6 @@
 						<?php echo h($user['User']['phone']); ?>
 						&nbsp;
 					</dd>
-					<dt><?php echo __('Address'); ?></dt>
-					<dd>
-						<?php echo h($user['User']['address']); ?>
-						&nbsp;
-					</dd>
 					<dt><?php echo __('Email'); ?></dt>
 					<dd>
 						<?php echo h($user['User']['email']); ?>
@@ -98,7 +92,6 @@
 				</dl>
 			</div>
 
-			<?php if ( $user['User']['role'] == '0'): ?>
 			<div class="actions">
 				<h3><?php echo __('Actions'); ?></h3>
 				<ul>
@@ -116,42 +109,96 @@
 				<br/><br/>
 				<h3><?php echo __('Credit Card Information'); ?></h3>
 				<?php if (!empty($user['CreditCard'])): ?>
-				<table cellpadding = "0" cellspacing = "0">
-				<tr>
-					<th><?php echo __('Brand'); ?></th>
-					<th><?php echo __('Card Number'); ?></th>
-					<th><?php echo __('Card Name'); ?></th>
-					<th><?php echo __('Expiration Date'); ?></th>
-				</tr>
-				<?php foreach ($user['CreditCard'] as $creditCard): ?>
+					<table cellpadding = "0" cellspacing = "0">
 					<tr>
-						<td><?php echo $creditCard['brand']; ?></td>
-						<td><?php echo $this->StringFormatter->formatCardNumber($creditCard['card_number'], '-'); ?></td>
-						<td><?php echo $creditCard['card_name']; ?></td>
-						<td><?php echo $this->StringFormatter->formatDateMY($creditCard['expiration_date']); ?></td>
+						<th><?php echo __('Brand'); ?></th>
+						<th><?php echo __('Card Number'); ?></th>
+						<th><?php echo __('Card Name'); ?></th>
+						<th><?php echo __('Expiration Date'); ?></th>
 					</tr>
-				<?php endforeach; ?>
-				</table>
-			<?php endif; ?>
+					<?php foreach ($user['CreditCard'] as $creditCard): ?>
+						<tr>
+							<td><?php echo $creditCard['brand']; ?></td>
+							<td><?php echo $this->StringFormatter->formatCardNumber($creditCard['card_number'], '-'); ?></td>
+							<td><?php echo $creditCard['card_name']; ?></td>
+							<td><?php echo $this->StringFormatter->formatDateMY($creditCard['expiration_date']); ?></td>
+						</tr>
+					<?php endforeach; ?>
+					</table>
+				<?php endif; ?>
 			</div>
 			
-			<?php endif; ?>
+			<div class="related" style="margin:0 15px;">
+				<br/><br/>
+				<h3><?php echo __('Addresses'); ?></h3>
+
+				<h4 style="color: #2c6877"><?php echo __('Billing address'); ?></h4>
+				<?php $billing = false; ?>
+				<?php if (!empty($user['Address'])): ?>
+				<table cellpadding = "0" cellspacing = "0">
+					<tr>
+						<th><?php echo __('Country'); ?></th>
+						<th><?php echo __('State/Province'); ?></th>
+						<th><?php echo __('City'); ?></th>
+						<th><?php echo __('Street'); ?></th>
+					</tr>
+					
+					<?php foreach ($user['Address'] as $address): ?>
+						<?php if ($address['is_billing'] == 1) : ?>
+							<?php $billing = true; ?>
+						<tr>
+							<td><?php echo $address['country']; ?></td>
+							<td><?php echo $address['state']; ?></td>
+							<td><?php echo $address['city']; ?></td>
+							<td><?php echo $address['street']; ?></td>
+						</tr>
+						<?php endif; ?>
+					<?php endforeach; ?>
+				</table>
+				<?php endif; ?>
+				
+				<br />
+
+				<h4 style="color: #2c6877"><?php echo __('Shipping addresses'); ?></h4>
+				<?php if (!empty($user['Address'])): ?>
+				<table cellpadding = "0" cellspacing = "0">
+					<tr>
+						<th><?php echo __('Country'); ?></th>
+						<th><?php echo __('State/Province'); ?></th>
+						<th><?php echo __('City'); ?></th>
+						<th><?php echo __('Street'); ?></th>
+					</tr>
+					<?php foreach ($user['Address'] as $address): ?>
+						<?php if ($address['is_billing'] == 0) : ?>
+						<tr>
+							<td><?php echo $address['country']; ?></td>
+							<td><?php echo $address['state']; ?></td>
+							<td><?php echo $address['city']; ?></td>
+							<td><?php echo $address['street']; ?></td>
+
+						</tr>
+						<?php endif; ?>
+					<?php endforeach; ?>
+				</table>
+				<?php endif; ?>
+
+			</div>
 
 		</div>
 
-    </div>
-            <?php } else {
-                           ?>
+    </div
+	
+	<?php else: ?>
 
-                                <div id="head"> <?php echo $this->fetch('header1'); ?> </div>
-                                <div id="mich" style= "text-align: center; background-color: black; color: black">
-                                <p>
-                                        <img src = "http://i.imgur.com/Q8RbYmC.png" />
-                                 </p>
-                                 </div>
-                            <?php
-                }
-                ?>
+		<div id="head"> <?php echo $this->fetch('header1'); ?> </div>
+		<div id="mich" style= "text-align: center; background-color: black; color: black">
+			<p>
+				<img src = "http://i.imgur.com/Q8RbYmC.png" />
+			</p>
+		</div>
+		
+	<?php endif; ?>
+	
     <div style="clear:both"></div>
 
     <div id="foot"> <?php echo $this->fetch('footerAdmin'); ?> </div>
@@ -169,4 +216,3 @@
     </script>
 
 </html>
-

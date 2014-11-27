@@ -105,10 +105,14 @@
              <?php }?>
         </div>
      <?php endforeach; ?>
+	 
     <?php } else { ?>
-      <h1 style="font-size: 18px; text-align: center;"> You haven't ordered anything yet. Go choose something you like! <h1>
-      <h1 style="font-size: 18px; text-align: center;"><img src = "http://i.imgur.com/ogQxWJu.gif" /><h1>
+		<br />
+		<h1 style="font-size: 18px; text-align: center;"> You haven't ordered anything yet. Go buy something you like! </h1>
+		<div style="font-size: 18px; text-align: center;"><img src = "http://i.imgur.com/ogQxWJu.gif" /></div>
+		<br />
     <?php }  ?>
+	
     <div style="clear:both"></div>
 
     <div id="foot"><?php echo $this->fetch('footer1'); ?></div>
