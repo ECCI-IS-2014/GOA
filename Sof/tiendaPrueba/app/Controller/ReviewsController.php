@@ -144,6 +144,7 @@ class ReviewsController extends AppController {
     public function add_review()
     {
         $prod_id = $this->passedArgs['id'];
+        $this->set( 'prod_name', $this->Product->find('first', array('conditions' => array('Product.id' => $prod_id)))['Product']['name']);
         $this->set( 'prod_id', $prod_id);
         $this->set( 'rating', 0);
     }
