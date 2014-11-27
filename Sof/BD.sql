@@ -302,12 +302,20 @@ CREATE TABLE IF NOT EXISTS `reviews` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
-  `description` varchar(5000) NOT NULL,
+  `description` varchar(5000) DEFAULT NULL,
   `rating` int(1) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_user_id` (`user_id`),
   KEY `FK_products_id` (`product_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+INSERT INTO `reviews` (`user_id`, `product_id`, `description`, `rating`) VALUES 
+  (5, 20, null, 5),
+  (4, 20, 'A fine product this is.', 3),
+  (2, 20, 'I really liked my soap, i can use it to wash dog and wash cat and wash fish and wash monkey and wash tomato and wash potato and wash many many many many more things to keep them free from bacteria or any sort of potentially harmful pathogen, really.', 4),
+  (6, 20, 'I liked how it kills bacteria and stuff', 5),
+  (8, 20, null, 1),
+  (7, 20, "I didn't like it much", 2);
 
 -- --------------------------------------------------------
 

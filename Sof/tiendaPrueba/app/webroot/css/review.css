@@ -1,11 +1,25 @@
+.title_r2 {
+    float: left;
+    margin-right: 10px;
+    color: #e32;
+    letter-spacing: 1px;
+    font-size: 19px;
+}
+
 #content {
 	width: 100%;
 	display: block;
 }
 
+#r_header_holder {
+    width: 600px;
+    height: 50px;
+    margin: 0 auto;
+}
+
 .mtitle {
 	display: block;
-	margin: 15px 0 10px 20px;
+	margin-top: 50px;
 }
 
 .starHugger
@@ -21,8 +35,12 @@
 {
     display: block;
     width: 600px;
-    height: 40px;
+    height: 50px;
     margin: 3% auto 0 auto;
+}
+
+#starHolder span {
+    margin-left: 10px;
 }
 
 #starHolder p {
@@ -35,11 +53,23 @@
     margin: 2% auto;
 }
 
+#reviewHolder {
+    width: 600px;
+    display: block;
+    margin: 0 auto;
+}
+
+#reviewHolder span {
+    display: block;
+    margin-bottom: 9px;
+    margin-left: 10px;
+}
+
 #ReviewDescription
 {
     display: block;
     width: 600px;
-    margin: 2% auto; 
+    margin: 0 auto 30px auto; 
     border-style:solid; 
     border-width:1px; 
     font-size:80%; 
@@ -61,5 +91,7 @@ textarea {
 #save_btn {
 	display: block;
 	text-align: center;
-	margin-bottom: 40px;
+    cursor: pointer;
+	margin-bottom: 100px;
+    margin-top: 50px;
 }

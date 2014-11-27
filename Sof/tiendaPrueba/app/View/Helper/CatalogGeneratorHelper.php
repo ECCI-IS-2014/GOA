@@ -369,16 +369,29 @@ class CatalogGeneratorHelper extends AppHelper {
     public function displayReviews($reviews, $limit = null)
     {
         echo $this->Html->css('catalogs');
-        $result_string = '<div type="review">';
+        $result_string = '<div type="review" style="width:800px; margin:0 auto;">';
+
+        if(count($reviews) > 0) {
+            $result_string = $result_string . '<h3 style="margin-bottom: 35px;">Reviews for this product</h3>';
+        }
 
         for($i = 0; $i < count($reviews); $i++) {
-
             if( $i < $limit || is_null($limit) ) {
-
-
-                $result_string = $result_string."<div style='float:left'>".$this->displayRatingBox($reviews[$i]['Review']['rating'])."</div>"."<p style='float:left'>".$reviews[$i]['Review']['description']."</p>"."<p style='float:left'>".$reviews[$i]['Review']['user_id']."</p>"."<div style='clear:both'></div>";
+                $namebox = "<span style='float:left;'>" . $reviews[$i]['User']['name'] . ":</span>";
+                $ratingbox = "<div style='float:right;'>" . $this->displayRatingBox($reviews[$i]['Review']['rating']) . "</div>";
+                if($reviews[$i]['Review']['description'] == 'null') {
+                    $commentbox = "<p style='float:right; width:500px; min-height: 40px; margin-bottom: 50px;'></p>";
+                }
+                else {
+                    if(strlen($reviews[$i]['Review']['description']) < 30) {
+                        $commentbox = "<p style='float:right; width:500px; min-height: 40px; text-align:right; margin-bottom: 50px;'>" . $reviews[$i]['Review']['description'] . "</p>";
+                    }
+                    else {
+                        $commentbox = "<p style='float:right; width:500px; min-height: 40px; margin-bottom: 50px;'>" . $reviews[$i]['Review']['description'] . "</p>";
+                    }
+                }
+                $result_string = $result_string . "<div style='float:left; width:200px; height:140px;'>" . $namebox . $ratingbox . "</div>" . $commentbox . "<div style='clear:both'></div>";
             }
-
         }
 
         return $result_string . '</div>';
@@ -404,7 +417,7 @@ class CatalogGeneratorHelper extends AppHelper {
                     "<p style='font-weight:bold; display:inline;'>"."City:"."</p>".$addresses[$i]['Address']['city']."</p>".
                     "<p style='font-weight:bold; display:inline;'>"."Street:"."</p>".$addresses[$i]['Address']['street']."</p>".
                     "</div>";
-               }
+                }
             }
         }
 

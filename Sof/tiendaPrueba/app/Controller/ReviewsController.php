@@ -151,18 +151,18 @@ class ReviewsController extends AppController {
 
     public function save_review()
     {
-       $prod_id = $this->passedArgs['id'];
-       $rating = $this->passedArgs['rating'];
-       $description = $this->passedArgs['description'];
-       $user_id=$this->Session->read('Auth.User.id');
-       $data = array('user_id' => $user_id,'product_id'=>$prod_id,'description'=>$description,'rating'=>$rating);
-       $this->Review->save($data);
-       if($rating>0)
-       {
+        $prod_id = $this->passedArgs['id'];
+        $rating = $this->passedArgs['rating'];
+        $description = $this->passedArgs['description'];
+        $user_id=$this->Session->read('Auth.User.id');
+        $data = array('user_id' => $user_id,'product_id'=>$prod_id,'description'=>$description,'rating'=>$rating);
+        $this->Review->save($data);
+        if($rating>0)
+        {
            $this->rateProduct($prod_id,$rating);
-       }
-      return $this->redirect(array('controller' => 'Products', 'action' => 'productInside','id'=>$prod_id));
-        //echo $rating;
+        }
+        $this->Session->setFlash(__('Thank you for your review!'));
+        return $this->redirect(array('controller' => 'Products', 'action' => 'productInside','id'=>$prod_id));
     }
 
     public function rateProduct( $id, $newRating  ) {

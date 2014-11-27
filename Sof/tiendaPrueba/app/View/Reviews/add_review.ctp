@@ -21,11 +21,12 @@
 
 <div id="content">
 
-  <h2 class="mtitle">Write a review for <?php echo $prod_name; ?></h2>
-
+  <div id="r_header_holder">
+    <h2 class="mtitle">Write a review for <?php echo $prod_name; ?></h2>
+  </div>
 
     <div id="starHolder">
-
+        <span class="title_r2">Rate it: </span>
         <div class="starHugger starGraphicEmpty starg" id="star1"></div>
         <div class="starHugger starGraphicEmpty starg" id="star2"></div>
         <div class="starHugger starGraphicEmpty starg" id="star3"></div>
@@ -36,10 +37,11 @@
 
     </div>
     <div id="reviewHolder">
+        <span class="title_r2">Review it: </span>
         <textarea rows="8" maxlength=5000 id="ReviewDescription">Tell us what you think of this product</textarea>
     </div>
 
-    <a id="save_btn" href="">Save Review</a>
+    <a id="save_btn">Submit Review</a>
 
 </div>
 
@@ -80,10 +82,20 @@
                     $("#starHolder").append(starText);
 
                     $("#save_btn").click(function(){
-                      var txt = '<?php echo $this->Html->url(array("controller"=>"reviews", "action"=>"save_review", "id"=>$prod_id, "description"=>"")); ?>';
-                      var desc = $("#ReviewDescription").html();
-                      var url = txt + "'" + desc + "'";
-                      alert(url);
+                      if(rating > 0) {
+                        var txt = '<?php echo $this->Html->url(array("controller"=>"/reviews", "action"=>"save_review", "id"=>$prod_id)); ?>';
+                        var desc = $("#ReviewDescription").val();
+                        if(desc == "" || desc == "Tell us what you think of this product") {
+                          desc = "null";
+                        }
+                        var url = txt + "/description:" + desc + "/rating:" + rating;
+                        window.location.href = url;
+                      }
+                      else {
+                        alert("Rate your product first!");
+                      }
+
+                      
                     });
 
                     $("#star1").mouseenter(function()
