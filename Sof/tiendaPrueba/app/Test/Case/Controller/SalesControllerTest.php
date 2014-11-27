@@ -101,7 +101,7 @@ class SalesControllerTest extends ControllerTestCase {
         // otra en un tiempo muy futuro al servidor
 
         $Sales->Sale = new SalesController();
-        $Sales->Sale->check_tracking(1);
+        //$Sales->Sale->check_tracking(1);
         if ($query[0]['Sale']['tracking'] == "Committed") {
             $expected = true;
         } else {
