@@ -315,7 +315,10 @@ INSERT INTO `reviews` (`user_id`, `product_id`, `description`, `rating`) VALUES
   (2, 20, 'I really liked my soap, i can use it to wash dog and wash cat and wash fish and wash monkey and wash tomato and wash potato and wash many many many many more things to keep them free from bacteria or any sort of potentially harmful pathogen, really.', 4),
   (6, 20, 'I liked how it kills bacteria and stuff', 5),
   (8, 20, null, 1),
-  (7, 20, "I didn't like it much", 2);
+  (7, 20, "I didn't like it much", 2),
+  (8, 16, "It stinks.", 2),
+  (7, 16, "Totally stinks, don't buy if you like your clothes.", 1),
+  (6, 16, "Screw you guys, it smells fine.", 5);
 
 -- --------------------------------------------------------
 
