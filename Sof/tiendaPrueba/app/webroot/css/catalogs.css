@@ -1,24 +1,22 @@
-
 .catalog_item {
-
 	width: 168px;
-	height: 310px;
+	height: 225px;
 	display: inline-block;
 	float: left;
 	margin: 3px 3px;
+}
 
-	//border: solid 1px black;
-
+.link {
+	width: 100%;
+	height: 100%;
+	font-weight: normal;
 }
 
 .catalog_item img.product_photo {
-
 	width: 80px;
 	height: 80px;
 	margin-left: 45px;
 	margin-top: 20px;
-	cursor: pointer;
-
 }
 
 .catalog_item .info_panel {

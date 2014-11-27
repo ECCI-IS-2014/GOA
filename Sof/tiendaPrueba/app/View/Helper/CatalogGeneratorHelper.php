@@ -27,23 +27,26 @@ class CatalogGeneratorHelper extends AppHelper {
                 $result_string = $result_string .   "<div class='catalog_item'>" .
 
                                                         "<a href='".$this->Html->url(array("controller" => "products","action" => "productInside","id"=>"")).$products[$i]['Product']['id']."'>".
-                                                            $this->Html->image('product_icons/'.$products[$i]['Product']['image'], array('alt' => 'CakePHP', 'class' => 'product_photo')) .
-                                                        "</a>".
-                                                        //"<img class='product_photo' src='" . $this->webroot . "/img/product_icons/placeholder.png' />" .
+                                                            
+															"<div class='link'>" .
+															
+																$this->Html->image('product_icons/'.$products[$i]['Product']['image'], array('alt' => 'CakePHP', 'class' => 'product_photo')) .
 
-                                                        "<div class='info_panel'>" .
+																"<div class='info_panel'>" .
 
-                                                            "<p class='catalog_title1'>" . $products[$i]['Product']['name'] . "</p>" .
+																	"<p class='catalog_title1'>" . $products[$i]['Product']['name'] . "</p>" .
 
-                                                            "<div class='cat_text_container'><span class='catalog_title2'>" . 'Price: ' . "</span><span class='catalog_text1'>" . $this->StringFormatter->formatCurrency($price, '$') . "</span></div>" .
+																	"<div class='cat_text_container'><span class='catalog_title2'>" . 'Price: ' . "</span><span class='catalog_text1'>" . $this->StringFormatter->formatCurrency($price, '$') . "</span></div>" .
 
-                                                            "<div class='cat_text_container'><span class='catalog_title2'>" . 'In stock now: ' . "</span><span class='catalog_text1'>" . $products[$i]['Product']['quantity'] . "</span></div>" .
+																	"<div class='cat_text_container'><span class='catalog_title2'>" . 'In stock now: ' . "</span><span class='catalog_text1'>" . $products[$i]['Product']['quantity'] . "</span></div>" .
 
-                                                            "<div class='cat_button_container'>"."<a href='".$this->Html->url(array("controller" => "products","action" => "productInside","id"=>"")).$products[$i]['Product']['id']."'>".'View'."</a>"."</div>".
+																	$this->displayRatingBox($products[$i]['Product']['rating']) .
 
-                                                            $this->displayRatingBox($products[$i]['Product']['rating']) .
-
-                                                        "</div>" .
+																"</div>" .
+															
+															"</div>" .
+														
+														"</a>".
 
                                                     "</div>";
 
