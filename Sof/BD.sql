@@ -311,14 +311,18 @@ CREATE TABLE IF NOT EXISTS `reviews` (
 
 INSERT INTO `reviews` (`user_id`, `product_id`, `description`, `rating`) VALUES 
   (5, 20, null, 5),
-  (4, 20, 'A fine product this is.', 3),
-  (2, 20, 'I really liked my soap, i can use it to wash dog and wash cat and wash fish and wash monkey and wash tomato and wash potato and wash many many many many more things to keep them free from bacteria or any sort of potentially harmful pathogen, really.', 4),
-  (6, 20, 'I liked how it kills bacteria and stuff', 5),
+  (4, 20, 'A fine product, this is.', 3),
+  (2, 20, 'I really liked my soap, i can use it to wash my dog and to wash my cat and to wash my fish and to wash my monkey and to wash my tomato and to wash my potato and wash many more things to keep them free from bacteria or any sort of potentially harmful pathogen, really.', 4),
   (8, 20, null, 1),
+  (6, 20, 'I liked how it kills bacteria and stuff', 5),
   (7, 20, "I didn't like it much", 2),
-  (8, 16, "It stinks.", 2),
-  (7, 16, "Totally stinks, don't buy if you like your clothes.", 1),
-  (6, 16, "Screw you guys, it smells fine.", 5);
+  (8, 16, "It smells like a thousand waterfalls. Couldn't handle my underwear, though.", 2),
+  (7, 16, "Hi there, just stopping by to fill in this space with some words cause it's time for another big'un. Alright get ready. Are you ready? Here it comes. Ding* Oops dinner's ready ok gottagobye.", 5),
+  (6, 16, "Yeah that was more like a medium one.", 3),
+  (4, 10, "This product changed my life.", 5),
+  (7, 10, "I shall never sit anywhere else again.", 4),
+  (6, 10, "This chair saved my marriage.", 5),
+  (8, 10, "Whenever times get tough, I just sit on this chair and it brings me peace.", 5);
 
 -- --------------------------------------------------------
 

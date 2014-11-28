@@ -38,7 +38,7 @@
     </div>
     <div id="reviewHolder">
         <span class="title_r2">Review it: </span>
-        <textarea rows="8" maxlength=5000 id="ReviewDescription">Tell us what you think of this product</textarea>
+        <textarea rows="8" maxlength=5000 id="ReviewDescription">Tell everyone what you think of this product</textarea>
     </div>
 
     <a id="save_btn">Submit Review</a>
