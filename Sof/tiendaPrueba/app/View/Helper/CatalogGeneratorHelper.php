@@ -384,7 +384,7 @@ class CatalogGeneratorHelper extends AppHelper {
                 }
                 else {
                     if(strlen($reviews[$i]['Review']['description']) < 30) {
-                        $commentbox = "<p style='float:right; width:500px; min-height: 40px; text-align:right; margin-bottom: 50px;'>" . $reviews[$i]['Review']['description'] . "</p>";
+                        $commentbox = "<p style='float:right; width:500px; min-height: 40px; margin-bottom: 50px;'>" . $reviews[$i]['Review']['description'] . "</p>";
                     }
                     else {
                         $commentbox = "<p style='float:right; width:500px; min-height: 40px; margin-bottom: 50px;'>" . $reviews[$i]['Review']['description'] . "</p>";
